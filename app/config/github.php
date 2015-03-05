@@ -2,13 +2,13 @@
 
 return array(
     'active'            => TRUE,
-    'test_mode_key'     => 'TSHZVixcD1cLGLSTObouk6Tmo3ChmyxD',
+    'test_mode_key'     => 'JvpVCsEdajPLLei9XEOvWpJjpRlOI8EX',
     'post_data'         => array(),
     'git_path'          => '/usr/bin/',
     'remote'            => 'origin',
     'branch'            => 'master',
-    'repository_name'   => 'grapheme3',
-    'repository_id'     => 28481340,
+    'repository_name'   => 'lookbook',
+    'repository_id'     => 31715831,
     'user_group'        => 'www-data',
     'user_name'         => 'www-data',
     'set_log'           => TRUE,

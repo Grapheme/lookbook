@@ -17,7 +17,7 @@ return array(
 	'manifest' => storage_path('meta'),
 
 	'debug' => FALSE,
-	'url' => 'http://grapheme3.dev.grapheme.ru/',
+	'url' => 'http://lookbook.dev.grapheme.ru/',
 	'timezone' => 'UTC',
 
     'locales' => array(
@@ -26,7 +26,7 @@ return array(
     ),
 	'locale' => 'ru',
 
-	'key' => 'TSHZVixcD1cLGLSTObouk6Tmo3ChmyxD',
+	'key' => 'xmygP1YfX0KkBfnJ5rjpdCl48bNwroKV',
 	'providers' => array(
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
