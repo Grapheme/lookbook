@@ -4,7 +4,7 @@ return array(
 	'connections' => array(
 		'mysql' => array(
 			'host'      => 'localhost',
-			'database'  => 'grapheme',
+			'database'  => 'lookbook',
 			'username'  => 'root',
 			'password'  => '',
 		),

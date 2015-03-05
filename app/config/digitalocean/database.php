@@ -13,7 +13,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'grapheme',
+			'database'  => 'lookbook',
 			'username'  => 'root',
 			'password'  => 'perl03',
 			'charset'   => 'utf8',
