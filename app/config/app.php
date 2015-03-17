@@ -20,10 +20,7 @@ return array(
 	'url' => 'http://lookbook.dev.grapheme.ru/',
 	'timezone' => 'UTC',
 
-    'locales' => array(
-        'ru' => 'Русский',
-        'en' => 'English',
-    ),
+    'locales' => array(),
 	'locale' => 'ru',
 
 	'key' => 'xmygP1YfX0KkBfnJ5rjpdCl48bNwroKV',
