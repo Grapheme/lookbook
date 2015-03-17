@@ -142,8 +142,8 @@ LookBook.Auth = function() {
                     .attr('disabled', 'disabled');
             }, 
             success: function(data){
-                if(data.status && data.redirectTo && data.redirectTo != '') {
-                    window.location.href = data.redirectTo;
+                if(data.status && data.redirect && data.redirect != '') {
+                    window.location.href = data.redirect;
                 }
                 if(data.responseText) {
                     response_cont.show().text(data.responseText);
