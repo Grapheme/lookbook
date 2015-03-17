@@ -1,0 +1,115 @@
+.header {
+    min-width: $minWidth;
+
+    .header__top {
+        height: 35px;
+        line-height: 35px;
+        background: $blue;
+        font-size: 0;
+
+        a {
+            display: inline-block;
+            vertical-align: middle;
+            @extend .lato;
+            @extend .linkTrans;
+            font-size: 11px;
+            color: rgb(43, 41, 41);
+            text-transform: uppercase;
+            text-decoration: none;
+
+            &:hover {
+                color: #ffffff;
+            }
+        }
+
+        .header__nav {
+            display: inline-block;
+            vertical-align: top;
+
+            ul {
+                @extend .list-unstyled;
+
+                li {
+                    display: inline-block;
+                    vertical-align: top;
+                    margin-right: 25px;
+                }
+            }
+        }
+
+        .header__login {
+            @extend .list-unstyled;
+            display: inline-block;
+            vertical-align: top;
+            float: right;
+
+            li {
+                display: inline-block;
+                vertical-align: top;
+                margin-left: 15px;
+            }
+
+            .login__create-blog {
+                display: inline-block;
+                vertical-align: middle;
+                line-height: 20px;
+                box-sizing: border-box;
+                height: 24px;
+                padding: 0 8px;
+                border: 2px solid;
+                color: #fff;
+
+                &:hover {
+                    color: rgb(43, 41, 41);
+                }
+            }
+
+            .login__enter {
+                display: inline-block;
+                vertical-align: middle;
+                line-height: normal;
+            }
+        }
+    }
+
+    .header__bottom {
+        padding: 35px 0;
+        font-size: 0;
+        border-bottom: 1px solid $borderColor;
+
+        .bottom__logo {
+            display: inline-block;
+            vertical-align: middle;
+            width: 125px;
+            height: 73px;
+            background-image: url(../images/ui/logo.svg);
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        .bottom__nav {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 19px;
+
+            a {
+                @extend .linkTrans;
+                font-weight: 900;
+                font-size: 16px;
+                text-transform: uppercase;
+                text-decoration: none;
+                margin-right: 32px;
+                color: #333;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                &:hover {
+                    color: $blue;
+                }
+            }
+        }
+    }
+}

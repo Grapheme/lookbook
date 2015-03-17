@@ -1,0 +1,26 @@
+header.header
+    .header__top
+        .wrapper
+            .container_12
+                .grid_12
+                    - var header_menu = [{"name":"О проекте", "link": "#"},{"name":"Связаться с нами", "link": "#"}];
+                    nav.header__nav
+                        ul
+                            each option in header_menu
+                                li
+                                    a(href="#{option.link}") #{option.name}
+                    ul.header__login
+                        li
+                            a(href="#reg").login__create-blog Создать блог
+                        li
+                            a(href="#auth").login__enter Войти
+    .wrapper
+        .container_12
+            .grid_12
+                .header__bottom
+                    a(href="#").bottom__search
+                    a(href="#").bottom__logo
+                    nav.bottom__nav
+                        a(href="#") Fashion
+                        a(href="#") Beauty
+                        a(href="#") Lifestyle

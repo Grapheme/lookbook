@@ -1,0 +1,52 @@
+h1 {
+    @extend .lato;
+    font-size: 64px;
+    font-weight: 200;
+    text-transform: uppercase;
+}
+
+.us-btn {
+    @extend .linkTrans;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    height: 38px;
+    line-height: 38px;
+    font-size: 14px;
+    padding: 0 23px;
+    border: none;
+    background: #333333;
+    color: #fff;
+    font-family: 'bodonic';
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 600;
+    text-transform: uppercase;
+    @extend .linkTrans;
+
+    &:after {
+        @extend .fontawesome;
+        content: "\f110";
+        position: absolute;
+        right: 20px;
+        top: .75em;
+        opacity: 0;
+        transition: opacity .2s ease;
+    }
+
+    &:hover {
+        background: #fff;
+        color: #4bbeff;
+    }
+
+    &.loading {
+        background: #333333;
+        padding-right: 50px;
+        color: #fff;
+
+        &:after {
+            opacity: 1;
+            animation: fa-spin 1s infinite steps(8);
+        }
+    }
+}

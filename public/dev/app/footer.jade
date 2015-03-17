@@ -1,0 +1,92 @@
+footer.footer
+    .wrapper
+        .container_12
+            .grid_12
+                .footer__top
+                    a(href="#").footer__logo
+                    - var footer_menu = [{"name":"О проекте","link":"#"},{"name":"Помощь","link":"#"},{"name":"Реклама на сайте","link":"#"},{"name":"Связаться с нами","link":"#"}];
+                    nav.footer__nav
+                        each option in footer_menu
+                            a(href="#{option.link}") #{option.name}
+
+                .footer__bottom
+                    span © LookBook, 2014
+                    span.fl-r Сделано в <a href="http://grapheme.ru" target="_blank">ГРАФЕМА</a>
+
+.overlay.js-overlay
+    .overlay__background
+    .overlay__body
+        .overlay__tab.overlay-auth(data-popup="auth")
+            a(href="#").tab__close.js-close-popup
+                span
+            .auth__body.anim-parent
+                h1 Войти
+                .auth__desc Пожалуйста авторизуйтесь, используя аккаунт в одной из социальных сетей:
+                .auth__socials
+                    a(href="#").socials-facebook Facebook
+                    a(href="#").socials-vk Вконтакте
+                    a(href="#").socials-ok Одноклассники
+                .auth_form
+                    .auth__desc или с помощью адреса электронной почты
+                    form#form-auth(action="json/test.json")
+                        .input-cont
+                            input.auth-input(name="email" placeholder="E-mail")
+                        .input-cont
+                            input.auth-input(name="password" placeholder="Пароль" type="password")
+                        .input-bottom
+                            a(href="#restore_before") Забыли пароль?
+                        .input-btn
+                            button(type="submit").us-btn Войти
+                            .ajax-message.js-response-text
+                    .auth__toreg До сих пор нет аккаунта? <a href="#reg">Зарегистрироваться</a>
+        .overlay__tab.overlay-auth(data-popup="reg")
+            a(href="#").tab__close.js-close-popup
+                span
+            .auth__body.anim-parent
+                h1 Регистрация
+                .auth__desc Пожалуйста авторизуйтесь, используя аккаунт в одной из социальных сетей:
+                .auth__socials
+                    a(href="#").socials-facebook Facebook
+                    a(href="#").socials-vk Вконтакте
+                    a(href="#").socials-ok Одноклассники
+                .auth_form
+                    .auth__desc или с помощью адреса электронной почты
+                    form#form-reg(action="json/test.json")
+                        .input-cont
+                            input.auth-input(name="email" placeholder="E-mail")
+                        .input-cont
+                            input.auth-input(name="password" placeholder="Пароль" type="password")
+                        .input-cont
+                            input.auth-input(name="password_verify" placeholder="Подтверждение пароля" type="password")
+                        .input-cont
+                            input.auth-input(name="name" placeholder="Ваше имя")
+                        .input-btn
+                            button(type="submit").us-btn Войти
+                            .ajax-message.js-response-text
+                    .auth__toreg Уже зарегистрировались? <a href="#auth">Войти на сайт</a>
+        .overlay__tab.overlay-auth(data-popup="restore_before")
+            a(href="#").tab__close.js-close-popup
+                span
+            .auth__body.anim-parent
+                h1 Восстановление пароля
+                .auth_form
+                    form#form-restore_before(action="json/test.json")
+                        .input-cont
+                            input.auth-input(name="email" placeholder="E-mail")
+                        .input-btn
+                            button(type="submit").us-btn Восстановить
+                            .ajax-message.js-response-text
+        .overlay__tab.overlay-auth(data-popup="restore")
+            a(href="#").tab__close.js-close-popup
+                span
+            .auth__body.anim-parent
+                h1 Восстановление пароля
+                .auth_form
+                    form#form-restore(action="json/test.json")
+                        .input-cont
+                            input.auth-input(name="password" placeholder="Пароль" type="password")
+                        .input-cont
+                            input.auth-input(name="password_verify" placeholder="Подтверждение пароля" type="password")
+                        .input-btn
+                            button(type="submit").us-btn Восстановить
+                            .ajax-message.js-response-text

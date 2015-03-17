@@ -1,0 +1,23 @@
+html {
+    font-family: 'lato';
+    font-weight: 400;
+    position: relative;
+    min-height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    &.locked {
+        overflow: hidden;
+    }
+}
+
+body {
+    margin-bottom: 165px;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: 100%;
+    min-width: $minWidth;
+    max-width: $maxWidth;
+}
