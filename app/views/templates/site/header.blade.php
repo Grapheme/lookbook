@@ -3,15 +3,36 @@
  * TEMPLATE_IS_NOT_SETTABLE
  */
 ?>
-<header class="{{ @$header_class }}main-header">
+<header class="header">
+    <div class="header__top">
+        <div class="wrapper">
+            <div class="container_12">
+                <div class="grid_12">
+                    <nav class="header__nav">
+                        {{ Menu::placement('main_menu') }}
+                    </nav>
+                    <ul class="header__login">
+                        <li><a href="#reg" class="login__create-blog">Создать блог</a></li>
+                        <li><a href="#auth" class="login__enter">Войти</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="wrapper">
-        @if(Request::is('/') || Request::is('en') || Request::is('ru'))
-            <div class="logo">Графема</div>
-        @else
-            <a href="{{ URL::to(Config::get('app.locale')) }}" class="logo">Графема</a>
-        @endif
-        <nav class="main-nav">
-             {{ Menu::placement('main_menu') }}
-        </nav>
+        <div class="container_12">
+            <div class="grid_12">
+                <div class="header__bottom"><a href="#" class="bottom__search"></a>
+                    @if (Request::is('/'))
+                        <div class="bottom__logo"></div>
+                    @else
+                        <a class="bottom__logo" href="{{ URL::route('mainpage') }}"></a>
+                    @endif
+                    <nav class="bottom__nav">
+                        {{ Menu::placement('header_menu') }}
+                    </nav>
+                </div>
+            </div>
+        </div>
     </div>
 </header>
