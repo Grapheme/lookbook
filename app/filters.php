@@ -30,9 +30,6 @@ App::error(function(Exception $exception, $code){
 
 App::missing(function ($exception) {
 
-    #Helper::classInfo('Route');
-    #Helper::dd(get_declared_classes());
-
     $tpl = View::exists(Helper::layout('404')) ? Helper::layout('404') : 'error404';
     return Response::view($tpl, array('message' => $exception->getMessage()), 404);
 });
@@ -60,10 +57,23 @@ Route::filter('admin.auth', function(){
 	endif;
 });
 
-Route::filter('user.auth', function(){
-	if(!AuthAccount::isUserLoggined()):
-		return Redirect::to('/');
-	endif;
+Route::filter('auth.status.blogger', function(){
+
+    if(Auth::guest()):
+        return Redirect::to('/');
+    elseif(Auth::check() && Auth::user()->active == 0):
+        Auth::logout();
+        return Redirect::to('/');
+    endif;
+});
+
+Route::filter('guest.register', function(){
+    if(Auth::check()):
+        return Redirect::to('/');
+    endif;
+    if (Session::token() != Input::get('_token')):
+        throw new Illuminate\Session\TokenMismatchException;
+    endif;
 });
 
 /*
@@ -89,7 +99,6 @@ Route::filter('guest', function(){
 
 Route::filter('auth2login', function(){
     if(Auth::check()) {
-        #Helper::dd(Request::path() . ' != ' . AuthAccount::getStartPage());
         if (Request::path() != AuthAccount::getStartPage())
             return Redirect::to(AuthAccount::getStartPage());
     } else {

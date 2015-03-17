@@ -9,9 +9,9 @@ return array(
 	'use_css_local' => FALSE,
 	'use_scripts_local' => FALSE,
 	
-	'default_page_title' => 'GRAPHEME 3.0',
-	'template' => 'site',
-    'welcome_page_tpl' => 'templates.site.index', #'guests.welcome',
+	'default_page_title' => 'LookBook',
+	'template' => 'guest',
+    'welcome_page_tpl' => 'templates.guest.index', #'guests.welcome',
 
 
 	'manifest' => storage_path('meta'),
