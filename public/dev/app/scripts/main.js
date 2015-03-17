@@ -69,7 +69,7 @@ LookBook.Auth = function() {
     });
     $('#form-auth').validate({
         rules: {
-            email: {
+            login: {
                 required: true,
                 email: true
             },
