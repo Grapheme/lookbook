@@ -61,47 +61,46 @@
                 </div>
             </div>
         </div>
-        <div data-popup="restore_before" class="overlay__tab overlay-auth"><a href="#"
-                                                                              class="tab__close js-close-popup"><span></span></a>
-
+        <div data-popup="restore_before" class="overlay__tab overlay-auth">
+            <a href="#" class="tab__close js-close-popup"><span></span></a>
             <div class="auth__body anim-parent">
                 <h1>Восстановление пароля</h1>
-
                 <div class="auth_form">
-                    <form id="form-restore_before" action="json/test.json">
-                        <div class="input-cont">
-                            <input name="email" placeholder="E-mail" class="auth-input">
-                        </div>
-                        <div class="input-btn">
-                            <button type="submit" class="us-btn">Восстановить</button>
-                            <div class="ajax-message js-response-text"></div>
-                        </div>
+                {{ Form::open(array('url'=>URL::route('password-reset.store'),'id'=>'form-restore_before', 'method'=>'post')) }}
+                    <div class="input-cont">
+                        <input name="email" placeholder="E-mail" class="auth-input">
+                    </div>
+                    <div class="input-btn">
+                        <button type="submit" class="us-btn">Восстановить</button>
+                        <div class="ajax-message js-response-text"></div>
+                    </div>
+                {{ Form::close() }}
+                </div>
+            </div>
+        </div>
+        @if(Session::has('reminder.token'))
+        <div data-popup="restore" class="overlay__tab overlay-auth">
+            <a href="#" class="tab__close js-close-popup"><span></span></a>
+            <div class="auth__body anim-parent">
+                <h1>Восстановление пароля</h1>
+                <div class="auth_form">
+                {{ Form::open(array('route'=>array('password-reset.update',Session::get('reminder.token')),'id'=>'form-restore', 'method'=>'PUT')) }}
+                    {{ Form::hidden('token',Session::get('reminder.token')) }}
+                    {{ Form::hidden('email',Session::get('reminder.email')) }}
+                    <div class="input-cont">
+                        <input name="password" placeholder="Пароль" type="password" class="auth-input">
+                    </div>
+                    <div class="input-cont">
+                        <input name="password_confirmation" placeholder="Подтверждение пароля" type="password" class="auth-input">
+                    </div>
+                    <div class="input-btn">
+                        <button type="submit" class="us-btn">Восстановить</button>
+                        <div class="ajax-message js-response-text"></div>
+                    </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div data-popup="restore" class="overlay__tab overlay-auth"><a href="#"
-                                                                       class="tab__close js-close-popup"><span></span></a>
-
-            <div class="auth__body anim-parent">
-                <h1>Восстановление пароля</h1>
-
-                <div class="auth_form">
-                    <form id="form-restore" action="json/test.json">
-                        <div class="input-cont">
-                            <input name="password" placeholder="Пароль" type="password" class="auth-input">
-                        </div>
-                        <div class="input-cont">
-                            <input name="password_verify" placeholder="Подтверждение пароля" type="password"
-                                   class="auth-input">
-                        </div>
-                        <div class="input-btn">
-                            <button type="submit" class="us-btn">Восстановить</button>
-                            <div class="ajax-message js-response-text"></div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        @endif
     </div>
 </div>
