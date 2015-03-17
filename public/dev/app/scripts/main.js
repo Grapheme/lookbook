@@ -123,7 +123,7 @@ LookBook.Auth = function() {
                 required: true,
                 minlength: 6
             },
-            password_verify: {
+            password_confirmation: {
                 required: true,
                 equalTo: "#form-restore [name='password']"
             }
