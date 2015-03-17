@@ -152,7 +152,7 @@ LookBook.Auth = function() {
                     .removeAttr('disabled');
             },
             error: function(data) {
-                response_cont.show().text(data.responseText);
+                response_cont.show().text('Ошибка на сервере, попробуйте позже');
                 $(form).find('[type="submit"]').removeClass('loading')
                     .removeAttr('disabled');
             }
