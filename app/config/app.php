@@ -59,6 +59,7 @@ return array(
         'Illuminate\Custom\CustomUrlServiceProvider',
         'Flynsarmy\DbBladeCompiler\DbBladeCompilerServiceProvider',
         'sngrl\StringBladeCompiler\StringBladeCompilerServiceProvider',
+        'Bitw\Larulogin\LaruloginServiceProvider'
     ),
 	'aliases' => array(
 		'App'             => 'Illuminate\Support\Facades\App',
