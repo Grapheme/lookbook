@@ -53,6 +53,8 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+
+        'Scalia\SphinxSearch\SphinxSearchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
