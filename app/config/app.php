@@ -9,9 +9,9 @@ return array(
 	'use_css_local' => FALSE,
 	'use_scripts_local' => FALSE,
 	
-	'default_page_title' => 'GRAPHEME 3.0',
-	'template' => 'site',
-    'welcome_page_tpl' => 'templates.site.index', #'guests.welcome',
+	'default_page_title' => 'LookBook',
+	'template' => 'guest',
+    'welcome_page_tpl' => 'templates.guest.index', #'guests.welcome',
 
 
 	'manifest' => storage_path('meta'),
@@ -53,12 +53,15 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+
+        'Scalia\SphinxSearch\SphinxSearchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         'Illuminate\Custom\CustomUrlServiceProvider',
         'Flynsarmy\DbBladeCompiler\DbBladeCompilerServiceProvider',
         'sngrl\StringBladeCompiler\StringBladeCompilerServiceProvider',
+        'Bitw\Larulogin\LaruloginServiceProvider'
     ),
 	'aliases' => array(
 		'App'             => 'Illuminate\Support\Facades\App',

@@ -1,0 +1,2 @@
+<div class="auth__desc">Пожалуйста авторизуйтесь, используя аккаунт в одной из социальных сетей:</div>
+<div class="auth__socials"><a href="#" class="socials-facebook">Facebook</a><a href="#" class="socials-vk">Вконтакте</a><a href="#" class="socials-ok">Одноклассники</a></div>

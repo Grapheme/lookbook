@@ -12,8 +12,13 @@
                         {{ Menu::placement('main_menu') }}
                     </nav>
                     <ul class="header__login">
+                    @if(Auth::guest())
                         <li><a href="#reg" class="login__create-blog">Создать блог</a></li>
                         <li><a href="#auth" class="login__enter">Войти</a></li>
+                    @else
+                        <li><a href="{{ URL::route('dashboard') }}" class="login__create-blog">Кабинет</a></li>
+                        <li><a href="{{ URL::route('logout') }}" class="login__enter">Выйти</a></li>
+                    @endif
                     </ul>
                 </div>
             </div>

@@ -8,9 +8,10 @@
         "way/generators": "2.6.1",
         "intervention/image": "2.1.1",
         "barryvdh/laravel-ide-helper": "1.*",
-        "scalia/sphinxsearch": "0.1.*",
+        "scalia/sphinxsearch": "dev-master",
         "flynsarmy/db-blade-compiler": "1.*",
-        "sngrl/string-blade-compiler": "dev-master"
+        "sngrl/string-blade-compiler": "dev-master",
+		"bitw/larulogin": "v1.1"
 	},
 	"autoload": {
 		"classmap": [
@@ -31,7 +32,6 @@
 		"post-update-cmd": [
 			"php artisan clear-compiled",
             "php artisan ide-helper:generate",
-            "php artisan debugbar:publish",
 			"php artisan optimize"
 		],
 		"post-create-project-cmd": [
