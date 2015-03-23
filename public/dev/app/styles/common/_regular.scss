@@ -1,0 +1,56 @@
+.reg-content {
+    border-top: 1px solid $borderColor;
+
+    .reg-content__left, .reg-content__right {
+        float: left;
+        padding-bottom: 92px;
+    }
+
+    .reg-content__left {
+        width: 67%;
+        box-sizing: border-box;
+        border-right: 1px solid $borderColor;
+    }
+
+    .reg-content__right {
+        width: 33%;
+        border-left: 1px solid $borderColor;
+        margin-left: -1px;
+    }
+
+    a:not([class]) {
+        @extend .us-link;
+    }
+}
+
+.right-title {
+    padding: 20px 15px 20px 25px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-top: 1px solid $borderColor;
+    border-bottom: 1px solid $borderColor;
+
+    &:first-child {
+        border-top: none;
+    }
+}
+
+.left-title {
+    padding: 20px 15px 20px 5px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid $borderColor;
+}
+
+.right-content {
+    padding: 23px 15px 23px 25px;
+    line-height: 1.6;
+
+    &:last-child {
+        border-bottom: 1px solid $borderColor;
+    }
+}

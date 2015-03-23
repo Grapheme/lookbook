@@ -2,6 +2,7 @@ doctype html
 - var title = 'LookBook'
 - var showHeader = true
 - var showFooter = true
+- var auth = false
 
 block vars 
     
@@ -26,7 +27,10 @@ html.no-js(lang="")
   body
     
     if(showHeader)
-        include header
+        if(!auth)
+            include header
+        if(auth)
+            include header_auth
     block content
     if(showFooter)
         include footer
@@ -35,7 +39,9 @@ html.no-js(lang="")
     // bower:js
     script(src='../bower_components/jquery/dist/jquery.js')
     script(src='../bower_components/jquery-validation/dist/jquery.validate.js')
+    script(src='../bower_components/jquery-validation/src/additional/extension.js')
     script(src='../bower_components/jquery-form/jquery.form.js')
+    script(src='../bower_components/autosize/dest/autosize.js')
     // endbower
     // endbuild
     // build:js scripts/main.js

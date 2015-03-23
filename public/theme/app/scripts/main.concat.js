@@ -1,7 +1,4 @@
-/* jshint devel:true */
-
 window.LookBook = {};
-
 LookBook.Auth = function() {
     var parent = this;
     var overlay = $('.js-overlay');
@@ -160,7 +157,6 @@ LookBook.Auth = function() {
         $(form).ajaxSubmit(options);
     }
 }
-
 $(function(){
     LookBook.Auth();
 });

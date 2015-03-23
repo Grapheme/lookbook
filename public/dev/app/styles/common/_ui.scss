@@ -5,7 +5,62 @@ h1 {
     text-transform: uppercase;
 }
 
+.reg-italic {
+    font-family: 'bodonic';
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: inherit;
+}
+
+.us-link {
+    @extend .linkTrans;
+    color: $blue;
+    text-decoration: none;
+    border-bottom: 1px solid;
+
+    &:hover {
+        border-color: transparent;
+    }
+}
+
+.white-btn {
+    @extend .reg-italic;
+    @extend .linkTrans;
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    height: 38px;
+    line-height: 36px;
+    border: 1px solid;
+    padding: 0 35px;
+
+    &:hover {
+        color: $blue;
+    }
+}
+
+.white-black-btn {
+    @extend .reg-italic;
+    @extend .linkTrans;
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    height: 38px;
+    line-height: 36px;
+    border: 1px solid;
+    padding: 0 35px;
+
+    &:hover {
+        background: #333;
+        color: #fff;
+    }
+}
+
 .us-btn {
+    @extend .reg-italic;
     @extend .linkTrans;
     position: relative;
     display: inline-block;
@@ -17,12 +72,6 @@ h1 {
     border: none;
     background: #333333;
     color: #fff;
-    font-family: 'bodonic';
-    font-size: 14px;
-    font-style: italic;
-    font-weight: 600;
-    text-transform: uppercase;
-    @extend .linkTrans;
 
     &:after {
         @extend .fontawesome;
@@ -39,6 +88,10 @@ h1 {
         color: #4bbeff;
     }
 
+    &:focus {
+        outline: none;
+    }
+
     &.loading {
         background: #333333;
         padding-right: 50px;
@@ -47,6 +100,13 @@ h1 {
         &:after {
             opacity: 1;
             animation: fa-spin 1s infinite steps(8);
+        }
+    }
+
+    &.blue-hover {
+        &:hover {
+            color: #fff;
+            background: $blue;
         }
     }
 }

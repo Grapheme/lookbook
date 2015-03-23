@@ -69,6 +69,18 @@
                 vertical-align: middle;
                 line-height: normal;
             }
+
+            .header__user {
+                .svg-icon {
+                    position: relative;
+                    display: inline-block;
+                    vertical-align: middle;
+                    line-height: normal;
+                    top: -.05em;
+                    font-size: 35px;
+                    color: #fff;
+                }
+            }
         }
     }
 

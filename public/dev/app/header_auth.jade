@@ -9,11 +9,10 @@ header.header
                             each option in header_menu
                                 li
                                     a(href="#{option.link}") #{option.name}
-                    ul.header__login
-                        li
-                            a(href="#reg").login__create-blog Создать блог
-                        li
-                            a(href="#auth").login__enter Войти
+                    .header__login
+                        a(href="#").header__user
+                            i.svg-icon.icon-uniE609
+                            span Анна Антропова
                 .clearfix
     .wrapper
         .container_12

@@ -1,0 +1,28 @@
+extends layout
+
+block vars
+  - var title = 'Профиль блоггера'
+  - var auth = true
+  - var profile_active = 'profile_auth_main_empty.html'
+
+block content
+    header
+        .wrapper
+            .container_12
+                .grid_12
+                    include profile_auth_header
+                .clearfix
+                .grid_12.reg-content
+                    .dashboard-tab
+                        .reg-content__left
+                            .dashboard-empty
+                                .dashboard-empty__desc У вас еще нет ни одной записи в блоге. Быстрее исправьте положение.
+                                a(href="#").white-black-btn Создать новый пост
+                        .reg-content__right
+                            .right-title БЛОГИ РЕКОМЕНДОВАННЫЕ LOOKBOOK
+                            .right-content У вас еще нет рекомендованных блогов.
+                            .right-title МОЙ БЛОГ-ЛИСТ
+                            .right-content Вы еще не добавили ни один блог в свой блог-лист.<br>Читайте <a href="#">TOP POST</a> и выбирайте любимые.
+                        .clearfix
+                .clearfix
+

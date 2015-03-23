@@ -6,6 +6,7 @@
     "modernizr": "~2.8.1",
     "normalize-scss": "~3.0.2",
     "jquery-validation": "~1.13.1",
-    "jquery-form": "~3.46.0"
+    "jquery-form": "~3.46.0",
+    "autosize": "~2.0.0"
   }
 }

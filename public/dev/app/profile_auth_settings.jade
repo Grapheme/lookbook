@@ -1,0 +1,132 @@
+extends layout
+
+block vars
+  - var title = 'Профиль блоггера'
+  - var auth = true
+  - var profile_active = 'profile_auth_settings.html'
+
+block content
+    header
+        .wrapper
+            .container_12
+                .grid_12
+                    include profile_auth_header
+                .clearfix
+                .grid_12.reg-content
+                    .dashboard-tab
+                        .reg-content__left
+                            form#dashboard-main.js-dashboard-form(action="json/test.json")
+                                .left-title Основное
+                                table.dashboard__form-table
+                                    - var DashboardForm1 = [{"name":"Имя","sysname":"name","value":"Анна Антропова"},{"name":"Дата рождения","sysname":"birth"},{"name":"Местонахождение","sysname":"location"},{"name":"Мои блоги на сторонних ресурсах","sysname":"links"},{"name":"Мой сайт","sysname":"site"},{"name":"Источники вдохновения","sysname":"inspiration"}]
+                                    each option in DashboardForm1
+                                        tr
+                                            td.form-table__name
+                                                span #{option.name}
+                                            td.form-table__value.js-form-value
+                                                a(href="#").input-add-value.js-add-value
+                                                    span Добавить
+                                                a(href="#").input-change-value.js-change-value
+                                                    span изменить
+                                                input.dashboard-input(name="#{option.sysname}" value=option.value?"#{option.value}":"")
+                                .left-title Для связи со мной
+                                table.dashboard__form-table
+                                    - var DashboardForm1 = [{"name":"Электронная почта","sysname":"email","value":"anna@gmail.com"},{"name":"Телефон","sysname":"phone"}]
+                                    each option in DashboardForm1
+                                        tr
+                                            td.form-table__name
+                                                span #{option.name}
+                                            td.form-table__value.js-form-value
+                                                a(href="#").input-add-value.js-add-value
+                                                    span Добавить
+                                                a(href="#").input-change-value.js-change-value
+                                                    span изменить
+                                                input.dashboard-input(name="#{option.sysname}" value=option.value?"#{option.value}":"")
+                                .left-title О блоге
+                                table.dashboard__form-table
+                                    - var DashboardForm1 = [{"name":"Название блога","sysname":"blogname"}]
+                                    each option in DashboardForm1
+                                        tr
+                                            td.form-table__name
+                                                span #{option.name}
+                                            td.form-table__value.js-form-value
+                                                a(href="#").input-add-value.js-add-value
+                                                    span Добавить
+                                                a(href="#").input-change-value.js-change-value
+                                                    span изменить
+                                                input.dashboard-input(name="#{option.sysname}" value=option.value?"#{option.value}":"")
+                                    tr
+                                        td.form-table__name
+                                            span Имеджевая картинка для блога
+                                        td.form-table__value.form-table__file.js-form-file
+                                            a(href="#").input-file-value
+                                                span Выбрать
+                                            //- a(href="#").input-add-value.js-add-value
+                                            //-     span Изменить
+                                            input.dashboard-input-file(name="picture" type="file")
+                                    tr
+                                        td.form-table__name
+                                            span Текст о себе или о блоге
+                                        td.form-table__value.form-table__texarea-cont
+                                            textarea.dashboard-textarea.js-autosize(name="about")
+                                    tr.form-table__btns
+                                        td.form-table__name
+                                        td.form-table__value
+                                            button(type="submit").blue-hover.us-btn Сохранить
+                                            .response-text.js-response-text
+                                            //button(type="submit").blue-hover.us-btn Отменить
+                            form#dashboard-pass.js-dashboard-form(action="json/test.json")
+                                .left-title Пароль и защита данных
+                                table.dashboard__form-table
+                                    - var DashboardForm1 = [{"name":"Пароль","sysname":"password"},{"name":"Подтверждение пароля","sysname":"password_confirmation"}]
+                                    each option in DashboardForm1
+                                        tr
+                                            td.form-table__name
+                                                span #{option.name}
+                                            td.form-table__value
+                                                //- a(href="#").input-add-value.js-add-value
+                                                //-     span Добавить
+                                                //- a(href="#").input-change-value.js-change-value
+                                                //-     span изменить
+                                                input.dashboard-input(name="#{option.sysname}" value=option.value?"#{option.value}":"" placeholder="********" type="password")
+                                    tr.form-table__btns
+                                        td.form-table__name
+                                        td.form-table__value
+                                            button(type="submit").blue-hover.us-btn Сохранить
+                                            .response-text.js-response-text
+                                            //button(type="submit").blue-hover.us-btn Отменить
+                        .reg-content__right
+                            .right-title Аватарка
+                            .right-content
+                                // Добавляем класс ava-empty если аватарки нету
+                                // Добавляем имя пользователя в атрибут data-empty-name (В любом случае, для формирования аватарки)
+                                .ava-change.ava-empty.js-ava-cont(data-empty-name="Анна Антропова")
+                                    .ava-image
+                                        form(action="json/ava.json")#ava-change.ava-image__cont
+                                            a(href="#").ava-change.js-submit Изменить
+                                            input(type="file" name="photo").js-ava-input
+                                        .js-ava-img-cont
+                                            //img(src="images/tmp/profile-photo_huge.jpg")
+                                        .ava-image__empty
+                                            span.js-empty-chars
+                                    .ava-links
+                                        form(action="json/ava.json")#ava-delete.ava-delete-form
+                                            a(href="#").ava-delete.js-submit
+                                                i.icon-cross37.svg-icon
+                                        form(action="json/ava.json")#ava-upload.ava-upload-form
+                                            a(href="#").ava-upload.js-submit
+                                                span Загрузить аватарку
+                                                input(type="file" name="photo").js-ava-input
+                                        .ava-error#ava-error-cont
+                                        .ava-error#ava-error-server
+                            .right-title Статистика
+                            .right-content
+                                table.stat-table
+                                    - var stat_options = [{"name":"Рейтинг","value":"132 место из 2356"},{"name":"Записей в блоге","value":"2"},{"name":"Комментариев опубликовано","value":"42"},{"name":"Количество подписчиков","value":"10444"},{"name":"Количество посетителей в день","value":"31233"},{"name":"Количество посетителей с февраля","value":"233"},{"name":"Количество посетителей в год","value":"1232032"}];
+                                    each option in stat_options
+                                        tr
+                                            td #{option.name}
+                                            td #{option.value}
+                        .clearfix
+                .clearfix
+
