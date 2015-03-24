@@ -14,9 +14,6 @@ Thumbs.db
 composer.lock
 _ide_helper.php
 
-/app/config/database.php
-/app/lang/*
-
 /app/storage/cache/*
 /app/storage/logs/*
 /app/storage/meta/*
