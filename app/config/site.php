@@ -12,6 +12,9 @@ return array(
 
     'uploads_dir' => public_path('uploads/files'),
     'uploads_user_dir' => public_path('uploads/users'),
+    'uploads_file_user_dir' => 'uploads/users',
+    'uploads_image_user_dir' => 'uploads/users',
+    'uploads_thumb_user_dir' => 'uploads/users/thumbnail',
 
     'uploads_photo_dir' => public_path('uploads'),
     'uploads_thumb_dir' => public_path('uploads/thumbs'),

@@ -181,8 +181,9 @@
                   <!-- Добавляем имя пользователя в атрибут data-empty-name (В любом случае, для формирования аватарки)-->
                   <div data-empty-name="Анна Антропова" class="ava-change ava-empty js-ava-cont">
                     <div class="ava-image">
-                      <form action="json/ava.json" id="ava-change" class="ava-image__cont"><a href="#" class="ava-change js-submit">Изменить</a>
-                        <input type="file" name="photo" class="js-ava-input">
+                      <form action="json/ava.json" id="ava-change" class="ava-image__cont">
+                          <a href="#" class="ava-change js-submit">Изменить</a>
+                          <input type="file" name="photo" class="js-ava-input">
                       </form>
                       <div class="js-ava-img-cont">
                         <!--img(src="images/tmp/profile-photo_huge.jpg")-->
@@ -191,8 +192,10 @@
                     </div>
                     <div class="ava-links">
                       <form action="json/ava.json" id="ava-delete" class="ava-delete-form"><a href="#" class="ava-delete js-submit"><i class="icon-cross37 svg-icon"></i></a></form>
-                      <form action="json/ava.json" id="ava-upload" class="ava-upload-form"><a href="#" class="ava-upload js-submit"><span>Загрузить аватарку</span>
-                          <input type="file" name="photo" class="js-ava-input"></a></form>
+                        <form action="json/ava.json" id="ava-upload" class="ava-upload-form">
+                            <a href="#" class="ava-upload js-submit"><span>Загрузить аватарку</span>
+                            <input type="file" name="photo" class="js-ava-input"></a>
+                        </form>
                       <div id="ava-error-cont" class="ava-error"></div>
                       <div id="ava-error-server" class="ava-error"></div>
                     </div>

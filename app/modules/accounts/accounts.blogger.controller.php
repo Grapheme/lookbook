@@ -16,6 +16,8 @@ class AccountsBloggerController extends BaseController {
                 Route::get('profile', array('as' => 'profile', 'uses' => $class . '@profile'));
                 Route::put('profile', array('before'=>'csrf', 'as' => 'profile.update', 'uses' => $class . '@profileUpdate'));
                 Route::put('profile/password', array('before'=>'csrf', 'as' => 'profile.password.update', 'uses' => $class . '@profilePasswordUpdate'));
+                Route::post('profile/avatar/upload', array('before'=>'csrf', 'as' => 'profile.avatar.upload', 'uses' => $class . '@profileAvatarUpdate'));
+                Route::delete('profile/avatar/delete', array('before'=>'csrf', 'as' => 'profile.avatar.delete', 'uses' => $class . '@profileAvatarDelete'));
             });
         endif;
     }
@@ -52,6 +54,7 @@ class AccountsBloggerController extends BaseController {
         );
         View::share('module', $this->module);
     }
+    /****************************************************************************/
     /****************************************************************************/
     public function profile(){
 
@@ -116,6 +119,50 @@ class AccountsBloggerController extends BaseController {
         return Response::json($json_request,200);
     }
 
+    public function profileAvatarUpdate(){
+
+        $json_request = array('status'=>FALSE,'responseText'=>'','image'=>'','redirect'=>FALSE);
+        if(Request::ajax()):
+            if($uploaded = AdminUploadsController::getUploadedImageManipulationFile('photo')):
+                $user = Auth::user();
+                $user->photo = @$uploaded['main'];
+                $user->	thumbnail = @$uploaded['thumb'];
+                $user->save();
+                $user->touch();
+                $json_request['image'] = asset($user->photo);
+                $json_request['status'] = TRUE;
+            else:
+                $json_request['responseText'] = Lang::get('interface.DEFAULT.fail');
+            endif;
+        else:
+            return Redirect::back();
+        endif;
+        return Response::json($json_request,200);
+
+    }
+
+    public function profileAvatarDelete(){
+
+        $json_request = array('status'=>FALSE,'responseText'=>'','redirect'=>FALSE);
+        if(Request::ajax()):
+            $user = Auth::user();
+            if(File::exists(public_path($user->photo))):
+                File::delete(public_path($user->photo));
+            endif;
+            if(File::exists(public_path($user->thumbnail))):
+                File::delete(public_path($user->thumbnail));
+            endif;
+            $user->photo = '';
+            $user->	thumbnail = '';
+            $user->save();
+            $user->touch();
+            $json_request['status'] = TRUE;
+        else:
+            return Redirect::back();
+        endif;
+        return Response::json($json_request,200);
+    }
+    /****************************************************************************/
     private function accountUpdate($post){
 
         try {
@@ -162,4 +209,5 @@ class AccountsBloggerController extends BaseController {
         return TRUE;
     }
     /**************************************************************************/
+    /****************************************************************************/
 }

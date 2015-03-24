@@ -3,13 +3,15 @@
  * TEMPLATE_IS_NOT_SETTABLE
  */
     $hasImage = FALSE;
-    if(File::exists(public_path('uploads/users/'.Auth::user()->photo))):
+    if(File::exists(public_path(Auth::user()->thumbnail))):
         $hasImage = TRUE;
     endif;
 ?>
 <div class="user-header">
     <div data-empty-name="{{ Auth::user()->name }} {{ Auth::user()->surname }}" class="header__photo{{ !$hasImage ? ' ava-empty ' : ' ' }}js-ava-cont">
-        <img src="{{ asset(Config::get('site.theme_path').'/images/tmp/profile-photo_max.jpg') }}">
+    @if($hasImage)
+        <img src="{{ asset(Auth::user()->thumbnail) }}">
+    @endif
         <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
     </div>
     <div class="header__info">

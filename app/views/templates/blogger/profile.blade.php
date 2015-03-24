@@ -156,29 +156,32 @@
                         <div class="right-content">
                         <?php
                             $hasImage = FALSE;
-                            if(File::exists(public_path('uploads/users/'.$profile->photo))):
+                            if(File::exists(public_path($profile->photo))):
                                 $hasImage = TRUE;
                             endif;
                         ?>
                             <div data-empty-name="{{ $profile->name }} {{ $profile->surname }}" class="ava-change{{ !$hasImage ? ' ava-empty ' : ' ' }}js-ava-cont">
                                 <div class="ava-image">
-                                    <form action="json/ava.json" id="ava-change" class="ava-image__cont">
-                                        <a href="#" class="ava-change js-submit">Изменить</a>
-                                        <input type="file" name="photo" class="js-ava-input">
-                                    </form>
+                                    {{ Form::open(array('route'=>'profile.avatar.upload','method'=>'post','id'=>'ava-change','class'=>'ava-image__cont')) }}
+                                        <a href="javascript:void(0);" class="ava-change js-submit">Изменить</a>
+                                        {{ Form::file('photo',array('class'=>'js-ava-input')) }}
+                                    {{ Form::close() }}
                                     <div class="js-ava-img-cont">
-                                        <img src="{{ asset(Config::get('site.theme_path').'/images/tmp/profile-photo_max.jpg') }}">
+                                    @if($hasImage)
+                                        <img src="{{ asset($profile->photo) }}">
+                                    @endif
                                     </div>
                                     <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
                                 </div>
                                 <div class="ava-links">
-                                    <form action="json/ava.json" id="ava-delete" class="ava-delete-form">
-                                        <a href="#" class="ava-delete js-submit"><i class="icon-cross37 svg-icon"></i></a>
-                                    </form>
-                                    <form action="json/ava.json" id="ava-upload" class="ava-upload-form">
-                                        <a href="#" class="ava-upload js-submit"><span>Загрузить аватарку</span>
-                                        <input type="file" name="photo" class="js-ava-input"></a>
-                                    </form>
+                                    {{ Form::open(array('route'=>'profile.avatar.delete','method'=>'delete','id'=>'ava-delete','class'=>'ava-delete-form')) }}
+                                        <a href="javascript:void(0);" class="ava-delete js-submit"><i class="icon-cross37 svg-icon"></i></a>
+                                    {{ Form::close() }}
+                                    {{ Form::open(array('route'=>'profile.avatar.upload','method'=>'post','id'=>'ava-upload','class'=>'ava-upload-form')) }}
+                                        <a href="javascript:void(0);" class="ava-upload js-submit"><span>Загрузить аватарку</span>
+                                            {{ Form::file('photo',array('class'=>'js-ava-input')) }}
+                                        </a>
+                                    {{ Form::close() }}
                                     <div id="ava-error-cont" class="ava-error"></div>
                                     <div id="ava-error-server" class="ava-error"></div>
                                 </div>
