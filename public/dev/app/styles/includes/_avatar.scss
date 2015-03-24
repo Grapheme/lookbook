@@ -1,0 +1,17 @@
+.profile-ava {
+    position: relative;
+    overflow: hidden;
+
+    &.ava-min {
+        width: 60px;
+        height: 60px;
+
+        .ava-image__empty {
+            font-size: 1.5em;
+        }
+    }
+
+    img {
+        max-width: 100%;
+    }
+}
