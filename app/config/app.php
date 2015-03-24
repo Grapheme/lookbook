@@ -60,8 +60,7 @@ return array(
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         'Illuminate\Custom\CustomUrlServiceProvider',
         'Flynsarmy\DbBladeCompiler\DbBladeCompilerServiceProvider',
-        'sngrl\StringBladeCompiler\StringBladeCompilerServiceProvider',
-        'Bitw\Larulogin\LaruloginServiceProvider'
+        'sngrl\StringBladeCompiler\StringBladeCompilerServiceProvider'
     ),
 	'aliases' => array(
 		'App'             => 'Illuminate\Support\Facades\App',

@@ -90,7 +90,7 @@ class AccountsRegisterController extends BaseController {
             $account->active = 1;
             $account->save();
             $account->touch();
-            Auth::login($account);
+            Auth::login($account,TRUE);
             return Redirect::to(AuthAccount::getGroupStartUrl());
         else:
             return Redirect::to('/')->with('message.status','error')->with('message.text','Код активации не действителен.');

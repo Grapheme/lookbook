@@ -11,15 +11,14 @@
                     <nav class="header__nav">
                         {{ Menu::placement('main_menu') }}
                     </nav>
-                    <ul class="header__login">
                     @if(Auth::guest())
+                    <ul class="header__login">
                         <li><a href="#reg" class="login__create-blog">Создать блог</a></li>
                         <li><a href="#auth" class="login__enter">Войти</a></li>
-                    @else
-                        <li><a href="{{ URL::route('dashboard') }}" class="login__create-blog">Кабинет</a></li>
-                        <li><a href="{{ URL::route('logout') }}" class="login__enter">Выйти</a></li>
-                    @endif
                     </ul>
+                    @else
+                        @include(Helper::acclayout('assets.auth_block'))
+                    @endif
                 </div>
             </div>
         </div>

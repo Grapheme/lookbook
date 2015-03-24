@@ -360,6 +360,16 @@ class AdminUploadsController extends BaseController {
         $json_request['status'] = TRUE;
         return Response::json($json_request,200);
     }
+
+    public static function getUploadedFile($path = NULL){
+
+        if (Input::hasFile('file')):
+            $fileName = time()."_".Auth::user()->id."_".rand(1000, 1999).'.'.Input::file('file')->getClientOriginalExtension();
+            Input::file('file')->move(public_path(Config::get('site.uploads_user_dir').'/'), $fileName);
+            return Config::get('site.uploads_user_dir').'/'.$fileName;
+        endif;
+        return null;
+    }
 }
 
 

@@ -13,7 +13,9 @@ class AccountsBloggerController extends BaseController {
         $class = __CLASS__;
         if (Auth::check() && Auth::user()->group_id == 4):
             Route::group(array('before' => 'auth.status.blogger', 'prefix' => self::$name), function() use ($class) {
-                Route::get('profile', array('as' => 'blogger-profile', 'uses' => $class . '@profile'));
+                Route::get('profile', array('as' => 'profile', 'uses' => $class . '@profile'));
+                Route::put('profile', array('before'=>'csrf', 'as' => 'profile.update', 'uses' => $class . '@profileUpdate'));
+                Route::put('profile/password', array('before'=>'csrf', 'as' => 'profile.password.update', 'uses' => $class . '@profilePasswordUpdate'));
             });
         endif;
     }
@@ -54,78 +56,110 @@ class AccountsBloggerController extends BaseController {
     public function profile(){
 
         $page_data = array(
-            'page_title'=> Lang::get('seo.COMPANY_LISTENER_PROFILE.title'),
-            'page_description'=> Lang::get('seo.COMPANY_LISTENER_PROFILE.description'),
-            'page_keywords'=> Lang::get('seo.COMPANY_LISTENER_PROFILE.keywords'),
-            'profile' => User_listener::where('id',Auth::user()->id)->first()
+            'page_title'=> Lang::get('seo.BLOGGER.title'),
+            'page_description'=> Lang::get('seo.BLOGGER.description'),
+            'page_keywords'=> Lang::get('seo.BLOGGER.keywords'),
+            'profile' => User::where('id',Auth::user()->id)->first()
         );
+        if (Auth::user()->first_login):
+            $user = Auth::user();
+            $user->first_login = FALSE;
+            $user->save();
+            $user->touch();
+        endif;
         return View::make(Helper::acclayout('profile'),$page_data);
-    }
-
-    public function profileEdit(){
-
-        $page_data = array(
-            'page_title'=> Lang::get('seo.COMPANY_LISTENER_PROFILE.title'),
-            'page_description'=> Lang::get('seo.COMPANY_LISTENER_PROFILE.description'),
-            'page_keywords'=> Lang::get('seo.COMPANY_LISTENER_PROFILE.keywords'),
-            'profile' => User_listener::where('id',Auth::user()->id)->first()
-        );
-        return View::make(Helper::acclayout('profile-edit'),$page_data);
     }
 
     public function profileUpdate(){
 
-        $json_request = array('status'=>FALSE,'responseText'=>'','responseErrorText'=>'','redirect'=>FALSE);
-        if(self::activism()):
-            return App::abort(404);
-        endif;
-        if(Request::ajax() && isCompanyListener()):
-            $validator = Validator::make(Input::all(),Listener::$update_rules);
+        $json_request = array('status'=>FALSE,'responseText'=>'','redirect'=>FALSE);
+        if(Request::ajax()):
+            $validator = Validator::make(Input::all(),array('name'=>'required','email'=>'required|email'));
+            if (Auth::user()->email != Input::get('email') && User::where('email',Input::get('email'))->exists()):
+                $json_request['responseText'] = Lang::get('interface.DEFAULT.email_exist');
+                return Response::json($json_request,200);
+            endif;
             if($validator->passes()):
-                if (self::ListenerAccountUpdate(Input::all())):
+                if(self::accountUpdate(Input::all())):
                     $json_request['responseText'] = Lang::get('interface.DEFAULT.success_save');
-                    $json_request['redirect'] = URL::route('listener-profile');
                     $json_request['status'] = TRUE;
                 else:
                     $json_request['responseText'] = Lang::get('interface.DEFAULT.fail');
                 endif;
             else:
-                $json_request['responseText'] = Lang::get('interface.DEFAULT.fail');
-                $json_request['responseErrorText'] = $validator->messages()->all();
+                $json_request['responseText'] = $validator->messages()->all();
             endif;
         else:
-            return App::abort(404);
+            return Redirect::back();
+        endif;
+        return Response::json($json_request,200);
+    }
+
+    public function profilePasswordUpdate(){
+
+        $json_request = array('status'=>FALSE,'responseText'=>'','redirect'=>FALSE);
+        if(Request::ajax()):
+            $validator = Validator::make(Input::all(),array('password'=>'required|min:6|confirmed','password_confirmation'=>'required|min:6'));
+            if($validator->passes()):
+                if(self::accountPasswordUpdate(Input::get('password'))):
+                    $json_request['responseText'] = Lang::get('interface.DEFAULT.success_change');
+                    $json_request['status'] = TRUE;
+                else:
+                    $json_request['responseText'] = Lang::get('interface.DEFAULT.fail');
+                endif;
+            else:
+                $json_request['responseText'] = $validator->messages()->all();
+            endif;
+        else:
+            return Redirect::back();
         endif;
         return Response::json($json_request,200);
     }
 
     private function accountUpdate($post){
 
-        $user = Auth::user();
-        if($listener = Listener::where('user_id',$user->id)->first()):
-            $fio = explode(' ',$post['fio']);
-            $user->name = (isset($fio[1]))?$fio[1]:'';
-            $user->surname = (isset($fio[0]))?$fio[0]:'';
+        try {
+            $user = Auth::user();
+            $fio = explode(' ', $post['name']);
+            $user->name = (isset($fio[0])) ? $fio[0] : '';
+            $user->surname = (isset($fio[1])) ? $fio[1] : '';
+
+            $user->birth = $post['birth'];
+            $user->location = $post['location'];
+            $user->links = $post['links'];
+            $user->site = $post['site'];
+            $user->inspiration = $post['inspiration'];
+            $user->phone = $post['phone'];
+            $user->blogname = $post['blogname'];
+            if ($user->brand):
+                $user->blogpicture = AdminUploadsController::getUploadedFile();
+            else:
+                $user->blogpicture = '';
+            endif;
+            $user->about = $post['about'];
             $user->save();
             $user->touch();
-
-            $listener->approved = $post['approved'];
-            $listener->fio = $post['fio'];
-            $listener->fio_dat = $post['fio_dat'];
-            $listener->position = $post['position'];
-            $listener->postaddress = $post['postaddress'];
-            $listener->phone = $post['phone'];
-            $listener->education = $post['education'];
-            $listener->education_document_data = $post['education_document_data'];
-            $listener->educational_institution = $post['educational_institution'];
-            $listener->specialty = $post['specialty'];
-            $listener->save();
-            $listener->touch();
-
-            return TRUE;
-        else:
+        }catch (Exception $e){
             return FALSE;
-        endif;
+        }
+        return TRUE;
+    }
+
+    private function accountPasswordUpdate($password = NULL){
+
+        try{
+            if (is_null($password)):
+                $password = Str::random(12);
+            endif;
+            $user = Auth::user();
+            $user->password = Hash::make($password);
+
+            $user->save();
+            $user->touch();
+        }catch (Exception $e){
+            return FALSE;
+        }
+        return TRUE;
     }
     /**************************************************************************/
 }
