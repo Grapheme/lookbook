@@ -103,10 +103,9 @@ class AccountsRegisterController extends BaseController {
 
         $user = new User;
         if(!is_null($post)):
-            $fio = explode(' ',$post['name']);
             $user->group_id = Group::where('name','blogger')->pluck('id');
-            $user->name = (isset($fio[1]))?$fio[1]:'';
-            $user->surname = (isset($fio[0]))?$fio[0]:'';
+            $user->name = $post['name'];
+            $user->surname = '';
             $user->email = $post['email'];
             $user->active = 2;
             $user->password = Hash::make($post['password']);

@@ -167,9 +167,8 @@ class AccountsBloggerController extends BaseController {
 
         try {
             $user = Auth::user();
-            $fio = explode(' ', $post['name']);
-            $user->name = (isset($fio[0])) ? $fio[0] : '';
-            $user->surname = (isset($fio[1])) ? $fio[1] : '';
+            $user->name = $post['name'];
+            $user->surname = '';
 
             $user->birth = $post['birth'];
             $user->location = $post['location'];

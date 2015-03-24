@@ -76,8 +76,8 @@ class AccountsSocialController extends BaseController {
                 $password = Str::random(12);
                 $user = new User;
                 $user->group_id = Group::where('name','blogger')->pluck('id');
-                $user->name = $_user['first_name'];
-                $user->surname = $_user['last_name'];
+                $user->name = $_user['first_name'].' '.$_user['last_name'];
+                $user->surname = '';
                 $user->email = isset($_user['email']) ? $_user['email'] : '';
                 $user->active = TRUE;
                 $user->first_login = TRUE;

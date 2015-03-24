@@ -26,7 +26,7 @@
                                     <td class="form-table__value js-form-value">
                                         <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
                                         <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                                        {{ Form::text('name',$profile->name.' '.$profile->surname,array('class'=>'dashboard-input')) }}
+                                        {{ Form::text('name',Input::old('name'),array('class'=>'dashboard-input')) }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -34,7 +34,7 @@
                                     <td class="form-table__value js-form-value">
                                         <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
                                         <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                                        {{ Form::text('birth',NULL,array('class'=>'dashboard-input')) }}
+                                        {{ Form::text('birth',Input::old('birth'),array('class'=>'dashboard-input')) }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -42,7 +42,7 @@
                                     <td class="form-table__value js-form-value">
                                         <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
                                         <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                                        {{ Form::text('location',NULL,array('class'=>'dashboard-input')) }}
+                                        {{ Form::text('location',Input::old('location'),array('class'=>'dashboard-input')) }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -50,7 +50,7 @@
                                     <td class="form-table__value js-form-value">
                                         <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
                                         <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                                        {{ Form::text('links',NULL,array('class'=>'dashboard-input')) }}
+                                        {{ Form::text('links',Input::old('links'),array('class'=>'dashboard-input')) }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -58,7 +58,7 @@
                                     <td class="form-table__value js-form-value">
                                         <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
                                         <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                                        {{ Form::text('site',NULL,array('class'=>'dashboard-input')) }}
+                                        {{ Form::text('site',Input::old('site'),array('class'=>'dashboard-input')) }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -66,7 +66,7 @@
                                     <td class="form-table__value js-form-value">
                                         <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
                                         <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                                        {{ Form::text('inspiration',NULL,array('class'=>'dashboard-input')) }}
+                                        {{ Form::text('inspiration',Input::old('inspiration'),array('class'=>'dashboard-input')) }}
                                     </td>
                                 </tr>
                             </table>
@@ -77,7 +77,7 @@
                                     <td class="form-table__value js-form-value">
                                         <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
                                         <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                                        {{ Form::text('email',NULL,array('class'=>'dashboard-input')) }}
+                                        {{ Form::text('email',Input::old('email'),array('class'=>'dashboard-input')) }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -85,7 +85,7 @@
                                     <td class="form-table__value js-form-value">
                                         <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
                                         <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                                        {{ Form::text('phone',NULL,array('class'=>'dashboard-input')) }}
+                                        {{ Form::text('phone',Input::old('phone'),array('class'=>'dashboard-input')) }}
                                     </td>
                                 </tr>
                             </table>
@@ -96,7 +96,7 @@
                                     <td class="form-table__value js-form-value">
                                         <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
                                         <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                                        {{ Form::text('blogname',NULL,array('class'=>'dashboard-input')) }}
+                                        {{ Form::text('blogname',Input::old('blogname'),array('class'=>'dashboard-input')) }}
                                     </td>
                                 </tr>
                                 @if($profile->brand)
@@ -111,7 +111,7 @@
                                 <tr>
                                     <td class="form-table__name"><span>Текст о себе или о блоге</span></td>
                                     <td class="form-table__value form-table__texarea-cont">
-                                        {{ Form::textarea('about',NULL,array('class'=>'dashboard-textarea js-autosize')) }}
+                                        {{ Form::textarea('about',Input::old('about'),array('class'=>'dashboard-textarea js-autosize')) }}
                                     </td>
                                 </tr>
                                 <tr class="form-table__btns">
@@ -156,7 +156,7 @@
                         <div class="right-content">
                         <?php
                             $hasImage = FALSE;
-                            if(File::exists(public_path($profile->photo))):
+                            if(!empty(Auth::user()->photo) && File::exists(public_path($profile->photo))):
                                 $hasImage = TRUE;
                             endif;
                         ?>
