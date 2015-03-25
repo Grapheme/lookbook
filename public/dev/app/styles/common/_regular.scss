@@ -47,10 +47,65 @@
 }
 
 .right-content {
+    position: relative;
     padding: $dashTopPad 15px $dashTopPad $dashLeftPad;
     line-height: 1.6;
 
     &:last-child {
         border-bottom: 1px solid $borderColor;
+    }
+
+    .right-content__all-link {
+        @extend .linkTrans;
+        position: absolute;
+        bottom: 13px;
+        right: 0;
+        color: $blue;
+        font-size: 12px;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+
+        &:hover {
+            border-color: $blue;
+        }
+    }
+}
+
+.right-content__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    .list__item {
+        margin-bottom: 15px;
+        height: 60px;
+        line-height: 60px;
+
+        .item__photo {
+            display: inline-block;
+            vertical-align: middle;
+            width: 60px;
+            height: 60px;
+            float: left;
+
+            img {
+                max-width: 100%;
+            }
+        }
+
+        .item__text {
+            padding-left: 80px;
+            font-size: 12px;
+            text-transform: uppercase;
+
+            a, span {
+                display: inline-block;
+                vertical-align: middle;
+                text-decoration: none;
+                color: inherit;
+                border: none;
+            }
+        }
     }
 }

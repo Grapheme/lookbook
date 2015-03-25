@@ -16,9 +16,9 @@ block content
                     .dashboard-tab
                         .reg-content__left
                             .dashboard-btn
-                                a(href="#").white-black-btn Создать новый пост
-                            ul.dashboard-list
-                                li.dashboard-item
+                                a(href="profile_auth_newpost.html").white-black-btn Создать новый пост
+                            ul.dashboard-list.js-posts
+                                li.dashboard-item.js-post
                                     .left-block
                                         .profile-ava.ava-min.ava-empty(data-empty-name="Анна Антропова")
                                             img(src="images/tmp/profile-photo_max.jpg")
@@ -26,37 +26,63 @@ block content
                                                 span.js-empty-chars
                                         .profile-name Дурнев Константин
                                     .right-block
-                                        .post-photo
-                                            img(src="images/tmp/post-photo-1.jpg" alt="")
-                                            .post-photo__alt Shopping
-                                        .post-info
-                                            .post-info__title
-                                                a(href="#") Новая коллекция обуви сезон 2014–2015
-                                            .post-info__desc В 1947 году, когда Европа только начала восстанавливаться после пятилетней войны, Кристиан Диор создал силуэт, который навсегда вошел в историю под названием New Look. Этим, без сомнения, главным своим изобретением дизайнер сделал выдающийся вклад в мировую моду. 
-                                        .post-footer
-                                            span.post-footer__date ЯНВ 26, 2015
-                                            span.post-footer__statisctics
-                                                a(href="#").statisctics-item
-                                                    i.svg-icon.icon-eye
-                                                    | 24
-                                                a(href="#").statisctics-item
-                                                    i.svg-icon.icon-like
-                                                    | 56
-                                                a(href="#").statisctics-item
-                                                    i.svg-icon.icon-comments
-                                                    | 36
+                                        .right-block__pad
+                                            .post-photo
+                                                img(src="images/tmp/post-photo-1.jpg" alt="")
+                                                .post-photo__alt Shopping
+                                            .post-info
+                                                .post-info__title
+                                                    a(href="#") Новая коллекция обуви сезон 2014–2015
+                                                .post-info__desc В 1947 году, когда Европа только начала восстанавливаться после пятилетней войны, Кристиан Диор создал силуэт, который навсегда вошел в историю под названием New Look. Этим, без сомнения, главным своим изобретением дизайнер сделал выдающийся вклад в мировую моду. 
+                                            .post-footer
+                                                span.post-footer__date ЯНВ 26, 2015
+                                                span.post-footer__statisctics
+                                                    span.statisctics-item
+                                                        i.svg-icon.icon-eye
+                                                        | 24
+                                                    span.statisctics-item
+                                                        i.svg-icon.icon-like
+                                                        | 56
+                                                    span.statisctics-item
+                                                        i.svg-icon.icon-comments
+                                                        | 36
                                         .post-actions
                                             span.actions__title Действия
-                                            a(href="#").actions__item.action-edit Редактировать
-                                            a(href="#").actions__item.action-comment Комментировать
-                                            a(href="#").actions__item.action-delete Удалить
+                                            a(href="#").white-btn.action-edit
+                                                i.svg-icon.icon-edit
+                                                | Редактировать
+                                            a(href="#").white-btn.action-comment
+                                                i.svg-icon.icon-comments
+                                                | Комментировать
+                                            form(action="json/test.json").js-delete-post.inline-block
+                                                button(type="submit").white-btn.action-delete
+                                                    i.svg-icon.icon-cross
+                                                    | Удалить
                             .dashboard-btn-more
-                                a(href="#").white-black-btn Загрузить еще постов
+                                form(action="json/get_posts.json").js-more-posts
+                                    button(type="submit").white-black-btn Загрузить еще постов
+                                    p.js-response-text
                         .reg-content__right
                             .right-title БЛОГИ РЕКОМЕНДОВАННЫЕ LOOKBOOK
-                            .right-content У вас еще нет рекомендованных блогов.
+                            .right-content
+                                ul.right-content__list
+                                    each i in [1,2,3,4,5]
+                                        li.list__item
+                                            a(href="#").item__photo
+                                                img(src="http://dummyimage.com/60x60/000/fff" alt="")
+                                            .item__text
+                                                a(href="#") Carlo Pozorlini
+                                a(href="#").right-content__all-link All blogs
                             .right-title МОЙ БЛОГ-ЛИСТ
-                            .right-content Вы еще не добавили ни один блог в свой блог-лист.<br>Читайте <a href="#">TOP POST</a> и выбирайте любимые.
+                            .right-content
+                                ul.right-content__list
+                                    each i in [1,2,3,4,5]
+                                        li.list__item
+                                            a(href="#").item__photo
+                                                img(src="http://dummyimage.com/60x60/000/fff" alt="")
+                                            .item__text
+                                                a(href="#") Carlo Pozorlini
+                                a(href="#").right-content__all-link All blogs
                         .clearfix
                 .clearfix
 

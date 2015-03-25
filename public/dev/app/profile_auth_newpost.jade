@@ -1,0 +1,47 @@
+extends layout
+
+block vars
+  - var title = 'Профиль блоггера'
+  - var auth = true
+  - var profile_active = 'profile_auth_main_empty.html'
+
+block content
+    header
+        .wrapper
+            .container_12
+                .grid_12
+                    include profile_auth_header
+                .clearfix
+                .grid_12.reg-content
+                    .dashboard-tab
+                        .reg-content__left
+                            form(action="json/test.json").newpost-form.js-ajax-form
+                                div
+                                    span Дата
+                                    input(type="text" value="2015-03-25")
+                                div
+                                    span Выберите категорию
+                                    select
+                                        option(value="1") Fashion
+                                div
+                                    span Выберите подкатегорию
+                                    select
+                                        option(value="1") Trends
+                                div
+                                    span Выберите тип публикации
+                                    select
+                                        option(value="1") С фотографиями к тексту
+                                div
+                                    span Название
+                                    select
+                                        option(value="1") Fashion
+                                div
+                                    span Текст публикации
+                                    textarea
+                                div
+                                    button(type="submit").blue-hover.us-btn Опубликовать
+                                p.js-response-text
+                        .reg-content__right
+                        .clearfix
+                .clearfix
+

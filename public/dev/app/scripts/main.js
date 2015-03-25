@@ -18,6 +18,14 @@ Help.avaGenerator = function() {
         $(this).find('.js-empty-chars').html(str);
     });
 }
+Help.typicalSubmit = function() {
+    $(document).on('submit', '.js-ajax-form', function(e){
+        var form = $(this);
+        Help.ajaxSubmit(form);
+        e.preventDefault();
+        return false;
+    });
+}
 Help.ajaxSubmit = function(form) {
     var response_cont = $(form).find('.js-response-text'),
         options = { 
@@ -83,6 +91,64 @@ jQuery.extend(jQuery.validator.messages, {
     min: jQuery.validator.format("Пожалуйста, введите число, большее или равное {0}."),
     extension: jQuery.validator.format("Вы можете загрузить изображение только со следующими расширениями: jpeg, jpg, png, gif.")
 });
+LookBook.Dashboard = function() {
+    var postDelete = function(form) {
+        var post_cont = form.parents('.js-post'),
+            options = { 
+            beforeSubmit: function(){
+                post_cont.addClass('opacity05');
+                $(form).find('[type="submit"]').attr('disabled', 'disabled');
+            }, 
+            success: function(data){
+                if(data.status) {
+                    post_cont.slideUp();
+                } else {
+                    console.log(data);
+                }
+            },
+            error: function(data) {
+                post_cont.removeClass('opacity05');
+                $(form).find('[type="submit"]').removeAttr('disabled');
+                console.log(data);
+            }
+        };
+        form.ajaxSubmit(options);
+    }
+    var postsGet = function(form) {
+        var response_cont = form.find('.js-response-text');
+        var posts_cont = $('.js-posts'),
+            options = { 
+            beforeSubmit: function(){
+                response_cont.hide();
+                form.find('[type="submit"]').addClass('loading')
+                    .attr('disabled', 'disabled');
+            }, 
+            success: function(data){
+                console.log(posts_cont);
+                posts_cont.append(data.html);
+                if(data.hide_button) {
+                    form.hide();
+                }
+                form.find('[type="submit"]').removeClass('loading')
+                    .removeAttr('disabled');
+            },
+            error: function(data) {
+                response_cont.show().text('Ошибка на сервере, попробуйте позже');
+                form.find('[type="submit"]').removeClass('loading')
+                    .removeAttr('disabled');
+            }
+        };
+        form.ajaxSubmit(options);
+    }
+    $(document).on('submit', '.js-delete-post', function(){
+        postDelete($(this));
+        return false;
+    });
+    $(document).on('submit', '.js-more-posts', function(){
+        postsGet($(this));
+        return false;
+    });
+}
 LookBook.DashForm = function() {
     var formParent = $('.js-dashboard-form');
     if(!formParent.length) return;
@@ -358,6 +424,8 @@ LookBook.Auth = function() {
 
 $(function(){
     Help.avaGenerator();
+    Help.typicalSubmit();
+    LookBook.Dashboard();
     LookBook.DashForm();
     LookBook.FitText();
     LookBook.Auth();

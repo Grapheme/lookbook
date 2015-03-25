@@ -11,3 +11,26 @@
     padding: 0;
     list-style: none;
 }
+
+.loading-black-btn {
+    &:after {
+        @extend .fontawesome;
+        content: "\f110";
+        position: absolute;
+        right: 20px;
+        top: .75em;
+        opacity: 0;
+        transition: opacity .2s ease;
+    }
+
+    &.loading {
+        background: #333333;
+        padding-right: 50px;
+        color: #fff;
+
+        &:after {
+            opacity: 1;
+            animation: fa-spin 1s infinite steps(8);
+        }
+    }
+}

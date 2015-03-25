@@ -9,7 +9,7 @@
 }
 
 .fontawesome {
-    isplay: inline-block;
+    display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
     text-rendering: auto;
@@ -316,7 +316,7 @@
     content: "\e602";
 }
 
-.icon-uniE603:before {
+.icon-edit:before {
     content: "\e603";
 }
 
@@ -350,4 +350,8 @@
 
 .icon-cross37:before {
     content: "\e60b";
+}
+
+.icon-cross:before {
+    content: "\e60c";
 }

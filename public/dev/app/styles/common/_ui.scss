@@ -36,22 +36,52 @@ h1 {
     line-height: 36px;
     border: 1px solid;
     padding: 0 35px;
+    background: transparent;
+    outline: none;
 
     &:hover {
         color: $blue;
+    }
+
+    .svg-icon {
+        display: inline-block;
+        vertical-align: middle;
+        color: $blue;
+        margin-right: 18px;
+
+        &.icon-edit {
+            font-size: 38px;
+            width: 23px;
+        }
+
+        &.icon-comments {
+            font-size: 30px;
+            width: 22px;
+        }
+
+        &.icon-cross {
+            position: relative;
+            top: -.05em;
+            font-size: 22px;
+            width: 19px;
+        }
     }
 }
 
 .white-black-btn {
     @extend .reg-italic;
     @extend .linkTrans;
+    @extend .loading-black-btn;
+    position: relative;
     display: inline-block;
     vertical-align: top;
     box-sizing: border-box;
     height: 38px;
     line-height: 36px;
     border: 1px solid;
+    outline: none;
     padding: 0 35px;
+    background: transparent;
 
     &:hover {
         background: #333;
@@ -62,6 +92,7 @@ h1 {
 .us-btn {
     @extend .reg-italic;
     @extend .linkTrans;
+    @extend .loading-black-btn;
     position: relative;
     display: inline-block;
     vertical-align: middle;
@@ -73,16 +104,6 @@ h1 {
     background: #333333;
     color: #fff;
 
-    &:after {
-        @extend .fontawesome;
-        content: "\f110";
-        position: absolute;
-        right: 20px;
-        top: .75em;
-        opacity: 0;
-        transition: opacity .2s ease;
-    }
-
     &:hover {
         background: #fff;
         color: #4bbeff;
@@ -92,21 +113,18 @@ h1 {
         outline: none;
     }
 
-    &.loading {
-        background: #333333;
-        padding-right: 50px;
-        color: #fff;
-
-        &:after {
-            opacity: 1;
-            animation: fa-spin 1s infinite steps(8);
-        }
-    }
-
     &.blue-hover {
         &:hover {
             color: #fff;
             background: $blue;
         }
     }
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.opacity05 {
+    opacity: .5;
 }
