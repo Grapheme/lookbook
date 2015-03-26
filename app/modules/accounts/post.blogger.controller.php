@@ -98,7 +98,7 @@ class PostBloggerController extends BaseController {
     }
 
     public function show($post_id){
-        if ($post = Post::where('user_id',Auth::user()->id)->with('publication_type','category','subcategory','comments','photo','gallery')->first()):
+        if ($post = Post::where('id',(int)$post_id)->where('user_id',Auth::user()->id)->with('publication_type','category','subcategory','comments','photo','gallery')->first()):
             return View::make(Helper::acclayout('posts.show'),compact('post'));
         else:
             App::abort(404);
