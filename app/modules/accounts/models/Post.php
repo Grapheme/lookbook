@@ -4,14 +4,10 @@ class Post extends BaseModel{
 
     protected $table = 'posts';
     protected $guarded = array('id','_method','_token');
-    protected $fillable = array('user_id','publication_type','category_id','subcategory_id','publish_at','title','content','photo_id','gallery_id');
+    protected $fillable = array('user_id','category_id','subcategory_id','publish_at','title','content','photo_id','gallery_id');
     public static $rules = array('publish_at'=>'required','title'=>'required','content'=>'required');
 
     public function user() {
-        return $this->hasOne('User', 'id', 'user_id');
-    }
-
-    public function publication_type() {
         return $this->hasOne('User', 'id', 'user_id');
     }
 
@@ -29,6 +25,10 @@ class Post extends BaseModel{
 
     public function gallery() {
         return $this->hasOne('Gallery', 'id', 'gallery_id');
+    }
+
+    public function tags() {
+        return $this->belongsToMany('PostTags','posts_tags', 'post_id', 'tag_id');
     }
 
     public function views(){

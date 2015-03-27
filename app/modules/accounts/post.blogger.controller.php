@@ -76,7 +76,6 @@ class PostBloggerController extends BaseController {
                 'publish_at' => (new myDateTime())->setDateString(Input::get('publish_at'))->format('Y-m-d'),
                 'category_id' => Input::get('category_id'),
                 'subcategory_id' => Input::get('subcategory_id'),
-                'publication_type' => Input::get('publication_type'),
                 'title' => Input::get('title'),
                 'content' => Input::get('content'),
                 'publication' => 0,
@@ -98,7 +97,7 @@ class PostBloggerController extends BaseController {
     }
 
     public function show($post_id){
-        if ($post = Post::where('id',(int)$post_id)->where('user_id',Auth::user()->id)->with('publication_type','category','subcategory','comments','photo','gallery')->first()):
+        if ($post = Post::where('id',(int)$post_id)->where('user_id',Auth::user()->id)->with('category','subcategory','comments','photo','gallery')->first()):
             return View::make(Helper::acclayout('posts.show'),compact('post'));
         else:
             App::abort(404);
@@ -108,7 +107,8 @@ class PostBloggerController extends BaseController {
 
     public function create(){
 
-        return View::make(Helper::acclayout(self::$entity.'.create'));
+        list($categories,$subcategories,$tags) = self::getCategoriesAndTags();
+        return View::make(Helper::acclayout(self::$entity.'.create'),compact('categories','subcategories','tags'));
     }
 
     public function store(){
@@ -123,13 +123,15 @@ class PostBloggerController extends BaseController {
                     'publish_at' => (new myDateTime())->setDateString(Input::get('publish_at'))->format('Y-m-d'),
                     'category_id' => Input::get('category_id'),
                     'subcategory_id' => Input::get('subcategory_id'),
-                    'publication_type' => Input::get('publication_type'),
                     'title' => Input::get('title'),
                     'content' => Input::get('content'),
                     'photo_id' => Input::get('photo_id'),
                     'gallery_id' => $galleryID,
                     'publication' => 0
                 ));
+                if (Input::has('tags')):
+                    Post::where('id',$newPost->id)->first()->tags()->sync(Input::get('tags'));
+                endif;
                 $json_request['responseText'] = Lang::get('interface.DEFAULT.success_insert');
                 $json_request['redirect'] = URL::route('posts.show',$newPost->id.'-'.BaseController::stringTranslite($newPost->title));
                 $json_request['status'] = TRUE;
@@ -157,5 +159,48 @@ class PostBloggerController extends BaseController {
     }
     /****************************************************************************/
     /**************************************************************************/
+    public static function getCategoriesAndTags(){
+
+        $categories = array();
+        $subcategories = array();
+        $tags = array();
+
+        if($cats = Dictionary::valuesBySlug('categories')):
+            $cats = DicLib::extracts($cats,NULL,TRUE,TRUE);
+            foreach($cats as $cat_id => $cat):
+                $categories[$cat_id] = $cat['name'];
+            endforeach;
+        endif;
+        if($subcats = Dictionary::valuesBySlug('subcategories')):
+            $subcats = DicLib::extracts($subcats,NULL,TRUE,TRUE);
+            foreach($subcats as $cat_id => $cat):
+                $subcategories[$cat_id] = array('id'=>$cat_id,'name'=>$cat['name'],'category_id'=>$cat['category_id']);
+            endforeach;
+        endif;
+        if (!empty($categories)):
+            foreach ($categories as $cat_id => $cat_title):
+                if (isset($cats[$cat_id]['tags_id']) && !empty($cats[$cat_id]['tags_id'])):
+                    foreach($cats[$cat_id]['tags_id'] as $tag_id => $tag):
+                        $tags[$cat_id]['category_tags'][$tag_id] = $tag['name'];
+                    endforeach;
+                endif;
+            endforeach;
+            if (!empty($subcategories)):
+                foreach ($subcategories as $subcat_id => $subcat):
+                    $tmpsubcategories[$subcat['category_id']][] = $subcat_id;
+                endforeach;
+                foreach ($tmpsubcategories as $tmpsubcat_cat_id => $tmpsubcat):
+                    foreach($tmpsubcat as $tmpsubcat_id):
+                        if (isset($subcats[$tmpsubcat_id]['tags_id']) && !empty($subcats[$tmpsubcat_id]['tags_id'])):
+                            foreach($subcats[$tmpsubcat_id]['tags_id'] as $tag_id => $tag):
+                                $tags[$tmpsubcat_cat_id]['subcategory_tags'][$tmpsubcat_id][$tag_id] = $tag['name'];
+                            endforeach;
+                        endif;
+                    endforeach;
+                endforeach;
+            endif;
+        endif;
+        return array($categories,$subcategories,$tags);
+    }
     /****************************************************************************/
 }

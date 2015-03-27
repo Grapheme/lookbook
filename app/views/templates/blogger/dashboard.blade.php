@@ -4,7 +4,7 @@
  */
 
 $posts_count = Post::where('user_id',Auth::user()->id)->count();
-$posts = Post::where('user_id',Auth::user()->id)->orderBy('publish_at','DESC')->with('user','photo','publication_type','category','subcategory','views','likes','comments')->limit(4)->get();
+$posts = Post::where('user_id',Auth::user()->id)->orderBy('publish_at','DESC')->with('user','photo','category','subcategory','views','likes','comments')->limit(4)->get();
 ?>
 @extends(Helper::acclayout())
 @section('style')

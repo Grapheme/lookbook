@@ -10,7 +10,6 @@ class CreatePostsTable extends Migration {
 		Schema::create('posts', function(Blueprint $table){
 			$table->increments('id');
             $table->integer('user_id')->unsigned()->nullable()->default(0);
-            $table->integer('publication_type')->unsigned()->nullable()->default(0);
             $table->integer('category_id')->unsigned()->nullable()->default(0);
             $table->integer('subcategory_id')->unsigned()->nullable()->default(0);
             $table->date('publish_at')->nullable();

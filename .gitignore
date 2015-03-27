@@ -26,6 +26,9 @@ _ide_helper.php
 /public/uploads/galleries/thumbs/*
 /public/uploads/thumbnail/*
 
+/public/uploads/users/*
+/public/uploads/users/thumbnail/*
+
 /public/static/psd
 /usersfiles
 /psd

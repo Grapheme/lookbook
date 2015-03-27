@@ -24,7 +24,7 @@ return array(
                 'columns' => 2, ## Количество колонок
                 'values' => $lists['tags'],
                 'handler' => function ($value, $element) use ($lists_ids) {
-                    $value = DicLib::formatDicValRel($value, 'scope_id', $element->dic_id, $lists_ids['tags']);
+                    $value = DicLib::formatDicValRel($value, 'tags_id', $element->dic_id, $lists_ids['tags']);
                     $element->related_dicvals()->sync($value);
                     return @count($value);
                 },

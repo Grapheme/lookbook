@@ -2,6 +2,8 @@
 /**
  * TEMPLATE_IS_NOT_SETTABLE
  */
+reset($categories);
+$selectedCategory = key($categories);
 ?>
 @extends(Helper::acclayout())
 @section('style')
@@ -31,15 +33,33 @@
                             </div>
                             <div>
                                 <span>Выберите категорию</span>
-                                {{ Form::select('category_id',array(),NULL,array()) }}
+                                {{ Form::select('category_id',$categories,NULL,array('autocomplete'=>'off')) }}
                             </div>
+                            @if(count($subcategories))
                             <div>
                                 <span>Выберите подкатегорию</span>
-                                {{ Form::select('subcategory_id',array(),NULL,array()) }}
+                                <select name="subcategory_id" autocomplete="off">
+                                    <option value="0">Выберите подкатегорию</option>
+                                @foreach($subcategories as $subcategy_id => $subcategy)
+                                    <option {{ $selectedCategory == $subcategy['category_id'] ? '' : 'style="display: none;"' }} data-category="{{ $subcategy['category_id'] }}" value="{{ $subcategy_id }}">{{ $subcategy['name'] }}</option>
+                                @endforeach
+                                </select>
                             </div>
+                            @endif
                             <div>
-                                <span>Выберите тип публикации</span>
-                                {{ Form::select('publication_type',array(),NULL,array()) }}
+                                <span>Теги</span>
+                                <select name="tags[]" autocomplete="off" multiple>
+                            @foreach($tags as $category_id => $categories_tags)
+                                @foreach($categories_tags['category_tags'] as $tag_id => $tag_title)
+                                    <option {{ $selectedCategory == $category_id ? '' : 'style="display: none;"' }} data-category="{{ $category_id }}" data-subcategory="0" value="{{ $tag_id }}">{{ $tag_title }}</option>
+                                @endforeach
+                                @foreach($categories_tags['subcategory_tags'] as $subcategory_id => $subcategory_tags)
+                                    @foreach($subcategory_tags as $tag_id => $tag_title)
+                                        <option style="display: none;" data-category="{{ $category_id }}" data-subcategory="{{ $subcategory_id }}" value="{{ $tag_id }}">{{ $tag_title }}</option>
+                                    @endforeach
+                                @endforeach
+                            @endforeach
+                                </select>
                             </div>
                             <div>
                                 <span>Название</span>
