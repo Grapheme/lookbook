@@ -31,18 +31,22 @@ class Post extends BaseModel{
         return $this->belongsToMany('PostTags','posts_tags', 'post_id', 'tag_id');
     }
 
+    public function tags_ids() {
+        return $this->hasMany('PostTags','post_id','id');
+    }
+
     public function views(){
 
-        return $this->hasMany('PostViews','id','post_id');
+        return $this->hasMany('PostViews','post_id','id');
     }
 
     public function likes(){
 
-        return $this->hasMany('PostLikes','id','post_id');
+        return $this->hasMany('PostLikes','post_id','id');
     }
 
     public function comments(){
 
-        return $this->hasMany('PostComments','id','post_id');
+        return $this->hasMany('PostComments','post_id','id');
     }
 }
