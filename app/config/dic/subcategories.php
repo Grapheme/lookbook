@@ -4,13 +4,20 @@ return array(
 
     'fields' => function ($dicval = NULL) {
 
-        $dics_slugs = array('tags');
+        $dics_slugs = array('categories','tags');
         $dics = Dic::whereIn('slug', $dics_slugs)->with('values')->get();
         $dics = Dic::modifyKeys($dics, 'slug');
         $lists = Dic::makeLists($dics, 'values', 'name', 'id');
         $lists_ids = Dic::makeLists($dics, null, 'id', 'slug');
 
         return array(
+
+            'category_id' => array(
+                'title' => 'Категория (Раздел)',
+                'type' => 'select',
+                'values' => $lists['categories'], ## Используется предзагруженный словарь
+                'default' => Input::get('filter.fields.category_id') ?: null,
+            ),
             'tags_id' => array(
                 'title' => 'Теги',
                 'type' => 'checkboxes',
@@ -32,22 +39,26 @@ return array(
     },
     'menus' => function($dic, $dicval = NULL) {
         $menus = array();
+        $dics_slugs = array('categories');
+        $dics = Dic::whereIn('slug', $dics_slugs)->with('values')->get();
+        $dics = Dic::modifyKeys($dics, 'slug');
+        $lists = Dic::makeLists($dics, 'values', 'name', 'id');
+        $menus[] = Helper::getDicValMenuDropdown('category_id', 'Все категории', $lists['categories'], $dic);
         return $menus;
     },
     'actions' => function($dic, $dicval) {
 
-        return '
-            <span class="block_ margin-bottom-5_">
-                <a href="'.URL::route('entity.index',array('subcategories','filter[fields][category_id]'=>$dicval->id)).'" class="btn btn-default">
-                    Подкатегории
-                </a>
-            </span>
-        ';
     },
     'hooks' => array(
         'before_all' => function ($dic) {},
         'before_index' => function ($dic) {},
-        'before_index_view' => function ($dic, $dicvals) {},
+        'before_index_view' => function ($dic, $dicvals) {
+            $dics_slugs = array('categories');
+            $dics = Dic::whereIn('slug', $dics_slugs)->with('values')->get();
+            $dics = Dic::modifyKeys($dics, 'slug');
+            $lists = Dic::makeLists($dics, 'values', 'name', 'id');
+            Config::set('temp.categories', $lists['categories']);
+        },
         'before_create_edit' => function ($dic) {},
         'before_create' => function ($dic) {},
         'before_edit' => function ($dic, $dicval) {},
@@ -59,6 +70,12 @@ return array(
         'before_destroy' => function ($dic, $dicval) {},
         'after_destroy' => function ($dic, $dicval) {},
     ),
+
+    'second_line_modifier' => function($line, $dic, $dicval) {
+        $dicval->extract(1);
+        $categories = Config::get('temp.categories');
+        return 'Категория (Раздел): '.@$categories[$dicval['category_id']];
+    },
 
     'seo' => false,
     'versions' => 0,
