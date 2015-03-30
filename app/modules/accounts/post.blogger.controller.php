@@ -226,9 +226,44 @@ class PostBloggerController extends BaseController {
         return Response::json($json_request,200);
     }
 
-    public function destroy(){
+    public function destroy($post_id){
 
+        $json_request = array('status'=>FALSE,'responseText'=>'','redirect'=>FALSE);
+        if(Request::ajax()):
+            if($gallery = Post::where('id',$post_id)->where('user_id',Auth::user()->id)->first()->gallery):
+                $photos =  $gallery->photos;
+                foreach($gallery->photos as $photo):
+                    if (!empty($photo->name) && File::exists(Config::get('site.galleries_photo_dir').'/'.$photo->name)):
+                        File::delete(Config::get('site.galleries_photo_dir').'/'.$photo->name);
+                    endif;
+                    if (!empty($photo->name) && File::exists(Config::get('site.galleries_thumb_dir').'/'.$photo->name)):
+                        File::delete(Config::get('site.galleries_thumb_dir').'/'.$photo->name);
+                    endif;
+                    $photo->delete();
+                endforeach;
+                $gallery->delete();
+            endif;
+            if($photo = Post::where('id',$post_id)->where('user_id',Auth::user()->id)->first()->photo):
+                if (!empty($photo->name) && File::exists(Config::get('site.galleries_photo_dir').'/'.$photo->name)):
+                    File::delete(Config::get('site.galleries_photo_dir').'/'.$photo->name);
+                endif;
+                if (!empty($photo->name) && File::exists(Config::get('site.galleries_thumb_dir').'/'.$photo->name)):
+                    File::delete(Config::get('site.galleries_thumb_dir').'/'.$photo->name);
+                endif;
+                $photo->delete();
+            endif;
+            Post::where('id',$post_id)->where('user_id',Auth::user()->id)->first()->views()->delete();
+            Post::where('id',$post_id)->where('user_id',Auth::user()->id)->first()->likes()->delete();
+            Post::where('id',$post_id)->where('user_id',Auth::user()->id)->first()->comments()->delete();
+            Post::where('id',$post_id)->where('user_id',Auth::user()->id)->first()->tags_ids()->delete();
+            Post::where('id',$post_id)->where('user_id',Auth::user()->id)->delete();
 
+            $json_request['responseText'] = Lang::get('interface.DEFAULT.success_remove');
+            $json_request['status'] = TRUE;
+        else:
+            return Redirect::back();
+        endif;
+        return Response::json($json_request,200);
     }
     /****************************************************************************/
     /**************************************************************************/
