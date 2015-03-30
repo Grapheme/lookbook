@@ -5,7 +5,7 @@ class Post extends BaseModel{
     protected $table = 'posts';
     protected $guarded = array('id','_method','_token');
     protected $fillable = array('user_id','category_id','subcategory_id','publish_at','title','content','photo_id','gallery_id');
-    public static $rules = array('publish_at'=>'required','title'=>'required','content'=>'required');
+    public static $rules = array('publish_at'=>'required','title'=>'required','content'=>'');
 
     public function user() {
         return $this->hasOne('User', 'id', 'user_id');

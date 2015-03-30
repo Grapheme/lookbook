@@ -13,6 +13,8 @@ class PostBloggerController extends BaseController {
         $class = __CLASS__;
         if (Auth::check() && Auth::user()->group_id == 4):
             Route::group(array('before'=>'auth.status.blogger','prefix' => self::$name), function() use ($class) {
+                Route::post('posts/preview',array('as'=>'post.preview','uses'=>$class.'@preview'));
+                Route::put('posts/preview',array('as'=>'post.preview','uses'=>$class.'@preview'));
                 Route::resource($class::$group, $class,
                     array(
                         'except' => array('index'),
@@ -26,7 +28,6 @@ class PostBloggerController extends BaseController {
                         )
                     )
                 );
-                Route::post('posts/preview',array('as'=>'post.preview','uses'=>$class.'@preview'));
             });
         endif;
     }
@@ -89,9 +90,11 @@ class PostBloggerController extends BaseController {
             endif;
             if (Input::has('gallery') && Input::has('gallery.uploaded_images') > 0):
                 $post['gallery'] = Photo::whereIn('id',Input::get('gallery.uploaded_images'))->lists('name','id');
+            elseif(Input::has('gallery.gallery_id') && Input::get('gallery.gallery_id') > 0):
+                $post['gallery'] = Gallery::where('id',Input::get('gallery.gallery_id'))->first()->photos()->lists('name');
             endif;
             if (Input::has('tags')):
-                $post['tags'] = self::getTags($post,Input::get('tags'),$tags,Input::get('category_id'),Input::get('subcategory_id'));
+                $post['tags'] = self::getTags(array(),Input::get('tags'),$tags,Input::get('category_id'),Input::get('subcategory_id'));
             endif;
             $json_request['html'] = View::make(Helper::acclayout('posts.show'),compact('post'))->render();
             $json_request['status'] = TRUE;
@@ -103,7 +106,7 @@ class PostBloggerController extends BaseController {
 
     public function show($post_id){
 
-        if ($post = Post::where('id',(int)$post_id)->where('user_id',Auth::user()->id)->with('tags_ids','comments','photo','gallery')->first()):
+        if ($post = Post::where('id',(int)$post_id)->where('user_id',Auth::user()->id)->with('tags_ids','comments','photo','gallery.photos')->first()):
             list($categories,$subcategories,$tags) = self::getCategoriesAndTags();
             if (isset($categories[$post->category_id])):
                 $post->category_title = $categories[$post->category_id];
@@ -124,7 +127,6 @@ class PostBloggerController extends BaseController {
         else:
             App::abort(404);
         endif;
-
     }
 
     public function create(){
@@ -139,7 +141,6 @@ class PostBloggerController extends BaseController {
         if(Request::ajax()):
             $validator = Validator::make(Input::all(),Post::$rules);
             if($validator->passes()):
-                $galleryID = ExtForm::process('gallery',array('module'=>'my','unit_id'=>0,'gallery'=>Input::get('gallery'),'single'=>TRUE));
                 $newPost = Post::create(array(
                     'user_id' => Auth::user()->id,
                     'publish_at' => (new myDateTime())->setDateString(Input::get('publish_at'))->format('Y-m-d'),
@@ -148,9 +149,11 @@ class PostBloggerController extends BaseController {
                     'title' => Input::get('title'),
                     'content' => Input::get('content'),
                     'photo_id' => Input::get('photo_id'),
-                    'gallery_id' => $galleryID,
+                    'gallery_id' => 0,
                     'publication' => 0
                 ));
+                $newPost->gallery_id = ExtForm::process('gallery',array('module'=>'Пост','unit_id'=>$newPost->id,'gallery'=>Input::get('gallery'),'single'=>TRUE));
+                $newPost->save();
                 if (Input::has('tags')):
                     Post::where('id',$newPost->id)->first()->tags()->sync(Input::get('tags'));
                 endif;
@@ -166,13 +169,61 @@ class PostBloggerController extends BaseController {
         return Response::json($json_request,200);
     }
 
-    public function edit(){
+    public function edit($post_id){
 
-
+        if ($post = Post::where('id',$post_id)->where('user_id',Auth::user()->id)->with('tags_ids','photo','gallery')->first()):
+            list($categories,$subcategories,$tags) = self::getCategoriesAndTags();
+            if (isset($categories[$post->category_id])):
+                $post->category_title = $categories[$post->category_id];
+            endif;
+            if (isset($subcategories[$post->subcategory_id])):
+                $post->subcategory_title = $subcategories[$post->subcategory_id]['name'];
+            endif;
+            if ($post->tags_ids->count()):
+                $tagsIDs = array();
+                foreach($post->tags_ids as $tag):
+                    $tagsIDs[] = $tag->tag_id;
+                endforeach;
+                if (count($tagsIDs)):
+                    $post->tags = self::getTags(array(),$tagsIDs,$tags,$post->category_id,$post->subcategory_id);
+                endif;
+            endif;
+            return View::make(Helper::acclayout('posts.edit'),compact('post','categories','subcategories','tags'));
+        else:
+            App::abort(404);
+        endif;
     }
 
-    public function update(){
+    public function update($post_id){
 
+        $json_request = array('status'=>FALSE,'responseText'=>'','redirect'=>FALSE);
+        if(Request::ajax()):
+            $validator = Validator::make(Input::all(),Post::$rules);
+            if($validator->passes()):
+                Post::where('id',$post_id)->where('user_id',Auth::user()->id)->update(array(
+                    'publish_at' => (new myDateTime())->setDateString(Input::get('publish_at'))->format('Y-m-d'),
+                    'category_id' => Input::get('category_id'),
+                    'subcategory_id' => Input::get('subcategory_id'),
+                    'title' => Input::get('title'),
+                    'content' => Input::get('content'),
+                    'photo_id' => Input::get('photo_id'),
+                    'publication' => 0
+                ));
+                $gallery_id = ExtForm::process('gallery',array('module'=>'Пост','unit_id'=>$post_id,'gallery'=>Input::get('gallery'),'single'=>TRUE));
+                Post::where('id',$post_id)->where('user_id',Auth::user()->id)->update(array('gallery_id'=>$gallery_id));
+                if (Input::has('tags')):
+                    Post::where('id',$post_id)->first()->tags()->sync(Input::get('tags'));
+                endif;
+                $json_request['responseText'] = Lang::get('interface.DEFAULT.success_save');
+                $json_request['redirect'] = URL::route('posts.show',$post_id.'-'.BaseController::stringTranslite(Input::get('title')));
+                $json_request['status'] = TRUE;
+            else:
+                $json_request['responseText'] = $validator->messages()->all();
+            endif;
+        else:
+            return Redirect::back();
+        endif;
+        return Response::json($json_request,200);
     }
 
     public function destroy(){
