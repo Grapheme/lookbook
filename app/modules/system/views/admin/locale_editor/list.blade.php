@@ -110,6 +110,9 @@ foreach ($files as $dir => $dir_files) {
 
                 {{ Form::open(array('url' => URL::action($module['class'].'@postSaveLocales'), 'class' => 'smart-form2', 'id' => 'locale-form', 'role' => 'form', 'method' => 'POST')) }}
 
+                {{ Helper::d_($locales); }}
+                {{ Helper::d_($dirs); }}
+
                 <table class="table tbl_header" style="margin-bottom: 0; z-index:999">
                     <thead>
                     <tr class="" style="width:100%;">
@@ -231,8 +234,8 @@ foreach ($files as $dir => $dir_files) {
 
 
 @section('scripts')
-{{ HTML::script("private/js/vendor/jquery-form.min.js") }}
-{{ HTML::script("private/js/plugin/zeroclipboard/ZeroClipboard.min.js") }}
+{{ HTML::script("js/vendor/jquery-form.min.js") }}
+{{ HTML::script("js/plugin/zeroclipboard/ZeroClipboard.min.js") }}
 <script>
 
     /***************************************************************************/

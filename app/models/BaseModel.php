@@ -1,6 +1,8 @@
 <?php
 
 class BaseModel extends Eloquent {
+
+    use \SleepingOwl\WithJoin\WithJoinTrait;
 	
 	public static $errors = array();
 
@@ -10,7 +12,9 @@ class BaseModel extends Eloquent {
     }
 
     public function sort() {
+        Helper::dd(static::$orderBy);
         $return = $this;
+        //if ()
         return static::$rules;
     }
 

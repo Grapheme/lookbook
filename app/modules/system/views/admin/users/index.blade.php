@@ -19,6 +19,11 @@
     			</thead>
     			<tbody>
     			@foreach($users as $user)
+                    <?
+                    #Helper::ta($user);
+                    if ($user->group_id == 1 && !Allow::superuser())
+                        continue;
+                    ?>
     				<tr class="vertical-middle<? if($user->active == 0){ echo ' warning'; } ?>">
     					<td class="text-center">{{ $user->id }}</td>
     					<td class="text-center">
@@ -77,4 +82,5 @@
 
 
 @section('scripts')
+    {{ HTML::script('private/js/modules/users.js') }}
 @stop

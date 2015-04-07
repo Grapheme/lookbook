@@ -48,9 +48,24 @@ class AuthAccount {
         return $StartUrl;
 	}
 	
+    /**
+     * @TODO Выпилить и не использовать
+     */
 	public static function isAdminLoggined(){
 		
 		if(self::getGroupID() == 1):
+			return TRUE;
+		else:
+			return FALSE;
+		endif;
+	}
+	
+    /**
+     * @TODO Выпилить и не использовать
+     */
+	public static function isUserLoggined(){
+		
+		if(self::getGroupID() == 2):
 			return TRUE;
 		else:
 			return FALSE;

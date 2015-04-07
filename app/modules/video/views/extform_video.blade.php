@@ -1,5 +1,7 @@
 
     <!-- Don't forget add to form: ['files' => true] -->
+    {{ Helper::ta_($value) }}
+
     Embed-код:
     <label class="textarea">
         {{ Form::textarea($name . '[embed]', is_object($value) ? $value->embed : null, array('rows' => '3')) }}

@@ -103,7 +103,7 @@
 	};
     </script>
 
-	{{ HTML::script('js/modules/standard.js') }}
+	{{ HTML::script('private/js/modules/standard.js') }}
 
 	<script type="text/javascript">
 		if(typeof pageSetUp === 'function'){pageSetUp();}

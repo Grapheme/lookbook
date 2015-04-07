@@ -21,7 +21,7 @@ class GroupsTableSeeder extends Seeder{
         Group::create(array(
             'name' => 'moderator',
             'desc' => 'Модераторы',
-            'dashboard' => 'admin'
+            'dashboard' => 'moderator'
         ));
 
         Group::create(array(

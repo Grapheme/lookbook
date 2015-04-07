@@ -61,6 +61,8 @@
 
 
 @section('scripts')
+    {{ HTML::script('private/js/modules/users.js') }}
+
 	<script type="text/javascript">
 		if(typeof pageSetUp === 'function'){pageSetUp();}
 		if(typeof runFormValidation === 'function'){

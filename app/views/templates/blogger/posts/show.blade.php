@@ -10,7 +10,7 @@
 @stop
 @section('content')
     <div class="wrapper">
-        <div class="container_12">
+        <div class="container_12 one-post-cont">
             <div class="grid_12">
                 @include(Helper::acclayout('assets.user_header'))
             </div>

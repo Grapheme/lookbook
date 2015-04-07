@@ -412,7 +412,7 @@ class AdminGalleriesController extends BaseController {
 			File::makeDirectory($thumbsPath, 0777, TRUE);
 
         ## Generate filename
-		$fileName = time() . "_" . rand(1000, 1999) . '.' . $file->getClientOriginalExtension();
+		$fileName = time() . "_" . rand(10000000, 99999999) . '.' . $file->getClientOriginalExtension();
 
         ## Get images resize parameters from config
 		$thumb_size = Config::get('site.galleries_thumb_size');
@@ -498,6 +498,28 @@ class AdminGalleriesController extends BaseController {
 		#} else {
 		#	return Response::json('error', 400);
 		#}
+	}
+
+	public function postPhotoupdate() {
+
+        //App::abort(404);
+
+        $model = NULL;
+		$id = (int)Input::get('id');
+		$title = (string)Input::get('title');
+        if ($id)
+            $model = Photo::find($id);
+
+        if (!$id || is_null($model) || !$model)
+            return 'false';
+
+        $title = str_replace(["\r", "\n"], ' ', $title);
+        $title = str_replace('  ', ' ', $title);
+        $model->update([
+            'title' => $title,
+        ]);
+
+        return 'true';
 	}
 
     /****************************************************************************/
