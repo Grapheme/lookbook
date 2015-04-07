@@ -86,15 +86,17 @@ $posts = Post::where('user_id',Auth::user()->id)->orderBy('publish_at','DESC')->
                                     </div>
                                     <div class="post-actions">
                                         <span class="actions__title">Действия</span>
-                                        <a href="{{ URL::route('posts.edit',$post->id) }}" class="white-btn action-edit">
-                                            <i class="svg-icon icon-edit"></i>Редактировать
-                                        </a>
-                                        <a href="javascript:void(0);" class="white-btn action-comment">
-                                            <i class="svg-icon icon-comments"></i>Комментировать
-                                        </a>
-                                        {{ Form::open(array('route'=>array('posts.destroy',$post->id),'method'=>'delete','class'=>'js-delete-post inline-block')) }}
-                                            <button type="submit" class="white-btn action-delete"><i class="svg-icon icon-cross"></i>Удалить</button>
-                                        {{ Form::close() }}
+                                        <span class="actions__btns">
+                                            <a href="{{ URL::route('posts.edit',$post->id) }}" class="white-btn action-edit">
+                                                <i class="svg-icon icon-edit"></i>Редактировать
+                                            </a>
+                                            <a href="javascript:void(0);" class="white-btn action-comment">
+                                                <i class="svg-icon icon-comments"></i>Комментировать
+                                            </a>
+                                            {{ Form::open(array('route'=>array('posts.destroy',$post->id),'method'=>'delete','class'=>'js-delete-post inline-block')) }}
+                                                <button type="submit" class="white-btn action-delete"><i class="svg-icon icon-cross"></i>Удалить</button>
+                                            {{ Form::close() }}
+                                        </span>
                                     </div>
                                 </div>
                             </li>

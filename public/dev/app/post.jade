@@ -1,0 +1,104 @@
+extends layout
+
+block vars
+  - var title = 'Профиль блоггера'
+  - var auth = true
+  - var profile_active = 'profile_auth_main_empty.html'
+
+block content
+    header
+        .wrapper
+            .container_12.one-post-cont
+                .grid_12
+                    .post__header
+                        .header__date Янв 26, 2015
+                        .header__title Франзузская неделя моды в Москве
+                        .header__subject
+                            a(href="#") Lifestyle
+                .clearfix
+                .grid_12.reg-content
+                    .reg-content__left
+                        ul.dashboard-list.one-post.js-posts
+                            li.dashboard-item.js-post
+                                .left-block
+                                    .profile-ava.ava-min.ava-empty(data-empty-name="Анна Антропова")
+                                        img(src="images/tmp/profile-photo_max.jpg")
+                                        .ava-image__empty
+                                            span.js-empty-chars
+                                    .profile-name Дурнев Константин
+                                .right-block
+                                    .right-block__pad
+                                        .post-photo.photo-hover-parent
+                                            img(src="images/tmp/post-photo-1.jpg" alt="")
+                                            .photo-hover
+                                                span Платье ZARA, 3 500 руб.
+                                        .post-info
+                                            .post-info__desc
+                                                p В 1947 году, когда Европа только начала восстанавливаться после пятилетней войны, Кристиан Диор создал силуэт, который навсегда вошел в историю под названием New Look. Этим, без сомнения, главным своим изобретением дизайнер сделал выдающийся вклад в мировую моду. 
+                                                p Here in New York, I feel like a lot of women are into a more defined look in the daytime—lashes, eyebrows and hair done. In England, we have a lot of girls that like to do their faces really done up but only at the weekends or for going out. We’re not always as put together. I could be totally wrong, though! I mean, all girls are different, but I feel like in New York, so many people are wearing crazy stuff that I can wear something a little different or purple lipstick to lunch and no one would notice. There’s something about this city that makes you like a little bit less afraid of what you’re gonna wear. Plus, because the weather is so miserable here, I kind of want my makeup to be more cheery, use more color on my face. I feel like it makes me look more put together—even if I’m wearing eight parkas and thermal trousers.
+                                            .post-info__gallery
+                                                | Тут галлерея
+                                                each i in [1,2]
+                                                    img(src="images/tmp/post-photo-1.jpg")
+                                    .post-actions
+                                        span.actions__title Поделиться
+                                        span.actions__btns
+                                            a(href="#").white-btn.action-soc
+                                                i.svg-icon.icon-facebook
+                                                | Facebook
+                                            a(href="#").white-btn.action-soc
+                                                i.svg-icon.icon-instagram
+                                                | Instagram
+                                            a(href="#").white-btn.action-soc
+                                                i.svg-icon.icon-vk
+                                                | Вконтакте
+                                            a(href="#").white-btn.action-soc
+                                                i.svg-icon.icon-ok
+                                                | Одноклассники
+                                    .post-comments
+                                        .comments__title Комментировать
+                                        .comments__body
+                    .reg-content__right
+                        .right-title TOP POSTS OF CARLO PAZOLINI
+                        .right-content
+                            ul.right-content__list.list-big
+                                each i in [1,2,3,4,5]
+                                    li.list__item
+                                        a(href="#").item__photo
+                                            img(src="http://dummyimage.com/120x120/000/fff" alt="")
+                                        .item__text
+                                            .text__subject
+                                                a(href="#") Lifestyle
+                                            .text__title
+                                                a(href="#") Почему американский сэндвичный хлеб хранится в 20 раз дольше, чем российский?
+                                            .text__author
+                                                a(href="#") Antony Granichniy
+                                            .text__views
+                                                i.svg-icon.icon-eye
+                                                | 3987
+                                        .clearfix
+                    .clearfix
+                    .req-content__full
+                        .left-title Посты по теме
+                        .full__content
+                            ul.posts-list
+                                each i in [1,2,3]
+                                    li.list__item
+                                        .item__cont
+                                            .post-photo
+                                                img(src="http://dummyimage.com/385x235/000/fff" alt="")
+                                                a(href="#").post-photo__alt Lifestyle
+                                            .item__date
+                                                a(href="#") ЯНВ 26, 2015
+                                            .item__title
+                                                a(href="#") САПОГИ ОСЕНИ. ТЕНДЕНЦИИ И ЛУКБУКИ
+                                            .item__author
+                                                a(href="#") 
+                                                    .author__photo
+                                                        .profile-ava.ava-min.ava-empty(data-empty-name="Анна Антропова")
+                                                            img(src="images/tmp/profile-photo_max.jpg")
+                                                            .ava-image__empty
+                                                                span.js-empty-chars
+                                                    .author__name Елена Руденко
+                .clearfix
+

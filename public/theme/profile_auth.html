@@ -1,431 +1,365 @@
 <!DOCTYPE html>
 <html lang="" class="no-js">
-<head>
+  <head>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
     <title>Профиль блоггера</title>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory-->
-
+    
     <link rel="stylesheet" href="styles/main.css">
     <script src="scripts/vendor/modernizr.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <header class="header">
-        <div class="header__top">
-            <div class="wrapper">
-                <div class="container_12">
-                    <div class="grid_12">
-                        <nav class="header__nav">
-                            <ul>
-                                <li><a href="#">О проекте</a></li>
-                                <li><a href="#">Связаться с нами</a></li>
-                            </ul>
-                        </nav>
-                        <div class="header__login"><a href="#" class="header__user"><i
-                                class="svg-icon icon-uniE609"></i><span>Анна Антропова</span></a></div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
+      <div class="header__top">
         <div class="wrapper">
-            <div class="container_12">
-                <div class="grid_12">
-                    <div class="header__bottom"><a href="#" class="bottom__search"></a><a href="#" class="bottom__logo"></a>
-                        <nav class="bottom__nav"><a href="#">Fashion</a><a href="#">Beauty</a><a href="#">Lifestyle</a>
-                        </nav>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
+          <div class="container_12">
+            <div class="grid_12">
+              <nav class="header__nav">
+                <ul>
+                  <li><a href="#">О проекте</a></li>
+                  <li><a href="#">Связаться с нами</a></li>
+                </ul>
+              </nav>
+              <div class="header__login"><a href="#" class="header__user"><i class="svg-icon icon-uniE609"></i><span>Анна Антропова</span></a></div>
             </div>
+            <div class="clearfix"></div>
+          </div>
         </div>
+      </div>
+      <div class="wrapper">
+        <div class="container_12">
+          <div class="grid_12">
+            <div class="header__bottom"><a href="#" class="bottom__search"></a><a href="#" class="bottom__logo"></a>
+              <nav class="bottom__nav"><a href="#">Fashion</a><a href="#">Beauty</a><a href="#">Lifestyle</a></nav>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
     </header>
     <header>
-    <div class="wrapper">
+      <div class="wrapper">
         <div class="container_12">
-            <div class="grid_12">
-                <div class="user-header">
-                    <!-- Добавляем класс ava-empty если аватарки нету-->
-                    <!-- Добавляем имя пользователя в атрибут data-empty-name (В любом случае, для формирования аватарки)-->
-                    <div data-empty-name="Анна Антропова" class="header__photo js-ava-cont"><img
-                            src="images/tmp/profile-photo_max.jpg">
-
-                        <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
-                    </div>
-                    <div class="header__info">
-                        <div class="info__name js-fit-parent">
-                            <h1 class="js-fit-text">Анна Антропова</h1>
-                        </div>
-                        <div class="info__auth-nav"><a href="#" data-tab="dashboard">Дешборд</a><a href="#"
-                                                                                                   data-tab="profile">Мой
-                            профиль</a><a href="#" data-tab="notifications">Настройка уведомлений</a><a href="#"
-                                                                                                        data-tab="adv">Реклама</a>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
+          <div class="grid_12">
+            <div class="user-header">
+              <!-- Добавляем класс ava-empty если аватарки нету-->
+              <!-- Добавляем имя пользователя в атрибут data-empty-name (В любом случае, для формирования аватарки)-->
+              <div data-empty-name="Анна Антропова" class="header__photo js-ava-cont"><img src="images/tmp/profile-photo_max.jpg">
+                <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
+              </div>
+              <div class="header__info">
+                <div class="info__name js-fit-parent">
+                  <h1 class="js-fit-text">Анна Антропова</h1>
                 </div>
+                <div class="info__auth-nav"><a href="#" data-tab="dashboard">Дешборд</a><a href="#" data-tab="profile">Мой профиль</a><a href="#" data-tab="notifications">Настройка уведомлений</a><a href="#" data-tab="adv">Реклама</a>
+                </div>
+              </div>
+              <div class="clearfix"></div>
             </div>
-            <div class="clearfix"></div>
-            <div class="grid_12 reg-content">
-                <div class="dashboard-tab">
-                    <div class="reg-content__left">
-                        <form id="dashboard-main" action="json/test.json" class="js-dashboard-form">
-                            <div class="left-title">Основное</div>
-                            <table class="dashboard__form-table">
-                                <tr>
-                                    <td class="form-table__name"><span>Имя</span></td>
-                                    <td class="form-table__value js-form-value"><a href="#"
-                                                                                   class="input-add-value js-add-value"><span>Добавить</span></a><a
-                                            href="#"
-                                            class="input-change-value js-change-value"><span>изменить</span></a>
-                                        <input name="name" value="Анна Антропова" class="dashboard-input">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="form-table__name"><span>Дата рождения</span></td>
-                                    <td class="form-table__value js-form-value"><a href="#"
-                                                                                   class="input-add-value js-add-value"><span>Добавить</span></a><a
-                                            href="#"
-                                            class="input-change-value js-change-value"><span>изменить</span></a>
-                                        <input name="birth" value="" class="dashboard-input">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="form-table__name"><span>Местонахождение</span></td>
-                                    <td class="form-table__value js-form-value"><a href="#"
-                                                                                   class="input-add-value js-add-value"><span>Добавить</span></a><a
-                                            href="#"
-                                            class="input-change-value js-change-value"><span>изменить</span></a>
-                                        <input name="location" value="" class="dashboard-input">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="form-table__name"><span>Мои блоги на сторонних ресурсах</span></td>
-                                    <td class="form-table__value js-form-value"><a href="#"
-                                                                                   class="input-add-value js-add-value"><span>Добавить</span></a><a
-                                            href="#"
-                                            class="input-change-value js-change-value"><span>изменить</span></a>
-                                        <input name="links" value="" class="dashboard-input">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="form-table__name"><span>Мой сайт</span></td>
-                                    <td class="form-table__value js-form-value"><a href="#"
-                                                                                   class="input-add-value js-add-value"><span>Добавить</span></a><a
-                                            href="#"
-                                            class="input-change-value js-change-value"><span>изменить</span></a>
-                                        <input name="site" value="" class="dashboard-input">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="form-table__name"><span>Источники вдохновения</span></td>
-                                    <td class="form-table__value js-form-value"><a href="#"
-                                                                                   class="input-add-value js-add-value"><span>Добавить</span></a><a
-                                            href="#"
-                                            class="input-change-value js-change-value"><span>изменить</span></a>
-                                        <input name="inspiration" value="" class="dashboard-input">
-                                    </td>
-                                </tr>
-                            </table>
-                            <div class="left-title">Для связи со мной</div>
-                            <table class="dashboard__form-table">
-                                <tr>
-                                    <td class="form-table__name"><span>Электронная почта</span></td>
-                                    <td class="form-table__value js-form-value"><a href="#"
-                                                                                   class="input-add-value js-add-value"><span>Добавить</span></a><a
-                                            href="#"
-                                            class="input-change-value js-change-value"><span>изменить</span></a>
-                                        <input name="email" value="anna@gmail.com" class="dashboard-input">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="form-table__name"><span>Телефон</span></td>
-                                    <td class="form-table__value js-form-value"><a href="#"
-                                                                                   class="input-add-value js-add-value"><span>Добавить</span></a><a
-                                            href="#"
-                                            class="input-change-value js-change-value"><span>изменить</span></a>
-                                        <input name="phone" value="" class="dashboard-input">
-                                    </td>
-                                </tr>
-                            </table>
-                            <div class="left-title">О блоге</div>
-                            <table class="dashboard__form-table">
-                                <tr>
-                                    <td class="form-table__name"><span>Название блога</span></td>
-                                    <td class="form-table__value js-form-value"><a href="#"
-                                                                                   class="input-add-value js-add-value"><span>Добавить</span></a><a
-                                            href="#"
-                                            class="input-change-value js-change-value"><span>изменить</span></a>
-                                        <input name="blogname" value="" class="dashboard-input">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="form-table__name"><span>Имеджевая картинка для блога</span></td>
-                                    <td class="form-table__value form-table__file js-form-file"><a href="#"
-                                                                                                   class="input-file-value"><span>Выбрать</span></a>
-                                        <input name="picture" type="file" class="dashboard-input-file">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="form-table__name"><span>Текст о себе или о блоге</span></td>
-                                    <td class="form-table__value form-table__texarea-cont">
-                                        <textarea name="about" class="dashboard-textarea js-autosize"></textarea>
-                                    </td>
-                                </tr>
-                                <tr class="form-table__btns">
-                                    <td class="form-table__name"></td>
-                                    <td class="form-table__value">
-                                        <button type="submit" class="blue-hover us-btn">Сохранить</button>
-                                        <div class="response-text js-response-text"></div>
-                                        <!--button(type="submit").blue-hover.us-btn Отменить-->
-                                    </td>
-                                </tr>
-                            </table>
-                        </form>
-                        <form id="dashboard-pass" action="json/test.json" class="js-dashboard-form">
-                            <div class="left-title">Пароль и защита данных</div>
-                            <table class="dashboard__form-table">
-                                <tr>
-                                    <td class="form-table__name"><span>Пароль</span></td>
-                                    <td class="form-table__value">
-                                        <input name="password" value="" placeholder="********" type="password"
-                                               class="dashboard-input">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="form-table__name"><span>Подтверждение пароля</span></td>
-                                    <td class="form-table__value">
-                                        <input name="password_confirmation" value="" placeholder="********"
-                                               type="password" class="dashboard-input">
-                                    </td>
-                                </tr>
-                                <tr class="form-table__btns">
-                                    <td class="form-table__name"></td>
-                                    <td class="form-table__value">
-                                        <button type="submit" class="blue-hover us-btn">Сохранить</button>
-                                        <div class="response-text js-response-text"></div>
-                                        <!--button(type="submit").blue-hover.us-btn Отменить-->
-                                    </td>
-                                </tr>
-                            </table>
-                        </form>
+          </div>
+          <div class="clearfix"></div>
+          <div class="grid_12 reg-content">
+            <div class="dashboard-tab">
+              <div class="reg-content__left">
+                <form id="dashboard-main" action="json/test.json" class="js-dashboard-form">
+                  <div class="left-title">Основное</div>
+                  <table class="dashboard__form-table">
+                    <tr>
+                      <td class="form-table__name"><span>Имя</span></td>
+                      <td class="form-table__value js-form-value"><a href="#" class="input-add-value js-add-value"><span>Добавить</span></a><a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
+                        <input name="name" value="Анна Антропова" class="dashboard-input">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="form-table__name"><span>Дата рождения</span></td>
+                      <td class="form-table__value js-form-value"><a href="#" class="input-add-value js-add-value"><span>Добавить</span></a><a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
+                        <input name="birth" value="" class="dashboard-input">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="form-table__name"><span>Местонахождение</span></td>
+                      <td class="form-table__value js-form-value"><a href="#" class="input-add-value js-add-value"><span>Добавить</span></a><a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
+                        <input name="location" value="" class="dashboard-input">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="form-table__name"><span>Мои блоги на сторонних ресурсах</span></td>
+                      <td class="form-table__value js-form-value"><a href="#" class="input-add-value js-add-value"><span>Добавить</span></a><a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
+                        <input name="links" value="" class="dashboard-input">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="form-table__name"><span>Мой сайт</span></td>
+                      <td class="form-table__value js-form-value"><a href="#" class="input-add-value js-add-value"><span>Добавить</span></a><a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
+                        <input name="site" value="" class="dashboard-input">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="form-table__name"><span>Источники вдохновения</span></td>
+                      <td class="form-table__value js-form-value"><a href="#" class="input-add-value js-add-value"><span>Добавить</span></a><a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
+                        <input name="inspiration" value="" class="dashboard-input">
+                      </td>
+                    </tr>
+                  </table>
+                  <div class="left-title">Для связи со мной</div>
+                  <table class="dashboard__form-table">
+                    <tr>
+                      <td class="form-table__name"><span>Электронная почта</span></td>
+                      <td class="form-table__value js-form-value"><a href="#" class="input-add-value js-add-value"><span>Добавить</span></a><a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
+                        <input name="email" value="anna@gmail.com" class="dashboard-input">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="form-table__name"><span>Телефон</span></td>
+                      <td class="form-table__value js-form-value"><a href="#" class="input-add-value js-add-value"><span>Добавить</span></a><a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
+                        <input name="phone" value="" class="dashboard-input">
+                      </td>
+                    </tr>
+                  </table>
+                  <div class="left-title">О блоге</div>
+                  <table class="dashboard__form-table">
+                    <tr>
+                      <td class="form-table__name"><span>Название блога</span></td>
+                      <td class="form-table__value js-form-value"><a href="#" class="input-add-value js-add-value"><span>Добавить</span></a><a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
+                        <input name="blogname" value="" class="dashboard-input">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="form-table__name"><span>Имеджевая картинка для блога</span></td>
+                      <td class="form-table__value form-table__file js-form-file"><a href="#" class="input-file-value"><span>Выбрать</span></a>
+                        <input name="picture" type="file" class="dashboard-input-file">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="form-table__name"><span>Текст о себе или о блоге</span></td>
+                      <td class="form-table__value form-table__texarea-cont">
+                        <textarea name="about" class="dashboard-textarea js-autosize"></textarea>
+                      </td>
+                    </tr>
+                    <tr class="form-table__btns">
+                      <td class="form-table__name"></td>
+                      <td class="form-table__value">
+                        <button type="submit" class="blue-hover us-btn">Сохранить</button>
+                        <div class="response-text js-response-text"></div>
+                        <!--button(type="submit").blue-hover.us-btn Отменить-->
+                      </td>
+                    </tr>
+                  </table>
+                </form>
+                <form id="dashboard-pass" action="json/test.json" class="js-dashboard-form">
+                  <div class="left-title">Пароль и защита данных</div>
+                  <table class="dashboard__form-table">
+                    <tr>
+                      <td class="form-table__name"><span>Пароль</span></td>
+                      <td class="form-table__value">
+                        <input name="password" value="" placeholder="********" type="password" class="dashboard-input">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="form-table__name"><span>Подтверждение пароля</span></td>
+                      <td class="form-table__value">
+                        <input name="password_confirmation" value="" placeholder="********" type="password" class="dashboard-input">
+                      </td>
+                    </tr>
+                    <tr class="form-table__btns">
+                      <td class="form-table__name"></td>
+                      <td class="form-table__value">
+                        <button type="submit" class="blue-hover us-btn">Сохранить</button>
+                        <div class="response-text js-response-text"></div>
+                        <!--button(type="submit").blue-hover.us-btn Отменить-->
+                      </td>
+                    </tr>
+                  </table>
+                </form>
+              </div>
+              <div class="reg-content__right">
+                <div class="right-title">Аватарка</div>
+                <div class="right-content">
+                  <!-- Добавляем класс ava-empty если аватарки нету-->
+                  <!-- Добавляем имя пользователя в атрибут data-empty-name (В любом случае, для формирования аватарки)-->
+                  <div data-empty-name="Анна Антропова" class="ava-change ava-empty js-ava-cont">
+                    <div class="ava-image">
+                      <form action="json/ava.json" id="ava-change" class="ava-image__cont"><a href="#" class="ava-change js-submit">Изменить</a>
+                        <input type="file" name="photo" class="js-ava-input">
+                      </form>
+                      <div class="js-ava-img-cont">
+                        <!--img(src="images/tmp/profile-photo_huge.jpg")-->
+                      </div>
+                      <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
                     </div>
-                    <div class="reg-content__right">
-                        <div class="right-title">Аватарка</div>
-                        <div class="right-content">
-                            <!-- Добавляем класс ava-empty если аватарки нету-->
-                            <!-- Добавляем имя пользователя в атрибут data-empty-name (В любом случае, для формирования аватарки)-->
-                            <div data-empty-name="Анна Антропова" class="ava-change ava-empty js-ava-cont">
-                                <div class="ava-image">
-                                    <form action="json/ava.json" id="ava-change" class="ava-image__cont"><a href="#"
-                                                                                                            class="ava-change js-submit">Изменить</a>
-                                        <input type="file" name="photo" class="js-ava-input">
-                                    </form>
-                                    <div class="js-ava-img-cont">
-                                        <!--img(src="images/tmp/profile-photo_huge.jpg")-->
-                                    </div>
-                                    <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
-                                </div>
-                                <div class="ava-links">
-                                    <form action="json/ava.json" id="ava-delete" class="ava-delete-form"><a href="#"
-                                                                                                            class="ava-delete js-submit"><i
-                                            class="icon-cross37 svg-icon"></i></a></form>
-                                    <form action="json/ava.json" id="ava-upload" class="ava-upload-form"><a href="#"
-                                                                                                            class="ava-upload js-submit"><span>Загрузить аватарку</span>
-                                        <input type="file" name="photo" class="js-ava-input"></a></form>
-                                    <div id="ava-error-cont" class="ava-error"></div>
-                                    <div id="ava-error-server" class="ava-error"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="right-title">Статистика</div>
-                        <div class="right-content">
-                            <table class="stat-table">
-                                <tr>
-                                    <td>Рейтинг</td>
-                                    <td>132 место из 2356</td>
-                                </tr>
-                                <tr>
-                                    <td>Записей в блоге</td>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td>Комментариев опубликовано</td>
-                                    <td>42</td>
-                                </tr>
-                                <tr>
-                                    <td>Количество подписчиков</td>
-                                    <td>10444</td>
-                                </tr>
-                                <tr>
-                                    <td>Количество посетителей в день</td>
-                                    <td>31233</td>
-                                </tr>
-                                <tr>
-                                    <td>Количество посетителей с февраля</td>
-                                    <td>233</td>
-                                </tr>
-                                <tr>
-                                    <td>Количество посетителей в год</td>
-                                    <td>1232032</td>
-                                </tr>
-                            </table>
-                        </div>
+                    <div class="ava-links">
+                      <form action="json/ava.json" id="ava-delete" class="ava-delete-form"><a href="#" class="ava-delete js-submit"><i class="icon-cross37 svg-icon"></i></a></form>
+                      <form action="json/ava.json" id="ava-upload" class="ava-upload-form"><a href="#" class="ava-upload js-submit"><span>Загрузить аватарку</span>
+                          <input type="file" name="photo" class="js-ava-input"></a></form>
+                      <div id="ava-error-cont" class="ava-error"></div>
+                      <div id="ava-error-server" class="ava-error"></div>
                     </div>
-                    <div class="clearfix"></div>
+                  </div>
                 </div>
-                <div class="dashboard-tab">
-                    <div class="reg-content__left">
-                        <div class="dashboard-empty">
-                            <div class="dashboard-empty__desc">У вас еще нет ни одной записи в блоге. Быстрее исправьте
-                                положение.
-                            </div>
-                            <a href="#" class="white-black-btn">Создать новый пост</a>
-                        </div>
-                    </div>
-                    <div class="reg-content__right">
-                        <div class="right-title">БЛОГИ РЕКОМЕНДОВАННЫЕ LOOKBOOK</div>
-                        <div class="right-content">У вас еще нет рекомендованных блогов.</div>
-                        <div class="right-title">МОЙ БЛОГ-ЛИСТ</div>
-                        <div class="right-content">Вы еще не добавили ни один блог в свой блог-лист.<br>Читайте <a
-                                href="#">TOP POST</a> и выбирайте любимые.
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
+                <div class="right-title">Статистика</div>
+                <div class="right-content">
+                  <table class="stat-table">
+                    <tr>
+                      <td>Рейтинг</td>
+                      <td>132 место из 2356</td>
+                    </tr>
+                    <tr>
+                      <td>Записей в блоге</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>Комментариев опубликовано</td>
+                      <td>42</td>
+                    </tr>
+                    <tr>
+                      <td>Количество подписчиков</td>
+                      <td>10444</td>
+                    </tr>
+                    <tr>
+                      <td>Количество посетителей в день</td>
+                      <td>31233</td>
+                    </tr>
+                    <tr>
+                      <td>Количество посетителей с февраля</td>
+                      <td>233</td>
+                    </tr>
+                    <tr>
+                      <td>Количество посетителей в год</td>
+                      <td>1232032</td>
+                    </tr>
+                  </table>
                 </div>
+              </div>
+              <div class="clearfix"></div>
             </div>
-            <div class="clearfix"></div>
+            <div class="dashboard-tab">
+              <div class="reg-content__left">
+                <div class="dashboard-empty">
+                  <div class="dashboard-empty__desc">У вас еще нет ни одной записи в блоге. Быстрее исправьте положение.</div><a href="#" class="white-black-btn">Создать новый пост</a>
+                </div>
+              </div>
+              <div class="reg-content__right">
+                <div class="right-title">БЛОГИ РЕКОМЕНДОВАННЫЕ LOOKBOOK</div>
+                <div class="right-content">У вас еще нет рекомендованных блогов.</div>
+                <div class="right-title">МОЙ БЛОГ-ЛИСТ</div>
+                <div class="right-content">Вы еще не добавили ни один блог в свой блог-лист.<br>Читайте <a href="#">TOP POST</a> и выбирайте любимые.</div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
         </div>
-    </div>
-</header>
-<footer class="footer">
-    <div class="wrapper">
+      </div>
+    </header>
+    <footer class="footer">
+      <div class="wrapper">
         <div class="container_12">
-            <div class="grid_12">
-                <div class="footer__top"><a href="#" class="footer__logo"></a>
-                    <nav class="footer__nav"><a href="#">О проекте</a><a href="#">Помощь</a><a href="#">Реклама на
-                        сайте</a><a href="#">Связаться с нами</a>
-                    </nav>
-                </div>
-                <div class="footer__bottom"><span>© LookBook, 2014</span><span class="fl-r">Сделано в <a
-                        href="http://grapheme.ru" target="_blank">ГРАФЕМА</a></span></div>
+          <div class="grid_12">
+            <div class="footer__top"><a href="#" class="footer__logo"></a>
+              <nav class="footer__nav"><a href="#">О проекте</a><a href="#">Помощь</a><a href="#">Реклама на сайте</a><a href="#">Связаться с нами</a>
+              </nav>
             </div>
+            <div class="footer__bottom"><span>© LookBook, 2014</span><span class="fl-r">Сделано в <a href="http://grapheme.ru" target="_blank">ГРАФЕМА</a></span></div>
+          </div>
         </div>
+      </div>
+    </footer>
+    <div class="overlay js-overlay">
+      <div class="overlay__background"></div>
+      <div class="overlay__body">
+        <div data-popup="auth" class="overlay__tab overlay-auth"><a href="#" class="tab__close js-close-popup"><span></span></a>
+          <div class="auth__body anim-parent">
+            <h1>Войти</h1>
+            <div class="auth__desc">Пожалуйста авторизуйтесь, используя аккаунт в одной из социальных сетей:</div>
+            <div class="auth__socials"><a href="#" class="socials-facebook">Facebook</a><a href="#" class="socials-vk">Вконтакте</a><a href="#" class="socials-ok">Одноклассники</a></div>
+            <div class="auth_form">
+              <div class="auth__desc">или с помощью адреса электронной почты</div>
+              <form id="form-auth" action="json/test.json">
+                <div class="input-cont">
+                  <input name="email" placeholder="E-mail" class="auth-input">
+                </div>
+                <div class="input-cont">
+                  <input name="password" placeholder="Пароль" type="password" class="auth-input">
+                </div>
+                <div class="input-bottom"><a href="#restore_before">Забыли пароль?</a></div>
+                <div class="input-btn">
+                  <button type="submit" class="us-btn">Войти</button>
+                  <div class="ajax-message js-response-text"></div>
+                </div>
+              </form>
+              <div class="auth__toreg">До сих пор нет аккаунта? <a href="#reg">Зарегистрироваться</a></div>
+            </div>
+          </div>
+        </div>
+        <div data-popup="reg" class="overlay__tab overlay-auth"><a href="#" class="tab__close js-close-popup"><span></span></a>
+          <div class="auth__body anim-parent">
+            <h1>Регистрация</h1>
+            <div class="auth__desc">Пожалуйста авторизуйтесь, используя аккаунт в одной из социальных сетей:</div>
+            <div class="auth__socials"><a href="#" class="socials-facebook">Facebook</a><a href="#" class="socials-vk">Вконтакте</a><a href="#" class="socials-ok">Одноклассники</a></div>
+            <div class="auth_form">
+              <div class="auth__desc">или с помощью адреса электронной почты</div>
+              <form id="form-reg" action="json/test.json">
+                <div class="input-cont">
+                  <input name="email" placeholder="E-mail" class="auth-input">
+                </div>
+                <div class="input-cont">
+                  <input name="password" placeholder="Пароль" type="password" class="auth-input">
+                </div>
+                <div class="input-cont">
+                  <input name="password_verify" placeholder="Подтверждение пароля" type="password" class="auth-input">
+                </div>
+                <div class="input-cont">
+                  <input name="name" placeholder="Ваше имя" class="auth-input">
+                </div>
+                <div class="input-btn">
+                  <button type="submit" class="us-btn">Войти</button>
+                  <div class="ajax-message js-response-text"></div>
+                </div>
+              </form>
+              <div class="auth__toreg">Уже зарегистрировались? <a href="#auth">Войти на сайт</a></div>
+            </div>
+          </div>
+        </div>
+        <div data-popup="restore_before" class="overlay__tab overlay-auth"><a href="#" class="tab__close js-close-popup"><span></span></a>
+          <div class="auth__body anim-parent">
+            <h1>Восстановление пароля</h1>
+            <div class="auth_form">
+              <form id="form-restore_before" action="json/test.json">
+                <div class="input-cont">
+                  <input name="email" placeholder="E-mail" class="auth-input">
+                </div>
+                <div class="input-btn">
+                  <button type="submit" class="us-btn">Восстановить</button>
+                  <div class="ajax-message js-response-text"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div data-popup="restore" class="overlay__tab overlay-auth"><a href="#" class="tab__close js-close-popup"><span></span></a>
+          <div class="auth__body anim-parent">
+            <h1>Восстановление пароля</h1>
+            <div class="auth_form">
+              <form id="form-restore" action="json/test.json">
+                <div class="input-cont">
+                  <input name="password" placeholder="Пароль" type="password" class="auth-input">
+                </div>
+                <div class="input-cont">
+                  <input name="password_verify" placeholder="Подтверждение пароля" type="password" class="auth-input">
+                </div>
+                <div class="input-btn">
+                  <button type="submit" class="us-btn">Восстановить</button>
+                  <div class="ajax-message js-response-text"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</footer>
-<div class="overlay js-overlay">
-    <div class="overlay__background"></div>
-    <div class="overlay__body">
-        <div data-popup="auth" class="overlay__tab overlay-auth"><a href="#"
-                                                                    class="tab__close js-close-popup"><span></span></a>
-
-            <div class="auth__body anim-parent">
-                <h1>Войти</h1>
-
-                <div class="auth__desc">Пожалуйста авторизуйтесь, используя аккаунт в одной из социальных сетей:</div>
-                <div class="auth__socials"><a href="#" class="socials-facebook">Facebook</a><a href="#"
-                                                                                               class="socials-vk">Вконтакте</a><a
-                        href="#" class="socials-ok">Одноклассники</a></div>
-                <div class="auth_form">
-                    <div class="auth__desc">или с помощью адреса электронной почты</div>
-                    <form id="form-auth" action="json/test.json">
-                        <div class="input-cont">
-                            <input name="email" placeholder="E-mail" class="auth-input">
-                        </div>
-                        <div class="input-cont">
-                            <input name="password" placeholder="Пароль" type="password" class="auth-input">
-                        </div>
-                        <div class="input-bottom"><a href="#restore_before">Забыли пароль?</a></div>
-                        <div class="input-btn">
-                            <button type="submit" class="us-btn">Войти</button>
-                            <div class="ajax-message js-response-text"></div>
-                        </div>
-                    </form>
-                    <div class="auth__toreg">До сих пор нет аккаунта? <a href="#reg">Зарегистрироваться</a></div>
-                </div>
-            </div>
-        </div>
-        <div data-popup="reg" class="overlay__tab overlay-auth"><a href="#"
-                                                                   class="tab__close js-close-popup"><span></span></a>
-
-            <div class="auth__body anim-parent">
-                <h1>Регистрация</h1>
-
-                <div class="auth__desc">Пожалуйста авторизуйтесь, используя аккаунт в одной из социальных сетей:</div>
-                <div class="auth__socials"><a href="#" class="socials-facebook">Facebook</a><a href="#"
-                                                                                               class="socials-vk">Вконтакте</a><a
-                        href="#" class="socials-ok">Одноклассники</a></div>
-                <div class="auth_form">
-                    <div class="auth__desc">или с помощью адреса электронной почты</div>
-                    <form id="form-reg" action="json/test.json">
-                        <div class="input-cont">
-                            <input name="email" placeholder="E-mail" class="auth-input">
-                        </div>
-                        <div class="input-cont">
-                            <input name="password" placeholder="Пароль" type="password" class="auth-input">
-                        </div>
-                        <div class="input-cont">
-                            <input name="password_verify" placeholder="Подтверждение пароля" type="password"
-                                   class="auth-input">
-                        </div>
-                        <div class="input-cont">
-                            <input name="name" placeholder="Ваше имя" class="auth-input">
-                        </div>
-                        <div class="input-btn">
-                            <button type="submit" class="us-btn">Войти</button>
-                            <div class="ajax-message js-response-text"></div>
-                        </div>
-                    </form>
-                    <div class="auth__toreg">Уже зарегистрировались? <a href="#auth">Войти на сайт</a></div>
-                </div>
-            </div>
-        </div>
-        <div data-popup="restore_before" class="overlay__tab overlay-auth"><a href="#"
-                                                                              class="tab__close js-close-popup"><span></span></a>
-
-            <div class="auth__body anim-parent">
-                <h1>Восстановление пароля</h1>
-
-                <div class="auth_form">
-                    <form id="form-restore_before" action="json/test.json">
-                        <div class="input-cont">
-                            <input name="email" placeholder="E-mail" class="auth-input">
-                        </div>
-                        <div class="input-btn">
-                            <button type="submit" class="us-btn">Восстановить</button>
-                            <div class="ajax-message js-response-text"></div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div data-popup="restore" class="overlay__tab overlay-auth"><a href="#"
-                                                                       class="tab__close js-close-popup"><span></span></a>
-
-            <div class="auth__body anim-parent">
-                <h1>Восстановление пароля</h1>
-
-                <div class="auth_form">
-                    <form id="form-restore" action="json/test.json">
-                        <div class="input-cont">
-                            <input name="password" placeholder="Пароль" type="password" class="auth-input">
-                        </div>
-                        <div class="input-cont">
-                            <input name="password_verify" placeholder="Подтверждение пароля" type="password"
-                                   class="auth-input">
-                        </div>
-                        <div class="input-btn">
-                            <button type="submit" class="us-btn">Восстановить</button>
-                            <div class="ajax-message js-response-text"></div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="scripts/vendor.js"></script>
-<script src="scripts/main.js"></script>
-</body>
+    <script src="scripts/vendor.js"></script>
+    <script src="scripts/main.js"></script>
+  </body>
 </html>
