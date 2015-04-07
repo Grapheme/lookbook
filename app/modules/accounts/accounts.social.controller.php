@@ -82,8 +82,8 @@ class AccountsSocialController extends BaseController {
                 $user->active = TRUE;
                 $user->first_login = TRUE;
                 $user->password = Hash::make($password);
-                $user->photo = $_user['photo_big'];
-                $user->thumbnail = $_user['photo'];
+                $user->photo = '';
+                $user->thumbnail = '';
                 $user->save();
                 self::createULogin($user->id,$_user);
                 Auth::login($user,TRUE);

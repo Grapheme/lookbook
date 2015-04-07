@@ -33,28 +33,12 @@
                                 <span>Выберите категорию</span>
                                 {{ Form::select('category_id',$categories,$post->category_id,array('autocomplete'=>'off')) }}
                             </div>
-                            @if(count($subcategories))
-                            <div>
-                                <span>Выберите подкатегорию</span>
-                                <select name="subcategory_id" autocomplete="off">
-                                    <option value="0">Выберите подкатегорию</option>
-                                @foreach($subcategories as $subcategy_id => $subcategy)
-                                    <option {{ $post->category_id == $subcategy['category_id'] ? '' : 'style="display: none;"' }} {{ $post->subcategory_id == $subcategy_id ? 'selected="selected"' : '' }} data-category="{{ $subcategy['category_id'] }}" value="{{ $subcategy_id }}">{{ $subcategy['name'] }}</option>
-                                @endforeach
-                                </select>
-                            </div>
-                            @endif
                             <div>
                                 <span>Теги</span>
                                 <select name="tags[]" autocomplete="off" multiple>
                             @foreach($tags as $category_id => $categories_tags)
                                 @foreach($categories_tags['category_tags'] as $tag_id => $tag_title)
-                                    <option {{ $post->category_id == $category_id && $post->subcategory_id == 0 ? '' : 'style="display: none;"' }} {{ !empty( $post->tags) && $post->category_id == $category_id && $post->subcategory_id == 0 && array_key_exists($tag_id,$post->tags) ? 'selected="selected"' : '' }} data-category="{{ $category_id }}" data-subcategory="0" value="{{ $tag_id }}">{{ $tag_title }}</option>
-                                @endforeach
-                                @foreach($categories_tags['subcategory_tags'] as $subcategory_id => $subcategory_tags)
-                                    @foreach($subcategory_tags as $tag_id => $tag_title)
-                                        <option {{ $post->subcategory_id == $subcategory_id ? '' : 'style="display: none;"' }} {{ !empty( $post->tags) && $post->subcategory_id == $subcategory_id && array_key_exists($tag_id,$post->tags) ? 'selected="selected"' : '' }} data-category="{{ $category_id }}" data-subcategory="{{ $subcategory_id }}" value="{{ $tag_id }}">{{ $tag_title }}</option>
-                                    @endforeach
+                                    <option {{ $post->category_id == $category_id ? '' : 'style="display: none;"' }} {{ !empty( $post->tags) && $post->category_id == $category_id && array_key_exists($tag_id,$post->tags) ? 'selected="selected"' : '' }} data-category="{{ $category_id }}" value="{{ $tag_id }}">{{ $tag_title }}</option>
                                 @endforeach
                             @endforeach
                                 </select>
@@ -72,6 +56,10 @@
                                 <label class="input">
                                     {{ ExtForm::image('photo_id') }}
                                 </label>
+                            </div>
+                            <div>
+                                <span>Подпись к изображаению</span>
+                                {{ Form::text('photo_title',NULL,array()) }}
                             </div>
                             <div>
                                 <span>Галерея</span>

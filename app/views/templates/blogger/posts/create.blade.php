@@ -40,7 +40,7 @@ $selectedCategory = key($categories);
                                 <select name="tags[]" autocomplete="off" multiple>
                             @foreach($tags as $category_id => $categories_tags)
                                 @foreach($categories_tags['category_tags'] as $tag_id => $tag_title)
-                                    <option {{ $selectedCategory == $category_id ? '' : 'style="display: none;"' }} data-category="{{ $category_id }}" data-subcategory="0" value="{{ $tag_id }}">{{ $tag_title }}</option>
+                                    <option {{ $selectedCategory == $category_id ? '' : 'style="display: none;"' }} data-category="{{ $category_id }}" value="{{ $tag_id }}">{{ $tag_title }}</option>
                                 @endforeach
                             @endforeach
                                 </select>
@@ -58,6 +58,10 @@ $selectedCategory = key($categories);
                                 <label class="input">
                                     {{ ExtForm::image('photo_id',NULL) }}
                                 </label>
+                            </div>
+                            <div>
+                                <span>Подпись к изображаению</span>
+                                {{ Form::text('photo_title',NULL,array()) }}
                             </div>
                             <div>
                                 <span>Галерея</span>

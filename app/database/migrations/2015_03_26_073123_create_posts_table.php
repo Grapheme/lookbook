@@ -11,11 +11,11 @@ class CreatePostsTable extends Migration {
 			$table->increments('id');
             $table->integer('user_id')->unsigned()->nullable()->default(0);
             $table->integer('category_id')->unsigned()->nullable()->default(0);
-            $table->integer('subcategory_id')->unsigned()->nullable()->default(0);
             $table->date('publish_at')->nullable();
             $table->string('title', 128)->nullable();
             $table->text('content')->nullable();
             $table->integer('photo_id')->unsigned()->nullable();
+            $table->string('photo_title', 128)->nullable();
             $table->integer('gallery_id')->unsigned()->nullable();
             $table->boolean('publication')->default(0)->unsigned()->nullable();
 			$table->timestamps();

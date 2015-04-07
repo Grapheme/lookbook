@@ -17,9 +17,8 @@ class PostBloggerController extends BaseController {
                 Route::put('posts/preview',array('as'=>'post.preview','uses'=>$class.'@preview'));
                 Route::resource($class::$group, $class,
                     array(
-                        'except' => array('index'),
+                        'except' => array('index','show'),
                         'names' => array(
-                            'show'    => self::$entity.'.show',
                             'create'  => self::$entity.'.create',
                             'store'   => self::$entity.'.store',
                             'edit'    => self::$entity.'.edit',
@@ -72,7 +71,7 @@ class PostBloggerController extends BaseController {
         $json_request = array('status'=>FALSE,'html'=>'','redirect'=>FALSE);
         $validator = Validator::make(Input::all(),[]);
         if($validator->passes()):
-            list($categories,$subcategories,$tags) = self::getCategoriesAndTags();
+            list($categories,$tags) = self::getCategoriesAndTags();
             $post = array(
                 'user_id' => Auth::user()->id,
                 'publish_at' => (new myDateTime())->setDateString(Input::get('publish_at'))->format('Y-m-d'),
@@ -82,6 +81,7 @@ class PostBloggerController extends BaseController {
                 'content' => Input::get('content'),
                 'publication' => 0,
                 'photo' => FALSE,
+                'photo_title' => Input::get('photo_title'),
                 'gallery' => FALSE,
                 'tags' => array()
             );
@@ -94,36 +94,14 @@ class PostBloggerController extends BaseController {
                 $post['gallery'] = Gallery::where('id',Input::get('gallery.gallery_id'))->first()->photos()->lists('name');
             endif;
             if (Input::has('tags')):
-                $post['tags'] = self::getTags(array(),Input::get('tags'),$tags,Input::get('category_id'),Input::get('subcategory_id'));
+                $post['tags'] = self::getTags(array(),Input::get('tags'),$tags,Input::get('category_id'));
             endif;
-            $json_request['html'] = View::make(Helper::acclayout('posts.show'),compact('post'))->render();
+            $json_request['html'] = View::make(Helper::acclayout('posts.preview'),compact('post','categories','tags'))->render();
             $json_request['status'] = TRUE;
         else:
             return Redirect::back()->withErrors($validator->messages()->all());
         endif;
         return Response::json($json_request,200);
-    }
-
-    public function show($post_id){
-
-        if ($post = Post::where('id',(int)$post_id)->where('user_id',Auth::user()->id)->with('tags_ids','comments','photo','gallery.photos')->first()):
-            list($categories,$tags) = self::getCategoriesAndTags();
-            if (isset($categories[$post->category_id])):
-                $post->category_title = $categories[$post->category_id];
-            endif;
-            if ($post->tags_ids->count()):
-                $tagsIDs = array();
-                foreach($post->tags_ids as $tag):
-                    $tagsIDs[] = $tag->tag_id;
-                endforeach;
-                if (count($tagsIDs)):
-                    $post->tags = self::getTags(array(),$tagsIDs,$tags,$post->category_id);
-                endif;
-            endif;
-            return View::make(Helper::acclayout('posts.show'),compact('post'));
-        else:
-            App::abort(404);
-        endif;
     }
 
     public function create(){
@@ -142,10 +120,10 @@ class PostBloggerController extends BaseController {
                     'user_id' => Auth::user()->id,
                     'publish_at' => (new myDateTime())->setDateString(Input::get('publish_at'))->format('Y-m-d'),
                     'category_id' => Input::get('category_id'),
-                    'subcategory_id' => Input::get('subcategory_id'),
                     'title' => Input::get('title'),
                     'content' => Input::get('content'),
                     'photo_id' => Input::get('photo_id'),
+                    'photo_title' => Input::get('photo_title'),
                     'gallery_id' => 0,
                     'publication' => 0
                 ));
@@ -155,7 +133,8 @@ class PostBloggerController extends BaseController {
                     Post::where('id',$newPost->id)->first()->tags()->sync(Input::get('tags'));
                 endif;
                 $json_request['responseText'] = Lang::get('interface.DEFAULT.success_insert');
-                $json_request['redirect'] = URL::route('posts.show',$newPost->id.'-'.BaseController::stringTranslite($newPost->title));
+                #$json_request['redirect'] = URL::route('posts.show',$newPost->id.'-'.BaseController::stringTranslite($newPost->title));
+                $json_request['redirect'] = URL::route('dashboard');
                 $json_request['status'] = TRUE;
             else:
                 $json_request['responseText'] = $validator->messages()->all();
@@ -169,12 +148,9 @@ class PostBloggerController extends BaseController {
     public function edit($post_id){
 
         if ($post = Post::where('id',$post_id)->where('user_id',Auth::user()->id)->with('tags_ids','photo','gallery')->first()):
-            list($categories,$subcategories,$tags) = self::getCategoriesAndTags();
+            list($categories,$tags) = self::getCategoriesAndTags();
             if (isset($categories[$post->category_id])):
                 $post->category_title = $categories[$post->category_id];
-            endif;
-            if (isset($subcategories[$post->subcategory_id])):
-                $post->subcategory_title = $subcategories[$post->subcategory_id]['name'];
             endif;
             if ($post->tags_ids->count()):
                 $tagsIDs = array();
@@ -182,10 +158,10 @@ class PostBloggerController extends BaseController {
                     $tagsIDs[] = $tag->tag_id;
                 endforeach;
                 if (count($tagsIDs)):
-                    $post->tags = self::getTags(array(),$tagsIDs,$tags,$post->category_id,$post->subcategory_id);
+                    $post->tags = self::getTags(array(),$tagsIDs,$tags,$post->category_id);
                 endif;
             endif;
-            return View::make(Helper::acclayout('posts.edit'),compact('post','categories','subcategories','tags'));
+            return View::make(Helper::acclayout('posts.edit'),compact('post','categories','tags'));
         else:
             App::abort(404);
         endif;
@@ -200,10 +176,10 @@ class PostBloggerController extends BaseController {
                 Post::where('id',$post_id)->where('user_id',Auth::user()->id)->update(array(
                     'publish_at' => (new myDateTime())->setDateString(Input::get('publish_at'))->format('Y-m-d'),
                     'category_id' => Input::get('category_id'),
-                    'subcategory_id' => Input::get('subcategory_id'),
                     'title' => Input::get('title'),
                     'content' => Input::get('content'),
                     'photo_id' => Input::get('photo_id'),
+                    'photo_title' => Input::get('photo_title'),
                     'publication' => 0
                 ));
                 $gallery_id = ExtForm::process('gallery',array('module'=>'Пост','unit_id'=>$post_id,'gallery'=>Input::get('gallery'),'single'=>TRUE));
@@ -212,7 +188,8 @@ class PostBloggerController extends BaseController {
                     Post::where('id',$post_id)->first()->tags()->sync(Input::get('tags'));
                 endif;
                 $json_request['responseText'] = Lang::get('interface.DEFAULT.success_save');
-                $json_request['redirect'] = URL::route('posts.show',$post_id.'-'.BaseController::stringTranslite(Input::get('title')));
+                #$json_request['redirect'] = URL::route('posts.show',$post_id.'-'.BaseController::stringTranslite(Input::get('title')));
+                $json_request['redirect'] = URL::route('dashboard');
                 $json_request['status'] = TRUE;
             else:
                 $json_request['responseText'] = $validator->messages()->all();

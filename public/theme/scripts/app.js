@@ -15,8 +15,7 @@ $(document).ready(function () {
                 });
             }
         },
-        options.error = function (xhr, textStatus, errorThrown) {
-        }
+        options.error = function (xhr, textStatus, errorThrown) {}
         $($(this).parents('form')).ajaxSubmit(options);
     });
 });
