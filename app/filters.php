@@ -67,6 +67,15 @@ Route::filter('auth.status.blogger', function(){
     endif;
 });
 
+Route::filter('auth.status.moderator', function(){
+
+    if(Auth::guest()):
+        return Redirect::to('/');
+    elseif(Auth::user()->group_id != 3):
+        return Redirect::to('/');
+    endif;
+});
+
 Route::filter('guest.register', function(){
     if(Auth::check()):
         return Redirect::to('/');

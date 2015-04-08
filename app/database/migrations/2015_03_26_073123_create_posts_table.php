@@ -18,6 +18,8 @@ class CreatePostsTable extends Migration {
             $table->string('photo_title', 128)->nullable();
             $table->integer('gallery_id')->unsigned()->nullable();
             $table->boolean('publication')->default(0)->unsigned()->nullable();
+            $table->boolean('in_index')->default(0)->unsigned()->nullable();
+            $table->boolean('in_section')->default(0)->unsigned()->nullable();
 			$table->timestamps();
 		});
 	}

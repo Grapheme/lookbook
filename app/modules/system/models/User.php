@@ -64,5 +64,9 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		
 		return 'remember_token';
 	}
-	
+
+    public function posts(){
+
+        return $this->belongsTo('Post','id','user_id');
+    }
 }

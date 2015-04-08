@@ -59,16 +59,4 @@ class AuthAccount {
 			return FALSE;
 		endif;
 	}
-	
-    /**
-     * @TODO Выпилить и не использовать
-     */
-	public static function isUserLoggined(){
-		
-		if(self::getGroupID() == 2):
-			return TRUE;
-		else:
-			return FALSE;
-		endif;
-	}
 }
