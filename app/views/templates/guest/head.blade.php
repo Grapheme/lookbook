@@ -12,4 +12,8 @@
 <meta name="keywords" content="@yield('keywords')">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
 {{ HTML::stylemod(Config::get('site.theme_path').'/styles/main.css') }}
+@if(Config::has('noscripts') && Config::get('noscripts'))
+
+@else
 {{ HTML::scriptmod(Config::get('site.theme_path')."/scripts/vendor/modernizr.js") }}
+@endif

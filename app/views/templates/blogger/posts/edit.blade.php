@@ -69,8 +69,9 @@
                             </div>
                             <div>
                                 {{ Form::button('Просмотр',array('class'=>'blue-hover us-btn btn-preview','data-url'=>URL::route('post.preview'))) }}
-                                {{ Form::submit('На модерацию',array('class'=>'blue-hover us-btn')) }}
+                                {{ Form::submit('Опубликовать',array('class'=>'blue-hover us-btn')) }}
                             </div>
+                            <button id="auto-save" data-url="{{ URL::route('post.auto.save',$post->id) }}" style="display: none"></button>
                             <p class="js-response-text"></p>
                        {{ Form::close() }}
                     </div>

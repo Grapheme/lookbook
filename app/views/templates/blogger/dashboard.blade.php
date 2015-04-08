@@ -4,7 +4,7 @@
  */
 
 $posts_count = Post::where('user_id',Auth::user()->id)->count();
-$posts = Post::where('user_id',Auth::user()->id)->orderBy('publish_at','DESC')->with('user','photo','tags_ids','views','likes','comments')->limit(4)->get();
+$posts = Post::where('user_id',Auth::user()->id)->orderBy('publication','DESC')->orderBy('publish_at','DESC')->orderBy('id','DESC')->with('user','photo','tags_ids','views','likes','comments')->limit(4)->get();
 list($categories,$tags) = PostBloggerController::getCategoriesAndTags();
 ?>
 @extends(Helper::acclayout())
@@ -61,6 +61,9 @@ list($categories,$tags) = PostBloggerController::getCategoriesAndTags();
                                         </div>
                                         <div class="post-info">
                                             <div class="post-info__title">
+                                                @if(!$post->publication)
+                                                    (НЕ ОПУБЛИКОВАН)<br>
+                                                @endif
                                                 @if(isset($categories[$post->category_id]))
                                                 <a href="{{ URL::route('post.public.show',array($post->category_id.'-'.BaseController::stringTranslite($categories[$post->category_id]),$post->id.'-'.BaseController::stringTranslite($post->title))) }}">
                                                     {{ $post->title }}

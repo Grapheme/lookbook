@@ -43,6 +43,7 @@
                                     @endif
                                     <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
                                 </div>
+                                <div class="profile-name">{{ Auth::user()->name }}</div>
                             </div>
                             <div class="right-block">
                                 <div class="right-block__pad">
@@ -60,9 +61,9 @@
                                         </div>
                                     @if(count($post['gallery']))
                                         <div class="post-info__gallery">
-                                        @foreach($post['gallery'] as $photo)
-                                            @if(!empty($photo['name']) && File::exists(Config::get('site.galleries_photo_dir').'/'.$photo['name']))
-                                            <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$photo['name']) }}" alt="{{ $post['title'] }}">
+                                        @foreach($post['gallery'] as $photo_name)
+                                            @if(!empty($photo_name) && File::exists(Config::get('site.galleries_photo_dir').'/'.$photo_name))
+                                            <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$photo_name) }}" alt="{{ $post['title'] }}">
                                             @endif
                                         @endforeach
                                         </div>
