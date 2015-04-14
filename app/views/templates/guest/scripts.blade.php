@@ -3,7 +3,9 @@
  * TEMPLATE_IS_NOT_SETTABLE
  */
 ?>
+@if(Config::has('noscripts') && Config::get('noscripts'))
 
+@else
 @if(Config::get('app.use_scripts_local'))
     {{ HTML::scriptmod('private/js/vendor/jquery.min.js') }}
 @else
@@ -13,3 +15,4 @@
 
 {{ HTML::scriptmod(Config::get('site.theme_path')."/scripts/vendor.js") }}
 {{ HTML::scriptmod(Config::get('site.theme_path')."/scripts/main.js") }}
+@endif

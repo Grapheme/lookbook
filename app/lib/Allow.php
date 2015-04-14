@@ -203,6 +203,7 @@ class Allow {
         }
         $actions[$action] = $act;
         self::$modules[$module_name]->actions = $actions;
+        #Helper::tad($actions);
         return true;
     }
 

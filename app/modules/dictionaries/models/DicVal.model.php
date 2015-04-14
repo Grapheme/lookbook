@@ -311,6 +311,8 @@ class DicVal extends BaseModel {
             else
                 $condition = '=';
 
+        #Helper::d('-'.$condition.'-'.$value.'-');
+
         $tbl_dicval = (new DicVal())->getTable();
         $tbl_dic_field_val = (new DicFieldVal())->getTable();
         $rand_tbl_alias = md5(time() . rand(999999, 9999999));
@@ -331,13 +333,28 @@ class DicVal extends BaseModel {
      * @return mixed
      */
     public function scopeOrder_by_field($query, $key, $order_method = 'ASC') {
+
         $tbl_dicval = (new DicVal())->getTable();
         $tbl_dic_field_val = (new DicFieldVal())->getTable();
         $rand_tbl_alias = md5(time() . rand(999999, 9999999));
-        $query->join($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, $rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
+
+        /*
+        $query->leftJoin($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, $rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
             ->where($rand_tbl_alias . '.key', '=', $key)
             ->orderBy($rand_tbl_alias . '.value', $order_method)
         ;
+        */
+
+        $query
+            ->leftJoin($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, function ($join) use ($rand_tbl_alias, $tbl_dicval, $key) {
+                $join
+                    ->on($rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
+                    ->where($rand_tbl_alias . '.key', '=', DB::raw("'" . $key . "'"))
+                ;
+            })
+            ->orderBy($rand_tbl_alias . '.value', $order_method)
+        ;
+
         return $query;
     }
 
@@ -419,6 +436,64 @@ class DicVal extends BaseModel {
 
         return $rand_tbl_alias;
     }
+
+
+    /**
+     * Фильтр по имеющимся значениям related_dicvals. В результате запроса будут возвращены только те записи словаря,
+     * которые подпадают под данный фильтр.
+     * Объект DicVal должен быть связан с заданными в фильтре полями через таблицу dictionary_values_rel.
+     *
+     * @param $query
+     * @param null $value
+     * @param string $condition
+     * @param bool $do_nothing_if_null
+     * @return string
+     */
+    public function scopeFilter_by_related($query, $value = NULL, $condition = '=', $flip_parent_and_child = false, $do_nothing_if_null = false) {
+
+        if ($value === NULL)
+            if ($do_nothing_if_null)
+                return $query;
+            else
+                $condition = '=';
+
+        #Helper::d('-'.$condition.'-'.$value.'-');
+
+        /**
+         * Поменять местами dicval_parent_id и dicval_child_id
+         */
+        if ($flip_parent_and_child) {
+            $field1 = 'dicval_child_id';
+            $field2 = 'dicval_parent_id';
+        } else {
+            $field1 = 'dicval_parent_id';
+            $field2 = 'dicval_child_id';
+        }
+
+        $tbl_dicval = (new DicVal())->getTable();
+        $tbl_dicvalrel = (new DicValRel())->getTable();
+        $rand_tbl_alias = md5(time() . rand(999999, 9999999));
+        $query
+            ->join($tbl_dicvalrel . ' AS ' . $rand_tbl_alias, function ($join) use ($rand_tbl_alias, $tbl_dicval, $tbl_dicvalrel, $field1, $field2, $value, $condition) {
+
+                $join->on($tbl_dicval.'.id', '=', $rand_tbl_alias.'.'.$field1);
+
+                if (!is_array($value))
+                    $join->where($rand_tbl_alias.'.'.$field2, $condition, $value);
+            })
+        ;
+
+        if (is_array($value) && count($value)) {
+            if ($condition == '=' || $condition == 'IN')
+                $query->whereIn($rand_tbl_alias . '.' . $field2, $value);
+            elseif ($condition == '!=' || $condition == '<>')
+                $query->whereNotIn($rand_tbl_alias . '.' . $field2, $value);
+        }
+
+        return $rand_tbl_alias;
+    }
+
+
     /**
      * Экстрактит все записи словаря внутри коллекции
      *

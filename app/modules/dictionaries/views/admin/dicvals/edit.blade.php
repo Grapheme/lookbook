@@ -2,7 +2,6 @@
 
 
 @section('style')
-    {{ HTML::style('private/css/redactor.css') }}
     @if (@trim($dic_settings['style']))
     <style>
         {{ $dic_settings['style'] }}
@@ -18,7 +17,7 @@
     $edit_title   = "Добавить запись:";
 
     $url =
-        @$element->id
+        (isset($element->id) && $element->id)
         ? action(is_numeric($dic_id) ? 'dicval.update' : 'entity.update', array('dic_id' => $dic_id, 'id' => $element->id))
         : action(is_numeric($dic_id) ? 'dicval.store'  : 'entity.store',  array('dic_id' => $dic_id));
     $method     = @$element->id ? 'PUT' : 'POST';
@@ -26,6 +25,8 @@
     ?>
 
     @include($module['tpl'].'/menu')
+
+    {{ Helper::ta_($element) }}
 
     {{ Form::model($element, array('url' => $url, 'class' => 'smart-form', 'id' => $module['entity'].'-form', 'role' => 'form', 'method' => $method, 'files' => true)) }}
 
@@ -54,6 +55,11 @@
         @endif
     </p>
     @endif
+
+    <?
+    global $dicval_edit_scripts;
+    $dicval_edit_scripts = array();
+    ?>
 
     <!-- Fields -->
 	<div class="row">
@@ -101,36 +107,18 @@
                 <?
                 #Helper::ta($element);
                 $onsuccess_js = array();
-
-                /*
-                if (isset($element->fields) && is_object($element->fields) && count($element->fields)) {
-                    $element_fields = $element->fields->lists('value', 'key');
-                } elseif (isset($element->allfields) && is_object($element->allfields) && count($element->allfields)) {
-                    $element_fields = $element->allfields->lists('value', 'key');
-                } else {
-                    #$element_fields = array();
-                    $element_fields = $element->toArray();
-                }
-                if (isset($element->textfields) && is_object($element->textfields) && count($element->textfields)) {
-                    $element_textfields = $element->textfields->lists('value', 'key');
-                } elseif (isset($element->alltextfields) && is_object($element->alltextfields) && count($element->alltextfields)) {
-                    $element_textfields = $element->alltextfields->lists('value', 'key');
-                } else {
-                    $element_textfields = $element->toArray();
-                }
-                $element_fields = @(array)$element_fields + @(array)$element_textfields;
-                #Helper::d($element_fields);
-                */
                 ?>
                     <fieldset class="padding-top-10 clearfix">
                         @foreach ($fields_general as $field_name => $field)
                         <?
                         $field['_name'] = $field_name;
-                        if (@$field['after_save_js'])
+                        if (isset($field['after_save_js']))
                             $onsuccess_js[] = $field['after_save_js'];
+                        if (isset($field['scripts']))
+                            $dicval_edit_scripts[] = $field['scripts'];
                         ?>
                         <section>
-                            @if (!@$field['no_label'])
+                            @if (!@$field['no_label'] && isset($field['title']))
                             <label class="label">{{ @$field['title'] }}&nbsp;</label>
                             @endif
                             @if (@$field['first_note'])
@@ -150,8 +138,8 @@
                 {{-- @if (count($locales) > 1) --}}
                 <?
                 $fields_i18n = array();
-                if (@is_callable($dic_settings['fields_i18n']))
-                    $fields_i18n = $dic_settings['fields_i18n']();
+                if (isset($dic_settings['fields_i18n']) && is_callable($dic_settings['fields_i18n']))
+                    $fields_i18n = $dic_settings['fields_i18n']($element);
                 ?>
                 @if (count($fields_i18n))
                     <?
@@ -241,6 +229,8 @@
                             @endforeach
                         </ul>
                         @endif
+
+                        {{ Helper::ta_($element) }}
 
                         <div id="myTabContent2" class="tab-content @if(count($locales) > 1) padding-10 @endif">
                             <? $i = 0; ?>
@@ -407,6 +397,10 @@
     <script>
         {{ $dic_settings['javascript'] }}
     </script>
+    @endif
+
+    @if (isset($dicval_edit_scripts) && is_array($dicval_edit_scripts) && count($dicval_edit_scripts))
+        {{ implode("\n", $dicval_edit_scripts) }}
     @endif
 
 @stop

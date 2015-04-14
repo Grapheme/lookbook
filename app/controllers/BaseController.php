@@ -33,9 +33,7 @@ class BaseController extends Controller {
 		$string = str_replace($rus,$eng,trim($string));
 		if(!empty($string)):
 			$string = preg_replace('/[^a-z0-9-]/','',strtolower($string));
-//			$string = preg_replace('/[^a-z0-9-\.]/','',strtolower($string));
 			$string = preg_replace('/[-]+/','-',$string);
-			//$string = preg_replace('/[\.]+/','.',$string);
 			return $string;
 		else:
 			return FALSE;
@@ -43,10 +41,6 @@ class BaseController extends Controller {
 	}
         
     public static function returnTpl($postfix = false) {
-        #return static::__CLASS__;
-        #return get_class(__CLASS__);
-        #echo __DIR__;
-        #return basename(__DIR__).".views.";   
         return static::$group.".views." . ($postfix ? $postfix."." : "");
     }
 
@@ -78,11 +72,16 @@ class BaseController extends Controller {
 
         $templates = array();
         $temp = glob($path.$post_path."/*");
+
         foreach ($temp as $t => $tmp) {
             if (is_dir($tmp))
                 continue;
 
+            #Helper::d($tmp);
             $properties = Helper::getFileProperties($tmp);
+            #var_dump($properties);
+            #echo (int)(in_array('TEMPLATE_IS_NOT_SETTABLE', $properties));
+            #echo "<hr/>";
             if (
                 @$properties['TEMPLATE_IS_NOT_SETTABLE']
                 #|| (@$properties['AVAILABLE_ONLY_IN_ADVANCED_MODE'] && !Allow::action('pages', 'advanced'))
@@ -94,6 +93,7 @@ class BaseController extends Controller {
             $name = str_replace(".blade.php", "", $name);
             $templates[$name] = @$properties['TITLE'] ?: $name;
         }
+        #Helper::dd($templates);
         return $templates;
     }
 }

@@ -4,7 +4,8 @@
  */
 
 $posts_count = Post::where('user_id',Auth::user()->id)->count();
-$posts = Post::where('user_id',Auth::user()->id)->orderBy('publish_at','DESC')->with('user','photo','category','subcategory','views','likes','comments')->limit(4)->get();
+$posts = Post::where('user_id',Auth::user()->id)->orderBy('publication','DESC')->orderBy('publish_at','DESC')->orderBy('id','DESC')->with('user','photo','tags_ids','views','likes','comments')->limit(4)->get();
+list($categories,$tags) = PostBloggerController::getCategoriesAndTags();
 ?>
 @extends(Helper::acclayout())
 @section('style')
@@ -52,34 +53,40 @@ $posts = Post::where('user_id',Auth::user()->id)->orderBy('publish_at','DESC')->
                                             @if($hasImage)
                                             <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$post->photo->name) }}" alt="{{ $post->title }}">
                                             @endif
-                                            @if(!empty($post->subcategory))
+                                            @if(isset($categories[$post->category_id]))
                                             <div class="post-photo__alt">
-                                                {{ $post->subcategory->title }}
-                                            @elseif(!empty($post->category))
-                                            <div class="post-photo__alt">
-                                                {{ $post->subcategory->title }}
+                                                {{ $categories[$post->category_id] }}
                                             </div>
                                             @endif
                                         </div>
                                         <div class="post-info">
                                             <div class="post-info__title">
-                                                <a href="{{ URL::route('posts.show',$post->id.'-'.BaseController::stringTranslite($post->title)) }}">{{ $post->title }}</a>
+                                                @if(!$post->publication)
+                                                    (НЕ ОПУБЛИКОВАН)<br>
+                                                @endif
+                                                @if(isset($categories[$post->category_id]))
+                                                <a href="{{ URL::route('post.public.show',array($post->category_id.'-'.BaseController::stringTranslite($categories[$post->category_id]),$post->id.'-'.BaseController::stringTranslite($post->title))) }}">
+                                                    {{ $post->title }}
+                                                </a>
+                                                @else:
+                                                <a href="javascript:void(0)">{{ $post->title }}</a>
+                                                @endif
                                             </div>
                                             <div class="post-info__desc">
-                                                {{ str_limit($post->content, $limit = 300, $end = '...')}}
+                                                {{ str_limit($post->content, $limit = 300, $end = ' ...')}}
                                             </div>
                                         </div>
                                         <div class="post-footer">
-                                            <span class="post-footer__date">ЯНВ 26, 2015</span>
+                                            <span class="post-footer__date">{{ (new myDateTime())->setDateString($post->publish_at.' 00:00:00')->custom_format('M d, Y') }}</span>
                                             <span class="post-footer__statisctics">
                                                 <span class="statisctics-item">
-                                                    <i class="svg-icon icon-eye"></i>24
+                                                    <i class="svg-icon icon-eye"></i>{{ $post->views->count() }}
                                                 </span>
                                                 <span class="statisctics-item">
-                                                    <i class="svg-icon icon-like"></i>56
+                                                    <i class="svg-icon icon-like"></i>{{ $post->likes->count() }}
                                                 </span>
                                                 <span class="statisctics-item">
-                                                    <i class="svg-icon icon-comments"></i>36
+                                                    <i class="svg-icon icon-comments"></i>{{ $post->comments->count() }}
                                                 </span>
                                             </span>
                                         </div>

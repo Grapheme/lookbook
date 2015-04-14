@@ -28,6 +28,7 @@ class Menu extends Storage {
 
         $menu = Storage::where('module', 'menu')->where('name', $slug)->first();
         $value = json_decode($menu->value, 1);
+        #Helper::dd($value);
         #$menu = self::get_menu_level($value->items, $options);
     }
 
@@ -38,7 +39,7 @@ class Menu extends Storage {
     public static function placement($placement_slug) {
 
         $menu_placement_value = Config::get('temp.menu_placement_value');
-        #var_dump($menu_placement);
+        #var_dump($menu_placement_value);
 
         if (is_null($menu_placement_value)) {
             $menu_placement = Storage::firstOrNew(array('module' => 'menu_placement', 'name' => 'menu_placement'));

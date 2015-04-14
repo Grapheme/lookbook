@@ -4,6 +4,7 @@ class myDateTime {
 
     protected $date_string;
     protected $months;
+    protected $short_months;
 
     public function __construct($string = NULL){
 
@@ -13,6 +14,7 @@ class myDateTime {
             $this->date_string = \Carbon\Carbon::now();
         endif;
         $this->months = array("01"=>"января","02"=>"февраля","03"=>"марта","04"=>"апреля","05"=>"мая","06"=>"июня","07"=>"июля","08"=>"августа","09"=>"сентября","10"=>"октября","11"=>"ноября","12"=>"декабря");
+        $this->short_months = array("01"=>"янв","02"=>"фев","03"=>"мар","04"=>"апр","05"=>"мая","06"=>"июн","07"=>"июл","08"=>"авг","09"=>"сен","10"=>"окт","11"=>"ноя","12"=>"дек");
     }
 
     public function setDateString($string){
@@ -131,6 +133,26 @@ class myDateTime {
 
         if ($this->validDate()):
             return $this->date_string->format($format);
+        else:
+            return '';
+        endif;
+    }
+
+    public function custom_format($format){
+
+        if ($this->validDate()):
+            $list = explode("-",$this->date_string);
+            $list[2] = (int)$list[2];
+            $field = implode("-",$list);
+            $nmonth = $this->short_months[$list[1]];
+            $pattern = "/(\d+)(-)(\w+)(-)(\d+) (\d+)(:)(\d+)(:)(\d+)/i";
+            $replacement = "\$5 $nmonth \$1";
+            switch ($format):
+                case 'M d, Y': $replacement = "$nmonth \$5, \$1"; break;
+                default :
+                    return '';
+            endswitch;
+            return preg_replace($pattern, $replacement,$this->date_string);
         else:
             return '';
         endif;

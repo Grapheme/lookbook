@@ -36,13 +36,6 @@ return array(
     },
     'actions' => function($dic, $dicval) {
 
-        return '
-            <span class="block_ margin-bottom-5_">
-                <a href="'.URL::route('entity.index',array('subcategories','filter[fields][category_id]'=>$dicval->id)).'" class="btn btn-default">
-                    Подкатегории
-                </a>
-            </span>
-        ';
     },
     'hooks' => array(
         'before_all' => function ($dic) {},

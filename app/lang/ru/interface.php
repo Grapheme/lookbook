@@ -29,6 +29,7 @@ return array(
         'email_exist' => 'Указанный Email уже существует.',
         'success_insert' => 'Добавлено',
         'success_save' => 'Сохранено',
+        'success_save_auto' => 'Автоматическое сохранение',
         'success_remove' => 'Удалено',
         'success_change' => 'Изменено',
         'success_upload' => 'Загружено',
