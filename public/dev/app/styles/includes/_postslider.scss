@@ -58,6 +58,12 @@
         font-weight: 300;
         color: #777;
         text-transform: uppercase;
+
+        .post-photo__alt {
+            font-weight: 500;
+            color: $blue !important;
+            margin-right: 10px;
+        }
     }
 
     .item__title {
