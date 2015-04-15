@@ -13,7 +13,6 @@ return array(
 	'template' => 'guest',
     'welcome_page_tpl' => 'templates.guest.index', #'guests.welcome',
 
-
 	'manifest' => storage_path('meta'),
 
 	'debug' => FALSE,
