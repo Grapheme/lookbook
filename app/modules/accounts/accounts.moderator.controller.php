@@ -12,7 +12,7 @@ class AccountsModeratorController extends BaseController {
     public static function returnRoutes($prefix = null) {
         $class = __CLASS__;
 
-        if (Auth::check()):
+        if (Auth::check() && Auth::user()->group_id == 3):
             Route::group(array('before' => 'auth.status.moderator', 'prefix' => self::$name), function() use ($class) {
                 Route::get('profile', array('as' => 'profile', 'uses' => $class . '@profile'));
                 Route::put('profile', array('before'=>'csrf', 'as' => 'profile.update', 'uses' => $class . '@profileUpdate'));
