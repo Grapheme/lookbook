@@ -33,7 +33,7 @@
                         <a class="bottom__logo" href="{{ URL::route('mainpage') }}"></a>
                     @endif
                     <nav class="bottom__nav">
-                        {{ Menu::placement('header_menu') }}
+                        {{ Menu::placement('categories_menu') }}
                     </nav>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 <?
 /**
- * MENU_PLACEMENTS: main_menu=Основное меню
+ * MENU_PLACEMENTS: main_menu=Основное меню|categories_menu=Разделы сайта
  */
 ?>
 @if (@is_object($seo))
