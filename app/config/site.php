@@ -34,4 +34,7 @@ return array(
     'galleries_cache_allowed_sizes' => [
         '200x200'
     ],
+    'dics' => [
+        'preload_cache_lifetime' => 60*24, ## время жизни кеша страниц, в минутах
+    ],
 );

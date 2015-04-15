@@ -7,6 +7,7 @@ class Page extends BaseModel {
     protected $table = 'pages';
 
     protected $orderBy = 'order ASC, created_at DESC';
+    public static $cache_key = 'app.pages';
 
     public static $rules = array(
 	    'name' => 'required',
@@ -194,15 +195,20 @@ class Page extends BaseModel {
      */
     public static function preload() {
 
-        $cache_key = 'app.pages';
+        $cache_key = self::$cache_key;
         $cache_pages_limit = Config::get('pages.preload_pages_limit');
+
+        if ($cache_pages_limit === NULL) {
+            Config::set('pages.not_cached', TRUE);
+            return;
+        }
 
         if (Cache::has($cache_key) && !Input::get('drop_pages_cache')) {
 
             ## From cache
             $pages = Cache::get($cache_key);
 
-        } elseif ($cache_pages_limit === 0 || Page::count() <= $cache_pages_limit) {
+        } elseif ($cache_pages_limit === 0 || ($cache_pages_limit > 0 && Page::count() <= $cache_pages_limit)) {
 
             #echo "LOAD PAGES FROM DB!";
 
@@ -227,17 +233,19 @@ class Page extends BaseModel {
         $cache_lifetime = Config::get('pages.preload_cache_lifetime') ?: NULL;
         if ($cache_lifetime) {
             $expiresAt = Carbon::now()->addMinutes($cache_lifetime);
-            Cache::put('app.pages', $pages, $expiresAt);
+            Cache::put($cache_key, $pages, $expiresAt);
         }
 
-        Config::set('app.pages', $pages);
+        Config::set($cache_key, $pages);
 
         #Helper::tad($pages);
     }
 
     public static function drop_cache() {
-        Config::set('app.pages', NULL);
-        Cache::forget('app.pages');
+
+        $cache_key = self::$cache_key;
+        Config::set($cache_key, NULL);
+        Cache::forget($cache_key);
     }
 
 

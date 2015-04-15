@@ -39,7 +39,7 @@ class Menu extends Storage {
     public static function placement($placement_slug) {
 
         $menu_placement_value = Config::get('temp.menu_placement_value');
-        #var_dump($menu_placement_value);
+        #var_dump($menu_placement);
 
         if (is_null($menu_placement_value)) {
             $menu_placement = Storage::firstOrNew(array('module' => 'menu_placement', 'name' => 'menu_placement'));

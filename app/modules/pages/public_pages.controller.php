@@ -166,16 +166,33 @@ class PublicPagesController extends BaseController {
         View::share('module', $this->module);
 	}
 
+
     ## Функция для просмотра мультиязычной страницы
     public function showPage($slug = false){
 
+        ## Как будем искать страницы - в кеше или в БД?
+        if (Config::get('pages.not_cached')) {
 
-        ## Если страниц нет в кеше - показываем 404
-        if (!count(Page::all_by_slug()))
-            App::abort(404);
+            ## Кеширование отключено (или не найдено ни одной страницы) - ищем в БД
+            $page = (new Page())->where('publication', 1)->where('version_of', NULL);
 
-        ##Ищем страницу в кеше
-        $page = Page::by_slug($slug ?: '/');
+            if ($slug) {
+                $page = $page->where('slug', $slug);
+            } else {
+                $page = $page->where('start_page', 1);
+            }
+
+            $page = $page->first();
+
+        } else {
+
+            ## Если страниц нет в кеше - показываем 404
+            if (!count(Page::all_by_slug()))
+                App::abort(404);
+
+            ## Кеширование включено - ищем страницу в кеше
+            $page = Page::by_slug($slug ?: '/');
+        }
 
         #Helper::smartQueries(1); #die;
         #Helper::ta($page);
@@ -186,6 +203,7 @@ class PublicPagesController extends BaseController {
             ## ...пробуем в теме найти шаблон с таким же именем, как запрошенный slug...
             if (
                 $slug != ''
+                && !Config::get('pages.disable_slug_to_template')
                 && preg_match("~^[A-Za-z0-9\-\_]+?$~is", $slug)
                 && View::exists(Helper::layout($slug))
             ) {
