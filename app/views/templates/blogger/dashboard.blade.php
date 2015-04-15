@@ -4,7 +4,7 @@
  */
 
 $posts_count = Post::where('user_id',Auth::user()->id)->count();
-$posts = Post::where('user_id',Auth::user()->id)->orderBy('publication','DESC')->orderBy('publish_at','DESC')->orderBy('id','DESC')->with('user','photo','tags_ids','views','likes','comments')->limit(4)->get();
+$posts = Post::where('user_id',Auth::user()->id)->orderBy('publication','ASC')->orderBy('publish_at','DESC')->orderBy('id','DESC')->with('user','photo','tags_ids','views','likes','comments')->limit(4)->get();
 list($categories,$tags) = PostBloggerController::getCategoriesAndTags();
 ?>
 @extends(Helper::acclayout())
@@ -68,7 +68,7 @@ list($categories,$tags) = PostBloggerController::getCategoriesAndTags();
                                                 <a href="{{ URL::route('post.public.show',array($post->category_id.'-'.BaseController::stringTranslite($categories[$post->category_id]),$post->id.'-'.BaseController::stringTranslite($post->title))) }}">
                                                     {{ $post->title }}
                                                 </a>
-                                                @else:
+                                                @else
                                                 <a href="javascript:void(0)">{{ $post->title }}</a>
                                                 @endif
                                             </div>

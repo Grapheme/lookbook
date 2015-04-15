@@ -11,7 +11,9 @@ class PostPublicController extends BaseController {
 
     public static function returnRoutes($prefix = null) {
         $class = __CLASS__;
-        Route::get('{category_title}/{post_url}',array('as'=>'post.public.show','uses'=>$class.'@show'));
+        if (in_array(Request::segment(1),array('admin')) === FALSE):
+            Route::get('{category_title}/{post_url}',array('as'=>'post.public.show','uses'=>$class.'@show'));
+        endif;
     }
 
     public static function returnShortCodes() {
