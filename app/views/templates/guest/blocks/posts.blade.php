@@ -7,6 +7,9 @@
             <div class="right-block__pad">
                 @include(Helper::layout('assets.post'),array('post'=>$post,'categories'=>$categories))
             </div>
+        @if($post_access && Auth::check() && $post->user_id == Auth::user()->id)
+            @include(Helper::acclayout('assets.post_actions'),array('post'=>$post))
+        @endif
         </div>
     </li>
 @endforeach
