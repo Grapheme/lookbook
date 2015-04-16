@@ -67,7 +67,7 @@ endif;
                                 {{ Form::hidden('category',@$category_id) }}
                                 {{ Form::hidden('tag',Input::get('tag')) }}
                                 {{ Form::hidden('limit',$post_limit) }}
-                                {{ Form::hidden('from',$post_limit,array('id'=>'js-input-from')) }}
+                                {{ Form::hidden('from',$post_limit,array('id'=>'js-input-from','autocomplete'=>'off')) }}
                                 {{ Form::submit('Показать больше '.@$categories[$category_id]['title'],array('class'=>'white-black-btn')) }}
                                 <p class="js-response-text"></p>
                             {{ Form::close() }}

@@ -97,7 +97,7 @@ class PostPublicController extends BaseController {
                     endforeach;
                     $json_request['html'] = View::make(Helper::layout('blocks.posts'),compact('posts','categories'))->render();
                     $json_request['status'] = TRUE;
-                    $json_request['from'] = $post_from+$post_limit+1;
+                    $json_request['from'] = $post_from+$post_limit;
                     $json_request['hide_button'] = $posts_total_count > ($post_from+$post_limit) ? FALSE : TRUE ;
                 endif;
             endif;
