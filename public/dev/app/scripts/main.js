@@ -129,6 +129,7 @@ LookBook.Dashboard = function() {
                 if(data.hide_button) {
                     form.hide();
                 }
+                $('#js-input-from').val(data.from);
                 form.find('[type="submit"]').removeClass('loading')
                     .removeAttr('disabled');
             },
