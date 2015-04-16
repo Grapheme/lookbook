@@ -24,6 +24,7 @@
                     {{ Form::checkbox('publication') }} Опубликован <br>
                     {{ Form::checkbox('in_index') }} Опубликовать на главную <br>
                     {{ Form::checkbox('in_section') }} Опубликовать в разделе <br>
+                    {{ Form::checkbox('in_promoted') }} Продвигаемый пост <br>
                     {{ Form::submit('Сохранить',array('class'=>'white-btn')) }}
                 {{ Form::close() }}
             </td>

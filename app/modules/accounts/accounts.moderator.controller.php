@@ -134,6 +134,7 @@ class AccountsModeratorController extends BaseController {
             $post->publication = Input::has('publication') ? 1 : 0;
             $post->in_index = Input::has('in_index') ? 1 : 0;
             $post->in_section = Input::has('in_section') ? 1 : 0;
+            $post->in_promoted = Input::has('in_promoted') ? 1 : 0;
             $post->save();
             return Redirect::back()->with('message',Lang::get('interface.DEFAULT.success_save'));
         endif;

@@ -28,23 +28,14 @@
                 <div class="reg-content__left">
                     <ul class="dashboard-list one-post js-posts">
                     <?php
-                        $hasAvatar = $hasImage = FALSE;
-                        if(!empty($post->user->photo) && File::exists(public_path($post->user->photo))):
-                            $hasAvatar = TRUE;
-                        endif;
+                        $hasImage = FALSE;
                         if(!empty($post->photo) && File::exists(Config::get('site.galleries_photo_dir').'/'.$post->photo->name)):
                             $hasImage = TRUE;
                         endif;
                     ?>
                         <li class="dashboard-item js-post">
                             <div class="left-block">
-                                <div data-empty-name="{{ $post->user->name }}" class="profile-ava ava-min{{ !$hasAvatar ? ' ava-empty ' : '' }}">
-                                    @if($hasAvatar)
-                                        <img src="{{ asset($post->user->photo) }}">
-                                    @endif
-                                    <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
-                                </div>
-                                <div class="profile-name">{{ $post->user->name }}</div>
+                                @include(Helper::layout('assets.avatar'),array('user'=>$post->user))
                             </div>
                             <div class="right-block">
                                 <div class="right-block__pad">
