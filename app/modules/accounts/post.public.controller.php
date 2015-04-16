@@ -71,7 +71,7 @@ class PostPublicController extends BaseController {
             endif;
             return array(
                 'post_limit' => $post_limit,'post_access' => $post_access,'posts_total_count' => $posts_total_count,
-                'tags' => $tags,'posts' => $posts,'promoted_posts' => array(),'category_id'=>$category_id,
+                'tags' => $tags,'posts' => $posts,'promoted_posts' => $promoted_posts,'category_id'=>$category_id,
                 'categories' => $categories,'top_posts' => $top_posts,
                 'top_brands' => $top_brands,'top_bloggers' => $top_bloggers,
             );
