@@ -1,25 +1,12 @@
 <?
-/**
+/*
  * TITLE: Раздел (категория)
  * AVAILABLE_ONLY_IN_ADVANCED_MODE
  */
-$post_limit = 1;
-list($categories_lists,$tags_lists) = PostBloggerController::getCategoriesAndTags();
-$posts = $tags = $promoted_posts = $categories = array();
-$posts_total_count = 0;
-$top_posts = $top_brands = $top_bloggers = array();
-foreach(Dic::where('slug','categories')->first()->values as $category):
-    $categories[$category->id] = array('slug'=>$category->slug,'title'=>$category->name);
-endforeach;
-if ($category_id = Dic::where('slug','categories')->first()->value()->where('slug',$page->slug)->pluck('id')):
-    $posts_total_count = Post::where('category_id',$category_id)->where('publication',1)->where('in_section',1)->count();
-    $posts = Post::where('category_id',$category_id)->where('publication',1)->where('in_section',1)->with('user','photo','tags_ids','views','likes','comments')->take($post_limit)->get();
-    $promoted_posts = Post::where('category_id',$category_id)->where('publication',1)->where('in_section',1)->where('in_promoted',1)->with('user','photo','tags_ids','views','likes','comments')->get();
-    if (isset($tags_lists[$category_id]['category_tags'])):
-        $tags = $tags_lists[$category_id]['category_tags'];
-    endif;
+if ($result = PostPublicController::sectionCategory($page->slug)):
+    extract($result);
 else:
-    App::abort(404);
+    exit(Redirect::route('mainpage'));
 endif;
 ?>
 @extends(Helper::layout())
@@ -59,19 +46,10 @@ endif;
                 <div class="dashboard-tab">
                     <div class="reg-content__left">
                         <ul class="dashboard-list js-posts">
-                            @include(Helper::layout('blocks.posts'),compact('posts','categories'))
+                            @include(Helper::layout('blocks.posts'),compact('posts','categories','post_access'))
                         </ul>
                         @if($posts_total_count > count($posts))
-                        <div class="dashboard-btn-more">
-                            {{ Form::open(array('route'=>'post.public.more','method'=>'post','class'=>'js-more-posts')) }}
-                                {{ Form::hidden('category',@$category_id) }}
-                                {{ Form::hidden('tag',Input::get('tag')) }}
-                                {{ Form::hidden('limit',$post_limit) }}
-                                {{ Form::hidden('from',$post_limit,array('id'=>'js-input-from')) }}
-                                {{ Form::submit('Показать больше '.@$categories[$category_id]['title'],array('class'=>'white-black-btn')) }}
-                                <p class="js-response-text"></p>
-                            {{ Form::close() }}
-                        </div>
+                            @include(Helper::layout('assets.more_post'),array('category_id'=>$category_id,'tag'=>Input::get('tag'),'post_limit'=>$post_limit,'category_title'=>' '.$categories[$category_id]['title']))
                         @endif
                     </div>
                     <div class="reg-content__right">
