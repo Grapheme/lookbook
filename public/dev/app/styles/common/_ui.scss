@@ -128,3 +128,15 @@ h1 {
 .opacity05 {
     opacity: .5;
 }
+
+.category-name {
+    color: $blue;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+
+    a {
+        border: none !important;
+    }
+}
