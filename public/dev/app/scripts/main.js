@@ -422,11 +422,78 @@ LookBook.Auth = function() {
         }
     });
 }
+LookBook.TopSplit = function() {
+    if(!$('.js-top-split').length) return;
+    var items = $('.js-top-split >li'),
+        wrapArray = [],
+        arrayStep = 0,
+        item_on_page = 6;
+    for(var i = 0; i < items.length / item_on_page; i++) {
+        var elemObj = $();
+        var fromIndex = i * item_on_page;
+        for(j = fromIndex; j < fromIndex + item_on_page; j++) {
+            if(items.eq(j).length) {
+                elemObj.push(items.eq(j)[0]);
+            }
+        }
+        wrapArray.push(elemObj);
+    }
+    $.each(wrapArray, function(index, value){
+        value.wrapAll('<ul class="posts-slider js-list-slide clearfix" />');
+    });
+    $('.js-top-split').css('height', $('.js-top-split .posts-slider').first().outerHeight(true));
+}
+LookBook.ListSlider = function() {
+    if(!$('.js-list-slider').length) return;
+    $('.js-list-slider').each(function(){
+        var parent = $(this),
+            item = parent.find('.js-list-slide'),
+            dots_parent = parent.find('.js-list-dots'),
+            classes = ['to-left', 'to-right', 'out-left', 'out-right'];
+        var show = function(id) {
+            var this_item = item.eq(id);
+            parent.find('.js-list-dot').eq(id).addClass('active')
+                .siblings().removeClass('active');
+            item.removeClass(classes.join(' '));
+            this_item.prev().addClass('to-left')
+                .prevAll().addClass('out-left');
+            this_item.next().addClass('to-right')
+                .nextAll().addClass('out-right');
+        }
+        var setEvents = function() {
+            item.on('click', function(){
+                if($(this).hasClass('to-right') || $(this).hasClass('to-left')) {
+                    show($(this).index());
+                    return false;
+                }
+            });
+            parent.find('.js-list-dot').on('click', function(){
+                show($(this).index());
+                return false;
+            });
+        }
+        var init = function() {
+            if(item.length > 1) {
+                item.each(function(){
+                    dots_parent.append('<a href="#" class="nav__dot js-list-dot"></a>');
+                });
+                setTimeout(function(){
+                    item.addClass('with-transition');
+                }, 50);
+            }
+            show(0);
+            setEvents();
+        }
+        init();
+    });
+}
 
 $(function(){
     Help.avaGenerator();
     Help.typicalSubmit();
     LookBook.Dashboard();
+    LookBook.TopSplit();
+    LookBook.ListSlider();
     LookBook.DashForm();
     LookBook.FitText();
     LookBook.Auth();

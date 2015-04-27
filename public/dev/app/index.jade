@@ -8,32 +8,75 @@ block content
     header
         .wrapper
             .container_12
-                .grid_12
-                    ul.posts-slider.clearfix
-                        each i in [1,2,3,4,5,6]
-                            li.slider__item
-                                .item__cont(style="background-image: url(images/tmp/slider-post-#{i}.jpg);")
-                                    .post-card
-                                        .item__date
-                                            a(href="category.html").post-photo__alt Lifestyle
-                                            a(href="post.html") ЯНВ 26, 2015
-                                        .item__title
-                                            a(href="post.html") САПОГИ ОСЕНИ. ТЕНДЕНЦИИ И ЛУКБУКИ
-                                        .item__author
-                                            a(href="post.html") 
-                                                .author__photo
-                                                    .profile-ava.ava-min.ava-empty(data-empty-name="Анна Антропова")
-                                                        img(src="images/tmp/profile-photo_max.jpg")
-                                                        .ava-image__empty
-                                                            span.js-empty-chars
-                                                .author__name Елена Руденко
-                    .posts-slider__nav
-
+                .grid_12.js-list-slider
+                    //-ul.posts-slider.clearfix
+                    .js-top-split.posts-slider-cont
+                        each i in [1,2,3]
+                            each i in [1,2,3,4,5,6,1]
+                                li.slider__item
+                                    .item__cont(style="background-image: url(images/tmp/slider-post-#{i}.jpg);")
+                                        .post-card
+                                            .item__date
+                                                a(href="category.html").post-photo__alt Lifestyle
+                                                a(href="post.html") ЯНВ 26, 2015
+                                            .item__title
+                                                a(href="post.html") САПОГИ ОСЕНИ. ТЕНДЕНЦИИ И ЛУКБУКИ
+                                            .item__author
+                                                a(href="post.html") 
+                                                    .author__photo
+                                                        .profile-ava.ava-min.ava-empty(data-empty-name="Анна Антропова")
+                                                            img(src="images/tmp/profile-photo_max.jpg")
+                                                            .ava-image__empty
+                                                                span.js-empty-chars
+                                                    .author__name Елена Руденко
+                    .posts-slider__nav.js-list-dots
+                        //- each i in [1,2,3]
+                            a(href="#").nav__dot  
                 .clearfix
                 .grid_12.reg-content
                     .dashboard-tab
                         .reg-content__left
                             ul.dashboard-list.js-posts
+                                li.dashboard-item.promo-block.js-post
+                                    .left-block
+                                        .profile-ava.ava-min.ava-empty(data-empty-name="Анна Антропова")
+                                            img(src="images/tmp/profile-photo_max.jpg")
+                                            .ava-image__empty
+                                                span.js-empty-chars
+                                        .profile-name Дурнев Константин
+                                    .right-block
+                                        .right-block__pad
+                                            .post-photo
+                                                img(src="images/tmp/promo_min.jpg" alt="")
+                                            .post-info
+                                                .post-photo__alt.category-name
+                                                    a(href="#") Shopping
+                                                .post-info__title
+                                                    a(href="post.html") Новая коллекция обуви сезон 2014–2015
+                                                .post-info__desc В 1947 году, когда Европа только начала восстанавливаться после пятилетней войны, Кристиан Диор создал силуэт, который навсегда вошел в историю под названием New Look. Этим, без сомнения, главным своим изобретением дизайнер сделал выдающийся вклад в мировую моду. 
+                                            .post-footer
+                                                span.post-footer__date ЯНВ 26, 2015
+                                                span.post-footer__statisctics
+                                                    span.statisctics-item
+                                                        i.svg-icon.icon-eye
+                                                        | 24
+                                                    span.statisctics-item
+                                                        i.svg-icon.icon-like
+                                                        | 56
+                                                    span.statisctics-item
+                                                        i.svg-icon.icon-comments
+                                                        | 36
+                                li.dashboard-item.promo-block-full
+                                    .left-block
+                                    .right-block
+                                        .promo-slider.js-list-slider
+                                            .slider__name Promo
+                                            .slider__items
+                                                each i in [1,2,3]
+                                                    a.js-list-slide.items__slide(href="#" style="background-image: url(../images/tmp/promo_big.jpg);")
+                                            .slider__nav.js-list-dots
+                                                //-each i in [1,2,3]
+                                                    a(href="#").nav__dot.js-list-dot
                                 each i in [1,2,3]
                                     li.dashboard-item.js-post
                                         .left-block
@@ -95,6 +138,7 @@ block content
                                                 img(src="http://dummyimage.com/60x60/000/fff" alt="")
                                             .item__text
                                                 a(href="#") Carlo Pozorlini
+                                                span.text__followers 510
                                 a(href="#").right-content__all-link All blogs
                             .right-title Top brands
                             .right-content
@@ -105,6 +149,7 @@ block content
                                                 img(src="http://dummyimage.com/60x60/000/fff" alt="")
                                             .item__text
                                                 a(href="#") Carlo Pozorlini
+                                                span.text__followers #{i}32
                                 a(href="#").right-content__all-link All brands
                         .clearfix
                 .clearfix

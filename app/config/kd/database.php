@@ -4,7 +4,7 @@ return array(
 	'connections' => array(
 		'mysql' => array(
 			'host'      => 'localhost',
-			'database'  => 'netrika',
+			'database'  => 'lookbook',
 			'username'  => 'root',
 			'password'  => '',
 		),
