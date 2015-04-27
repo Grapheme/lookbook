@@ -109,6 +109,7 @@ class PostBloggerController extends BaseController {
 
     public function create(){
 
+        #Helper::tad(Dic::all());
         $catID = Dictionary::valuesBySlug('categories')->first()->id;
         $post = Post::create(array('user_id'=>Auth::user()->id,'publish_at'=>(new myDateTime())->format('Y-m-d'),'category_id'=>$catID,'title'=>'Новый пост','content'=>'','photo_id'=>0,'photo_title'=>'','gallery_id'=>0,'publication'=>0));
         $gallery = Gallery::create(array('name'=>'Пост - '.$post->id));

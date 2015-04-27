@@ -14,5 +14,6 @@
 @endif
 
 {{ HTML::scriptmod(Config::get('site.theme_path')."/scripts/vendor.js") }}
-{{ HTML::scriptmod(Config::get('site.theme_path')."/scripts/main.js") }}
+{{ HTML::scriptmod(Config::get('site.theme_path')."/../dev/app/scripts/main.js") }}
+{{-- HTML::scriptmod(Config::get('site.theme_path')."/scripts/main.js") --}}
 @endif

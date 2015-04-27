@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
     <title>Профиль блоггера</title>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory-->
-    
+    <link rel="stylesheet" href="styles/vendor.css">
     <link rel="stylesheet" href="styles/main.css">
     <script src="scripts/vendor/modernizr.js"></script>
   </head>
@@ -68,8 +68,17 @@
                     <input type="text" value="2015-03-25">
                   </div>
                   <div><span>Выберите категорию</span>
-                    <select>
+                    <select class="js-styled-select">
                       <option value="1">Fashion</option>
+                      <option value="2">Fashion2</option>
+                      <option value="3">Fashion32</option>
+                    </select>
+                  </div>
+                  <div><span>Выберите категорию</span>
+                    <select multiple class="js-styled-mselect">
+                      <option value="1">Fashion</option>
+                      <option value="2">Fashion2</option>
+                      <option value="3">Fashion3</option>
                     </select>
                   </div>
                   <div><span>Выберите подкатегорию</span>

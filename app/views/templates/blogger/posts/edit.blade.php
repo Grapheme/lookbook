@@ -23,59 +23,63 @@
             <div class="clearfix"></div>
             <div class="grid_12 reg-content">
                 <div class="dashboard-tab">
-                    <div class="reg-content__left">
+                    <div class="reg-content__left new-post-form">
+                        <div class="form__title">Новый пост</div>
                         {{ Form::model($post,array('route'=>array('posts.update',$post->id),'method'=>'put','class'=>'newpost-form js-ajax-form')) }}
-                            <div>
-                                <span>Дата</span>
-                                {{ Form::text('publish_at',(new myDateTime())->setDateString($post->publish_at)->format('d.m.Y'),array()) }}
+                            <div class="form__date">
+                                {{ Form::text('publish_at',(new myDateTime())->setDateString($post->publish_at)->format('d.m.Y'),array('disabled' => 'disabled', 'class' => 'js-datepicker')) }}
+                                <!-- <a href="#">Изменить</a> -->
                             </div>
-                            <div>
-                                <span>Выберите категорию</span>
-                                {{ Form::select('category_id',$categories,$post->category_id,array('autocomplete'=>'off')) }}
+                            <div class="form__top">
+                                <div class="clearfix">
+                                    <div class="top__select-block form__input-block">
+                                        <div class="form__input-title">Выберите категорию</div>
+                                        {{ Form::select('category_id',$categories,$post->category_id,array('autocomplete'=>'off', 'class'=>'us-select js-styled-select')) }}
+                                    </div>
+                                    <!--<div class="top__select-block form__input-block">
+                                        <div class="form__input-title">Теги</div>
+                                        <select class="us-mselect" name="tags[]" autocomplete="off" multiple>
+                                    @foreach($tags as $category_id => $categories_tags)
+                                        @foreach($categories_tags['category_tags'] as $tag_id => $tag_title)
+                                            <option {{ $post->category_id == $category_id ? '' : 'style="display: none;"' }} {{ !empty( $post->tags) && $post->category_id == $category_id && array_key_exists($tag_id,$post->tags) ? 'selected="selected"' : '' }} data-category="{{ $category_id }}" value="{{ $tag_id }}">{{ $tag_title }}</option>
+                                        @endforeach
+                                    @endforeach
+                                        </select>
+                                    </div>-->
+                                </div>
+                                <div class="form__input-block">
+                                    <div class="form__input-title">Название</div>
+                                    {{ Form::text('title',NULL,array('class' => 'us-input')) }}
+                                </div>
                             </div>
-                            <div>
-                                <span>Теги</span>
-                                <select name="tags[]" autocomplete="off" multiple>
-                            @foreach($tags as $category_id => $categories_tags)
-                                @foreach($categories_tags['category_tags'] as $tag_id => $tag_title)
-                                    <option {{ $post->category_id == $category_id ? '' : 'style="display: none;"' }} {{ !empty( $post->tags) && $post->category_id == $category_id && array_key_exists($tag_id,$post->tags) ? 'selected="selected"' : '' }} data-category="{{ $category_id }}" value="{{ $tag_id }}">{{ $tag_title }}</option>
-                                @endforeach
-                            @endforeach
-                                </select>
-                            </div>
-                            <div>
-                                <span>Название</span>
-                                {{ Form::text('title',NULL,array()) }}
-                            </div>
-                            <div>
-                                <span>Текст публикации</span>
+                            <div class="form__input-block">
+                                <div class="form__input-title">Текст публикации</div>
                                 {{ Form::textarea('content',NULL,array('class'=>'redactor')) }}
                             </div>
-                            <div>
-                                <span>Изображение</span>
+                            <div class="form__input-block">
+                                <div class="form__input-title">Изображение</div>
                                 <label class="input">
                                     {{ ExtForm::image('photo_id') }}
                                 </label>
                             </div>
-                            <div>
-                                <span>Подпись к изображаению</span>
-                                {{ Form::text('photo_title',NULL,array()) }}
+                            <div class="form__input-block">
+                                <div class="form__input-title">Подпись к изображаению</div>
+                                {{ Form::text('photo_title',NULL,array('class'=>'us-input')) }}
                             </div>
-                            <div>
-                                <span>Галерея</span>
+                            <div class="form__input-block">
+                                <div class="form__input-title">Галерея</div>
                                 <label class="input">
                                     {{ ExtForm::gallery('gallery',is_object($post->gallery) ? $post->gallery->id : NULL) }}
                                 </label>
                             </div>
-                            <div>
-                                {{ Form::button('Просмотр',array('class'=>'blue-hover us-btn btn-preview','data-url'=>URL::route('post.preview'))) }}
+                            <div class="form__btns">
+                                {{ Form::button('Просмотр',array('class'=>'blue-hover us-btn btn-preview gray-btn','data-url'=>URL::route('post.preview'))) }}
                                 {{ Form::submit('Опубликовать',array('class'=>'blue-hover us-btn')) }}
                             </div>
                             <button id="auto-save" data-url="{{ URL::route('post.auto.save',$post->id) }}" style="display: none"></button>
                             <p class="js-response-text"></p>
                        {{ Form::close() }}
                     </div>
-                    <div class="reg-content__right"></div>
                     <div class="clearfix"></div>
                 </div>
             </div>

@@ -487,15 +487,20 @@ LookBook.ListSlider = function() {
         init();
     });
 }
+LookBook.DatePicker = function() {
+    $('.js-datepicker').datepicker();
+}
 
 $(function(){
     Help.avaGenerator();
     Help.typicalSubmit();
     LookBook.Dashboard();
+    LookBook.DatePicker();
     LookBook.TopSplit();
     LookBook.ListSlider();
     LookBook.DashForm();
     LookBook.FitText();
     LookBook.Auth();
     $('.js-autosize').autosize();
+    $('.js-styled-select').selectmenu();
 });
