@@ -465,7 +465,7 @@ th {
 @font-face {
   font-family: 'bodonic';
   src: url("../fonts/BodoniC-Bold-webfont.eot");
-  src: url("../fonts/BodoniC-Bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/BodoniC-Bold-webfont.woff2") format("woff2"), url("../fonts/BodoniC-Bold-webfont.woff") format("woff"), url("../fonts/BodoniC-Bold-webfont.ttf") format("truetype");
+  src: url("../fonts/BodoniC-Bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/BodoniC-Bold-webfont.woff") format("woff"), url("../fonts/BodoniC-Bold-webfont.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
@@ -473,7 +473,7 @@ th {
 @font-face {
   font-family: 'bodonic';
   src: url("../fonts/BodoniC-BoldItalic-webfont.eot");
-  src: url("../fonts/BodoniC-BoldItalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/BodoniC-BoldItalic-webfont.woff2") format("woff2"), url("../fonts/BodoniC-BoldItalic-webfont.woff") format("woff"), url("../fonts/BodoniC-BoldItalic-webfont.ttf") format("truetype");
+  src: url("../fonts/BodoniC-BoldItalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/BodoniC-BoldItalic-webfont.woff") format("woff"), url("../fonts/BodoniC-BoldItalic-webfont.ttf") format("truetype");
   font-weight: 700;
   font-style: italic;
 }
@@ -481,7 +481,7 @@ th {
 @font-face {
   font-family: 'bodonic';
   src: url("../fonts/BodoniC-Italic-webfont.eot");
-  src: url("../fonts/BodoniC-Italic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/BodoniC-Italic-webfont.woff2") format("woff2"), url("../fonts/BodoniC-Italic-webfont.woff") format("woff"), url("../fonts/BodoniC-Italic-webfont.ttf") format("truetype");
+  src: url("../fonts/BodoniC-Italic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/BodoniC-Italic-webfont.woff") format("woff"), url("../fonts/BodoniC-Italic-webfont.ttf") format("truetype");
   font-weight: normal;
   font-style: italic;
 }
@@ -489,7 +489,7 @@ th {
 @font-face {
   font-family: 'bodonic';
   src: url("../fonts/BodoniC-webfont.eot");
-  src: url("../fonts/BodoniC-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/BodoniC-webfont.woff2") format("woff2"), url("../fonts/BodoniC-webfont.woff") format("woff"), url("../fonts/BodoniC-webfont.ttf") format("truetype");
+  src: url("../fonts/BodoniC-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/BodoniC-webfont.woff") format("woff"), url("../fonts/BodoniC-webfont.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -497,7 +497,7 @@ th {
 @font-face {
   font-family: 'lato';
   src: url("../fonts/Lato-SemiboldItalic-webfont.eot");
-  src: url("../fonts/Lato-SemiboldItalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-SemiboldItalic-webfont.woff2") format("woff2"), url("../fonts/Lato-SemiboldItalic-webfont.woff") format("woff"), url("../fonts/Lato-SemiboldItalic-webfont.ttf") format("truetype");
+  src: url("../fonts/Lato-SemiboldItalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-SemiboldItalic-webfont.woff") format("woff"), url("../fonts/Lato-SemiboldItalic-webfont.ttf") format("truetype");
   font-weight: 600;
   font-style: italic;
 }
@@ -505,7 +505,7 @@ th {
 @font-face {
   font-family: 'lato';
   src: url("../fonts/Lato-Thin-webfont.eot");
-  src: url("../fonts/Lato-Thin-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Thin-webfont.woff2") format("woff2"), url("../fonts/Lato-Thin-webfont.woff") format("woff"), url("../fonts/Lato-Thin-webfont.ttf") format("truetype");
+  src: url("../fonts/Lato-Thin-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Thin-webfont.woff") format("woff"), url("../fonts/Lato-Thin-webfont.ttf") format("truetype");
   font-weight: 200;
   font-style: normal;
 }
@@ -513,7 +513,7 @@ th {
 @font-face {
   font-family: 'lato';
   src: url("../fonts/Lato-ThinItalic-webfont.eot");
-  src: url("../fonts/Lato-ThinItalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-ThinItalic-webfont.woff2") format("woff2"), url("../fonts/Lato-ThinItalic-webfont.woff") format("woff"), url("../fonts/Lato-ThinItalic-webfont.ttf") format("truetype");
+  src: url("../fonts/Lato-ThinItalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-ThinItalic-webfont.woff") format("woff"), url("../fonts/Lato-ThinItalic-webfont.ttf") format("truetype");
   font-weight: 200;
   font-style: italic;
 }
@@ -521,7 +521,7 @@ th {
 @font-face {
   font-family: 'lato';
   src: url("../fonts/Lato-Regular-webfont.eot");
-  src: url("../fonts/Lato-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Regular-webfont.woff2") format("woff2"), url("../fonts/Lato-Regular-webfont.woff") format("woff"), url("../fonts/Lato-Regular-webfont.ttf") format("truetype");
+  src: url("../fonts/Lato-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Regular-webfont.woff") format("woff"), url("../fonts/Lato-Regular-webfont.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -529,7 +529,7 @@ th {
 @font-face {
   font-family: 'lato';
   src: url("../fonts/Lato-Semibold-webfont.eot");
-  src: url("../fonts/Lato-Semibold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Semibold-webfont.woff2") format("woff2"), url("../fonts/Lato-Semibold-webfont.woff") format("woff"), url("../fonts/Lato-Semibold-webfont.ttf") format("truetype");
+  src: url("../fonts/Lato-Semibold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Semibold-webfont.woff") format("woff"), url("../fonts/Lato-Semibold-webfont.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
 }
@@ -537,7 +537,7 @@ th {
 @font-face {
   font-family: 'lato';
   src: url("../fonts/Lato-MediumItalic-webfont.eot");
-  src: url("../fonts/Lato-MediumItalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-MediumItalic-webfont.woff2") format("woff2"), url("../fonts/Lato-MediumItalic-webfont.woff") format("woff"), url("../fonts/Lato-MediumItalic-webfont.ttf") format("truetype");
+  src: url("../fonts/Lato-MediumItalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-MediumItalic-webfont.woff") format("woff"), url("../fonts/Lato-MediumItalic-webfont.ttf") format("truetype");
   font-weight: 500;
   font-style: italic;
 }
@@ -545,7 +545,7 @@ th {
 @font-face {
   font-family: 'lato';
   src: url("../fonts/Lato-Medium-webfont.eot");
-  src: url("../fonts/Lato-Medium-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Medium-webfont.woff2") format("woff2"), url("../fonts/Lato-Medium-webfont.woff") format("woff"), url("../fonts/Lato-Medium-webfont.ttf") format("truetype");
+  src: url("../fonts/Lato-Medium-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Medium-webfont.woff") format("woff"), url("../fonts/Lato-Medium-webfont.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
@@ -553,7 +553,7 @@ th {
 @font-face {
   font-family: 'lato';
   src: url("../fonts/Lato-Light-webfont.eot");
-  src: url("../fonts/Lato-Light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Light-webfont.woff2") format("woff2"), url("../fonts/Lato-Light-webfont.woff") format("woff"), url("../fonts/Lato-Light-webfont.ttf") format("truetype");
+  src: url("../fonts/Lato-Light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Light-webfont.woff") format("woff"), url("../fonts/Lato-Light-webfont.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }
@@ -561,7 +561,7 @@ th {
 @font-face {
   font-family: 'lato';
   src: url("../fonts/Lato-LightItalic-webfont.eot");
-  src: url("../fonts/Lato-LightItalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-LightItalic-webfont.woff2") format("woff2"), url("../fonts/Lato-LightItalic-webfont.woff") format("woff"), url("../fonts/Lato-LightItalic-webfont.ttf") format("truetype");
+  src: url("../fonts/Lato-LightItalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-LightItalic-webfont.woff") format("woff"), url("../fonts/Lato-LightItalic-webfont.ttf") format("truetype");
   font-weight: 300;
   font-style: italic;
 }
@@ -569,7 +569,7 @@ th {
 @font-face {
   font-family: 'lato';
   src: url("../fonts/Lato-Italic-webfont.eot");
-  src: url("../fonts/Lato-Italic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Italic-webfont.woff2") format("woff2"), url("../fonts/Lato-Italic-webfont.woff") format("woff"), url("../fonts/Lato-Italic-webfont.ttf") format("truetype");
+  src: url("../fonts/Lato-Italic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Italic-webfont.woff") format("woff"), url("../fonts/Lato-Italic-webfont.ttf") format("truetype");
   font-weight: normal;
   font-style: italic;
 }
@@ -577,7 +577,7 @@ th {
 @font-face {
   font-family: 'lato';
   src: url("../fonts/Lato-HairlineItalic-webfont.eot");
-  src: url("../fonts/Lato-HairlineItalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-HairlineItalic-webfont.woff2") format("woff2"), url("../fonts/Lato-HairlineItalic-webfont.woff") format("woff"), url("../fonts/Lato-HairlineItalic-webfont.ttf") format("truetype");
+  src: url("../fonts/Lato-HairlineItalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-HairlineItalic-webfont.woff") format("woff"), url("../fonts/Lato-HairlineItalic-webfont.ttf") format("truetype");
   font-weight: 100;
   font-style: italic;
 }
@@ -585,7 +585,7 @@ th {
 @font-face {
   font-family: 'lato';
   src: url("../fonts/Lato-Heavy-webfont.eot");
-  src: url("../fonts/Lato-Heavy-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Heavy-webfont.woff2") format("woff2"), url("../fonts/Lato-Heavy-webfont.woff") format("woff"), url("../fonts/Lato-Heavy-webfont.ttf") format("truetype");
+  src: url("../fonts/Lato-Heavy-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Heavy-webfont.woff") format("woff"), url("../fonts/Lato-Heavy-webfont.ttf") format("truetype");
   font-weight: 800;
   font-style: normal;
 }
@@ -593,7 +593,7 @@ th {
 @font-face {
   font-family: 'lato';
   src: url("../fonts/Lato-HeavyItalic-webfont.eot");
-  src: url("../fonts/Lato-HeavyItalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-HeavyItalic-webfont.woff2") format("woff2"), url("../fonts/Lato-HeavyItalic-webfont.woff") format("woff"), url("../fonts/Lato-HeavyItalic-webfont.ttf") format("truetype");
+  src: url("../fonts/Lato-HeavyItalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-HeavyItalic-webfont.woff") format("woff"), url("../fonts/Lato-HeavyItalic-webfont.ttf") format("truetype");
   font-weight: 800;
   font-style: italic;
 }
@@ -601,7 +601,7 @@ th {
 @font-face {
   font-family: 'lato';
   src: url("../fonts/Lato-Hairline-webfont.eot");
-  src: url("../fonts/Lato-Hairline-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Hairline-webfont.woff2") format("woff2"), url("../fonts/Lato-Hairline-webfont.woff") format("woff"), url("../fonts/Lato-Hairline-webfont.ttf") format("truetype");
+  src: url("../fonts/Lato-Hairline-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Hairline-webfont.woff") format("woff"), url("../fonts/Lato-Hairline-webfont.ttf") format("truetype");
   font-weight: 100;
   font-style: normal;
 }
@@ -609,7 +609,7 @@ th {
 @font-face {
   font-family: 'lato';
   src: url("../fonts/Lato-BoldItalic-webfont.eot");
-  src: url("../fonts/Lato-BoldItalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-BoldItalic-webfont.woff2") format("woff2"), url("../fonts/Lato-BoldItalic-webfont.woff") format("woff"), url("../fonts/Lato-BoldItalic-webfont.ttf") format("truetype");
+  src: url("../fonts/Lato-BoldItalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-BoldItalic-webfont.woff") format("woff"), url("../fonts/Lato-BoldItalic-webfont.ttf") format("truetype");
   font-weight: 700;
   font-style: italic;
 }
@@ -617,7 +617,7 @@ th {
 @font-face {
   font-family: 'lato';
   src: url("../fonts/Lato-Bold-webfont.eot");
-  src: url("../fonts/Lato-Bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Bold-webfont.woff2") format("woff2"), url("../fonts/Lato-Bold-webfont.woff") format("woff"), url("../fonts/Lato-Bold-webfont.ttf") format("truetype");
+  src: url("../fonts/Lato-Bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Bold-webfont.woff") format("woff"), url("../fonts/Lato-Bold-webfont.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
@@ -625,7 +625,7 @@ th {
 @font-face {
   font-family: 'lato';
   src: url("../fonts/Lato-Black-webfont.eot");
-  src: url("../fonts/Lato-Black-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Black-webfont.woff2") format("woff2"), url("../fonts/Lato-Black-webfont.woff") format("woff"), url("../fonts/Lato-Black-webfont.ttf") format("truetype");
+  src: url("../fonts/Lato-Black-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-Black-webfont.woff") format("woff"), url("../fonts/Lato-Black-webfont.ttf") format("truetype");
   font-weight: 900;
   font-style: normal;
 }
@@ -633,7 +633,7 @@ th {
 @font-face {
   font-family: 'lato';
   src: url("../fonts/Lato-BlackItalic-webfont.eot");
-  src: url("../fonts/Lato-BlackItalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-BlackItalic-webfont.woff2") format("woff2"), url("../fonts/Lato-BlackItalic-webfont.woff") format("woff"), url("../fonts/Lato-BlackItalic-webfont.ttf") format("truetype");
+  src: url("../fonts/Lato-BlackItalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/Lato-BlackItalic-webfont.woff") format("woff"), url("../fonts/Lato-BlackItalic-webfont.ttf") format("truetype");
   font-weight: 900;
   font-style: italic;
 }
@@ -2640,14 +2640,24 @@ h1 {
 .one-post .dashboard-item {
   border: none;
 }
+.one-post .dashboard-item .right-block .post-photo {
+  margin-bottom: 20px;
+}
 .one-post .dashboard-item .right-block .post-info {
+  margin-top: 0;
   padding-bottom: 65px;
 }
+.one-post .dashboard-item .right-block .post-info img {
+  max-width: 100%;
+}
 .one-post .dashboard-item .right-block .post-info .post-info__desc {
-  margin-top: 20px;
+  margin-top: 0;
   font-size: 16px;
   color: #444444;
   line-height: 1.6;
+}
+.one-post .dashboard-item .right-block .post-info .post-info__desc p:first-child {
+  margin-top: 0;
 }
 
 .post-comments {

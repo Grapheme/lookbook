@@ -39,14 +39,14 @@
                             </div>
                             <div class="right-block">
                                 <div class="right-block__pad">
-                                    <div class="post-photo photo-hover-parent">
                                     @if($hasImage)
+                                    <div class="post-photo photo-hover-parent">
                                         <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$post->photo->name) }}" alt="{{ $post->title }}">
-                                    @endif
-                                    @if(!empty($post->photo_title))
-                                        <div class="photo-hover"><span>{{ $post->photo_title }}</span></div>
-                                    @endif
+                                        @if(!empty($post->photo_title))
+                                            <div class="photo-hover"><span>{{ $post->photo_title }}</span></div>
+                                        @endif
                                     </div>
+                                    @endif
                                     <div class="post-info">
                                         <div class="post-info__desc">
                                             {{ $post->content }}
@@ -159,7 +159,7 @@
                     <div class="left-title">Посты по теме</div>
                     <div class="full__content">
                         <ul class="posts-list">
-                            <li class="list__item">
+                            <li class="list__item post-card">
                                 <div class="item__cont">
                                     <div class="post-photo"><img src="http://dummyimage.com/385x235/000/fff" alt=""><a
                                                 href="#" class="post-photo__alt">Lifestyle</a></div>
@@ -179,7 +179,7 @@
                                         </a></div>
                                 </div>
                             </li>
-                            <li class="list__item">
+                            <li class="list__item post-card">
                                 <div class="item__cont">
                                     <div class="post-photo"><img src="http://dummyimage.com/385x235/000/fff" alt=""><a
                                                 href="#" class="post-photo__alt">Lifestyle</a></div>
@@ -199,7 +199,7 @@
                                         </a></div>
                                 </div>
                             </li>
-                            <li class="list__item">
+                            <li class="list__item post-card">
                                 <div class="item__cont">
                                     <div class="post-photo"><img src="http://dummyimage.com/385x235/000/fff" alt=""><a
                                                 href="#" class="post-photo__alt">Lifestyle</a></div>

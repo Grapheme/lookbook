@@ -21,8 +21,8 @@
         <div class="info__auth-nav">
             <a href="{{ URL::route("dashboard") }}" {{ Helper::isRoute("dashboard") }} data-tab="dashboard">Дешборд</a>
             <a href="{{ URL::route("profile") }}" {{ Helper::isRoute("profile") }}>профиль</a>
-            <a href="#" data-tab="notifications">Настройка уведомлений</a>
-            <a href="#" data-tab="adv">Реклама</a>
+            <!-- <a href="#" data-tab="notifications">Настройка уведомлений</a> -->
+            <!-- <a href="#" data-tab="adv">Реклама</a> -->
         </div>
     </div>
     <div class="clearfix"></div>

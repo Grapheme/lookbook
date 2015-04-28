@@ -11,6 +11,7 @@
 <meta name="description" content="@yield('description')">
 <meta name="keywords" content="@yield('keywords')">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 {{ HTML::stylemod(Config::get('site.theme_path').'/styles/vendor.css') }}
 {{ HTML::stylemod(Config::get('site.theme_path').'/styles/main.css') }}
 @if(Config::has('noscripts') && Config::get('noscripts'))
