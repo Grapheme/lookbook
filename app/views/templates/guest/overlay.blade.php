@@ -11,33 +11,36 @@
             <a href="#" class="tab__close js-close-popup"><span></span></a>
             <div class="auth__body anim-parent">
                 <h1>Регистрация</h1>
-                <div class="auth__desc">Пожалуйста авторизуйтесь, используя аккаунт в одной из социальных сетей:</div>
-                <div id="uLogin80d54119" data-ulogin="display=buttons;fields=first_name,last_name,email,photo,photo_big;redirect_uri={{ URL::route('signin.ulogin') }}">
-                    <div class="auth__socials"><a href="javascript:void(0);" data-uloginbutton="facebook" class="socials-facebook">Facebook</a><a href="javascript:void(0);" data-uloginbutton="vkontakte" class="socials-vk">Вконтакте</a><a href="javascript:void(0);" data-uloginbutton="odnoklassniki" class="socials-ok">Одноклассники</a></div>
-                </div>
-                <div class="auth_form">
-                    <div class="auth__desc">или с помощью адреса электронной почты</div>
-                    {{ Form::open(array('url'=>URL::route('signup-blogger'),'id'=>'form-reg', 'method'=>'post')) }}
-                    {{ Form::hidden('group_id',Group::where('name','blogger')->pluck('id')) }}
-                    <div class="input-cont">
-                        <input name="email" placeholder="E-mail" class="auth-input">
+                <div class="ajax-message js-final-text"></div>
+                <div class="js-full-reg">
+                    <div class="auth__desc">Пожалуйста авторизуйтесь, используя аккаунт в одной из социальных сетей:</div>
+                    <div id="uLogin80d54119" data-ulogin="display=buttons;fields=first_name,last_name,email,photo,photo_big;redirect_uri={{ URL::route('signin.ulogin') }}">
+                        <div class="auth__socials"><a href="javascript:void(0);" data-uloginbutton="facebook" class="socials-facebook">Facebook</a><a href="javascript:void(0);" data-uloginbutton="vkontakte" class="socials-vk">Вконтакте</a><a href="javascript:void(0);" data-uloginbutton="odnoklassniki" class="socials-ok">Одноклассники</a></div>
                     </div>
-                    <div class="input-cont">
-                        <input name="password" placeholder="Пароль" type="password" class="auth-input">
+                    <div class="auth_form">
+                        <div class="auth__desc">или с помощью адреса электронной почты</div>
+                        {{ Form::open(array('url'=>URL::route('signup-blogger'),'id'=>'form-reg','class'=>'js-reg-form','method'=>'post')) }}
+                        {{ Form::hidden('group_id',Group::where('name','blogger')->pluck('id')) }}
+                        <div class="input-cont">
+                            <input name="email" placeholder="E-mail" class="auth-input">
+                        </div>
+                        <div class="input-cont">
+                            <input name="password" placeholder="Пароль" type="password" class="auth-input">
+                        </div>
+                        <div class="input-cont">
+                            <input name="password_verify" placeholder="Подтверждение пароля" type="password"
+                                   class="auth-input">
+                        </div>
+                        <div class="input-cont">
+                            <input name="name" placeholder="Ваше имя" class="auth-input">
+                        </div>
+                        <div class="input-btn">
+                            <button type="submit" class="us-btn">Зарегистрироваться</button>
+                            <div class="ajax-message js-response-text"></div>
+                        </div>
+                        {{ Form::close() }}
+                        <div class="auth__toreg">Уже зарегистрировались? <a href="#auth">Войти на сайт</a></div>
                     </div>
-                    <div class="input-cont">
-                        <input name="password_verify" placeholder="Подтверждение пароля" type="password"
-                               class="auth-input">
-                    </div>
-                    <div class="input-cont">
-                        <input name="name" placeholder="Ваше имя" class="auth-input">
-                    </div>
-                    <div class="input-btn">
-                        <button type="submit" class="us-btn">Зарегистрироваться</button>
-                        <div class="ajax-message js-response-text"></div>
-                    </div>
-                    {{ Form::close() }}
-                    <div class="auth__toreg">Уже зарегистрировались? <a href="#auth">Войти на сайт</a></div>
                 </div>
             </div>
         </div>

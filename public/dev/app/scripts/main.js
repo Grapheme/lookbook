@@ -38,11 +38,14 @@ Help.ajaxSubmit = function(form) {
             if(data.status && data.redirect && data.redirect != '') {
                 window.location.href = data.redirect;
             }
-            if(data.responseText) {
-                response_cont.show().text(data.responseText);
-            }
             $(form).find('[type="submit"]').removeClass('loading')
                 .removeAttr('disabled');
+            if($(form).hasClass('js-reg-form')) {
+                $('.js-full-reg').slideUp();
+                $('.js-final-text').html(data.responseText);
+            } else if(data.responseText) {
+                response_cont.show().html(data.responseText);
+            }
         },
         error: function(data) {
             response_cont.show().text('Ошибка на сервере, попробуйте позже');
