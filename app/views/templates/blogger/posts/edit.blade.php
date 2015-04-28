@@ -26,8 +26,10 @@
                     <div class="reg-content__left new-post-form">
                         <div class="form__title">Новый пост</div>
                         {{ Form::model($post,array('route'=>array('posts.update',$post->id),'method'=>'put','class'=>'newpost-form js-ajax-form')) }}
+                            {{ Form::hidden('publish_at',(new myDateTime())->setDateString($post->publish_at)->format('d.m.Y'),array()) }}
                             <div class="form__date">
-                                {{ Form::text('publish_at',(new myDateTime())->setDateString($post->publish_at)->format('d.m.Y'),array('disabled' => 'disabled', 'class' => 'js-datepicker')) }}
+                                {{-- Form::text('publish_at',(new myDateTime())->setDateString($post->publish_at)->format('d.m.Y'),array('disabled' => 'disabled', 'class' => 'js-datepicker')) --}}
+                                <p>{{(new myDateTime())->setDateString($post->publish_at)->format('d.m.Y')}}</p>
                                 <!-- <a href="#">Изменить</a> -->
                             </div>
                             <div class="form__top">
