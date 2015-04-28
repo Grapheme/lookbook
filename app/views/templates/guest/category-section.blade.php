@@ -29,17 +29,22 @@ endif;
                     </div>
                 @endif
                 </div>
-            @if(count($promoted_posts))
-                <ul class="posts-slider clearfix">
-                @foreach($promoted_posts as $promoted_post)
-                    <li class="slider__item">
-                        @include(Helper::layout('assets.promoted'),array('promoted_post'=>$promoted_post,'categories'=>$categories))
-                    </li>
-                @endforeach
-                </ul>
-            @endif
-                <div class="posts-slider__nav"></div>
             </div>
+            <div class="clearfix"></div>
+            @if(count($promoted_posts))
+            <div class="grid_12 js-list-slider">
+                <div class="js-top-split posts-slider-cont">
+                    <!-- <ul class="posts-slider"> -->
+                    @foreach($promoted_posts as $promoted_post)
+                        <li class="slider__item">
+                            @include(Helper::layout('assets.promoted'),array('promoted_post'=>$promoted_post,'categories'=>$categories))
+                        </li>
+                    @endforeach
+                    <!-- </ul> -->
+                </div>
+                <div class="posts-slider__nav js-list-dots"></div>
+            </div>
+            @endif
             <div class="clearfix"></div>
             @if(count($posts))
             <div class="grid_12 reg-content">

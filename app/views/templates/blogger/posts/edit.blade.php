@@ -36,7 +36,8 @@
                                         <div class="form__input-title">Выберите категорию</div>
                                         {{ Form::select('category_id',$categories,$post->category_id,array('autocomplete'=>'off', 'class'=>'us-select js-styled-select')) }}
                                     </div>
-                                    <!--<div class="top__select-block form__input-block">
+                                    <!-- <input type="hidden" name="tags[]"> -->
+                                    <div class="top__select-block form__input-block">
                                         <div class="form__input-title">Теги</div>
                                         <select class="us-mselect" name="tags[]" autocomplete="off" multiple>
                                     @foreach($tags as $category_id => $categories_tags)
@@ -45,7 +46,7 @@
                                         @endforeach
                                     @endforeach
                                         </select>
-                                    </div>-->
+                                    </div>
                                 </div>
                                 <div class="form__input-block">
                                     <div class="form__input-title">Название</div>

@@ -1777,6 +1777,7 @@ h1 {
   font-weight: 500;
   word-wrap: break-word;
   width: 140%;
+  color: #333;
 }
 .dashboard-list .dashboard-item .right-block {
   padding-left: 98px;

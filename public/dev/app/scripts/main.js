@@ -480,6 +480,8 @@ LookBook.ListSlider = function() {
                 setTimeout(function(){
                     item.addClass('with-transition');
                 }, 50);
+            } else {
+                dots_parent.remove();
             }
             show(0);
             setEvents();
