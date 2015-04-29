@@ -99,14 +99,31 @@
         border: none;
 
         .right-block {
+            .post-photo {
+                margin-bottom: 20px;
+            }
+            
             .post-info {
+                margin-top: 0;
                 padding-bottom: 65px;
 
+                img {
+                    max-width: 100%;
+                }
+
                 .post-info__desc {
-                    margin-top: 20px;
+                    margin-top: 0;
                     font-size: 16px;
                     color: rgb(68, 68, 68);
                     line-height: 1.6;
+
+                    p:first-child {
+                        margin-top: 0;
+                    }
+                }
+
+                .post-info__gallery {
+
                 }
             }
         }
