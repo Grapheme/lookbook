@@ -22,7 +22,7 @@
             <a href="{{ URL::route("dashboard") }}" {{ Helper::isRoute("dashboard") }} data-tab="dashboard">Дешборд</a>
             <a href="{{ URL::route("moderator.posts") }}" {{ Helper::isRoute("moderator.posts") }} data-tab="posts">Посты</a>
             <a href="{{ URL::route("moderator.accounts") }}" {{ Helper::isRoute("moderator.accounts") }} data-tab="accounts">Пользователи</a>
-            <a href="{{ URL::route("profile") }}" {{ Helper::isRoute("profile") }}>профиль</a>
+            <!--<a href="{{ URL::route("profile") }}" {{ Helper::isRoute("profile") }}>профиль</a>-->
         </div>
     </div>
     <div class="clearfix"></div>
