@@ -54,7 +54,7 @@ class PostPublicController extends BaseController {
 
     public static function sectionCategory($page_slug){
 
-        $post_limit = 1;
+        $post_limit = Config::get('lookbook.posts_limit');;
         $post_access = FALSE;
         $posts_total_count = 0;
         list($categories_lists,$tags_lists) = PostBloggerController::getCategoriesAndTags();
