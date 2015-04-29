@@ -3,7 +3,7 @@
  * TEMPLATE_IS_NOT_SETTABLE
  */
 
-$post_limit = 1;
+$post_limit = Config::get('lookbook.posts_limit');
 $post_access = TRUE;
 $publication = 'all';
 $posts_total_count = Post::where('user_id',Auth::user()->id)->count();
