@@ -124,7 +124,7 @@ class AccountsModeratorController extends BaseController {
     /****************************************************************************/
     public function postsList(){
         $posts = Post::where('publication',1)->orderBy('publication','DESC')->orderBy('publish_at','DESC')->orderBy('id','DESC')
-            ->with('user','photo','tags_ids','views','likes','comments')->paginate(30);
+            ->with('user','photo','tags_ids','views','likes','comments')->paginate(Config::get('lookbook.posts_limit'));
         list($categories,$tags) = PostBloggerController::getCategoriesAndTags();
         return View::make(Helper::acclayout('posts'),compact('posts','categories','tags'));
     }
@@ -143,7 +143,7 @@ class AccountsModeratorController extends BaseController {
     /****************************************************************************/
     public function accountsList(){
 
-        $accounts = User::where('group_id',4)->orderBy('created_at','DESC')->with('posts')->paginate(30);
+        $accounts = Accounts::where('group_id',4)->orderBy('created_at','DESC')->with('posts')->paginate(Config::get('lookbook.accounts_limit'));
         return View::make(Helper::acclayout('accounts'),compact('accounts'));
     }
 
