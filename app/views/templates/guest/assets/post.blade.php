@@ -26,6 +26,7 @@ endif;
     <div class="post-info__desc">{{ str_limit($post['content'], $limit = 500, $end = ' ...') }}</div>
 </div>
 <div class="post-footer">
+    @if($post['publication'])
     <span class="post-footer__date">{{ (new myDateTime())->setDateString($post['publish_at'].' 00:00:00')->custom_format('M d, Y') }}</span>
     <span class="post-footer__statisctics">
         <span class="statisctics-item">
@@ -38,4 +39,7 @@ endif;
             <i class="svg-icon icon-comments"></i>{{ count(@$post['comments']) }}
         </span>
     </span>
+    @else
+        <span class="post-footer__date">Черновик</span>
+    @endif
 </div>
