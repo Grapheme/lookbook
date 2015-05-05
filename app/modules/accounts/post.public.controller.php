@@ -52,13 +52,26 @@ class PostPublicController extends BaseController {
     /****************************************************************************/
     /****************************************************************************/
 
+    public static function indexPage(){
+
+        $post_limit = Config::get('lookbook.posts_limit');
+        $categories = $tags = array();
+        foreach(Dic::where('slug','categories')->first()->values as $category):
+            $categories[$category->id] = array('slug'=>$category->slug,'title'=>$category->name);
+        endforeach;
+        $posts_total_count = Post::where('in_index',1)->where('publication',1)->count();
+        $posts = Post::where('in_index',1)->where('publication',1)->with('user','photo','tags_ids','views','likes','comments')->take($post_limit)->get();
+        $promoted_posts = Post::where('in_index',1)->where('publication',1)->where('in_promoted',1)->with('user','photo','tags_ids','views','likes','comments')->get();
+        return array(
+            'post_limit' => $post_limit, 'post_access' => FALSE, 'posts_total_count' => $posts_total_count,
+            'tags' => $tags, 'posts' => $posts, 'promoted_posts' => $promoted_posts, 'categories' => $categories
+        );
+    }
+
     public static function sectionCategory($page_slug){
 
-        $post_limit = Config::get('lookbook.posts_limit');;
-        $post_access = FALSE;
-        $posts_total_count = 0;
-        list($categories_lists,$tags_lists) = PostBloggerController::getCategoriesAndTags();
-        $posts = $tags = $promoted_posts = $categories = $top_posts = $top_brands = $top_bloggers = array();
+        $post_limit = Config::get('lookbook.posts_limit');
+        $tags = $categories = array();
         foreach(Dic::where('slug','categories')->first()->values as $category):
             $categories[$category->id] = array('slug'=>$category->slug,'title'=>$category->name);
         endforeach;
@@ -70,10 +83,9 @@ class PostPublicController extends BaseController {
                 $tags = $tags_lists[$category_id]['category_tags'];
             endif;
             return array(
-                'post_limit' => $post_limit,'post_access' => $post_access,'posts_total_count' => $posts_total_count,
+                'post_limit' => $post_limit,'post_access' => FALSE,'posts_total_count' => $posts_total_count,
                 'tags' => $tags,'posts' => $posts,'promoted_posts' => $promoted_posts,'category_id'=>$category_id,
-                'categories' => $categories,'top_posts' => $top_posts,
-                'top_brands' => $top_brands,'top_bloggers' => $top_bloggers,
+                'categories' => $categories
             );
         else:
             return FALSE;

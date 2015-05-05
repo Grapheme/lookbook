@@ -34,13 +34,11 @@ endif;
             @if(count($promoted_posts))
             <div class="grid_12 js-list-slider">
                 <div class="js-top-split posts-slider-cont">
-                    <!-- <ul class="posts-slider"> -->
-                    @foreach($promoted_posts as $promoted_post)
-                        <li class="slider__item">
-                            @include(Helper::layout('assets.promoted'),array('promoted_post'=>$promoted_post,'categories'=>$categories))
-                        </li>
-                    @endforeach
-                    <!-- </ul> -->
+                @foreach($promoted_posts as $promoted_post)
+                    <li class="slider__item">
+                        @include(Helper::layout('assets.promoted'),array('promoted_post'=>$promoted_post,'categories'=>$categories))
+                    </li>
+                @endforeach
                 </div>
                 <div class="posts-slider__nav js-list-dots"></div>
             </div>
@@ -58,44 +56,9 @@ endif;
                         @endif
                     </div>
                     <div class="reg-content__right">
-                    @if(count($top_posts))
-                        <div class="right-title">TOP POSTS</div>
-                        <div class="right-content">
-                            <ul class="right-content__list list-big">
-                            @foreach($top_posts as $top_post)
-                                <li class="list__item">
-                                    @include(Helper::layout('assets.top_post'),array('top_post'=>$top_post,'categories'=>$categories))
-                                </li>
-                            @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    @if(count($top_bloggers))
-                        <div class="right-title">Top bloggers</div>
-                        <div class="right-content">
-                            <ul class="right-content__list">
-                            @foreach($top_bloggers as $top_blogger)
-                                <li class="list__item">
-                                    @include(Helper::layout('assets.avatar'),array('user'=>$top_blogger))
-                                </li>
-                            @endforeach
-                            </ul>
-                            <a href="javascript:void(0);" class="right-content__all-link">All blogs</a>
-                        </div>
-                    @endif
-                    @if(count($top_brands))
-                        <div class="right-title">Top brands</div>
-                        <div class="right-content">
-                            <ul class="right-content__list">
-                            @foreach($top_brands as $top_brand)
-                                <li class="list__item">
-                                    @include(Helper::layout('assets.avatar'),array('user'=>$top_brand))
-                                </li>
-                            @endforeach
-                            </ul>
-                            <a href="javascript:void(0);" class="right-content__all-link">All brands</a>
-                        </div>
-                    @endif
+                        @include(Helper::layout('blocks.top_posts'),compact('categories'))
+                        @include(Helper::layout('blocks.top_bloggers'),compact('categories'))
+                        @include(Helper::layout('blocks.top_brands'),compact('categories'))
                     </div>
                     <div class="clearfix"></div>
                 </div>
