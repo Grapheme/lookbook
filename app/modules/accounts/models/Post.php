@@ -15,6 +15,10 @@ class Post extends BaseModel{
         return $this->hasOne('Photo', 'id', 'photo_id');
     }
 
+    public function promoted_photo() {
+        return $this->hasOne('Photo', 'id', 'promoted_photo_id');
+    }
+
     public function gallery() {
         return $this->hasOne('Gallery', 'id', 'gallery_id');
     }

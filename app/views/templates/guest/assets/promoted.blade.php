@@ -3,9 +3,9 @@ if (is_object($promoted_post)):
     $promoted_post = $promoted_post->toArray();
 endif;
 $hasImage = FALSE; $background = '';
-if(FALSE):
+if(!empty($promoted_post['promoted_photo']) && File::exists(Config::get('site.galleries_photo_dir').'/'.$promoted_post['promoted_photo']['name'])):
     $hasImage = TRUE;
-    $background = '';
+    $background = asset(Config::get('site.galleries_photo_public_dir').'/'.$promoted_post['promoted_photo']['name']);
 elseif(!empty($promoted_post['photo']) && File::exists(Config::get('site.galleries_photo_dir').'/'.$promoted_post['photo']['name'])):
     $hasImage = TRUE;
     $background = asset(Config::get('site.galleries_photo_public_dir').'/'.$promoted_post['photo']['name']);

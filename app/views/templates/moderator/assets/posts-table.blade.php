@@ -20,11 +20,13 @@
             <td>{{ (new myDateTime())->setDateString($post->publish_at)->format('d.m.Y') }}</td>
             <td>{{ $post->updated_at->format('d.m.Y H:i') }}</td>
             <td>
-                {{ Form::model($post,array('route'=>array('moderator.posts.publication',$post->id),'method'=>'post','class'=>'inline-block')) }}
+                {{ Form::model($post,array('route'=>array('moderator.posts.publication',$post->id),'method'=>'post','class'=>'inline-block','files'=>TRUE)) }}
                     {{ Form::checkbox('publication') }} Опубликован <br>
                     {{ Form::checkbox('in_index') }} Опубликовать на главную <br>
                     {{ Form::checkbox('in_section') }} Опубликовать в разделе <br>
                     {{ Form::checkbox('in_promoted') }} Продвигаемый пост <br>
+                    Изображение поста: <br>
+                    {{ Form::file('photo') }}
                     {{ Form::submit('Сохранить',array('class'=>'white-btn')) }}
                 {{ Form::close() }}
             </td>

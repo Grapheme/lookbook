@@ -61,7 +61,7 @@ class PostPublicController extends BaseController {
         endforeach;
         $posts_total_count = Post::where('in_index',1)->where('publication',1)->count();
         $posts = Post::where('in_index',1)->where('publication',1)->with('user','photo','tags_ids','views','likes','comments')->take($post_limit)->get();
-        $promoted_posts = Post::where('in_index',1)->where('publication',1)->where('in_promoted',1)->with('user','photo','tags_ids','views','likes','comments')->get();
+        $promoted_posts = Post::where('in_index',1)->where('publication',1)->where('in_promoted',1)->with('user','photo','promoted_photo','tags_ids','views','likes','comments')->get();
         return array(
             'post_limit' => $post_limit, 'post_access' => FALSE, 'posts_total_count' => $posts_total_count,
             'tags' => $tags, 'posts' => $posts, 'promoted_posts' => $promoted_posts, 'categories' => $categories
@@ -78,7 +78,7 @@ class PostPublicController extends BaseController {
         if ($category_id = Dic::where('slug','categories')->first()->value()->where('slug',$page_slug)->pluck('id')):
             $posts_total_count = Post::where('category_id',$category_id)->where('publication',1)->where('in_section',1)->count();
             $posts = Post::where('category_id',$category_id)->where('publication',1)->where('in_section',1)->with('user','photo','tags_ids','views','likes','comments')->take($post_limit)->get();
-            $promoted_posts = Post::where('category_id',$category_id)->where('publication',1)->where('in_section',1)->where('in_promoted',1)->with('user','photo','tags_ids','views','likes','comments')->get();
+            $promoted_posts = Post::where('category_id',$category_id)->where('publication',1)->where('in_section',1)->where('in_promoted',1)->with('user','photo','promoted_photo','tags_ids','views','likes','comments')->get();
             if (isset($tags_lists[$category_id]['category_tags'])):
                 $tags = $tags_lists[$category_id]['category_tags'];
             endif;

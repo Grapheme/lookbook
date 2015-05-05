@@ -135,6 +135,10 @@ class AccountsModeratorController extends BaseController {
             $post->in_index = Input::has('in_index') ? 1 : 0;
             $post->in_section = Input::has('in_section') ? 1 : 0;
             $post->in_promoted = Input::has('in_promoted') ? 1 : 0;
+            if (Input::file('photo')):
+                AdminUploadsController::deleteUploadedImageFile($post->promoted_photo_id);
+                $post->promoted_photo_id = AdminUploadsController::getUploadedImageFile('photo');
+            endif;
             $post->save();
             return Redirect::back()->with('message',Lang::get('interface.DEFAULT.success_save'));
         endif;

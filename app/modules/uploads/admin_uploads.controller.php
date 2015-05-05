@@ -363,7 +363,6 @@ class AdminUploadsController extends BaseController {
 
     public static function getUploadedImageManipulationFile($input = 'file'){
 
-        $uploadPath = Config::get('site.uploads_user_dir').'/';
         if(Input::hasFile($input)):
             $fileName = time()."_".Auth::user()->id."_".rand(1000, 1999).'.'.Input::file($input)->getClientOriginalExtension();
             if(!File::exists(public_path(Config::get('site.uploads_thumb_user_dir')))):
@@ -374,6 +373,30 @@ class AdminUploadsController extends BaseController {
             return array('main'=>Config::get('site.uploads_image_user_dir').'/'.$fileName,'thumb'=>Config::get('site.uploads_thumb_user_dir').'/thumb_'.$fileName);
         endif;
         return FALSE;
+    }
+    public static function getUploadedImageFile($input = 'file'){
+
+        if (Input::hasFile($input)):
+            $fileName = time() . "_" . rand(10000000, 19999999) . '.' . Input::file($input)->getClientOriginalExtension();
+            Input::file($input)->move(Config::get('site.galleries_photo_dir'), $fileName);
+            $photo = Photo::create(array('name' => $fileName, 'gallery_id' => 0));
+            return $photo->id;
+        endif;
+        return FALSE;
+    }
+
+    public static function deleteUploadedImageFile ($image_id){
+
+        if ($image_id):
+            $photo = Photo::where('id',$image_id)->first();
+            if (File::exists(Config::get('site.galleries_photo_dir').'/'.$photo->name)):
+                File::delete(Config::get('site.galleries_photo_dir').'/'.$photo->name);
+            endif;
+            $photo->delete();
+            return TRUE;
+        else:
+            return FALSE;
+        endif;
     }
 }
 
