@@ -29,7 +29,6 @@ endif;
             </div>
         @endif
             <div class="clearfix"></div>
-        @if(count($posts) || count($promo_blocks))
             <div class="grid_12 reg-content">
                 <div class="dashboard-tab">
                     <div class="reg-content__left">
@@ -51,7 +50,6 @@ endif;
                 </div>
             </div>
             <div class="clearfix"></div>
-        @endif
         </div>
     </div>
 </header>
