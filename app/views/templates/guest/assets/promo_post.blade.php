@@ -23,7 +23,7 @@ endif;
             {{ $post['title'] }}
         </a>
     </div>
-    <div class="post-info__desc">{{ str_limit($post['content'], $limit = 500, $end = ' ...') }}</div>
+    <div class="post-info__desc">{{ str_limit(strip_tags($post['content']), $limit = 500, $end = ' ...') }}</div>
 </div>
 <div class="post-footer">
 @if($post['publication'])
