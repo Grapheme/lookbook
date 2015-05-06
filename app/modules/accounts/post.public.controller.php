@@ -170,7 +170,7 @@ class PostPublicController extends BaseController {
     private function incrementViewPost($post){
 
         if (Auth::check()):
-            if (in_array(Auth::user()->grou_id,array(3,4)) && Auth::user()->id != $post->user_id):
+            if (in_array(Auth::user()->group_id,array(3,4)) !== FALSE && Auth::user()->id != $post->user_id):
                 if (PostViews::where('post_id',$post->id)->where('user_id',Auth::user()->id)->exists() === FALSE):
                     PostViews::create(array('post_id'=>$post->id,'user_id'=>Auth::user()->id));
                     return TRUE;
