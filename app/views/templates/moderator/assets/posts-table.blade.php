@@ -30,6 +30,11 @@
                     {{ Form::submit('Сохранить',array('class'=>'white-btn')) }}
                 {{ Form::close() }}
             </td>
+            <td>
+                {{ Form::model($post,array('route'=>array('moderator.posts.delete',$post->id),'method'=>'delete','class'=>'inline-block')) }}
+                    {{ Form::submit('Удалить',array('class'=>'white-btn')) }}
+                {{ Form::close() }}
+            </td>
         </tr>
     @endforeach
     </tbody>

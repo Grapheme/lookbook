@@ -16,6 +16,8 @@ class AccountsModeratorController extends BaseController {
             Route::group(array('before' => 'auth.status.moderator', 'prefix' => self::$name), function() use ($class) {
                 Route::get('posts',array('as'=>'moderator.posts','uses'=>$class.'@postsList'));
                 Route::post('posts/{post_id}/publication',array('before'=>'csrf', 'as'=>'moderator.posts.publication','uses'=>$class.'@postPublication'));
+                Route::delete('posts/{post_id}/delete', array('before'=>'csrf', 'as' => 'moderator.posts.delete', 'uses' => $class.'@postDelete'));
+
                 Route::get('accounts',array('as'=>'moderator.accounts','uses'=>$class.'@accountsList'));
                 Route::post('accounts/{account_id}/save',array('as'=>'moderator.accounts.save','uses'=>$class.'@accountSave'));
 
@@ -122,6 +124,38 @@ class AccountsModeratorController extends BaseController {
             return Redirect::back()->with('message',Lang::get('interface.DEFAULT.success_save'));
         endif;
         return Redirect::back()->with('message',Lang::get('interface.DEFAULT.fail'));
+    }
+
+    public function postDelete($post_id){
+
+        if($gallery = Post::where('id',$post_id)->first()->gallery):
+            $photos =  $gallery->photos;
+            foreach($gallery->photos as $photo):
+                if (!empty($photo->name) && File::exists(Config::get('site.galleries_photo_dir').'/'.$photo->name)):
+                    File::delete(Config::get('site.galleries_photo_dir').'/'.$photo->name);
+                endif;
+                if (!empty($photo->name) && File::exists(Config::get('site.galleries_thumb_dir').'/'.$photo->name)):
+                    File::delete(Config::get('site.galleries_thumb_dir').'/'.$photo->name);
+                endif;
+                $photo->delete();
+            endforeach;
+            $gallery->delete();
+        endif;
+        if($photo = Post::where('id',$post_id)->first()->photo):
+            if (!empty($photo->name) && File::exists(Config::get('site.galleries_photo_dir').'/'.$photo->name)):
+                File::delete(Config::get('site.galleries_photo_dir').'/'.$photo->name);
+            endif;
+            if (!empty($photo->name) && File::exists(Config::get('site.galleries_thumb_dir').'/'.$photo->name)):
+                File::delete(Config::get('site.galleries_thumb_dir').'/'.$photo->name);
+            endif;
+            $photo->delete();
+        endif;
+        Post::where('id',$post_id)->first()->views()->delete();
+        Post::where('id',$post_id)->first()->likes()->delete();
+        Post::where('id',$post_id)->first()->comments()->delete();
+        Post::where('id',$post_id)->first()->tags_ids()->delete();
+        Post::where('id',$post_id)->delete();
+        return Redirect::back()->with('message',Lang::get('interface.DEFAULT.success_save'));
     }
     /****************************************************************************/
     public function accountsList(){
