@@ -56,9 +56,9 @@ endif;
                         @endif
                     </div>
                     <div class="reg-content__right">
-                        @include(Helper::layout('blocks.top_posts'),compact('categories'))
-                        @include(Helper::layout('blocks.top_bloggers'),compact('categories'))
-                        @include(Helper::layout('blocks.top_brands'),compact('categories'))
+                        @include(Helper::layout('blocks.top_category_posts'),array('categories'=>$categories,'category_id'=>$category_id,'category_name'=>$categories[$category_id]['title']))
+                        @include(Helper::layout('blocks.top_category_bloggers'),array('categories'=>$categories,'category_id'=>$category_id,'category_name'=>$categories[$category_id]['title']))
+                        @include(Helper::layout('blocks.top_category_brands'),array('categories'=>$categories,'category_id'=>$category_id,'category_name'=>$categories[$category_id]['title']))
                     </div>
                     <div class="clearfix"></div>
                 </div>

@@ -111,6 +111,7 @@ class PostPublicController extends BaseController {
                     $post->tags = PostBloggerController::getTags(array(),$tagsIDs,$tags,$post->category_id);
                 endif;
             endif;
+            self::incrementViewPost($post);
             return View::make(Helper::layout('post'),compact('post','categories','tags'));
         else:
             App::abort(404);
@@ -164,5 +165,18 @@ class PostPublicController extends BaseController {
             return Redirect::back();
         endif;
         return Response::json($json_request,200);
+    }
+
+    private function incrementViewPost($post){
+
+        if (Auth::check()):
+            if (in_array(Auth::user()->grou_id,array(3,4)) && Auth::user()->id != $post->user_id):
+                if (PostViews::where('post_id',$post->id)->where('user_id',Auth::user()->id)->exists() === FALSE):
+                    PostViews::create(array('post_id'=>$post->id,'user_id'=>Auth::user()->id));
+                    return TRUE;
+                endif;
+            endif;
+        endif;
+        return FALSE;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 $users_top_posts = PostViews::select(DB::raw('posts.user_id as post_user_id,COUNT(posts_views.post_id) as users_views'))
         ->join('posts', 'posts_views.post_id', '=', 'posts.id')
+        ->where('posts.category_id',$category_id)
         ->groupBy('posts.user_id')->orderBy('users_views','DESC')
         ->lists('users_views','post_user_id');
 $top_bloggers = array();
@@ -21,7 +22,7 @@ if ($users_top_posts):
 endif;
 ?>
 @if(count($top_bloggers))
-    <div class="right-title">Top BLOGGERS</div>
+    <div class="right-title">Top BLOGGERS OF {{ $category_name }}</div>
     <div class="right-content">
         <ul class="right-content__list">
             @foreach($top_bloggers as $top_blogger)

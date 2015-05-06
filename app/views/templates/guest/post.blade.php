@@ -88,71 +88,7 @@
                     </ul>
                 </div>
                 <div class="reg-content__right">
-                    <div class="right-title">TOP POSTS OF CARLO PAZOLINI</div>
-                    <div class="right-content">
-                        <ul class="right-content__list list-big">
-                            <li class="list__item"><a href="#" class="item__photo"><img
-                                            src="http://dummyimage.com/120x120/000/fff" alt=""></a>
-
-                                <div class="item__text">
-                                    <div class="text__subject"><a href="#">Lifestyle</a></div>
-                                    <div class="text__title"><a href="#">Почему американский сэндвичный хлеб хранится в
-                                            20 раз дольше, чем российский?</a></div>
-                                    <div class="text__author"><a href="#">Antony Granichniy</a></div>
-                                    <div class="text__views"><i class="svg-icon icon-eye"></i>3987</div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </li>
-                            <li class="list__item"><a href="#" class="item__photo"><img
-                                            src="http://dummyimage.com/120x120/000/fff" alt=""></a>
-
-                                <div class="item__text">
-                                    <div class="text__subject"><a href="#">Lifestyle</a></div>
-                                    <div class="text__title"><a href="#">Почему американский сэндвичный хлеб хранится в
-                                            20 раз дольше, чем российский?</a></div>
-                                    <div class="text__author"><a href="#">Antony Granichniy</a></div>
-                                    <div class="text__views"><i class="svg-icon icon-eye"></i>3987</div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </li>
-                            <li class="list__item"><a href="#" class="item__photo"><img
-                                            src="http://dummyimage.com/120x120/000/fff" alt=""></a>
-
-                                <div class="item__text">
-                                    <div class="text__subject"><a href="#">Lifestyle</a></div>
-                                    <div class="text__title"><a href="#">Почему американский сэндвичный хлеб хранится в
-                                            20 раз дольше, чем российский?</a></div>
-                                    <div class="text__author"><a href="#">Antony Granichniy</a></div>
-                                    <div class="text__views"><i class="svg-icon icon-eye"></i>3987</div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </li>
-                            <li class="list__item"><a href="#" class="item__photo"><img
-                                            src="http://dummyimage.com/120x120/000/fff" alt=""></a>
-
-                                <div class="item__text">
-                                    <div class="text__subject"><a href="#">Lifestyle</a></div>
-                                    <div class="text__title"><a href="#">Почему американский сэндвичный хлеб хранится в
-                                            20 раз дольше, чем российский?</a></div>
-                                    <div class="text__author"><a href="#">Antony Granichniy</a></div>
-                                    <div class="text__views"><i class="svg-icon icon-eye"></i>3987</div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </li>
-                            <li class="list__item"><a href="#" class="item__photo"><img
-                                            src="http://dummyimage.com/120x120/000/fff" alt=""></a>
-
-                                <div class="item__text">
-                                    <div class="text__subject"><a href="#">Lifestyle</a></div>
-                                    <div class="text__title"><a href="#">Почему американский сэндвичный хлеб хранится в
-                                            20 раз дольше, чем российский?</a></div>
-                                    <div class="text__author"><a href="#">Antony Granichniy</a></div>
-                                    <div class="text__views"><i class="svg-icon icon-eye"></i>3987</div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </li>
-                        </ul>
-                    </div>
+                    @include(Helper::layout('blocks.top_user_posts'),array('user_id'=>$post->user_id,'user_name'=>$post->user->name))
                 </div>
                 <div class="clearfix"></div>
                 <div class="req-content__full">

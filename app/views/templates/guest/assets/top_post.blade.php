@@ -25,7 +25,7 @@ endif;
         <a href="javascript:void(0)">{{ $top_post['user']['name'] }}</a>
     </div>
     <div class="text__views">
-        <i class="svg-icon icon-eye"></i>{{ $top_post['views'] }}
+        <i class="svg-icon icon-eye"></i>{{ count($top_post['views']) }}
     </div>
 </div>
 <div class="clearfix"></div>
