@@ -29,46 +29,6 @@
                                         {{ Form::text('name',Input::old('name'),array('class'=>'dashboard-input')) }}
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="form-table__name"><span>Дата рождения</span></td>
-                                    <td class="form-table__value js-form-value">
-                                        <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
-                                        <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                                        {{ Form::text('birth',Input::old('birth'),array('class'=>'dashboard-input')) }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="form-table__name"><span>Местонахождение</span></td>
-                                    <td class="form-table__value js-form-value">
-                                        <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
-                                        <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                                        {{ Form::text('location',Input::old('location'),array('class'=>'dashboard-input')) }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="form-table__name"><span>Мои блоги на сторонних ресурсах</span></td>
-                                    <td class="form-table__value js-form-value">
-                                        <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
-                                        <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                                        {{ Form::text('links',Input::old('links'),array('class'=>'dashboard-input')) }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="form-table__name"><span>Мой сайт</span></td>
-                                    <td class="form-table__value js-form-value">
-                                        <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
-                                        <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                                        {{ Form::text('site',Input::old('site'),array('class'=>'dashboard-input')) }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="form-table__name"><span>Источники вдохновения</span></td>
-                                    <td class="form-table__value js-form-value">
-                                        <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
-                                        <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                                        {{ Form::text('inspiration',Input::old('inspiration'),array('class'=>'dashboard-input')) }}
-                                    </td>
-                                </tr>
                             </table>
                             <div class="left-title">Для связи со мной</div>
                             <table class="dashboard__form-table">
@@ -86,32 +46,6 @@
                                         <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
                                         <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
                                         {{ Form::text('phone',Input::old('phone'),array('class'=>'dashboard-input')) }}
-                                    </td>
-                                </tr>
-                            </table>
-                            <div class="left-title">О блоге</div>
-                            <table class="dashboard__form-table">
-                                <tr>
-                                    <td class="form-table__name"><span>Название блога</span></td>
-                                    <td class="form-table__value js-form-value">
-                                        <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
-                                        <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                                        {{ Form::text('blogname',Input::old('blogname'),array('class'=>'dashboard-input')) }}
-                                    </td>
-                                </tr>
-                                @if($profile->brand)
-                                <tr>
-                                    <td class="form-table__name"><span>Имеджевая картинка для блога</span></td>
-                                    <td class="form-table__value form-table__file js-form-file">
-                                        <a href="#" class="input-file-value"><span>Выбрать</span></a>
-                                        {{ Form::file('picture',array('class'=>'dashboard-input-file')) }}
-                                    </td>
-                                </tr>
-                                @endif
-                                <tr>
-                                    <td class="form-table__name"><span>Текст о себе или о блоге</span></td>
-                                    <td class="form-table__value form-table__texarea-cont">
-                                        {{ Form::textarea('about',Input::old('about'),array('class'=>'dashboard-textarea js-autosize')) }}
                                     </td>
                                 </tr>
                                 <tr class="form-table__btns">
@@ -186,39 +120,6 @@
                                     <div id="ava-error-server" class="ava-error"></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="right-title">Статистика</div>
-                        <div class="right-content">
-                            <table class="stat-table">
-                                <tr>
-                                    <td>Рейтинг</td>
-                                    <td>132 место из 2356</td>
-                                </tr>
-                                <tr>
-                                    <td>Записей в блоге</td>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td>Комментариев опубликовано</td>
-                                    <td>42</td>
-                                </tr>
-                                <tr>
-                                    <td>Количество подписчиков</td>
-                                    <td>10444</td>
-                                </tr>
-                                <tr>
-                                    <td>Количество посетителей в день</td>
-                                    <td>31233</td>
-                                </tr>
-                                <tr>
-                                    <td>Количество посетителей с февраля</td>
-                                    <td>233</td>
-                                </tr>
-                                <tr>
-                                    <td>Количество посетителей в год</td>
-                                    <td>1232032</td>
-                                </tr>
-                            </table>
                         </div>
                     </div>
                     <div class="clearfix"></div>

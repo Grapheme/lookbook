@@ -14,13 +14,16 @@ class AccountsModeratorController extends BaseController {
 
         if (Auth::check() && Auth::user()->group_id == 3):
             Route::group(array('before' => 'auth.status.moderator', 'prefix' => self::$name), function() use ($class) {
-                Route::get('profile', array('as' => 'profile', 'uses' => $class . '@profile'));
-                Route::put('profile', array('before'=>'csrf', 'as' => 'profile.update', 'uses' => $class . '@profileUpdate'));
-                Route::put('profile/password', array('before'=>'csrf', 'as' => 'profile.password.update', 'uses' => $class . '@profilePasswordUpdate'));
                 Route::get('posts',array('as'=>'moderator.posts','uses'=>$class.'@postsList'));
                 Route::post('posts/{post_id}/publication',array('before'=>'csrf', 'as'=>'moderator.posts.publication','uses'=>$class.'@postPublication'));
                 Route::get('accounts',array('as'=>'moderator.accounts','uses'=>$class.'@accountsList'));
                 Route::post('accounts/{account_id}/save',array('as'=>'moderator.accounts.save','uses'=>$class.'@accountSave'));
+
+                Route::get('profile', array('as' => 'profile', 'uses' => $class . '@profile'));
+                Route::put('profile', array('before'=>'csrf', 'as' => 'profile.update', 'uses' => $class . '@profileUpdate'));
+                Route::put('profile/password', array('before'=>'csrf', 'as' => 'profile.password.update', 'uses' => 'AccountsBloggerController@profilePasswordUpdate'));
+                Route::post('profile/avatar/upload', array('before'=>'csrf', 'as' => 'profile.avatar.upload', 'uses' => 'AccountsBloggerController@profileAvatarUpdate'));
+                Route::delete('profile/avatar/delete', array('before'=>'csrf', 'as' => 'profile.avatar.delete', 'uses' => 'AccountsBloggerController@profileAvatarDelete'));
             });
         endif;
     }
@@ -61,19 +64,14 @@ class AccountsModeratorController extends BaseController {
     /****************************************************************************/
     public function profile(){
 
-        $page_data = array(
-            'page_title'=> Lang::get('seo.BLOGGER.title'),
-            'page_description'=> Lang::get('seo.BLOGGER.description'),
-            'page_keywords'=> Lang::get('seo.BLOGGER.keywords'),
-            'profile' => User::where('id',Auth::user()->id)->first()
-        );
         if (Auth::user()->first_login):
             $user = Auth::user();
             $user->first_login = FALSE;
             $user->save();
             $user->touch();
         endif;
-        return View::make(Helper::acclayout('profile'),$page_data);
+        $profile = User::where('id',Auth::user()->id)->first();
+        return View::make(Helper::acclayout('profile'),compact('profile'));
     }
 
     public function profileUpdate(){
@@ -86,33 +84,14 @@ class AccountsModeratorController extends BaseController {
                 return Response::json($json_request,200);
             endif;
             if($validator->passes()):
-                if(self::accountUpdate(Input::all())):
-                    $json_request['responseText'] = Lang::get('interface.DEFAULT.success_save');
-                    $json_request['status'] = TRUE;
-                else:
-                    $json_request['responseText'] = Lang::get('interface.DEFAULT.fail');
-                endif;
-            else:
-                $json_request['responseText'] = $validator->messages()->all();
-            endif;
-        else:
-            return Redirect::back();
-        endif;
-        return Response::json($json_request,200);
-    }
-
-    public function profilePasswordUpdate(){
-
-        $json_request = array('status'=>FALSE,'responseText'=>'','redirect'=>FALSE);
-        if(Request::ajax()):
-            $validator = Validator::make(Input::all(),array('password'=>'required|min:6|confirmed','password_confirmation'=>'required|min:6'));
-            if($validator->passes()):
-                if(self::accountPasswordUpdate(Input::get('password'))):
-                    $json_request['responseText'] = Lang::get('interface.DEFAULT.success_change');
-                    $json_request['status'] = TRUE;
-                else:
-                    $json_request['responseText'] = Lang::get('interface.DEFAULT.fail');
-                endif;
+                $user = Auth::user();
+                $user->name = Input::get('name');
+                $user->email = Input::get('email');
+                $user->phone = Input::get('phone');
+                $user->save();
+                $user->touch();
+                $json_request['responseText'] = Lang::get('interface.DEFAULT.success_save');
+                $json_request['status'] = TRUE;
             else:
                 $json_request['responseText'] = $validator->messages()->all();
             endif;

@@ -6,4 +6,9 @@ return array(
         'description' => '',
         'keywords' => ''
     ),
+    'BRAND' => array(
+        'title' => 'Личный кабинет',
+        'description' => '',
+        'keywords' => ''
+    )
 );
