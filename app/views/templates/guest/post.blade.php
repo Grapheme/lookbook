@@ -91,73 +91,7 @@
                     @include(Helper::layout('blocks.top_user_posts'),array('user_id'=>$post->user_id,'user_name'=>$post->user->name))
                 </div>
                 <div class="clearfix"></div>
-                <div class="req-content__full">
-                    <div class="left-title">Посты по теме</div>
-                    <div class="full__content">
-                        <ul class="posts-list">
-                            <li class="list__item post-card">
-                                <div class="item__cont">
-                                    <div class="post-photo"><img src="http://dummyimage.com/385x235/000/fff" alt=""><a
-                                                href="#" class="post-photo__alt">Lifestyle</a></div>
-                                    <div class="item__date"><a href="#">ЯНВ 26, 2015</a></div>
-                                    <div class="item__title"><a href="#">САПОГИ ОСЕНИ. ТЕНДЕНЦИИ И ЛУКБУКИ</a></div>
-                                    <div class="item__author"><a href="#">
-                                            <div class="author__photo">
-                                                <div data-empty-name="Анна Антропова"
-                                                     class="profile-ava ava-min ava-empty"><img
-                                                            src="images/tmp/profile-photo_max.jpg">
-
-                                                    <div class="ava-image__empty"><span class="js-empty-chars"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="author__name">Елена Руденко</div>
-                                        </a></div>
-                                </div>
-                            </li>
-                            <li class="list__item post-card">
-                                <div class="item__cont">
-                                    <div class="post-photo"><img src="http://dummyimage.com/385x235/000/fff" alt=""><a
-                                                href="#" class="post-photo__alt">Lifestyle</a></div>
-                                    <div class="item__date"><a href="#">ЯНВ 26, 2015</a></div>
-                                    <div class="item__title"><a href="#">САПОГИ ОСЕНИ. ТЕНДЕНЦИИ И ЛУКБУКИ</a></div>
-                                    <div class="item__author"><a href="#">
-                                            <div class="author__photo">
-                                                <div data-empty-name="Анна Антропова"
-                                                     class="profile-ava ava-min ava-empty"><img
-                                                            src="images/tmp/profile-photo_max.jpg">
-
-                                                    <div class="ava-image__empty"><span class="js-empty-chars"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="author__name">Елена Руденко</div>
-                                        </a></div>
-                                </div>
-                            </li>
-                            <li class="list__item post-card">
-                                <div class="item__cont">
-                                    <div class="post-photo"><img src="http://dummyimage.com/385x235/000/fff" alt=""><a
-                                                href="#" class="post-photo__alt">Lifestyle</a></div>
-                                    <div class="item__date"><a href="#">ЯНВ 26, 2015</a></div>
-                                    <div class="item__title"><a href="#">САПОГИ ОСЕНИ. ТЕНДЕНЦИИ И ЛУКБУКИ</a></div>
-                                    <div class="item__author"><a href="#">
-                                            <div class="author__photo">
-                                                <div data-empty-name="Анна Антропова"
-                                                     class="profile-ava ava-min ava-empty"><img
-                                                            src="images/tmp/profile-photo_max.jpg">
-
-                                                    <div class="ava-image__empty"><span class="js-empty-chars"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="author__name">Елена Руденко</div>
-                                        </a></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                @include(Helper::layout('blocks.posts_extend'),compact('post'))
             </div>
             <div class="clearfix"></div>
         </div>

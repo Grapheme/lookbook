@@ -5,7 +5,7 @@ $users_top_posts = PostViews::select(DB::raw('posts.user_id as post_user_id,COUN
         ->lists('users_views','post_user_id');
 $top_brands = array();
 if ($users_top_posts):
-    $top_bloggers_ids = array();
+    $top_brands_ids = array();
     foreach(User::whereIn('id',array_keys($users_top_posts))->where('active',1)->where('brand',1)->take(Config::get('lookbook.count_top_bloggers'))->get() as $brend):
         $top_brands[$brend->id] = $brend;
         $top_brands_ids[] = $brend->id;
