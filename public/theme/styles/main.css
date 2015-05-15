@@ -691,6 +691,10 @@ th {
   content: "\e607";
 }
 
+.icon-liked:before {
+  content: "\e60d";
+}
+
 .icon-facebook:before {
   content: "\e608";
 }
@@ -1279,29 +1283,29 @@ h1 {
   height: 60px;
   line-height: 60px;
 }
-.right-content__list .list__item .item__photo {
+.right-content__list .list__item .item__photo, .right-content__list .list__item .author__photo {
   display: inline-block;
   vertical-align: middle;
   width: 60px;
   height: 60px;
   float: left;
 }
-.right-content__list .list__item .item__photo img {
+.right-content__list .list__item .item__photo img, .right-content__list .list__item .author__photo img {
   max-width: 100%;
 }
-.right-content__list .list__item .item__text {
+.right-content__list .list__item .item__text, .right-content__list .list__item .profile-name {
   padding-left: 80px;
   font-size: 12px;
   text-transform: uppercase;
 }
-.right-content__list .list__item .item__text a, .right-content__list .list__item .item__text span {
+.right-content__list .list__item .item__text a, .right-content__list .list__item .item__text span, .right-content__list .list__item .profile-name a, .right-content__list .list__item .profile-name span {
   display: inline-block;
   vertical-align: middle;
   text-decoration: none;
   color: inherit;
   border: none;
 }
-.right-content__list .list__item .item__text .text__followers {
+.right-content__list .list__item .item__text .text__followers, .right-content__list .list__item .profile-name .text__followers {
   float: right;
   font-size: 14px;
 }
@@ -1395,6 +1399,10 @@ h1 {
 }
 .nav__dot.active {
   background: #4abdff;
+}
+
+.js-like {
+  cursor: pointer;
 }
 
 .header {

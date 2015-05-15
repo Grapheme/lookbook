@@ -495,6 +495,27 @@ LookBook.ListSlider = function() {
 LookBook.DatePicker = function() {
     $('.js-datepicker').datepicker();
 }
+LookBook.Like = function() {
+    var sendLike = function(elem) {
+        var action = elem.attr('data-action');
+        $.ajax({
+            url: action,
+            type: 'post',
+            dataType: 'json'
+        }).done(function(data){
+            console.log(data);
+        }).fail(function(data){
+            console.log(data);
+        });
+    }
+    var init = function() {
+        $(document).on('click', '.js-like', function(){
+            sendLike($(this));
+            return false;
+        });
+    }
+    init();
+}
 
 $(function(){
     Help.avaGenerator();
@@ -506,6 +527,7 @@ $(function(){
     LookBook.DashForm();
     LookBook.FitText();
     LookBook.Auth();
+    LookBook.Like();
     $('.js-autosize').autosize();
     $('.js-styled-select').selectmenu();
 });

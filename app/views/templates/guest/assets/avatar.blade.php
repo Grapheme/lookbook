@@ -7,14 +7,12 @@ if(!empty($user['photo']) && File::exists(public_path($user['photo']))):
     $hasAvatar = TRUE;
 endif;
 ?>
-<a href="javascript:void(0);">
-    <div class="author__photo">
-        <div data-empty-name="{{ $user['name'] }}" class="profile-ava ava-min{{ !$hasAvatar ? ' ava-empty ' : '' }}">
-            @if($hasAvatar)
-                <img src="{{ asset($user['photo']) }}">
-            @endif
-            <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
-        </div>
+<div class="author__photo">
+    <div data-empty-name="{{ $user['name'] }}" class="profile-ava ava-min{{ !$hasAvatar ? ' ava-empty ' : '' }}">
+        @if($hasAvatar)
+            <img src="{{ asset($user['photo']) }}">
+        @endif
+        <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
     </div>
-    <div class="profile-name">{{ $user['name'] }}</div>
-</a>
+</div>
+<div class="profile-name">{{ $user['name'] }}</div>

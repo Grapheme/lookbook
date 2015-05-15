@@ -82,7 +82,7 @@
         height: 60px;
         line-height: 60px;
 
-        .item__photo {
+        .item__photo, .author__photo {
             display: inline-block;
             vertical-align: middle;
             width: 60px;
@@ -94,7 +94,7 @@
             }
         }
 
-        .item__text {
+        .item__text, .profile-name {
             padding-left: 80px;
             font-size: 12px;
             text-transform: uppercase;
@@ -222,4 +222,8 @@
     &.active {
         background: #4abdff;
     }
+}
+
+.js-like {
+    cursor: pointer;
 }

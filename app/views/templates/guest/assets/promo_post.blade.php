@@ -30,7 +30,7 @@ endif;
     <span class="post-footer__date">{{ (new myDateTime())->setDateString($post['publish_at'].' 00:00:00')->custom_format('M d, Y') }}</span>
     <span class="post-footer__statisctics">
         <span class="statisctics-item"><i class="svg-icon icon-eye"></i>{{ count(@$post['views']) }}</span>
-        <span class="statisctics-item"><i class="svg-icon icon-like"></i>{{ count(@$post['likes']) }}</span>
+        <span class="statisctics-item js-like"><i class="svg-icon icon-like"></i><span class="js-like-count">{{ count(@$post['likes']) }}</span></span>
         <span class="statisctics-item"><i class="svg-icon icon-comments"></i>{{ count(@$post['comments']) }}</span>
     </span>
 @else
