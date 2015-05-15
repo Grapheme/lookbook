@@ -1251,12 +1251,23 @@ h1 {
   border-bottom: 1px solid #dddddd;
 }
 
+.left-content {
+  padding: 23px 27px 23px 0;
+}
+.left-content img {
+  max-width: 100%;
+}
+.left-content .right-content__list .list__item {
+  float: left;
+  width: 50%;
+}
+
 .right-content {
   position: relative;
   padding: 23px 15px 23px 27px;
   line-height: 1.6;
 }
-.right-content:last-child {
+.right-content:last-child, .right-content.bottom-border {
   border-bottom: 1px solid #dddddd;
 }
 .right-content .right-content__all-link {
@@ -1272,6 +1283,32 @@ h1 {
 .right-content .right-content__all-link:hover {
   border-color: #4bbeff;
 }
+.right-content .content__us-title {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+}
+.right-content .content__us-text {
+  font-size: 14px;
+}
+.right-content .content__us-block {
+  margin-top: 25px;
+}
+.right-content .content__us-block .block__links {
+  list-style: none;
+  padding: 0;
+  margin: 7px 0 0;
+}
+.right-content .content__us-table {
+  font-size: 14px;
+  margin-top: 10px;
+}
+.right-content .content__us-table tr {
+  height: 43px;
+}
+.right-content .content__us-table tr td {
+  padding-right: 25px;
+}
 
 .right-content__list {
   margin: 0;
@@ -1279,9 +1316,13 @@ h1 {
   list-style: none;
 }
 .right-content__list .list__item {
+  position: relative;
   margin-bottom: 15px;
   height: 60px;
   line-height: 60px;
+}
+.right-content__list .list__item > a {
+  color: inherit;
 }
 .right-content__list .list__item .item__photo, .right-content__list .list__item .author__photo {
   display: inline-block;
@@ -1294,6 +1335,7 @@ h1 {
   max-width: 100%;
 }
 .right-content__list .list__item .item__text, .right-content__list .list__item .profile-name {
+  display: block;
   padding-left: 80px;
   font-size: 12px;
   text-transform: uppercase;
@@ -1302,6 +1344,7 @@ h1 {
   display: inline-block;
   vertical-align: middle;
   text-decoration: none;
+  line-height: normal;
   color: inherit;
   border: none;
 }
@@ -1352,6 +1395,14 @@ h1 {
   color: #4bbeff;
   margin-right: 5px;
 }
+.right-content__list.top-bloggers .profile-name {
+  padding-right: 50px;
+}
+.right-content__list.top-bloggers .text__followers {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
 
 .req-content__full {
   border-top: 1px solid #dddddd;
@@ -1401,8 +1452,11 @@ h1 {
   background: #4abdff;
 }
 
-.js-like {
-  cursor: pointer;
+.us-icon {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 35px;
+  color: #4bbeff;
 }
 
 .header {
@@ -2019,6 +2073,7 @@ h1 {
 .profile-ava.ava-min {
   width: 60px;
   height: 60px;
+  display: inline-block;
 }
 .profile-ava.ava-min .ava-image__empty {
   font-size: 1.5em;
@@ -2204,6 +2259,44 @@ h1 {
 .user-header .header__info .info__auth-nav a.active {
   font-weight: 900;
   color: #4bbeff;
+}
+.user-header .header__best-top {
+  position: absolute;
+  right: 0;
+  top: -10px;
+  width: 100px;
+  height: 100px;
+  background-image: url(../images/ui/top-blogger.png);
+  background-size: 100% auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.user-header.user-page-header .header__photo {
+  width: 160px;
+  height: 160px;
+}
+.user-header.user-page-header .header__info {
+  position: relative;
+  overflow: visibile;
+  height: 160px;
+}
+.user-header.user-page-header .header__info .info__name {
+  margin-top: -.8em;
+}
+.user-header.user-page-header .header__info .info__quote {
+  text-transform: uppercase;
+  font-weight: 300;
+}
+.user-header.user-page-header .header__info .info__nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.user-header.user-page-header .header__info .info__nav a {
+  margin-right: 20px;
+}
+.user-header.user-page-header .header__info .info__nav a:last-child {
+  margin-right: 0;
 }
 
 .dashboard-empty {

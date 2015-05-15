@@ -46,12 +46,27 @@
     border-bottom: 1px solid $borderColor;
 }
 
+.left-content {
+    padding: $dashTopPad $dashLeftPad $dashTopPad 0;
+
+    img {
+        max-width: 100%;
+    }
+
+    .right-content__list {
+        .list__item {
+            float: left;
+            width: 50%;
+        }
+    }
+}
+
 .right-content {
     position: relative;
     padding: $dashTopPad 15px $dashTopPad $dashLeftPad;
     line-height: 1.6;
 
-    &:last-child {
+    &:last-child, &.bottom-border {
         border-bottom: 1px solid $borderColor;
     }
 
@@ -70,6 +85,39 @@
             border-color: $blue;
         }
     }
+
+    .content__us-title {
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .content__us-text {
+        font-size: 14px;
+    }
+
+    .content__us-block {
+        margin-top: 25px;
+
+        .block__links {
+            list-style: none;
+            padding: 0;
+            margin: 7px 0 0;
+        }
+    }
+
+    .content__us-table {
+        font-size: 14px;
+        margin-top: 10px;
+
+        tr {
+            height: 43px;
+
+            td {
+                padding-right: 25px;
+            }
+        }
+    }
 }
 
 .right-content__list {
@@ -78,9 +126,14 @@
     list-style: none;
 
     .list__item {
+        position: relative;
         margin-bottom: 15px;
         height: 60px;
         line-height: 60px;
+
+        & > a {
+            color: inherit;
+        }
 
         .item__photo, .author__photo {
             display: inline-block;
@@ -95,6 +148,7 @@
         }
 
         .item__text, .profile-name {
+            display: block;
             padding-left: 80px;
             font-size: 12px;
             text-transform: uppercase;
@@ -103,6 +157,7 @@
                 display: inline-block;
                 vertical-align: middle;
                 text-decoration: none;
+                line-height: normal;
                 color: inherit;
                 border: none;
             }
@@ -167,6 +222,20 @@
             }
         }
     }
+
+    &.top-bloggers {
+        .profile-name {
+            //padding-left: 20px;
+            //float: left;
+            padding-right: 50px;
+        }
+
+        .text__followers {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    }
 }
 
 .req-content__full {
@@ -224,6 +293,11 @@
     }
 }
 
-.js-like {
-    cursor: pointer;
+.us-icon {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 35px;
+    color: #4bbeff;
 }
+
+// .js-like { cursor: pointer; }

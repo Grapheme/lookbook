@@ -28,9 +28,7 @@ endif;
             @foreach($top_bloggers as $top_blogger)
                 <li class="list__item">
                     @include(Helper::layout('assets.avatar'),array('user'=>$top_blogger))
-                    <div class="item__text">
-                        <span class="text__followers">{{ isset($users_top_posts[$top_blogger->id]) ? $users_top_posts[$top_blogger->id] : '' }}</span>
-                    </div>
+                    <span class="text__followers">{{ isset($users_top_posts[$top_blogger->id]) ? $users_top_posts[$top_blogger->id] : '' }}</span>
                 </li>
             @endforeach
         </ul>

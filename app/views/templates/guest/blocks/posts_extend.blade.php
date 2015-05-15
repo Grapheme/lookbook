@@ -42,7 +42,9 @@ endforeach;
                             {{ $post_ext->title }}
                         </a>
                     </div>
-                    @include(Helper::layout('assets.avatar'),array('user'=>$post_ext->user))
+                    <div class="item__author">
+                        @include(Helper::layout('assets.avatar'),array('user'=>$post_ext->user))
+                    </div>
                 </div>
             </li>
             @endforeach

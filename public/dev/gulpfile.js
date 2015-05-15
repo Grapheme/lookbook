@@ -21,8 +21,8 @@ var onLive = function() {
         precision: 10
       }))
       .pipe($.autoprefixer({browsers: ['last 5 version']}))
-      .pipe(gulp.dest('../theme/styles'))
-      .pipe(gulp.dest('./tmp'));
+      .pipe(gulp.dest('.tmp/styles'))
+      .pipe(gulp.dest('../theme/styles'));
   });
 
   gulp.task('html', ['views', 'styles'], function () {

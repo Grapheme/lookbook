@@ -1,0 +1,93 @@
+extends layout
+
+block vars
+  - var title = 'Профиль блоггера'
+  - var auth = true
+  - var profile_active = 'profile_auth_main_empty.html'
+
+block content
+    header
+        .wrapper
+            .container_12
+                .grid_12
+                    include includes/profile_header
+                .clearfix
+                .grid_12.reg-content
+                    .dashboard-tab
+                        .reg-content__left
+                            .left-content
+                                p 
+                                    img(src="images/tmp/blog-image.jpg")
+                                p Немного о моих проектах и работе.
+                                p Начнем с работы:
+                                p Моя компания является эксклюзивным дистрибьютером велосипедов Пежо в России. Со следующего года будут другие бренды. Возим и продаем велосипеды.
+                                p Уже много лет существует компания iCube Creative Group. Год назад я ее оставил, так что наблюдают сейчас издалека. Она занимается компьютерной графикой и анимацией. Если вам нужно что-то нарисовать на компьютере - пишите ;)
+                                p R&D Group - плагины и модели для 3D Max. Разрабатываем в России, а вот продаем в основном буржуям. Несмотря на то, что наш продукт уникальный и практически не имеет альтернативы, на Россию приходится меньше 1% всех продаж. Наши ждут, когда появится ломаная версия на торрентах ;)
+                                p Сейчас большую часть своего времени я уделяю работе над Городскими проектами. Скоро планируем запустить коммерческую часть.
+                            .left-title Интересный блоги
+                            .left-content
+                                ul.right-content__list
+                                    li.list__item
+                                        a(href="#")
+                                            span.author__photo
+                                                span.profile-ava.ava-min.ava-empty(data-empty-name='Сережа Мишуков')
+                                                    span.ava-image__empty
+                                                        span.js-empty-chars СМ
+                                            span.profile-name Сережа Мишуков
+                                    li.list__item
+                                        a(href="#")
+                                            span.author__photo
+                                                span.profile-ava.ava-min.ava-empty(data-empty-name='Сережа Мишуков')
+                                                    span.ava-image__empty
+                                                        span.js-empty-chars СМ
+                                            span.profile-name Сережа Мишуков
+                                .clearfix
+                        .reg-content__right
+                            .right-content.bottom-border
+                                .content__us-text Блог зарегистрирован 26 июня 2014 года
+                                .content__us-text
+                                    i.svg-icon.icon-eye.us-icon
+                                    | 2
+                            .right-content.bottom-border
+                                .content__us-title О себе
+                                table.content__us-table
+                                    tr
+                                        td Дата рождения
+                                        td 24 января 1987
+                                    tr
+                                        td Местонахождение
+                                        td Ростов-на-Дону
+                            .right-content.bottom-border
+                                .content__us-title Для связи со мной
+                                .content__us-block
+                                    .content__us-text Электронная почта
+                                    ul.block__links
+                                        li
+                                            a(href="#").us-link dima@gmail.com
+                                .content__us-block
+                                    .content__us-text Мои блоги на сторонних ресурсах
+                                    ul.block__links
+                                        li
+                                            a(href="#").us-link dima@gmail.com
+                                        li
+                                            a(href="#").us-link facebook.com/id1232
+                                .content__us-block
+                                    .content__us-text Мой сайт
+                                    ul.block__links
+                                        li
+                                            a(href="#").us-link dima@gmail.com
+                            .right-content.bottom-border
+                                .content__us-title Вдохновение
+                                .content__us-block
+                                    .content__us-text Блоги, которые я постоянно читаю
+                                    ul.block__links
+                                        li
+                                            a(href="#").us-link dima.gmail.com
+                                .content__us-block
+                                    .content__us-text Источники вдохновения
+                                    ul.block__links
+                                        li
+                                            a(href="#").us-link dima.gmail.com
+                        .clearfix
+                .clearfix
+
