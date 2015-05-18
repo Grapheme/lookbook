@@ -48,6 +48,7 @@
 
 .left-content {
     padding: $dashTopPad $dashLeftPad $dashTopPad 0;
+    line-height: 1.6;
 
     img {
         max-width: 100%;
@@ -298,6 +299,38 @@
     vertical-align: middle;
     font-size: 35px;
     color: #4bbeff;
+}
+
+.right-btn-cont {
+    padding: 12.5px 0;
+
+    .white-black-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.left-content-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .list__item {
+        box-sizing: border-box;
+        float: left;
+        width: 50%;
+        padding-right: 20px;
+        margin-top: 40px;
+
+        .item__title {
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .item__text {
+            margin-top: 5px;
+        }
+    }
 }
 
 // .js-like { cursor: pointer; }

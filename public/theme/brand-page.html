@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>Профиль блоггера</title>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory-->
+    <link rel="stylesheet" href="styles/vendor.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/vendor/modernizr.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__top">
+        <div class="wrapper">
+          <div class="container_12">
+            <div class="grid_12">
+              <nav class="header__nav">
+                <ul>
+                  <li><a href="#">О проекте</a></li>
+                  <li><a href="#">Связаться с нами</a></li>
+                </ul>
+              </nav>
+              <div class="header__login"><a href="profile_auth_dashboard.html" class="header__user"><i class="svg-icon icon-uniE609"></i><span>Анна Антропова</span></a></div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper">
+        <div class="container_12">
+          <div class="grid_12">
+            <div class="header__bottom"><a href="#" class="bottom__search"></a><a href="#" class="bottom__logo"></a>
+              <nav class="bottom__nav"><a href="#">Fashion</a><a href="#">Beauty</a><a href="#">Lifestyle</a></nav>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </header>
+    <header>
+      <div class="wrapper">
+        <div class="container_12">
+          <div class="grid_12">
+            <div style="background-image: url('images/tmp/brand-image.jpg')" class="brand-header">
+              <div class="header__content">
+                <div class="content__logo"><img src="images/tmp/brand-logo.jpg"></div>
+                <div class="content__title"><span>Carlo Pazolini</span></div>
+                <div class="content__desc"><span>Fine shoes and accessories</span></div>
+              </div>
+              <div class="header__best-top"></div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="grid_12 reg-content">
+            <div class="dashboard-tab">
+              <div class="reg-content__left">
+                <div class="left-content">
+                  <p>Carlo Pazolini, a leading global fashion Footwear and Accessories brand, was founded in 1990 by Ilya Reznik as a small family business and is registered as a trademark in Italy.  Today Carlo Pazolini is a large international corporation with 272 stores worldwide, including flagship locations in Milan (opened in October 2010) and New York (opened in December 2011). Carlo Pazolini Fine Shoes & Accessories embodies a passion for the modern Italian lifestyle expressed through sophisticated design and Italian craftsmanship.</p>
+                  <p>From season to season, the brand maintains the level of accessible luxury products, designed with a sense of Italian lifestyle and craftsmanship in mind. Inspired by global fashion trends, the brand’s designers create seasonal collections that offer a wide assortment of «get noticed» styles for everybody who wants to reveal their unique style.</p>
+                  <p>Carlo Pazolini continues to expand its presence both in Europe and the US with the first West Coast outpost opened in June 2014 in LA’s Beverly Center.</p>
+                </div>
+                <ul class="left-content-list">
+                  <li class="list__item">
+                    <div class="item__title">Специализация</div>
+                    <div class="item__text">Footwear, Handbags, Accessories</div>
+                  </li>
+                  <li class="list__item">
+                    <div class="item__title">Веб-сайт</div>
+                    <div class="item__text"><a href="#">www.carlopazolini.com/en</a></div>
+                  </li>
+                  <li class="list__item">
+                    <div class="item__title">ГОЛОВНОЙ ОФИС</div>
+                    <div class="item__text">501 Madison Ave 10th Floor New York, NY 10022 United States</div>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div class="reg-content__right">
+                <div class="right-content bottom-border">
+                  <div class="content__us-text">Блог зарегистрирован 26 июня 2014 года</div>
+                  <div class="content__us-text"><i class="svg-icon icon-eye us-icon"></i>2</div>
+                </div>
+                <div class="right-content bottom-border">
+                  <div class="right-btn-cont"><a href="#" class="white-black-btn">Все посты Carlo Pazolini</a></div>
+                  <form action="json/test.json" class="right-btn-cont js-action-btn">
+                    <input type="hidden" name="brand_id" value="2">
+                    <input type="hidden" name="user_id" value="33">
+                    <button type="submit" class="white-black-btn">Добавить в мой блог лист</button>
+                  </form>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </header>
+    <footer class="footer">
+      <div class="wrapper">
+        <div class="container_12">
+          <div class="grid_12">
+            <div class="footer__top"><a href="#" class="footer__logo"></a>
+              <nav class="footer__nav"><a href="#">О проекте</a><a href="#">Помощь</a><a href="#">Реклама на сайте</a><a href="#">Связаться с нами</a>
+              </nav>
+            </div>
+            <div class="footer__bottom"><span>© LookBook, 2014</span><span class="fl-r">Сделано в <a href="http://grapheme.ru" target="_blank">ГРАФЕМА</a></span></div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div class="overlay js-overlay">
+      <div class="overlay__background"></div>
+      <div class="overlay__body">
+        <div data-popup="auth" class="overlay__tab overlay-auth"><a href="#" class="tab__close js-close-popup"><span></span></a>
+          <div class="auth__body anim-parent">
+            <h1>Войти</h1>
+            <div class="auth__desc">Пожалуйста авторизуйтесь, используя аккаунт в одной из социальных сетей:</div>
+            <div class="auth__socials"><a href="#" class="socials-facebook">Facebook</a><a href="#" class="socials-vk">Вконтакте</a><a href="#" class="socials-ok">Одноклассники</a></div>
+            <div class="auth_form">
+              <div class="auth__desc">или с помощью адреса электронной почты</div>
+              <form id="form-auth" action="json/test.json">
+                <div class="input-cont">
+                  <input name="email" placeholder="E-mail" class="auth-input">
+                </div>
+                <div class="input-cont">
+                  <input name="password" placeholder="Пароль" type="password" class="auth-input">
+                </div>
+                <div class="input-bottom"><a href="#restore_before">Забыли пароль?</a></div>
+                <div class="input-btn">
+                  <button type="submit" class="us-btn">Войти</button>
+                  <div class="ajax-message js-response-text"></div>
+                </div>
+              </form>
+              <div class="auth__toreg">До сих пор нет аккаунта? <a href="#reg">Зарегистрироваться</a></div>
+            </div>
+          </div>
+        </div>
+        <div data-popup="reg" class="overlay__tab overlay-auth"><a href="#" class="tab__close js-close-popup"><span></span></a>
+          <div class="auth__body anim-parent">
+            <h1>Регистрация</h1>
+            <div class="auth__desc">Пожалуйста авторизуйтесь, используя аккаунт в одной из социальных сетей:</div>
+            <div class="auth__socials"><a href="#" class="socials-facebook">Facebook</a><a href="#" class="socials-vk">Вконтакте</a><a href="#" class="socials-ok">Одноклассники</a></div>
+            <div class="auth_form">
+              <div class="auth__desc">или с помощью адреса электронной почты</div>
+              <form id="form-reg" action="json/test.json">
+                <div class="input-cont">
+                  <input name="email" placeholder="E-mail" class="auth-input">
+                </div>
+                <div class="input-cont">
+                  <input name="password" placeholder="Пароль" type="password" class="auth-input">
+                </div>
+                <div class="input-cont">
+                  <input name="password_verify" placeholder="Подтверждение пароля" type="password" class="auth-input">
+                </div>
+                <div class="input-cont">
+                  <input name="name" placeholder="Ваше имя" class="auth-input">
+                </div>
+                <div class="input-btn">
+                  <button type="submit" class="us-btn">Войти</button>
+                  <div class="ajax-message js-response-text"></div>
+                </div>
+              </form>
+              <div class="auth__toreg">Уже зарегистрировались? <a href="#auth">Войти на сайт</a></div>
+            </div>
+          </div>
+        </div>
+        <div data-popup="restore_before" class="overlay__tab overlay-auth"><a href="#" class="tab__close js-close-popup"><span></span></a>
+          <div class="auth__body anim-parent">
+            <h1>Восстановление пароля</h1>
+            <div class="auth_form">
+              <form id="form-restore_before" action="json/test.json">
+                <div class="input-cont">
+                  <input name="email" placeholder="E-mail" class="auth-input">
+                </div>
+                <div class="input-btn">
+                  <button type="submit" class="us-btn">Восстановить</button>
+                  <div class="ajax-message js-response-text"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div data-popup="restore" class="overlay__tab overlay-auth"><a href="#" class="tab__close js-close-popup"><span></span></a>
+          <div class="auth__body anim-parent">
+            <h1>Восстановление пароля</h1>
+            <div class="auth_form">
+              <form id="form-restore" action="json/test.json">
+                <div class="input-cont">
+                  <input name="password" placeholder="Пароль" type="password" class="auth-input">
+                </div>
+                <div class="input-cont">
+                  <input name="password_verify" placeholder="Подтверждение пароля" type="password" class="auth-input">
+                </div>
+                <div class="input-btn">
+                  <button type="submit" class="us-btn">Восстановить</button>
+                  <div class="ajax-message js-response-text"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="scripts/vendor.js"></script>
+    <script src="scripts/main.js"></script>
+  </body>
+</html>

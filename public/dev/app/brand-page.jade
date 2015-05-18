@@ -1,0 +1,57 @@
+extends layout
+
+block vars
+  - var title = 'Профиль блоггера'
+  - var auth = true
+  - var profile_active = 'profile_auth_main_empty.html'
+
+block content
+    header
+        .wrapper
+            .container_12
+                .grid_12
+                    .brand-header(style="background-image: url('images/tmp/brand-image.jpg')")
+                        .header__content
+                            .content__logo
+                                img(src="images/tmp/brand-logo.jpg")
+                            .content__title
+                                span Carlo Pazolini
+                            .content__desc
+                                span Fine shoes and accessories
+                        .header__best-top
+                .clearfix
+                .grid_12.reg-content
+                    .dashboard-tab
+                        .reg-content__left
+                            .left-content
+                                p Carlo Pazolini, a leading global fashion Footwear and Accessories brand, was founded in 1990 by Ilya Reznik as a small family business and is registered as a trademark in Italy.  Today Carlo Pazolini is a large international corporation with 272 stores worldwide, including flagship locations in Milan (opened in October 2010) and New York (opened in December 2011). Carlo Pazolini Fine Shoes & Accessories embodies a passion for the modern Italian lifestyle expressed through sophisticated design and Italian craftsmanship.
+                                p From season to season, the brand maintains the level of accessible luxury products, designed with a sense of Italian lifestyle and craftsmanship in mind. Inspired by global fashion trends, the brand’s designers create seasonal collections that offer a wide assortment of «get noticed» styles for everybody who wants to reveal their unique style.
+                                p Carlo Pazolini continues to expand its presence both in Europe and the US with the first West Coast outpost opened in June 2014 in LA’s Beverly Center.
+                            ul.left-content-list
+                                li.list__item
+                                    .item__title Специализация
+                                    .item__text Footwear, Handbags, Accessories
+                                li.list__item
+                                    .item__title Веб-сайт
+                                    .item__text
+                                        a(href="#") www.carlopazolini.com/en
+                                li.list__item
+                                    .item__title ГОЛОВНОЙ ОФИС
+                                    .item__text 501 Madison Ave 10th Floor New York, NY 10022 United States
+                            .clearfix
+                        .reg-content__right
+                            .right-content.bottom-border
+                                .content__us-text Блог зарегистрирован 26 июня 2014 года
+                                .content__us-text
+                                    i.svg-icon.icon-eye.us-icon
+                                    | 2
+                            .right-content.bottom-border
+                                .right-btn-cont
+                                    a(href="#").white-black-btn Все посты Carlo Pazolini
+                                form(action="json/test.json").right-btn-cont.js-action-btn
+                                    input(type="hidden" name="brand_id" value="2")
+                                    input(type="hidden" name="user_id" value="33")
+                                    button(type="submit").white-black-btn Добавить в мой блог лист
+                        .clearfix
+                .clearfix
+
