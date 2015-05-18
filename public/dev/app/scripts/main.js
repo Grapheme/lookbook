@@ -94,6 +94,32 @@ jQuery.extend(jQuery.validator.messages, {
     min: jQuery.validator.format("Пожалуйста, введите число, большее или равное {0}."),
     extension: jQuery.validator.format("Вы можете загрузить изображение только со следующими расширениями: jpeg, jpg, png, gif.")
 });
+LookBook.ActionButton = function() {
+    if(!$('.js-action-btn').length) return;
+    $('.js-action-btn').on('submit', function(e){
+        e.preventDefault();
+        var form = $(this);
+        var response_cont = form.find('[type="submit"]'),
+            options = { 
+            beforeSubmit: function(){
+                response_cont.addClass('loading');
+            }, 
+            success: function(data){
+                if(data.responseText) {
+                    response_cont.text(data.responseText);
+                }
+                response_cont.removeClass('loading').attr('disabled', 'disabled');
+            },
+            error: function(data) {
+                response_cont
+                    .text('Ошибка на сервере')
+                    .removeClass('loading');
+            }
+        };
+        $(form).ajaxSubmit(options);
+        return false;
+    });
+}
 LookBook.Dashboard = function() {
     var postDelete = function(form) {
         var post_cont = form.parents('.js-post'),
@@ -528,6 +554,7 @@ $(function(){
     LookBook.FitText();
     LookBook.Auth();
     LookBook.Like();
+    LookBook.ActionButton();
     $('.js-autosize').autosize();
     $('.js-styled-select').selectmenu();
 });

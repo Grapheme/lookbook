@@ -9,6 +9,9 @@
         .info__quote Пестрыми строками по утонченной мод ...
         .info__nav
             a(href="#").white-black-btn Все посты Анны Антроповой
-            a(href="#").white-black-btn Добавить в мой блог лист
+            form(action="json/test.json").js-action-btn
+                input(type="hidden" name="blogger_id" value="2")
+                input(type="hidden" name="user_id" value="33")
+                button(type="submit").white-black-btn Добавить в мой блог лист
     .clearfix
     .header__best-top
