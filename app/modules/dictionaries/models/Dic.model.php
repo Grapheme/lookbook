@@ -619,7 +619,6 @@ class Dic extends BaseModel {
     public static function by_slug($slug) {
         $cache_key = self::$cache_key;
         $dics = Config::get($cache_key);
-        #Helper::tad($dics);
         $dic = @$dics['by_slug'][$slug];
         return $dic ?: NULL;
     }

@@ -28,8 +28,7 @@ class RedactorUploadsController extends BaseController {
             foreach ($listDir as $number => $file) {
 
                 $thumbnail = $thumbsPath . '/' . $file;
-
-                if (file_exists($thumbnail) && is_file($thumbnail) && is_image($thumbnail)) {
+                if (file_exists($thumbnail) && is_file($thumbnail) && $this->is_image($thumbnail)) {
 
                     $fileList['thumb'] = $thumbsPathPublic . '/' . $file;
                     $fileList['image'] = $uploadPathPublic . '/' . $file;
@@ -97,5 +96,16 @@ class RedactorUploadsController extends BaseController {
             exit('Нет файла для загрузки!');
         }
 	}
-	
+
+    private function is_image($filename){
+
+        $is = @getimagesize($filename);
+        if (!$is):
+            return false;
+        elseif (!in_array($is[2], array(1, 2, 3))):
+            return false;
+        else:
+            return true;
+        endif;
+    }
 }

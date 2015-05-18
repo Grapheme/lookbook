@@ -18,8 +18,11 @@ class AccountsBloggerController extends BaseController {
                 Route::put('profile/password', array('before'=>'csrf', 'as' => 'profile.password.update', 'uses' => $class . '@profilePasswordUpdate'));
                 Route::post('profile/avatar/upload', array('before'=>'csrf', 'as' => 'profile.avatar.upload', 'uses' => $class . '@profileAvatarUpdate'));
                 Route::delete('profile/avatar/delete', array('before'=>'csrf', 'as' => 'profile.avatar.delete', 'uses' => $class . '@profileAvatarDelete'));
+
+                Route::post('subscribe',array('before'=>'csrf', 'as' => 'user.profile.subscribe', 'uses' => $class . '@profileSubscribe'));
             });
         endif;
+        Route::get('profile/{user_url}',array('as'=>'user.profile.show','uses'=>$class.'@guestProfileShow'));
     }
 
     public static function returnShortCodes() {
@@ -209,4 +212,27 @@ class AccountsBloggerController extends BaseController {
     }
     /**************************************************************************/
     /****************************************************************************/
+
+    public function guestProfileShow($user_url){
+
+        $post_limit = Config::get('lookbook.posts_limit');
+        $post_access = FALSE;
+        $interesting_bloggers = $categories = array();
+        foreach(Dic::where('slug','categories')->first()->values as $category):
+            $categories[$category->id] = array('slug'=>$category->slug,'title'=>$category->name);
+        endforeach;
+        if ($user = Accounts::where('id',(int)$user_url)->where('active',TRUE)->with('posts.comments','posts.likes','posts.views','posts.photo','posts.tags_ids')->first()):
+            $total_views_count = 0;
+            foreach(Post::where('user_id',$user->id)->where('publication',1)->with('views')->get() as $posts):
+                if(count($posts->views)):
+                    $total_views_count += count($posts->views);
+                endif;
+            endforeach;
+            if ($user->brand):
+                return View::make(Helper::layout('brand-profile'),compact('user','interesting_bloggers','total_views_count'));
+            else:
+                return View::make(Helper::layout('blogger-profile'),compact('user','interesting_bloggers','total_views_count'));
+            endif;
+        endif;
+    }
 }

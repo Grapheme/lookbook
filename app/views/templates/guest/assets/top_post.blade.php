@@ -22,7 +22,7 @@ endif;
         <a href="{{ URL::route('post.public.show',array($top_post['category_id'].'-'.BaseController::stringTranslite($categories[$top_post['category_id']]['slug']),$top_post['id'].'-'.BaseController::stringTranslite($top_post['title']))) }}">{{ $top_post['title'] }}</a>
     </div>
     <div class="text__author">
-        <a href="javascript:void(0)">{{ $top_post['user']['name'] }}</a>
+        @include(Helper::layout('assets.avatar'),array('user'=>$top_post['user'],'no_avatar'=>TRUE))
     </div>
     <div class="text__views">
         <i class="svg-icon icon-eye"></i>{{ count($top_post['views']) }}

@@ -25,15 +25,7 @@ endif;
             <a href="{{ URL::route('post.public.show',array($promoted_post['category_id'].'-'.BaseController::stringTranslite($categories[$promoted_post['category_id']]['slug']),$promoted_post['id'].'-'.BaseController::stringTranslite($promoted_post['title']))) }}">{{ $promoted_post['title'] }}</a>
         </div>
         <div class="item__author">
-            <a href="javascript:void(0);">
-                <div class="author__photo">
-                    <div data-empty-name="{{ $promoted_post['user']['name'] }}" class="profile-ava ava-min ava-empty">
-                        <img src="{{ asset($promoted_post['user']['photo']) }}">
-                        <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
-                    </div>
-                </div>
-                <div class="author__name">{{ $promoted_post['user']['name'] }}</div>
-            </a>
+            @include(Helper::layout('assets.avatar'),array('user'=>$promoted_post['user']))
         </div>
     </div>
 </div>

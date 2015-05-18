@@ -5,6 +5,7 @@
 ?>
 @extends(Helper::acclayout())
 @section('style')
+    {{ HTML::style('private/css/redactor.css') }}
 @stop
 @section('page_class')
 @stop
@@ -111,7 +112,7 @@
                                 <tr>
                                     <td class="form-table__name"><span>Текст о себе или о блоге</span></td>
                                     <td class="form-table__value form-table__texarea-cont">
-                                        {{ Form::textarea('about',Input::old('about'),array('class'=>'dashboard-textarea js-autosize')) }}
+                                        {{ Form::textarea('about',Input::old('about'),array('class'=>'redactor dashboard-textarea js-autosize')) }}
                                     </td>
                                 </tr>
                                 <tr class="form-table__btns">
@@ -229,4 +230,6 @@
     </div>
 @stop
 @section('scripts')
+    {{ HTML::script('private/js/vendor/redactor.min.js') }}
+    {{ HTML::script('private/js/system/redactor-config.js') }}
 @stop
