@@ -4,10 +4,10 @@
  */
 
 $hasBlogImage = $hasLogo = FALSE;
-if(!empty($user->blogpicture) && File::exists(Config::get('site.uploads_user_dir').'/'.$user->blogpicture)):
+if(!empty($user->blogpicture) && File::exists(public_path($user->blogpicture))):
     $hasBlogImage = TRUE;
 endif;
-if(!empty($user->photo) && File::exists(Config::get('site.uploads_user_dir').'/'.$user->photo)):
+if(!empty($user->photo) && File::exists(public_path($user->photo))):
     $hasLogo = TRUE;
 endif;
 $top_ids = array();
@@ -21,11 +21,11 @@ if ($users_top_posts):
     endforeach;
 endif;
 ?>
-<div style="{{ $hasBlogImage ? "background-image: url(".Config::get('site.uploads_file_user_dir').'/'.$user->blogpicture.")" : '' }}" class="brand-header {{ $hasBlogImage ? '' : 'without-image' }}">
+<div style="{{ $hasBlogImage ? "background-image: url(".asset($user->blogpicture).")" : '' }}" class="brand-header {{ $hasBlogImage ? '' : 'without-image' }}">
     <div class="header__content">
         <div class="content__logo">
         @if($hasLogo)
-            <img src="{{ Config::get('site.uploads_user_dir').'/'.$user->photo }}">
+            <img src="{{ asset($user->photo) }}">
         @endif
         </div>
         <div class="content__title"><span>{{ $user->name }}</span></div>

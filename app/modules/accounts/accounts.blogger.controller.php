@@ -180,7 +180,12 @@ class AccountsBloggerController extends BaseController {
             $user->phone = $post['phone'];
             $user->blogname = $post['blogname'];
             if ($user->brand):
-                $user->blogpicture = AdminUploadsController::getUploadedFile('picture');
+                if($image_path = AdminUploadsController::getUploadedFile('picture')):
+                    if (!empty($user->blogpicture) && File::exists(public_path($user->blogpicture))):
+                        File::delete(public_path($user->blogpicture));
+                    endif;
+                    $user->blogpicture = $image_path;
+                endif;
             else:
                 $user->blogpicture = '';
             endif;
