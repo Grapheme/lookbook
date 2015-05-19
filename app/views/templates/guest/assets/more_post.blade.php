@@ -6,8 +6,7 @@
     {{ Form::hidden('tag',@$tag) }}
     {{ Form::hidden('limit',@$post_limit) }}
     {{ Form::hidden('from',@$post_limit,array('id'=>'js-input-from','autocomplete'=>'off')) }}
-    <button class="white-black-btn" type="submit">Показать больше {{@$category_title}}</button>
-    {{-- Form::submit('Показать больше'.@$category_title,array('class'=>'white-black-btn')) --}}
+    {{ Form::button('Показать больше '.@$category_title,array('class'=>'white-black-btn','type'=>'submit')) }}
     <p class="js-response-text"></p>
     {{ Form::close() }}
 </div>

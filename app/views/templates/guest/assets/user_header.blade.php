@@ -13,10 +13,10 @@ if ($users_top_posts):
         $top_ids[] = $top_user->id;
     endforeach;
 endif;
-    $hasImage = FALSE;
-    if(!empty($user->thumbnail) && File::exists(public_path($user->thumbnail))):
-        $hasImage = TRUE;
-    endif;
+$hasImage = FALSE;
+if(!empty($user->thumbnail) && File::exists(public_path($user->thumbnail))):
+    $hasImage = TRUE;
+endif;
 ?>
 <div class="user-header user-page-header">
     <div data-empty-name="{{ $user->name }}" class="header__photo{{ !$hasImage ? ' ava-empty ' : ' ' }}js-ava-cont">
@@ -33,10 +33,14 @@ endif;
         <div class="info__nav">
             <a href="javascript:void(0);" class="white-black-btn">Все посты {{ $user->brand ? 'бренда' : 'блогера' }}</a>
             @if(Auth::check() && Auth::user()->group_id == 4 && Auth::user()->id != $user->id)
+                @if(BloggerSubscribe::where('user_id',Auth::user()->id)->where('blogger_id',$user->id)->exists())
+                    {{ Form::button('Добавлено в мой блог лист',array('class'=>'white-black-btn','disabled'=>'disabled')) }}
+                @else
             {{ Form::open(array('route'=>'user.profile.subscribe','method'=>'post','class'=>'js-action-btn')) }}
                 {{ Form::hidden('user_id',$user->id) }}
                 {{ Form::button('Добавить в мой блог лист',array('class'=>'white-black-btn','type'=>'submit')) }}
             {{ Form::close() }}
+                @endif
             @endif
         </div>
     </div>

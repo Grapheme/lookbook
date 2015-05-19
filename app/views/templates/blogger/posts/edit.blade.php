@@ -76,7 +76,7 @@
                             </div>
                             <div class="form__btns">
                                 {{ Form::button('Просмотр',array('class'=>'blue-hover us-btn btn-preview gray-btn','data-url'=>URL::route('post.preview'))) }}
-                                {{ Form::submit('Опубликовать',array('class'=>'blue-hover us-btn')) }}
+                                {{ Form::button('Опубликовать',array('class'=>'blue-hover us-btn','type'=>'submit')) }}
                             </div>
                             <button id="auto-save" data-url="{{ URL::route('post.auto.save',$post->id) }}" style="display: none"></button>
                             <p class="js-response-text"></p>
