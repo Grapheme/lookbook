@@ -118,7 +118,7 @@
                                 <tr class="form-table__btns">
                                     <td class="form-table__name"></td>
                                     <td class="form-table__value">
-                                        {{ Form::submit('Сохранить',array('class'=>'blue-hover us-btn')) }}
+                                        {{ Form::button('Сохранить',array('class'=>'blue-hover us-btn','type'=>'submit')) }}
                                         <div class="response-text js-response-text"></div>
                                     </td>
                                 </tr>

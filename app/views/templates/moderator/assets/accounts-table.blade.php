@@ -20,7 +20,7 @@
                 {{ Form::model($account,array('route'=>array('moderator.accounts.save',$account->id),'method'=>'post','class'=>'inline-block')) }}
                     {{ Form::checkbox('active') }} Активный <br>
                     {{ Form::checkbox('brand') }} Бренд <br>
-                    {{ Form::submit('Сохранить',array('class'=>'white-btn')) }}
+                    {{ Form::button('Сохранить',array('class'=>'white-btn','type'=>'submit')) }}
                 {{ Form::close() }}
             </td>
         </tr>
