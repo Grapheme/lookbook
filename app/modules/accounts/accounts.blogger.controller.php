@@ -214,13 +214,7 @@ class AccountsBloggerController extends BaseController {
 
     public function guestProfileShow($user_url){
 
-        $post_limit = Config::get('lookbook.posts_limit');
-        $post_access = FALSE;
-        $interesting_bloggers = $categories = array();
-        foreach(Dic::where('slug','categories')->first()->values as $category):
-            $categories[$category->id] = array('slug'=>$category->slug,'title'=>$category->name);
-        endforeach;
-        if ($user = Accounts::where('id',(int)$user_url)->where('active',TRUE)->with('posts.comments','posts.likes','posts.views','posts.photo','posts.tags_ids')->first()):
+        if ($user = Accounts::where('id',(int)$user_url)->where('active',TRUE)->first()):
             $total_views_count = 0;
             foreach(Post::where('user_id',$user->id)->where('publication',1)->with('views')->get() as $posts):
                 if(count($posts->views)):
@@ -230,6 +224,7 @@ class AccountsBloggerController extends BaseController {
             if ($user->brand):
                 return View::make(Helper::layout('brand-profile'),compact('user','interesting_bloggers','total_views_count'));
             else:
+                $interesting_bloggers = array();
                 return View::make(Helper::layout('blogger-profile'),compact('user','interesting_bloggers','total_views_count'));
             endif;
         endif;

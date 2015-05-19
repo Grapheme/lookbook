@@ -9,7 +9,7 @@ $users_top_posts = PostViews::select(DB::raw('posts.user_id as post_user_id,COUN
         ->groupBy('posts.user_id')->orderBy('users_views','DESC')
         ->lists('users_views','post_user_id');
 if ($users_top_posts):
-    foreach(User::whereIn('id',array_keys($users_top_posts))->where('active',1)->where('brand',$user->brand)->take(10)->get() as $top_user):
+    foreach(User::whereIn('id',array_keys($users_top_posts))->where('active',1)->where('brand',0)->take(10)->get() as $top_user):
         $top_ids[] = $top_user->id;
     endforeach;
 endif;
@@ -31,7 +31,7 @@ endif;
         </div>
         <div class="info__quote">{{ $user->blogname }}</div>
         <div class="info__nav">
-            <a href="javascript:void(0);" class="white-black-btn">Все посты {{ $user->brand ? 'бренда' : 'блогера' }}</a>
+            <a href="javascript:void(0);" class="white-black-btn">Все посты блогера</a>
             @if(Auth::check() && Auth::user()->group_id == 4 && Auth::user()->id != $user->id)
                 @if(BloggerSubscribe::where('user_id',Auth::user()->id)->where('blogger_id',$user->id)->exists())
                     {{ Form::button('Добавлено в мой блог лист',array('class'=>'white-black-btn','disabled'=>'disabled')) }}

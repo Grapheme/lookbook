@@ -13,7 +13,7 @@
     <div class="wrapper">
         <div class="container_12">
             <div class="grid_12">
-                @include(Helper::layout('assets.user_header'))
+                @include(Helper::layout('assets.blogger_header'))
             </div>
             <div class="clearfix"></div>
             <div class="grid_12 reg-content">
