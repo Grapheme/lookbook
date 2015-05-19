@@ -2582,6 +2582,9 @@ h1 {
 .brand-header.without-image {
   height: auto;
 }
+.brand-header.without-image .header__content {
+  position: relative;
+}
 .brand-header .header__content {
   position: absolute;
   left: 20px;

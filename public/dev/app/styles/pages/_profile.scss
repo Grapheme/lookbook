@@ -401,6 +401,10 @@
 
     &.without-image {
         height: auto;
+
+        .header__content {
+            position: relative;
+        }
     }
 
     .header__content {
