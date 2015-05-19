@@ -33,7 +33,7 @@ endif;
             <div class="clearfix"></div>
             @if(count($promoted_posts))
             <div class="grid_12 js-list-slider">
-                <div class="js-top-split posts-slider-cont">
+                <div class="js-top-split js-collage posts-slider-cont">
                 @foreach($promoted_posts as $promoted_post)
                     <li class="slider__item">
                         @include(Helper::layout('assets.promoted'),array('promoted_post'=>$promoted_post,'categories'=>$categories))

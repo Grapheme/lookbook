@@ -57,7 +57,7 @@
             vertical-align: top;
             width: 355px;
             max-width: 95%;
-            height: 470px;
+            height: 370px;
             text-align: left;
             background-size: cover;
             background-position: center center;
@@ -70,6 +70,36 @@
                 background: #fff;
                 padding: 3px 18px 18px 18px;
             }
+        }
+    }
+}
+
+.js-collage {
+    opacity: 0;
+
+    & > li {
+        transition: all 1s ease;
+
+        .post-card {
+            opacity: 0;
+            transition: all .5s ease;
+        }
+
+        &:hover {
+            .post-card {
+                opacity: 1;
+            }
+        }
+    }
+
+    &.active {
+        transition: all 1s ease;
+        opacity: 1;
+    }
+
+    &.fast-animation {
+        & > li {
+            transition: all .5s ease;
         }
     }
 }

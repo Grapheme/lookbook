@@ -5,6 +5,12 @@ window.Help = {};
 window.jQuery.fn.autosize = function() {
     return autosize(this);
 };
+Help.getRandomInt = function(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+Help.getRandomArbitrary = function(min, max) {
+    return Math.random() * (max - min) + min;
+}
 Help.avaGenerator = function() {
     var parent = $('[data-empty-name]');
     if(!parent.length) return;
@@ -457,6 +463,11 @@ LookBook.TopSplit = function() {
         wrapArray = [],
         arrayStep = 0,
         item_on_page = 6;
+        add_class = '';
+    if($('.js-top-split').hasClass('js-collage')) {
+        $('.js-collage').removeClass('js-collage');
+        add_class = ' js-collage';
+    }
     for(var i = 0; i < items.length / item_on_page; i++) {
         var elemObj = $();
         var fromIndex = i * item_on_page;
@@ -468,9 +479,83 @@ LookBook.TopSplit = function() {
         wrapArray.push(elemObj);
     }
     $.each(wrapArray, function(index, value){
-        value.wrapAll('<ul class="posts-slider js-list-slide clearfix" />');
+        value.wrapAll('<ul class="posts-slider js-list-slide' + add_class + ' clearfix" />');
     });
     $('.js-top-split').css('height', $('.js-top-split .posts-slider').first().outerHeight(true));
+}
+LookBook.TopCollage = function() {
+    if(!$('.js-collage').length) return;
+    if($('.js-collage li').length > 3) {
+        var options = [
+            {
+                x: [0, 50],
+                y: [0, 25]
+            },
+            {
+                x: [-25, 25],
+                y: [0, 25]
+            },
+            {
+                x: [0, -25],
+                y: [0, 25]
+            },
+            {
+                x: [0, 50],
+                y: [-25, 0]
+            },
+            {
+                x: [-25, 25],
+                y: [-25, 0]
+            },
+            {
+                x: [0, -25],
+                y: [-25, 0]
+            }
+        ];
+    } else {
+        var options = [
+            {
+                x: [0, 50],
+                y: [-5, 5]
+            },
+            {
+                x: [-25, 25],
+                y: [-5, 5]
+            },
+            {
+                x: [0, -25],
+                y: [-5, 5]
+            }
+        ];
+    }
+    setTimeout(function(){
+        $('.js-collage').addClass('active');
+        setTimeout(function(){
+            $('.js-collage').addClass('fast-animation');
+        }, 1000)
+    }, 50);
+    $('.js-collage').each(function(){
+        var this_items = $(this).find('li');
+        $.each(options, function(index, value){
+            var this_x = Help.getRandomInt(value.x[0], value.x[1]);
+            var this_y = Help.getRandomInt(value.y[0], value.y[1]);
+            var this_scale = Help.getRandomArbitrary(0.6, 0.95);
+            var transform_str = 'transform: translate(' + this_x + '%, ' + this_y + '%) scale(' + this_scale + '); z-index: 1;';
+            var transform_hover = 'transform: translate(' + this_x + '%, ' + this_y + '%) scale(1); z-index: 5;';
+            console.log(transform_str);
+            this_items.eq(index)
+                .attr('style', transform_str)
+                .attr('data-static-style', transform_str)
+                .attr('data-hover-style', transform_hover);
+        });
+    });
+    $('.js-collage li')
+    .on('mouseenter', function(){
+        $(this).attr('style', $(this).attr('data-hover-style'));
+    })
+    .on('mouseleave', function(){
+        $(this).attr('style', $(this).attr('data-static-style'));
+    });
 }
 LookBook.ListSlider = function() {
     if(!$('.js-list-slider').length) return;
@@ -550,6 +635,7 @@ $(function(){
     LookBook.DatePicker();
     LookBook.TopSplit();
     LookBook.ListSlider();
+    LookBook.TopCollage();
     LookBook.DashForm();
     LookBook.FitText();
     LookBook.Auth();
