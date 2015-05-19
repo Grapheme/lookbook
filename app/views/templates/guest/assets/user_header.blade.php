@@ -35,7 +35,7 @@ endif;
             @if(Auth::check() && Auth::user()->group_id == 4 && Auth::user()->id != $user->id)
             {{ Form::open(array('route'=>'user.profile.subscribe','method'=>'post','class'=>'js-action-btn')) }}
                 {{ Form::hidden('user_id',$user->id) }}
-                {{ Form::submit('Добавить в мой блог лист',array('class'=>'white-black-btn')) }}
+                {{ Form::button('Добавить в мой блог лист',array('class'=>'white-black-btn','type'=>'submit')) }}
             {{ Form::close() }}
             @endif
         </div>
