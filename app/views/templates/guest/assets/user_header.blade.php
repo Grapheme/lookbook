@@ -32,7 +32,7 @@ endif;
         <div class="info__quote">{{ $user->blogname }}</div>
         <div class="info__nav">
             <a href="javascript:void(0);" class="white-black-btn">Все посты {{ $user->brand ? 'бренда' : 'блогера' }}</a>
-            @if(Auth::check() && Auth::user()->group_id == 4)
+            @if(Auth::check() && Auth::user()->group_id == 4 && Auth::user()->id != $user->id)
             {{ Form::open(array('route'=>'user.profile.subscribe','method'=>'post','class'=>'js-action-btn')) }}
                 {{ Form::hidden('user_id',$user->id) }}
                 {{ Form::submit('Добавить в мой блог лист',array('class'=>'white-black-btn')) }}

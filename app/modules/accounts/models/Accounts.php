@@ -12,4 +12,9 @@ class Accounts extends BaseModel {
 
         return $this->hasMany('Post','user_id','id');
     }
+
+    public function blogger_subscribes(){
+
+        return $this->belongsToMany('BloggerSubscribe','users_blogger_subscribes', 'blogger_id', 'user_id');
+    }
 }

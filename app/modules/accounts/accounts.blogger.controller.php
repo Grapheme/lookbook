@@ -141,7 +141,6 @@ class AccountsBloggerController extends BaseController {
             return Redirect::back();
         endif;
         return Response::json($json_request,200);
-
     }
 
     public function profileAvatarDelete(){
@@ -234,5 +233,26 @@ class AccountsBloggerController extends BaseController {
                 return View::make(Helper::layout('blogger-profile'),compact('user','interesting_bloggers','total_views_count'));
             endif;
         endif;
+    }
+
+    public function profileSubscribe(){
+
+        $json_request = array('status'=>FALSE,'responseText'=>'','redirect'=>FALSE);
+        if(Request::ajax() && Auth::check() && Auth::user()->group_id == 4):
+            $validator = Validator::make(Input::all(),array('user_id'=>'required'));
+            if($validator->passes()):
+                if (Auth::user()->id != Input::get('user_id') && User::where('id',Input::get('user_id'))->exists()):
+                    Accounts::where('id',Auth::user()->id)->first()->blogger_subscribes()->sync(array(Input::get('user_id')));
+                    $json_request['responseText'] = Lang::get('interface.DEFAULT.success_insert');
+                    $json_request['status'] = TRUE;
+                    return Response::json($json_request,200);
+                endif;
+            else:
+                $json_request['responseText'] = $validator->messages()->all();
+            endif;
+        else:
+            return Redirect::back();
+        endif;
+        return Response::json($json_request,200);
     }
 }
