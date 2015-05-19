@@ -10,25 +10,25 @@ block content
             .container_12
                 .grid_12.js-list-slider
                     //-ul.posts-slider.clearfix
-                    .js-top-split.posts-slider-cont
+                    .js-top-split.js-collage.posts-slider-cont
                         each i in [1,2,3]
-                            each i in [1,2,3,4,5,6,1]
-                                li.slider__item
-                                    .item__cont(style="background-image: url(images/tmp/slider-post-#{i}.jpg);")
-                                        .post-card
-                                            .item__date
-                                                a(href="category.html").post-photo__alt Lifestyle
-                                                a(href="post.html") ЯНВ 26, 2015
-                                            .item__title
-                                                a(href="post.html") САПОГИ ОСЕНИ. ТЕНДЕНЦИИ И ЛУКБУКИ
-                                            .item__author
-                                                a(href="post.html") 
-                                                    .author__photo
-                                                        .profile-ava.ava-min.ava-empty(data-empty-name="Анна Антропова")
-                                                            img(src="images/tmp/profile-photo_max.jpg")
-                                                            .ava-image__empty
-                                                                span.js-empty-chars
-                                                    .author__name Елена Руденко
+                            //- each i in [1,2,3,4,5,6,1]
+                            li.slider__item
+                                .item__cont(style="background-image: url(images/tmp/slider-post-#{i}.jpg);")
+                                    .post-card
+                                        .item__date
+                                            a(href="category.html").post-photo__alt Lifestyle
+                                            a(href="post.html") ЯНВ 26, 2015
+                                        .item__title
+                                            a(href="post.html") САПОГИ ОСЕНИ. ТЕНДЕНЦИИ И ЛУКБУКИ
+                                        .item__author
+                                            a(href="post.html") 
+                                                .author__photo
+                                                    .profile-ava.ava-min.ava-empty(data-empty-name="Анна Антропова")
+                                                        img(src="images/tmp/profile-photo_max.jpg")
+                                                        .ava-image__empty
+                                                            span.js-empty-chars
+                                                .author__name Елена Руденко
                     .posts-slider__nav.js-list-dots
                         //- each i in [1,2,3]
                             a(href="#").nav__dot  
