@@ -10,7 +10,6 @@ endif;
 if(!empty($user->photo) && File::exists(Config::get('site.uploads_user_dir').'/'.$user->photo)):
     $hasLogo = TRUE;
 endif;
-
 $top_ids = array();
 $users_top_posts = PostViews::select(DB::raw('posts.user_id as post_user_id,COUNT(posts_views.post_id) as users_views'))
         ->join('posts', 'posts_views.post_id', '=', 'posts.id')
