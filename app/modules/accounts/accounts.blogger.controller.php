@@ -242,7 +242,9 @@ class AccountsBloggerController extends BaseController {
             $validator = Validator::make(Input::all(),array('user_id'=>'required'));
             if($validator->passes()):
                 if (Auth::user()->id != Input::get('user_id') && User::where('id',Input::get('user_id'))->exists()):
-                    Accounts::where('id',Auth::user()->id)->first()->blogger_subscribes()->sync(array(Input::get('user_id')));
+                    $blogger_id = Input::get('user_id');
+                    Accounts::where('id', Auth::user()->id)->first()->blogger_subscribes()->sync(array($blogger_id => array('created_at' => date('c'),
+                        'updated_at' => date('c'))));
                     $json_request['responseText'] = Lang::get('interface.DEFAULT.success_insert');
                     $json_request['status'] = TRUE;
                     return Response::json($json_request,200);
