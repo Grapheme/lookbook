@@ -374,6 +374,7 @@ class AdminUploadsController extends BaseController {
         endif;
         return FALSE;
     }
+
     public static function getUploadedImageFile($input = 'file'){
 
         if (Input::hasFile($input)):
@@ -397,6 +398,15 @@ class AdminUploadsController extends BaseController {
         else:
             return FALSE;
         endif;
+    }
+
+    public static function getUploadedFile($input = 'file'){
+        if (Input::hasFile($input)):
+            $fileName = time()."_".Auth::user()->id."_".rand(1000, 1999).'.'.Input::file($input)->getClientOriginalExtension();
+            Input::file($input)->move(Config::get('site.uploads_user_dir').'/', $fileName);
+            return Config::get('site.uploads_file_user_dir').'/'.$fileName;
+        endif;
+        return null;
     }
 }
 

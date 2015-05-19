@@ -23,13 +23,11 @@ endif;
 @if(count($top_brands))
 <div class="right-title">Top brands</div>
 <div class="right-content">
-    <ul class="right-content__list">
+    <ul class="right-content__list top-bloggers">
         @foreach($top_brands as $top_brand)
             <li class="list__item">
                 @include(Helper::layout('assets.avatar'),array('user'=>$top_brand))
-                <div class="item__text">
-                    <span class="text__followers">{{ isset($users_top_posts[$top_brand->id]) ? $users_top_posts[$top_brand->id] : '' }}</span>
-                </div>
+                <span class="text__followers">{{ isset($users_top_posts[$top_brand->id]) ? $users_top_posts[$top_brand->id] : '' }}</span>
             </li>
         @endforeach
     </ul>
