@@ -21,7 +21,7 @@ if ($users_top_posts):
     endforeach;
 endif;
 ?>
-<div style="{{ $hasBlogImage ? "background-image: url(".Config::get('site.uploads_file_user_dir').'/'.$user->blogpicture.")" : '' }}" class="brand-header">
+<div style="{{ $hasBlogImage ? "background-image: url(".Config::get('site.uploads_file_user_dir').'/'.$user->blogpicture.")" : '' }}" class="brand-header {{ $hasBlogImage ? '' : 'without-image' }}">
     <div class="header__content">
         <div class="content__logo">
         @if($hasLogo)
