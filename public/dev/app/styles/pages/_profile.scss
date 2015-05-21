@@ -390,6 +390,10 @@
     }
 }
 
+.header-hr {
+    border-top: 1px solid $borderColor;
+}
+
 .brand-header {
     position: relative;
     box-sizing: border-box;

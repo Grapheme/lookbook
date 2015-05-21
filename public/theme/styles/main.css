@@ -408,7 +408,7 @@ th {
   padding: 0;
 }
 
-.linkTrans, .us-link, .reg-content a:not([class]), .ava-change .ava-links .ava-upload, .white-btn, .white-black-btn, .us-btn, .right-content .right-content__all-link, .header .header__top a, .header .header__bottom .bottom__nav a, .footer .footer__top .footer__nav a, .footer .footer__bottom a, .overlay .tab__close span:before, .overlay .tab__close span:after, .overlay .overlay__body .overlay__tab.overlay-auth .auth__socials a, .overlay .overlay__body .overlay__tab.overlay-auth .auth_form a, .user-header .header__info .info__auth-nav a, .ava-change .ava-links .ava-delete, .ava-change .ava-image__cont, .category-header .header__links a {
+.linkTrans, .us-link, .reg-content a:not([class]), .ava-change .ava-links .ava-upload, .white-btn, .white-black-btn, .us-btn, .right-content .right-content__all-link, .right-tags .tags__item, .header .header__top a, .header .header__bottom .bottom__nav a, .footer .footer__top .footer__nav a, .footer .footer__bottom a, .overlay .tab__close span:before, .overlay .tab__close span:after, .overlay .overlay__body .overlay__tab.overlay-auth .auth__socials a, .overlay .overlay__body .overlay__tab.overlay-auth .auth_form a, .user-header .header__info .info__auth-nav a, .ava-change .ava-links .ava-delete, .ava-change .ava-image__cont, .category-header .header__links a {
   -webkit-transition: all .2s ease;
           transition: all .2s ease;
 }
@@ -1059,7 +1059,7 @@ h1 {
   text-transform: uppercase;
 }
 
-.reg-italic, .white-btn, .white-black-btn, .us-btn {
+.reg-italic, .white-btn, .white-black-btn, .us-btn, .right-tags .tags__item .item__text span {
   font-family: 'bodonic';
   font-size: 14px;
   font-style: italic;
@@ -1486,6 +1486,39 @@ h1 {
 }
 .left-content-list .list__item .item__text {
   margin-top: 5px;
+}
+
+.right-tags {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.right-tags .tags__item {
+  position: relative;
+  display: block;
+  height: 230px;
+  background-size: cover;
+  background-position: center center;
+  margin-bottom: 20px;
+  color: inherit;
+}
+.right-tags .tags__item:last-child {
+  margin-bottom: 0;
+}
+.right-tags .tags__item .item__text {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  text-align: center;
+}
+.right-tags .tags__item .item__text span {
+  display: inline-block;
+  background: #fff;
+  padding: 5px 20px;
+}
+.right-tags .tags__item:hover {
+  color: #4bbeff;
 }
 
 .header {
@@ -2568,6 +2601,10 @@ h1 {
 }
 .ava-change.ava-empty .ava-upload-form {
   display: block;
+}
+
+.header-hr {
+  border-top: 1px solid #dddddd;
 }
 
 .brand-header {
