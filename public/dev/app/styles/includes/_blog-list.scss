@@ -1,0 +1,71 @@
+.blog-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	.profile-ava {
+		width: 122px;
+		height: 122px;
+		float: left;
+	}
+
+	.list__item {
+		position: relative;
+		padding: $dashTopPad 0;
+		border-bottom: 1px solid $borderColor;
+
+		.item__best-blogger {
+			position: absolute;
+			left: 100px;
+			top: 35px;
+			width: 42px;
+			height: 42px;
+			background-image: url(../images/ui/top-blogger.png);
+			background-size: 100% auto;
+			background-position: center center;
+			background-repeat: no-repeat;
+		}
+
+		.item__content {
+			padding-left: 160px;
+
+			.content__title {
+				position: relative;
+				font-weight: 300;
+				font-size: 26px;
+				text-transform: uppercase;
+				top: -5px;
+				
+				a {
+					border: none;
+					color: inherit;
+				}
+			}
+
+			.content__followers {
+				font-size: 16px;
+
+				b {
+					font-weight: 700;
+				}
+			}
+
+			.content__quote {
+				@extend .reg-italic;
+				text-transform: none;
+				font-size: 20px;
+				font-weight: 400;
+				margin-top: 16px;
+			}
+
+			.content__desc {
+				font-size: 14px;
+				margin-top: 10px;
+			}
+
+			.post-actions {
+				margin-top: 20px;
+			}
+		}
+	}
+}

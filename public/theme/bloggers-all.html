@@ -43,7 +43,9 @@
       <div class="wrapper">
         <div class="container_12">
           <div class="grid_12">
-            <div class="user-header user-page-header">
+            <div class="user-header">
+              <!-- Добавляем класс ava-empty если аватарки нету-->
+              <!-- Добавляем имя пользователя в атрибут data-empty-name (В любом случае, для формирования аватарки)-->
               <div data-empty-name="Анна Антропова" class="header__photo js-ava-cont"><img src="images/tmp/profile-photo_max.jpg">
                 <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
               </div>
@@ -51,13 +53,7 @@
                 <div class="info__name js-fit-parent">
                   <h1 class="js-fit-text">Анна Антропова</h1>
                 </div>
-                <div class="info__quote">Пестрыми строками по утонченной мод ...</div>
-                <div class="info__nav"><a href="blogger-page.html" class="white-black-btn">Подробнее</a>
-                  <form action="json/test.json" class="js-action-btn">
-                    <input type="hidden" name="blogger_id" value="2">
-                    <input type="hidden" name="user_id" value="33">
-                    <button type="submit" class="white-black-btn">Добавить в мой блог лист</button>
-                  </form>
+                <div class="info__auth-nav"><a href="profile_auth_main_empty.html">Дешборд</a><a href="profile_auth_settings.html">Мой профиль</a><a href="notifications">Настройка уведомлений</a><a href="adv">Реклама</a>
                 </div>
               </div>
               <div class="clearfix"></div>
@@ -67,78 +63,62 @@
           <div class="grid_12 reg-content">
             <div class="dashboard-tab">
               <div class="reg-content__left">
-                <ul class="dashboard-list js-posts">
-                  <li class="dashboard-item js-post">
-                    <div class="left-block">
-                      <div data-empty-name="Анна Антропова" class="profile-ava ava-min ava-empty"><img src="images/tmp/profile-photo_max.jpg">
-                        <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
-                      </div>
-                      <div class="profile-name">Дурнев Константин</div>
-                    </div>
-                    <div class="right-block">
-                      <div class="right-block__pad">
-                        <div class="post-photo"><img src="images/tmp/post-photo-1.jpg" alt="">
-                          <div class="post-photo__alt">Shopping</div>
-                        </div>
-                        <div class="post-info">
-                          <div class="post-info__title"><a href="post.html">Новая коллекция обуви сезон 2014–2015</a></div>
-                          <div class="post-info__desc">В 1947 году, когда Европа только начала восстанавливаться после пятилетней войны, Кристиан Диор создал силуэт, который навсегда вошел в историю под названием New Look. Этим, без сомнения, главным своим изобретением дизайнер сделал выдающийся вклад в мировую моду. </div>
-                        </div>
-                        <div class="post-footer"><span class="post-footer__date">ЯНВ 26, 2015</span><span class="post-footer__statisctics"><span class="statisctics-item"><i class="svg-icon icon-eye"></i>24</span><span class="statisctics-item"><i class="svg-icon icon-like"></i>56</span><span class="statisctics-item"><i class="svg-icon icon-comments"></i>36</span></span></div>
-                      </div>
+                <div class="left-title big-title">Мой блог-лист</div>
+                <ul class="blog-list">
+                  <li class="list__item"><a href="#"><span class="author__photo"><span data-empty-name="Анна Антропопва" class="profile-ava ava-min"><img src="images/tmp/profile-photo_huge.jpg">
+                          <div class="ava-image__empty"><span class="js-empty-chars"></span></div></span></span></a>
+                    <div class="item__best-blogger"></div>
+                    <div class="item__content">
+                      <div class="content__title"><a href="#">Анна Антропова</a></div>
+                      <div class="content__followers"><b>10 342</b> подписчиков</div>
+                      <div class="content__quote">Пишу о чем хочу!</div>
+                      <div class="content__desc">Осенью созревают самые полезные, богатые витаминами и минеральными веществами овощи, фрукты и ягоды. Даже искушенные кулинары не могут перечислить всех рецептов ью созревают самые полезные, богатые витаминами и минеральными ...</div>
                     </div>
                   </li>
-                  <li class="dashboard-item js-post">
-                    <div class="left-block">
-                      <div data-empty-name="Анна Антропова" class="profile-ava ava-min ava-empty"><img src="images/tmp/profile-photo_max.jpg">
-                        <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
-                      </div>
-                      <div class="profile-name">Дурнев Константин</div>
-                    </div>
-                    <div class="right-block">
-                      <div class="right-block__pad">
-                        <div class="post-photo"><img src="images/tmp/post-photo-1.jpg" alt="">
-                          <div class="post-photo__alt">Shopping</div>
-                        </div>
-                        <div class="post-info">
-                          <div class="post-info__title"><a href="post.html">Новая коллекция обуви сезон 2014–2015</a></div>
-                          <div class="post-info__desc">В 1947 году, когда Европа только начала восстанавливаться после пятилетней войны, Кристиан Диор создал силуэт, который навсегда вошел в историю под названием New Look. Этим, без сомнения, главным своим изобретением дизайнер сделал выдающийся вклад в мировую моду. </div>
-                        </div>
-                        <div class="post-footer"><span class="post-footer__date">ЯНВ 26, 2015</span><span class="post-footer__statisctics"><span class="statisctics-item"><i class="svg-icon icon-eye"></i>24</span><span class="statisctics-item"><i class="svg-icon icon-like"></i>56</span><span class="statisctics-item"><i class="svg-icon icon-comments"></i>36</span></span></div>
-                      </div>
+                  <li class="list__item"><a href="#"><span class="author__photo"><span data-empty-name="Анна Антропопва" class="profile-ava ava-min"><img src="images/tmp/profile-photo_huge.jpg">
+                          <div class="ava-image__empty"><span class="js-empty-chars"></span></div></span></span></a>
+                    <div class="item__best-blogger"></div>
+                    <div class="item__content">
+                      <div class="content__title"><a href="#">Анна Антропова</a></div>
+                      <div class="content__followers"><b>10 342</b> подписчиков</div>
+                      <div class="content__quote">Пишу о чем хочу!</div>
+                      <div class="content__desc">Осенью созревают самые полезные, богатые витаминами и минеральными веществами овощи, фрукты и ягоды. Даже искушенные кулинары не могут перечислить всех рецептов ью созревают самые полезные, богатые витаминами и минеральными ...</div>
                     </div>
                   </li>
-                  <li class="dashboard-item js-post">
-                    <div class="left-block">
-                      <div data-empty-name="Анна Антропова" class="profile-ava ava-min ava-empty"><img src="images/tmp/profile-photo_max.jpg">
-                        <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
-                      </div>
-                      <div class="profile-name">Дурнев Константин</div>
+                  <li class="list__item"><a href="#"><span class="author__photo"><span data-empty-name="Анна Антропопва" class="profile-ava ava-min"><img src="images/tmp/profile-photo_huge.jpg">
+                          <div class="ava-image__empty"><span class="js-empty-chars"></span></div></span></span></a>
+                    <div class="item__best-blogger"></div>
+                    <div class="item__content">
+                      <div class="content__title"><a href="#">Анна Антропова</a></div>
+                      <div class="content__followers"><b>10 342</b> подписчиков</div>
+                      <div class="content__quote">Пишу о чем хочу!</div>
+                      <div class="content__desc">Осенью созревают самые полезные, богатые витаминами и минеральными веществами овощи, фрукты и ягоды. Даже искушенные кулинары не могут перечислить всех рецептов ью созревают самые полезные, богатые витаминами и минеральными ...</div>
                     </div>
-                    <div class="right-block">
-                      <div class="right-block__pad">
-                        <div class="post-photo"><img src="images/tmp/post-photo-1.jpg" alt="">
-                          <div class="post-photo__alt">Shopping</div>
-                        </div>
-                        <div class="post-info">
-                          <div class="post-info__title"><a href="post.html">Новая коллекция обуви сезон 2014–2015</a></div>
-                          <div class="post-info__desc">В 1947 году, когда Европа только начала восстанавливаться после пятилетней войны, Кристиан Диор создал силуэт, который навсегда вошел в историю под названием New Look. Этим, без сомнения, главным своим изобретением дизайнер сделал выдающийся вклад в мировую моду. </div>
-                        </div>
-                        <div class="post-footer"><span class="post-footer__date">ЯНВ 26, 2015</span><span class="post-footer__statisctics"><span class="statisctics-item"><i class="svg-icon icon-eye"></i>24</span><span class="statisctics-item"><i class="svg-icon icon-like"></i>56</span><span class="statisctics-item"><i class="svg-icon icon-comments"></i>36</span></span></div>
-                      </div>
+                  </li>
+                  <li class="list__item"><a href="#"><span class="author__photo"><span data-empty-name="Анна Антропопва" class="profile-ava ava-min"><img src="images/tmp/profile-photo_huge.jpg">
+                          <div class="ava-image__empty"><span class="js-empty-chars"></span></div></span></span></a>
+                    <div class="item__best-blogger"></div>
+                    <div class="item__content">
+                      <div class="content__title"><a href="#">Анна Антропова</a></div>
+                      <div class="content__followers"><b>10 342</b> подписчиков</div>
+                      <div class="content__quote">Пишу о чем хочу!</div>
+                      <div class="content__desc">Осенью созревают самые полезные, богатые витаминами и минеральными веществами овощи, фрукты и ягоды. Даже искушенные кулинары не могут перечислить всех рецептов ью созревают самые полезные, богатые витаминами и минеральными ...</div>
+                    </div>
+                  </li>
+                  <li class="list__item"><a href="#"><span class="author__photo"><span data-empty-name="Анна Антропопва" class="profile-ava ava-min"><img src="images/tmp/profile-photo_huge.jpg">
+                          <div class="ava-image__empty"><span class="js-empty-chars"></span></div></span></span></a>
+                    <div class="item__best-blogger"></div>
+                    <div class="item__content">
+                      <div class="content__title"><a href="#">Анна Антропова</a></div>
+                      <div class="content__followers"><b>10 342</b> подписчиков</div>
+                      <div class="content__quote">Пишу о чем хочу!</div>
+                      <div class="content__desc">Осенью созревают самые полезные, богатые витаминами и минеральными веществами овощи, фрукты и ягоды. Даже искушенные кулинары не могут перечислить всех рецептов ью созревают самые полезные, богатые витаминами и минеральными ...</div>
                     </div>
                   </li>
                 </ul>
-                <div class="dashboard-btn-more">
-                  <form action="json/get_posts_no_auth.json" class="js-more-posts">
-                    <button type="submit" class="white-black-btn">Показать больше Fashion</button>
-                    <p class="js-response-text"></p>
-                  </form>
-                </div>
-                <div class="clearfix"></div>
               </div>
               <div class="reg-content__right">
-                <div class="right-title">TOP POSTS OF CARLO PAZOLINI</div>
+                <div class="right-title">TOP POSTs</div>
                 <div class="right-content">
                   <ul class="right-content__list list-big">
                     <li class="list__item"><a href="#" class="item__photo"><img src="http://dummyimage.com/120x120/000/fff" alt=""></a>
@@ -186,6 +166,17 @@
                       </div>
                       <div class="clearfix"></div>
                     </li>
+                  </ul>
+                </div>
+                <div class="right-title">Top brands</div>
+                <div class="right-content"> 
+                  <ul class="right-content__list top-bloggers">
+                    <li class="list__item"><a href="#"><span class="author__photo"><span data-empty-name="Сережа Мишуков" class="profile-ava ava-min ava-empty">
+                            <div class="ava-image__empty"><span class="js-empty-chars"></span></div></span></span><span class="profile-name"><span>Сергей Мишуков</span></span><span class="text__followers">4</span></a></li>
+                    <li class="list__item"><a href="#"><span class="author__photo"><span data-empty-name="Сережа Мишуков" class="profile-ava ava-min ava-empty">
+                            <div class="ava-image__empty"><span class="js-empty-chars"></span></div></span></span><span class="profile-name"><span>Сергей Мишуков</span></span><span class="text__followers">4</span></a></li>
+                    <li class="list__item"><a href="#"><span class="author__photo"><span data-empty-name="Сережа Мишуков" class="profile-ava ava-min ava-empty">
+                            <div class="ava-image__empty"><span class="js-empty-chars"></span></div></span></span><span class="profile-name"><span>Сергей Мишуков</span></span><span class="text__followers">4</span></a></li>
                   </ul>
                 </div>
               </div>
