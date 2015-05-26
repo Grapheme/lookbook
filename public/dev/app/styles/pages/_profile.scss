@@ -243,6 +243,24 @@
                 }
             }
         }
+
+        .ui-selectmenu-button {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 100% !important;
+            overflow: hidden;
+            background: transparent;
+            border: none;
+            outline: none;
+
+            span.ui-selectmenu-text {
+                padding: 0;
+                line-height: 60px;
+                font-size: 16px;
+            }
+        }
     }
 
     .dashboard-input {

@@ -18,6 +18,16 @@
         </td>
     </tr>
     <tr>
+        <td class="form-table__name"><span>Пол</span></td>
+        <td class="form-table__value js-form-value">
+            <select class="js-styled-select">
+                <option>Не выбрано</option>
+                <option>Мужской</option>
+                <option>Женский</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
         <td class="form-table__name"><span>Местонахождение</span></td>
         <td class="form-table__value js-form-value">
             <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
