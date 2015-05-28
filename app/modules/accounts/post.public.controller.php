@@ -12,9 +12,9 @@ class PostPublicController extends BaseController {
         if (in_array(Request::segment(1), array('admin')) === FALSE):
             Route::get('{category_title}/{post_url}', array('as' => 'post.public.show', 'uses' => $class . '@show'));
         endif;
-        Route::post('more/posts', array('before' => 'csrf', 'as' => 'post.public.more', 'uses' => $class . '@more'));
-        Route::post('more/posts/subscribes', array('before' => 'csrf', 'as' => 'post.public.more.subscribes',
-            'uses' => $class . '@moreSubscribes'));
+        Route::post('more/posts', array('before' => 'csrf', 'as' => 'post.public.more', 'uses' => $class . '@morePosts'));
+        Route::post('more/posts/subscribes', array('before' => 'csrf', 'as' => 'post.public.more.subscribes', 'uses' => $class . '@moreSubscribesPosts'));
+        Route::post('more/blogs', array('before' => 'csrf', 'as' => 'blogs.public.more', 'uses' => $class . '@moreSubscribesBlogs'));
     }
 
     public static function returnShortCodes() {
@@ -114,7 +114,7 @@ class PostPublicController extends BaseController {
         endif;
     }
 
-    public function more() {
+    public function morePosts() {
 
         $json_request = array('status' => FALSE, 'html' => '', 'from' => 0, 'hide_button' => TRUE);
         if (Request::ajax()):
@@ -127,6 +127,7 @@ class PostPublicController extends BaseController {
                 $post_limit = Input::get('limit');
                 $post_publication = Input::get('publication') == 'all' ? array(0, 1) : array(1);
                 $post_access = FALSE;
+                $posts = array();
                 if (!$user_id):
                     if (!$category_id):
                         $posts_total_count = Post::where('publication', 1)->where('in_index', 1)->count();
@@ -164,13 +165,14 @@ class PostPublicController extends BaseController {
         return Response::json($json_request, 200);
     }
 
-    public function moreSubscribes() {
+    public function moreSubscribesPosts() {
 
         $json_request = array('status' => FALSE, 'html' => '', 'from' => 0, 'hide_button' => TRUE);
         if (Request::ajax()):
             $validator = Validator::make(Input::all(), array('publication' => 'required', 'limit' => 'required',
                 'from' => 'required', 'category' => '', 'tag' => '', 'user' => ''));
             if ($validator->passes()):
+                $posts = array();
                 $post_from = Input::get('from');
                 $post_limit = Input::get('limit');
                 if ($blogsIDs = BloggerSubscribe::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->lists('blogger_id')):
@@ -186,6 +188,32 @@ class PostPublicController extends BaseController {
                     $json_request['status'] = TRUE;
                     $json_request['from'] = $post_from + $post_limit;
                     $json_request['hide_button'] = $posts_total_count > ($post_from + $post_limit) ? FALSE : TRUE;
+                endif;
+            endif;
+        else:
+            return Redirect::back();
+        endif;
+        return Response::json($json_request, 200);
+    }
+
+    public function moreSubscribesBlogs(){
+
+        $json_request = array('status' => FALSE, 'html' => '', 'from' => 0, 'hide_button' => TRUE);
+        if (Request::ajax()):
+            $validator = Validator::make(Input::all(), array('limit' => 'required', 'from' => 'required','user' => ''));
+            if ($validator->passes()):
+                $blogs = array();
+                $blog_from = Input::get('from');
+                $blog_limit = Input::get('limit');
+                if ($blogsIDs = BloggerSubscribe::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->lists('blogger_id')):
+                    $blogs_total_count = Accounts::where('group_id', 4)->where('active', 1)->whereIn('id', $blogsIDs)->count();
+                    $blogs = Accounts::where('group_id', 4)->where('active', 1)->whereIn('id', $blogsIDs)->take(Config::get('lookbook.blogs_limit'))->with('me_signed')->skip($blog_from)->take($blog_limit)->get();
+                endif;
+                if (count($blogs)):
+                    $json_request['html'] = View::make(Helper::layout('blocks.subscribes.blogs'), compact('blogs'))->render();
+                    $json_request['status'] = TRUE;
+                    $json_request['from'] = $blog_from + $blog_limit;
+                    $json_request['hide_button'] = $blogs_total_count > ($blog_from + $blog_limit) ? FALSE : TRUE;
                 endif;
             endif;
         else:
