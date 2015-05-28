@@ -1,3 +1,8 @@
+<?php
+if(!isset($post_access)):
+    $post_access = FALSE;
+endif;
+?>
 @foreach($posts as $post)
     <li class="dashboard-item js-post">
         <div class="left-block">

@@ -8,7 +8,9 @@ $post_access = TRUE;
 $publication = 'all';
 $posts_total_count = Post::where('user_id',Auth::user()->id)->count();
 $recommended_blogs = $blog_list = $categories = array();
-
+if ($blogsIDs = BloggerSubscribe::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->take(5)->lists('blogger_id')):
+    $blog_list = Accounts::where('group_id', 4)->where('active', 1)->whereIn('id', $blogsIDs)->get();
+endif;
 $posts = Post::where('user_id',Auth::user()->id)->orderBy('publication','ASC')->orderBy('publish_at','DESC')->orderBy('id','DESC')->with('user','photo','tags_ids','views','likes','comments')->take($post_limit)->get();
 foreach(Dic::where('slug','categories')->first()->values as $category):
     $categories[$category->id] = array('slug'=>$category->slug,'title'=>$category->name);
