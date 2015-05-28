@@ -15,7 +15,7 @@ endif;
 ?>
 @foreach($blogs as $blog)
     <li class="list__item js-post">
-    @include(Helper::layout('assets.avatar'),array('user'=>$blog))
+    @include(Helper::layout('assets.avatar'),array('user'=>$blog,'showName'=>FALSE))
     @if($blog->brand == 0)
         @if(count($top_blogger_ids) && in_array($blog->id,$top_blogger_ids))
             <div class="item__best-blogger"></div>
@@ -26,6 +26,9 @@ endif;
         @endif
     @endif
         <div class="item__content">
+            <div class="content__title">
+                <a href="{{ URL::route('user.profile.show',$blog->id.'-'.BaseController::stringTranslite($blog->name)) }}">{{ $blog->name }}</a>
+            </div>
             <div class="content__followers">
                 <b>{{ $blog->me_signed->count() }}</b> {{ Lang::choice('подписчик|подписчика|подписчиков',$blog->me_signed->count()) }}
             </div>
