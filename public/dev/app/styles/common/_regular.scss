@@ -44,6 +44,12 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     border-bottom: 1px solid $borderColor;
+
+    &.big-title {
+        padding: 43px 15px 43px 5px;
+        font-size: 34px;
+        font-weight: 300;
+    }
 }
 
 .left-content {
@@ -329,6 +335,46 @@
 
         .item__text {
             margin-top: 5px;
+        }
+    }
+}
+
+.right-tags {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    .tags__item {
+        position: relative;
+        display: block;
+        height: 230px;
+        background-size: cover;
+        background-position: center center;
+        margin-bottom: 20px;
+        color: inherit;
+        @extend .linkTrans;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .item__text {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            text-align: center;
+
+            span {
+                display: inline-block;
+                background: #fff;
+                padding: 5px 20px;
+                @extend .reg-italic;
+            }
+        }
+
+        &:hover {
+            color: $blue;
         }
     }
 }

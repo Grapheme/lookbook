@@ -19,6 +19,6 @@ endif;
             <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
         </span>
     </span>
-    <div class="profile-name"><span>{{ $user['name'] }}</span></div>
+    <span class="profile-name"><span>{{ $user['name'] }}</span></span>
     @endif
 </a>

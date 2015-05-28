@@ -1,0 +1,89 @@
+extends layout
+
+block vars
+  - var title = 'Профиль блоггера'
+  - var auth = true
+  - var profile_active = 'profile_auth_main_empty.html'
+
+block content
+    header
+        .wrapper
+            .container_12
+                .grid_12
+                    .user-header.user-page-header
+                        .header__photo.js-ava-cont(data-empty-name="Анна Антропова")
+                            img(src="images/tmp/profile-photo_max.jpg")
+                            .ava-image__empty
+                                span.js-empty-chars
+                        .header__info
+                            .info__name.js-fit-parent
+                                h1.js-fit-text Анна Антропова
+                            .info__quote Пестрыми строками по утонченной мод ...
+                            .info__nav
+                                a(href="blogger-page.html").white-black-btn Подробнее
+                                form(action="json/test.json").js-action-btn
+                                    input(type="hidden" name="blogger_id" value="2")
+                                    input(type="hidden" name="user_id" value="33")
+                                    button(type="submit").white-black-btn Добавить в мой блог лист
+                        .clearfix
+                .clearfix
+                .grid_12.reg-content
+                    .dashboard-tab
+                        .reg-content__left
+                            ul.dashboard-list.js-posts
+                                each i in [1,2,3]
+                                    li.dashboard-item.js-post
+                                        .left-block
+                                            .profile-ava.ava-min.ava-empty(data-empty-name="Анна Антропова")
+                                                img(src="images/tmp/profile-photo_max.jpg")
+                                                .ava-image__empty
+                                                    span.js-empty-chars
+                                            .profile-name Дурнев Константин
+                                        .right-block
+                                            .right-block__pad
+                                                .post-photo
+                                                    img(src="images/tmp/post-photo-1.jpg" alt="")
+                                                    .post-photo__alt Shopping
+                                                .post-info
+                                                    .post-info__title
+                                                        a(href="post.html") Новая коллекция обуви сезон 2014–2015
+                                                    .post-info__desc В 1947 году, когда Европа только начала восстанавливаться после пятилетней войны, Кристиан Диор создал силуэт, который навсегда вошел в историю под названием New Look. Этим, без сомнения, главным своим изобретением дизайнер сделал выдающийся вклад в мировую моду. 
+                                                .post-footer
+                                                    span.post-footer__date ЯНВ 26, 2015
+                                                    span.post-footer__statisctics
+                                                        span.statisctics-item
+                                                            i.svg-icon.icon-eye
+                                                            | 24
+                                                        span.statisctics-item
+                                                            i.svg-icon.icon-like
+                                                            | 56
+                                                        span.statisctics-item
+                                                            i.svg-icon.icon-comments
+                                                            | 36
+                            .dashboard-btn-more
+                                form(action="json/get_posts_no_auth.json").js-more-posts
+                                    button(type="submit").white-black-btn Показать больше Fashion
+                                    p.js-response-text
+                            .clearfix
+                        .reg-content__right
+                            .right-title TOP POSTS OF CARLO PAZOLINI
+                            .right-content
+                                ul.right-content__list.list-big
+                                    each i in [1,2,3,4,5]
+                                        li.list__item
+                                            a(href="#").item__photo
+                                                img(src="http://dummyimage.com/120x120/000/fff" alt="")
+                                            .item__text
+                                                .text__subject
+                                                    a(href="#") Lifestyle
+                                                .text__title
+                                                    a(href="#") Почему американский сэндвичный хлеб хранится в 20 раз дольше, чем российский?
+                                                .text__author
+                                                    a(href="#") Antony Granichniy
+                                                .text__views
+                                                    i.svg-icon.icon-eye
+                                                    | 3987
+                                            .clearfix
+                        .clearfix
+                .clearfix
+

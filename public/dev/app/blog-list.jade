@@ -1,0 +1,69 @@
+extends layout
+
+block vars
+  - var title = 'Профиль блоггера'
+  - var auth = true
+  //- var profile_active = 'profile_auth_main_empty.html'
+
+block content
+    header
+        .wrapper
+            .container_12
+                .grid_12
+                    include profile_auth_header
+                .clearfix
+                .grid_12.reg-content
+                    .dashboard-tab
+                        .reg-content__left
+                            .left-title.big-title Мой блог-лист
+                            ul.blog-list.js-posts
+                                each i in [1,2,3,4,5]
+                                    li.list__item.js-post
+                                        a(href="#")
+                                            span.author__photo
+                                                span.profile-ava.ava-min(data-empty-name="Анна Антропопва")
+                                                    img(src="images/tmp/profile-photo_huge.jpg")
+                                                    .ava-image__empty
+                                                        span.js-empty-chars
+                                        .item__best-blogger
+                                        .item__content
+                                            .content__title
+                                                a(href="#") Анна Антропова
+                                            .content__followers
+                                                b 10 342
+                                                |  подписчиков
+                                            .content__quote Пишу о чем хочу!
+                                            .content__desc Осенью созревают самые полезные, богатые витаминами и минеральными веществами овощи, фрукты и ягоды. Даже искушенные кулинары не могут перечислить всех рецептов ью созревают самые полезные, богатые витаминами и минеральными ...
+                                            .post-actions
+                                                a(href="#").white-btn.action-read
+                                                    i.svg-icon.icon-glasses
+                                                    | Читать блог
+                                                a(href="#").white-btn.action-view
+                                                    i.svg-icon.icon-person
+                                                    | Просмотреть профиль
+                                                form(action="json/test.json").js-delete-post.inline-block
+                                                    button(type="submit").white-btn.action-delete
+                                                        i.svg-icon.icon-cross
+                                                        | Удалить
+                            .dashboard-btn-more
+                                form(action="json/get_blog-list.json").js-more-posts
+                                    button(type="submit").white-black-btn Показать еще
+                                    p.js-response-text
+                        .reg-content__right
+                            .right-title Блоги рекомендованные LookBook
+                            .right-content 
+                                ul.right-content__list.top-bloggers
+                                    each i in [1,2,3]
+                                        li.list__item
+                                            a(href="#")
+                                                span.author__photo
+                                                    span.profile-ava.ava-min.ava-empty(data-empty-name="Сережа Мишуков")
+                                                        .ava-image__empty
+                                                            span.js-empty-chars
+                                                span.profile-name
+                                                    span Сергей Мишуков
+                                                //- span.text__followers 4
+                                a(href="#").right-content__all-link All blogs
+                        .clearfix
+                .clearfix
+

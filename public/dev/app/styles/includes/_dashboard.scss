@@ -119,35 +119,6 @@
                         vertical-align: middle;
                     }
                 }
-
-                .white-btn {
-                    border-color: #ccc;
-                    vertical-align: middle;
-                    margin-right: 10px;
-                    font-size: 12px;
-                    margin-top: 5px;
-                    margin-bottom: 5px;
-
-                    &:hover {
-                        border-color: $blue;
-                    }
-
-                    &.action-edit {
-                        padding: 0 20px 0 3px;
-                    }
-
-                    &.action-comment {
-                        padding: 0 20px 0 10px;
-                    }
-
-                    &.action-delete {
-                        padding: 0 20px 0 10px;
-                    }
-
-                    &.action-soc {
-                        padding: 0 20px 0 10px;
-                    }
-                }
             }
         }
 
@@ -248,6 +219,37 @@
             .post-footer {
                 margin-left: 190px;
             }
+        }
+    }
+}
+
+.post-actions {
+    .white-btn {
+        border-color: #ccc;
+        vertical-align: middle;
+        margin-right: 10px;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+
+        &:hover {
+            border-color: $blue;
+        }
+
+        &.action-edit {
+            padding: 0 20px 0 3px;
+        }
+
+        &.action-comment {
+            padding: 0 20px 0 10px;
+        }
+
+        &.action-delete {
+            padding: 0 20px 0 10px;
+        }
+
+        &.action-soc {
+            padding: 0 20px 0 10px;
         }
     }
 }
