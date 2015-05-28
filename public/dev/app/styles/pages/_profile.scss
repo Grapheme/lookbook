@@ -297,6 +297,31 @@
     }
 }
 
+.money-block {
+    //border-bottom: 1px solid $borderColor;
+    margin-bottom: 40px;
+
+    .block__section {
+        padding: $dashTopPad $dashLeftPad 15px 0;
+
+        p {
+            margin: 0 0 20px;
+
+            &:last-child {
+                margin: 0;
+            }
+        }
+
+        .section__content {
+            margin-top: 15px;
+        }
+    }
+
+    .dashboard__form-table {
+        margin: 0;
+    }
+}
+
 .ava-change {
     .ava-image {
         position: relative;

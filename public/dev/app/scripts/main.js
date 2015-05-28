@@ -100,6 +100,18 @@ jQuery.extend(jQuery.validator.messages, {
     min: jQuery.validator.format("Пожалуйста, введите число, большее или равное {0}."),
     extension: jQuery.validator.format("Вы можете загрузить изображение только со следующими расширениями: jpeg, jpg, png, gif.")
 });
+LookBook.UiButton = function() {
+    if(!$('.js-set-check').length) return;
+    var parent = $('.js-set-check');
+    var this_id = 0;
+    var id_strign = 'ui-check-';
+    parent.each(function(){
+        var this_string = id_strign + this_id
+        $(this).find('[type="checkbox"]').attr('id', this_string);
+        $(this).find('label').attr('for', this_string);
+        this_id++;
+    });
+}
 LookBook.ActionButton = function() {
     if(!$('.js-action-btn').length) return;
     $('.js-action-btn').on('submit', function(e){
@@ -641,6 +653,8 @@ $(function(){
     LookBook.Auth();
     LookBook.Like();
     LookBook.ActionButton();
+    LookBook.UiButton();
     $('.js-autosize').autosize();
     $('.js-styled-select').selectmenu();
+    $('.js-styled-check').button();
 });

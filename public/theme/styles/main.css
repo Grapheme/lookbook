@@ -1540,6 +1540,33 @@ h1 {
   color: #4bbeff;
 }
 
+.check-cont .ui-button {
+  background: transparent;
+  border-radius: 0;
+  border: none;
+}
+.check-cont .ui-button:before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  width: 15px;
+  height: 15px;
+  border-radius: 2px;
+  border: 1px solid #dddddd;
+  -webkit-transition: all .2s ease;
+          transition: all .2s ease;
+  background: transparent;
+}
+.check-cont .ui-button .ui-button-text {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+}
+.check-cont .ui-button.ui-state-active:before {
+  background: #dddddd;
+  border-color: transparent;
+}
+
 .header {
   min-width: 980px;
 }
@@ -2605,6 +2632,25 @@ h1 {
   padding: 5px 15px 15px;
   width: 100%;
   resize: none;
+}
+
+.money-block {
+  margin-bottom: 40px;
+}
+.money-block .block__section {
+  padding: 23px 27px 15px 0;
+}
+.money-block .block__section p {
+  margin: 0 0 20px;
+}
+.money-block .block__section p:last-child {
+  margin: 0;
+}
+.money-block .block__section .section__content {
+  margin-top: 15px;
+}
+.money-block .dashboard__form-table {
+  margin: 0;
 }
 
 .ava-change .ava-image {

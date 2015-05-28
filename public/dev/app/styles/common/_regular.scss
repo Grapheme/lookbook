@@ -379,4 +379,37 @@
     }
 }
 
+.check-cont {
+    .ui-button {
+        background: transparent;
+        border-radius: 0;
+        border: none;
+
+        &:before {
+            content: "";
+            display: inline-block;
+            vertical-align: middle;
+            width: 15px;
+            height: 15px;
+            border-radius: 2px;
+            border: 1px solid $borderColor;
+            transition: all .2s ease;
+            background: transparent;
+        }
+
+        .ui-button-text {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 14px;
+        }
+
+        &.ui-state-active {
+            &:before {
+                background: $borderColor;
+                border-color: transparent;
+            }
+        }
+    }
+}
+
 // .js-like { cursor: pointer; }
