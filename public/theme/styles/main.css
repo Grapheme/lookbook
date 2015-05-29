@@ -2653,6 +2653,11 @@ h1 {
   margin: 0;
 }
 
+.avatar-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .ava-change .ava-image {
   position: relative;
   display: inline-block;
@@ -2844,6 +2849,80 @@ h1 {
 
 .ava-empty .ava-image__empty {
   display: block;
+}
+
+.ava-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+}
+.ava-overlay .overlay__background {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.5);
+}
+.ava-overlay .overlay__content {
+  position: absolute;
+  z-index: 2;
+  height: 450px;
+  width: 764px;
+  top: 50%;
+  left: 50%;
+  margin-top: -225px;
+  margin-left: -382px;
+  background: #fff;
+  padding: 5px 25px 25px 25px;
+  border: 1px solid #dddddd;
+}
+.ava-overlay .overlay__content .left-title {
+  margin-bottom: 25px;
+}
+.ava-overlay .overlay__content .left-title .overlay__close {
+  float: right;
+  display: inline-block;
+  vertical-align: middle;
+  height: 16px;
+  line-height: 20px;
+  color: inherit;
+  text-decoration: none;
+}
+.ava-overlay .overlay__content .left-title .overlay__close:hover {
+  opacity: .5;
+}
+.ava-overlay .overlay__content .overlay__image {
+  float: left;
+  width: 360px;
+  height: 360px;
+}
+.ava-overlay .overlay__content .overlay__preview {
+  float: left;
+  overflow: hidden;
+  margin-left: 15px;
+}
+.ava-overlay .overlay__content .overlay__preview.preview-huge {
+  width: 110px;
+  height: 110px;
+}
+.ava-overlay .overlay__content .overlay__preview.preview-normal {
+  width: 60px;
+  height: 60px;
+}
+.ava-overlay .overlay__content .overlay__preview.preview-small {
+  width: 25px;
+  height: 25px;
+}
+.ava-overlay .overlay__content .overlay__btns {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
 }
 
 .new-post-form {

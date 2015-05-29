@@ -32,7 +32,7 @@ Help.typicalSubmit = function() {
         return false;
     });
 }
-Help.ajaxSubmit = function(form) {
+Help.ajaxSubmit = function(form, callbacks) {
     var response_cont = $(form).find('.js-response-text'),
         options = { 
         beforeSubmit: function(){
@@ -46,6 +46,9 @@ Help.ajaxSubmit = function(form) {
             }
             $(form).find('[type="submit"]').removeClass('loading')
                 .removeAttr('disabled');
+            if(callbacks && callbacks.success) {
+                callbacks.success();
+            }
             if($(form).hasClass('js-reg-form')) {
                 $('.js-full-reg').slideUp();
                 $('.js-final-text').html(data.responseText);
@@ -61,23 +64,61 @@ Help.ajaxSubmit = function(form) {
     };
     $(form).ajaxSubmit(options);
 }
+Help.avaCrop = function() {
+    var crop_cont = $('.js-crop-ava > img');
+    $('.js-crop-ava > img').cropper({
+        aspectRatio: 1,
+        minCropBoxWidth: 50,
+        minCropBoxHeight: 50,
+        preview: $('.js-crop-preview'),
+        crop: function(data) {
+        }
+    });
+}
+Help.uploadPhoto = function(input) {
+    file = input[0].files[0];
+    fr = new FileReader();
+    $('#ava-error-cont').html('').hide();
+    fr.onload = function(e) {
+        $('.js-image-test').remove();
+        var image_str = '<img src="' + e.target.result + '">';
+        var image_test = '<img class="js-image-test" style="position: fixed; left: -9999px;" src="' + e.target.result + '">';
+        $('html').append(image_test);
+        var img_width = $('.js-image-test').width();
+        var img_height = $('.js-image-test').height();
+        if(img_width <= 1920 && img_height <= 1080 && img_width >= 110 && img_height >= 110) {
+            $('.js-crop-ava').html(image_str);
+            $('.js-ava-overlay').show();
+            Help.avaCrop();
+            input.val('');
+        } else {
+            if(img_width > 1920 || img_height > 1080) {
+                $('#ava-error-cont').show().text('Изображение слишком большое');
+            }
+            if(img_width < 110 || img_height < 110) {
+                $('#ava-error-cont').show().text('Изображение слишком маленькое');
+            }
+        }
+    }
+    fr.readAsDataURL(file);
+}
 Help.avaSubmit = function(form, callback) {
     var response_cont = $('#ava-error-server'),
         options = { 
-        beforeSubmit: function(){
-            response_cont.hide();
-            response_cont.text('Загрузка...');
-        }, 
-        success: function(data){
-            if(data.responseText) {
-                response_cont.show().text(data.responseText);
+            beforeSubmit: function(){
+                response_cont.hide();
+                response_cont.text('Загрузка...');
+            }, 
+            success: function(data){
+                if(data.responseText) {
+                    response_cont.show().text(data.responseText);
+                }
+                callback(data);
+            },
+            error: function(data) {
+                response_cont.show().text('Ошибка на сервере, попробуйте позже');
             }
-            callback(data);
-        },
-        error: function(data) {
-            response_cont.show().text('Ошибка на сервере, попробуйте позже');
-        }
-    };
+        };
     $(form).ajaxSubmit(options);
 }
 jQuery.extend(jQuery.validator.messages, {
@@ -225,10 +266,17 @@ LookBook.DashForm = function() {
             }
         });
     }
+    var avaUpload = function(form) {
+        Help.uploadPhoto(form.find('input[type="file"]'));
+    }
     var init = function() {
         checkInputs();
         $(document).on('click', '.js-add-value', function(){
             focusClick($(this));
+            return false;
+        });
+        $('.js-ava-overlay-close, .js-ava-overlay .overlay__background').on('click', function(e){
+            $('.js-ava-overlay').hide();
             return false;
         });
         value_block.find('input').on('focus', function(){
@@ -305,10 +353,11 @@ LookBook.DashForm = function() {
             errorElement : 'div',
             errorLabelContainer: '#ava-error-cont',
             submitHandler: function(form) {
-                Help.avaSubmit(form, function(data){
-                    $('.js-ava-cont').removeClass('ava-empty');
-                    $('.js-ava-img-cont').html('<img src="' + data.image + '" alt="">');
-                });
+                avaUpload($('#ava-change'));
+                // Help.avaSubmit(form, function(data){
+                //     $('.js-ava-cont').removeClass('ava-empty');
+                //     $('.js-ava-img-cont').html('<img src="' + data.image + '" alt="">');
+                // });
                 return false;
             }
         });
@@ -322,10 +371,11 @@ LookBook.DashForm = function() {
             errorElement : 'div',
             errorLabelContainer: '#ava-error-cont',
             submitHandler: function(form) {
-                Help.avaSubmit(form, function(data){
-                    $('.js-ava-cont').removeClass('ava-empty');
-                    $('.js-ava-img-cont').html('<img src="' + data.image + '" alt="">');
-                });
+                avaUpload($('#ava-upload'));
+                // Help.avaSubmit(form, function(data){
+                //     $('.js-ava-cont').removeClass('ava-empty');
+                //     $('.js-ava-img-cont').html('<img src="' + data.image + '" alt="">');
+                // });
                 return false;
             }
         });
@@ -340,6 +390,17 @@ LookBook.DashForm = function() {
                 });
                 return false;
             }
+        });
+        $('#ava-crop-upload').on('submit', function(e){
+            e.preventDefault();
+            var form = $(this);
+            var this_image = $('.js-crop-ava > img').cropper('getCroppedCanvas').toDataURL();
+            form.find('input[type="photo"]').val(this_image);
+            Help.ajaxSubmit(form, {
+                success: function() {
+                    $('.js-ava-overlay').hide();
+                }
+            });
         });
     }
     init();
@@ -554,7 +615,7 @@ LookBook.TopCollage = function() {
             var this_scale = Help.getRandomArbitrary(0.6, 0.95);
             var transform_str = 'transform: translate(' + this_x + '%, ' + this_y + '%) scale(' + this_scale + '); z-index: 1;';
             var transform_hover = 'transform: translate(' + this_x + '%, ' + this_y + '%) scale(1); z-index: 5;';
-            console.log(transform_str);
+            //console.log(transform_str);
             this_items.eq(index)
                 .attr('style', transform_str)
                 .attr('data-static-style', transform_str)

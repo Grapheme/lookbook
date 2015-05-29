@@ -128,6 +128,26 @@
             <div class="clearfix"></div>
         </div>
     </div>
+    <div class="ava-overlay js-ava-overlay">
+        <div class="overlay__background"></div>
+        <div class="overlay__content">
+            <div class="left-title">Выберите область изображения<a href="#" class="overlay__close js-ava-overlay-close">✕</a></div>
+            <div class="overlay__image js-crop-ava">
+                <!-- <img src="/theme/images/tmp/blog-image.jpg"> -->
+            </div>
+            <div class="overlay__preview preview-huge js-crop-preview"></div>
+            <div class="overlay__preview preview-normal js-crop-preview"></div>
+            <div class="overlay__preview preview-small js-crop-preview"></div>
+            <div class="overlay__btns">
+                {{ Form::open(array('route'=>'profile.avatar.upload','method'=>'post','id'=>'ava-crop-upload')) }}
+                <input name="photo" type="hidden">
+                <div class="btns__error js-response-text"></div>
+                <a href="#" class="us-btn gray-btn js-ava-overlay-close">Отменить</a>
+                <button type="submit" class="us-btn blue-hover">Сохранить</button>
+                {{ Form::close() }}
+            </div>
+        </div>
+    </div>
 @stop
 @section('scripts')
     {{ HTML::script('private/js/vendor/redactor.min.js') }}
