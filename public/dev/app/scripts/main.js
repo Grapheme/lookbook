@@ -47,7 +47,7 @@ Help.ajaxSubmit = function(form, callbacks) {
             $(form).find('[type="submit"]').removeClass('loading')
                 .removeAttr('disabled');
             if(callbacks && callbacks.success) {
-                callbacks.success();
+                callbacks.success(data);
             }
             if($(form).hasClass('js-reg-form')) {
                 $('.js-full-reg').slideUp();
@@ -397,7 +397,12 @@ LookBook.DashForm = function() {
             var this_image = $('.js-crop-ava > img').cropper('getCroppedCanvas').toDataURL();
             form.find('input[name="photo"]').val(this_image);
             Help.ajaxSubmit(form, {
-                success: function() {
+                success: function(data) {
+                    console.log(data);
+                    $('.js-ava-cont img').remove();
+                    $('.js-ava-cont')
+                        .removeClass('ava-empty')
+                        .append('<img alt="" src="' + data.image + '">');
                     $('.js-ava-overlay').hide();
                 }
             });
