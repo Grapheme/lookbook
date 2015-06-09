@@ -1,4 +1,4 @@
-{{ Form::open(array('route'=>'blogger.monetization.update','method'=>'put', 'class'=>'js-dashboard-form')) }}
+{{ Form::open(array('route'=>'blogger.monetization.update','method'=>'put', 'class'=>'js-dashboard-form js-ajax-form')) }}
 <div class="left-title">Монетизация</div>
 <div class="form-desc money-block">
     <div class="block__section">
