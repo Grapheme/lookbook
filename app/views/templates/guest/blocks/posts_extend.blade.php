@@ -31,7 +31,6 @@ endforeach;
                     @else
                         <div class="post-photo">
                     @endif
-                        <!-- <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$post_ext->photo->name) }}" > -->
                     @if(isset($categories[$post->category_id]['title']))
                         <div class="post-photo__alt">
                             {{ $categories[$post->category_id]['title'] }}
