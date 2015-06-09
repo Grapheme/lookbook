@@ -117,7 +117,7 @@ class AccountsBloggerController extends BaseController {
         return Response::json($json_request,200);
     }
 
-    private function profileMonetizationUpdate(){
+    public function profileMonetizationUpdate(){
 
         $json_request = array('status'=>FALSE,'responseText'=>'','redirect'=>FALSE);
         if(Request::ajax()):
@@ -238,8 +238,6 @@ class AccountsBloggerController extends BaseController {
 
     private function accountMonetizationUpdate($post){
 
-        Helper::tad($post);
-
         if(!$monetization = BloggerMonetization::where('user_id', Auth::user()->id)->first()):
             $monetization = new BloggerMonetization();
         endif;
@@ -251,6 +249,16 @@ class AccountsBloggerController extends BaseController {
 
         $monetization->save();
         $monetization->touch();
+
+        if(!isset($post['cooperation_brands'])):
+            $post['cooperation_brands'] = array();
+        endif;
+        if(!isset($post['thrust'])):
+            $post['thrust'] = array();
+        endif;
+
+        Accounts::where('id', Auth::user()->id)->first()->cooperation_brands()->sync($post['cooperation_brands']);
+        Accounts::where('id', Auth::user()->id)->first()->thrust()->sync($post['thrust']);
 
         return TRUE;
     }

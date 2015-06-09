@@ -9,7 +9,7 @@ class CreateUserThrustTable extends Migration {
 		Schema::create('user_thrust', function(Blueprint $table){
 			$table->increments('id');
             $table->integer('user_id')->unsigned()->nullable()->default(0);
-            $table->integer('cooperation_brand_id')->unsigned()->nullable()->default(0);
+            $table->integer('thrust_id')->unsigned()->nullable()->default(0);
 			$table->timestamps();
 		});
 	}
