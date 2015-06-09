@@ -1,6 +1,6 @@
 <?php
 
-class BloggerMonitization extends BaseModel {
+class BloggerMonetization extends BaseModel {
 
     protected $table = 'user_monetization';
     protected $guarded = array();

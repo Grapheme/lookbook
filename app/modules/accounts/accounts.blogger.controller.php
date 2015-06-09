@@ -18,7 +18,7 @@ class AccountsBloggerController extends BaseController {
 
                 Route::get('profile', array('as' => 'profile', 'uses' => $class . '@profile'));
                 Route::put('profile', array('before'=>'csrf', 'as' => 'profile.update', 'uses' => $class . '@profileUpdate'));
-                Route::put('profile/monitization', array('before'=>'csrf', 'as' => 'blogger.monitization.update', 'uses' => $class . '@profileMonitizationUpdate'));
+                Route::put('profile/monetization', array('before'=>'csrf', 'as' => 'blogger.monetization.update', 'uses' => $class . '@profileMonetizationUpdate'));
                 Route::put('profile/password', array('before'=>'csrf', 'as' => 'profile.password.update', 'uses' => $class . '@profilePasswordUpdate'));
                 Route::post('profile/avatar/upload', array('before'=>'csrf', 'as' => 'profile.avatar.upload', 'uses' => $class . '@profileAvatarUpdate'));
                 Route::delete('profile/avatar/delete', array('before'=>'csrf', 'as' => 'profile.avatar.delete', 'uses' => $class . '@profileAvatarDelete'));
@@ -72,15 +72,15 @@ class AccountsBloggerController extends BaseController {
             'page_description'=> Lang::get('seo.BLOGGER.description'),
             'page_keywords'=> Lang::get('seo.BLOGGER.keywords'),
             'profile' => Accounts::where('id',Auth::user()->id)->first(),
-            'monitization' => array()
+            'monetization' => array()
         );
 
         if(!Auth::user()->brand):
-            $page_data['monitization']['main'] = BloggerMonitization::where('user_id', Auth::user()->id)->first();
-            $page_data['monitization']['cooperation'] = BloggerCooperationBrands::where('user_id', Auth::user()->id)->first();
-            $page_data['monitization']['thrust'] = BloggerThrust::where('user_id', Auth::user()->id)->first();
+            $page_data['monetization']['main'] = BloggerMonetization::where('user_id', Auth::user()->id)->first();
+            $page_data['monetization']['cooperation'] = BloggerCooperationBrands::where('user_id', Auth::user()->id)->get();
+            $page_data['monetization']['thrust'] = BloggerThrust::where('user_id', Auth::user()->id)->get();
 
-//            Helper::tad($page_data['monitization']);
+//            Helper::tad($page_data['monetization']);
 
         endif;
         if (Auth::user()->first_login):
@@ -117,17 +117,13 @@ class AccountsBloggerController extends BaseController {
         return Response::json($json_request,200);
     }
 
-    private function profileMonitizationUpdate(){
+    private function profileMonetizationUpdate(){
 
         $json_request = array('status'=>FALSE,'responseText'=>'','redirect'=>FALSE);
         if(Request::ajax()):
-            $validator = Validator::make(Input::all(),array('name'=>'required','email'=>'required|email'));
-            if (Auth::user()->email != Input::get('email') && User::where('email',Input::get('email'))->exists()):
-                $json_request['responseText'] = Lang::get('interface.DEFAULT.email_exist');
-                return Response::json($json_request,200);
-            endif;
+            $validator = Validator::make(Input::all(),array());
             if($validator->passes()):
-                if(self::accountUpdate(Input::all())):
+                if(self::accountMonetizationUpdate(Input::all())):
                     $json_request['responseText'] = Lang::get('interface.DEFAULT.success_save');
                     $json_request['status'] = TRUE;
                 else:
@@ -237,6 +233,25 @@ class AccountsBloggerController extends BaseController {
         }catch (Exception $e){
             return FALSE;
         }
+        return TRUE;
+    }
+
+    private function accountMonetizationUpdate($post){
+
+        Helper::tad($post);
+
+        if(!$monetization = BloggerMonetization::where('user_id', Auth::user()->id)->first()):
+            $monetization = new BloggerMonetization();
+        endif;
+
+        $monetization->user_id = Auth::user()->id;
+        $monetization->features = $post['features'];
+        $monetization->phone = $post['phone'];
+        $monetization->location = $post['location'];
+
+        $monetization->save();
+        $monetization->touch();
+
         return TRUE;
     }
 

@@ -23,7 +23,7 @@
                         @include(Helper::acclayout('assets.forms.brand-profile'))
                     @else
                         @include(Helper::acclayout('assets.forms.blogger-profile'))
-                        @include(Helper::acclayout('assets.forms.blogger_monitization'))
+                        @include(Helper::acclayout('assets.forms.blogger_monetization'))
                     @endif
                         @include(Helper::acclayout('assets.forms.password-update'))
                     </div>

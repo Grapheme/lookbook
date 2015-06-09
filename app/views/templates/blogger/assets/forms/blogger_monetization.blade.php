@@ -1,4 +1,4 @@
-{{ Form::open(array('route'=>'blogger.monitization.update','method'=>'put', 'class'=>'js-dashboard-form')) }}
+{{ Form::open(array('route'=>'blogger.monetization.update','method'=>'put', 'class'=>'js-dashboard-form')) }}
 <div class="left-title">Монетизация</div>
 <div class="form-desc money-block">
     <div class="block__section">
@@ -23,7 +23,7 @@
     <div class="block__section">
         <div class="section__desc">Укажите, пожалуйста, некоторые особенности вашего блога</div>
         <div class="section__content">
-            <textarea class="redactor dashboard-textarea js-autosize"></textarea>
+            {{ Form::textarea('features',NULL,array('class'=>'redactor dashboard-textarea js-autosize')) }}
         </div>
     </div>
     <div class="block__section">
@@ -49,7 +49,7 @@
             <td class="form-table__value js-form-value">
                 <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
                 <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                {{ Form::text('phone',Input::old('blogname'),array('class'=>'dashboard-input')) }}
+                {{ Form::text('phone',NULL,array('class'=>'dashboard-input')) }}
             </td>
         </tr>
         <tr>
@@ -57,7 +57,7 @@
             <td class="form-table__value js-form-value">
                 <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
                 <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                {{ Form::text('adress',Input::old('blogname'),array('class'=>'dashboard-input')) }}
+                {{ Form::text('location',NULL,array('class'=>'dashboard-input')) }}
             </td>
         </tr>
     </table>
