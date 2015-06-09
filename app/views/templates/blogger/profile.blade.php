@@ -132,12 +132,8 @@
         <div class="overlay__background"></div>
         <div class="overlay__content">
             <div class="left-title">Выберите область изображения<a href="#" class="overlay__close js-ava-overlay-close">✕</a></div>
-            <div class="overlay__image js-crop-ava">
-                <!-- <img src="/theme/images/tmp/blog-image.jpg"> -->
-            </div>
+            <div class="overlay__image js-crop-ava"></div>
             <div class="overlay__preview preview-huge js-crop-preview"></div>
-            <div class="overlay__preview preview-normal js-crop-preview"></div>
-            <div class="overlay__preview preview-small js-crop-preview"></div>
             <div class="overlay__btns">
                 {{ Form::open(array('route'=>'profile.avatar.upload','method'=>'post','id'=>'ava-crop-upload')) }}
                 <input name="photo" type="hidden">

@@ -86,19 +86,10 @@ Help.uploadPhoto = function(input) {
         $('html').append(image_test);
         var img_width = $('.js-image-test').width();
         var img_height = $('.js-image-test').height();
-        if(img_width <= 1920 && img_height <= 1080 && img_width >= 110 && img_height >= 110) {
-            $('.js-crop-ava').html(image_str);
-            $('.js-ava-overlay').show();
-            Help.avaCrop();
-            input.val('');
-        } else {
-            if(img_width > 1920 || img_height > 1080) {
-                $('#ava-error-cont').show().text('Изображение слишком большое');
-            }
-            if(img_width < 110 || img_height < 110) {
-                $('#ava-error-cont').show().text('Изображение слишком маленькое');
-            }
-        }
+        $('.js-crop-ava').html(image_str);
+        $('.js-ava-overlay').show();
+        Help.avaCrop();
+        input.val('');
     }
     fr.readAsDataURL(file);
 }
