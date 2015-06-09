@@ -12,12 +12,12 @@
                 интерес к одному, двум или сразу всем трем вариантам сотрудничества)</p>
         </div>
         <div class="section__content">
-        @foreach(Dic::where('slug','cooperation_brands')->first()->values as $cooperation)
-            <div class="check-cont js-set-check">
-                <input type="checkbox" name="cooperation_brands[]" value="{{ $cooperation->id }}" class="js-styled-check">
-                <label>{{ $cooperation->name }}</label>
-            </div>
-        @endforeach
+        {{--@foreach(Dic::where('slug','cooperation_brands')->first()->values as $cooperation)--}}
+            {{--<div class="check-cont js-set-check">--}}
+                {{--<input type="checkbox" name="cooperation_brands[]" value="{{ $cooperation->id }}" class="js-styled-check">--}}
+                {{--<label>{{ $cooperation->name }}</label>--}}
+            {{--</div>--}}
+        {{--@endforeach--}}
         </div>
     </div>
     <div class="block__section">
@@ -29,12 +29,12 @@
     <div class="block__section">
         <div class="section__desc">Основная направленность:</div>
         <div class="section__content">
-        @foreach(Dic::where('slug','main_thrust')->first()->values as $thrust)
-            <div class="check-cont js-set-check">
-                <input type="checkbox" name="thrust[]" value="{{ $thrust->id }}" class="js-styled-check">
-                <label>{{ $thrust->name }}</label>
-            </div>
-        @endforeach
+        {{--@foreach(Dic::where('slug','main_thrust')->first()->values as $thrust)--}}
+            {{--<div class="check-cont js-set-check">--}}
+                {{--<input type="checkbox" name="thrust[]" value="{{ $thrust->id }}" class="js-styled-check">--}}
+                {{--<label>{{ $thrust->name }}</label>--}}
+            {{--</div>--}}
+        {{--@endforeach--}}
         </div>
     </div>
     <div class="block__section">
