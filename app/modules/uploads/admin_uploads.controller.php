@@ -408,6 +408,21 @@ class AdminUploadsController extends BaseController {
         endif;
         return null;
     }
+
+    public static function createImageInBase64String($input = 'file'){
+
+        $base62string = Input::get($input);
+        if(!empty($base62string)):
+            list($type, $base62string) = explode(';', $base62string);
+            list(, $base62string)      = explode(',', $base62string);
+            $base62string = base64_decode($base62string);
+            $fileName = time()."_".Auth::user()->id."_".rand(1000, 1999).'.png';
+            ImageManipulation::make($base62string)->save(public_path(Config::get('site.uploads_thumb_user_dir')).'/thumb_'.$fileName);
+            ImageManipulation::make($base62string)->save(public_path(Config::get('site.uploads_image_user_dir')).'/'.$fileName);
+            return array('main'=>Config::get('site.uploads_image_user_dir').'/'.$fileName,'thumb'=>Config::get('site.uploads_thumb_user_dir').'/thumb_'.$fileName);
+        endif;
+        return FALSE;
+    }
 }
 
 
