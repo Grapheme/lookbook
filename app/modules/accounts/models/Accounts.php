@@ -23,4 +23,15 @@ class Accounts extends BaseModel {
         return $this->hasOne('BloggerMonitization', 'user_id', 'id');
     }
 
+    public function cooperation_brands(){
+
+        return $this->belongsToMany('BloggerCooperationBrands','user_cooperation_brands','user_id', 'cooperation_brand_id');
+
+    }
+
+    public function thrust(){
+
+        return $this->belongsToMany('BloggerThrust','user_thrust', 'user_id', 'thrust_id');
+    }
+
 }
