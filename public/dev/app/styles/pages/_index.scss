@@ -1,0 +1,61 @@
+.main-page {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	min-height: 100%;
+	background: #00bffe;
+	padding: 40px;
+	box-sizing: border-box;
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 36px;
+		left: 38px;
+		bottom: 36px;
+		right: 38px;
+		z-index: 1;
+		box-sizing: border-box;
+		border: 5px solid #fff;
+	}
+
+	.page__content {
+		position: relative;
+		z-index: 2;
+		max-width: 1145px;
+		min-width: 600px;
+		padding: 130px 30px;
+		margin: 0 auto;
+
+		.content__logo {
+			width: 290px;
+			height: 165px;
+			background: url(../images/ui/logo.svg) center center / 134%;
+			margin-left: 55px;
+		}
+
+		.content__line {
+			border-top: 3px solid #d6dcde;
+			margin-top: 60px;
+		}
+
+		.content__desc {
+			font-size: 25px;
+			font-family: "Lato";
+			font-weight: 300;
+			color: rgb(51, 51, 51);
+			text-transform: uppercase;
+			line-height: 1.094;
+			margin-top: 30px;
+		}
+
+		.content__btns {
+			margin-top: 55px;
+		}
+
+		.content__desc, .content__btns {
+			padding-left: 55px;
+		}
+	}
+}

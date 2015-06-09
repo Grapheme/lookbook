@@ -13,6 +13,9 @@ class AccountsBloggerController extends BaseController {
         $class = __CLASS__;
         if (Auth::check() && Auth::user()->group_id == 4):
             Route::group(array('before' => 'auth.status.blogger', 'prefix' => self::$name), function() use ($class) {
+                Route::get('subscribers', array('as' => 'subscribers', 'uses' => $class . '@subscribers'));
+                Route::get('blog-list', array('as' => 'blog-list', 'uses' => $class . '@blogList'));
+
                 Route::get('profile', array('as' => 'profile', 'uses' => $class . '@profile'));
                 Route::put('profile', array('before'=>'csrf', 'as' => 'profile.update', 'uses' => $class . '@profileUpdate'));
                 Route::put('profile/password', array('before'=>'csrf', 'as' => 'profile.password.update', 'uses' => $class . '@profilePasswordUpdate'));
@@ -20,9 +23,11 @@ class AccountsBloggerController extends BaseController {
                 Route::delete('profile/avatar/delete', array('before'=>'csrf', 'as' => 'profile.avatar.delete', 'uses' => $class . '@profileAvatarDelete'));
 
                 Route::post('subscribe',array('before'=>'csrf', 'as' => 'user.profile.subscribe', 'uses' => $class . '@profileSubscribe'));
+                Route::delete('unsubscribe',array('before'=>'csrf', 'as' => 'user.profile.subscribe.destroy', 'uses' => $class . '@profileUnSubscribe'));
             });
         endif;
         Route::get('profile/{user_url}',array('as'=>'user.profile.show','uses'=>$class.'@guestProfileShow'));
+        Route::get('profile/{user_url}/posts',array('as'=>'user.posts.show','uses'=>$class.'@guestProfilePostsShow'));
     }
 
     public static function returnShortCodes() {
@@ -215,8 +220,40 @@ class AccountsBloggerController extends BaseController {
         return TRUE;
     }
     /**************************************************************************/
-    /****************************************************************************/
+    public function subscribers(){
 
+        $page_data = array(
+            'page_title' => Lang::get('seo.BLOGGER.title'), 'page_description' => Lang::get('seo.BLOGGER.description'),
+            'page_keywords' => Lang::get('seo.BLOGGER.keywords'),
+            'posts' => array(), 'recommended_blogs' => array(), 'blog_list' => array(), 'categories' => array(),
+            'posts_total_count' => 0, 'post_limit' => Config::get('lookbook.posts_limit')
+        );
+        foreach(Dic::where('slug','categories')->first()->values as $category):
+            $page_data['categories'][$category->id] = array('slug'=>$category->slug,'title'=>$category->name);
+        endforeach;
+        $post_access = FALSE;
+        if ($blogsIDs = BloggerSubscribe::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->lists('blogger_id')):
+            $page_data['blog_list'] = Accounts::where('group_id', 4)->where('active', 1)->whereIn('id', $blogsIDs)->take(5)->get();
+            $page_data['posts_total_count'] = Post::whereIn('user_id',$blogsIDs)->count();
+            $page_data['posts'] = Post::whereIn('user_id',$blogsIDs)->where('publication',1)->orderBy('publish_at','DESC')->orderBy('id','DESC')->with('user','photo','tags_ids','views','likes','comments')->take($page_data['post_limit'])->get();
+        endif;
+        return View::make(Helper::acclayout('subscribes-bloggs'),$page_data);
+    }
+
+    public function blogList(){
+
+        $page_data = array(
+            'page_title' => Lang::get('seo.BLOGGER.title'), 'page_description' => Lang::get('seo.BLOGGER.description'),
+            'page_keywords' => Lang::get('seo.BLOGGER.keywords'),
+            'blogs' => array(), 'recommended_blogs' => array(), 'blogs_total_count' => 0
+        );
+        if ($blogsIDs = BloggerSubscribe::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->lists('blogger_id')):
+            $page_data['blogs'] = Accounts::where('group_id', 4)->where('active', 1)->whereIn('id', $blogsIDs)->take(Config::get('lookbook.blogs_limit'))->with('me_signed')->get();
+            $page_data['blogs_total_count'] = Accounts::where('group_id', 4)->where('active', 1)->whereIn('id', $blogsIDs)->count();
+        endif;
+        return View::make(Helper::acclayout('blog-list'),$page_data);
+    }
+    /****************************************************************************/
     public function guestProfileShow($user_url){
 
         if ($user = Accounts::where('id',(int)$user_url)->where('active',TRUE)->first()):
@@ -235,6 +272,18 @@ class AccountsBloggerController extends BaseController {
         endif;
     }
 
+    public function guestProfilePostsShow($user_url){
+
+        if ($user = Accounts::where('id',(int)$user_url)->where('active',TRUE)->first()):
+            $posts = array();
+            if ($user->brand):
+                return View::make(Helper::layout('brand-profile-posts'),compact('user','posts'));
+            else:
+                return View::make(Helper::layout('blogger-profile-posts'),compact('user','posts'));
+            endif;
+        endif;
+    }
+
     public function profileSubscribe(){
 
         $json_request = array('status'=>FALSE,'responseText'=>'','redirect'=>FALSE);
@@ -242,12 +291,36 @@ class AccountsBloggerController extends BaseController {
             $validator = Validator::make(Input::all(),array('user_id'=>'required'));
             if($validator->passes()):
                 if (Auth::user()->id != Input::get('user_id') && User::where('id',Input::get('user_id'))->exists()):
-                    $blogger_id = Input::get('user_id');
-                    Accounts::where('id', Auth::user()->id)->first()->blogger_subscribes()->sync(array($blogger_id => array('created_at' => date('c'),
-                        'updated_at' => date('c'))));
-                    $json_request['responseText'] = Lang::get('interface.DEFAULT.success_insert');
-                    $json_request['status'] = TRUE;
-                    return Response::json($json_request,200);
+                    if(BloggerSubscribe::where('user_id',Auth::user()->id)->where('blogger_id',Input::get('user_id'))->exists() === FALSE):
+                        $subscribe = new BloggerSubscribe();
+                        $subscribe->user_id = Auth::user()->id;
+                        $subscribe->blogger_id =Input::get('user_id');
+                        $subscribe->save();
+                        $json_request['responseText'] = Lang::get('interface.DEFAULT.success_insert');
+                        $json_request['status'] = TRUE;
+                    endif;
+                endif;
+            else:
+                $json_request['responseText'] = $validator->messages()->all();
+            endif;
+        else:
+            return Redirect::back();
+        endif;
+        return Response::json($json_request,200);
+    }
+
+    public function profileUnSubscribe(){
+
+        $json_request = array('status'=>FALSE,'responseText'=>'','redirect'=>FALSE);
+        if(Request::ajax() && Auth::check() && Auth::user()->group_id == 4):
+            $validator = Validator::make(Input::all(),array('user_id'=>'required'));
+            if($validator->passes()):
+                if (Auth::user()->id != Input::get('user_id') && User::where('id',Input::get('user_id'))->exists()):
+                    if($blog = BloggerSubscribe::where('user_id',Auth::user()->id)->where('blogger_id',Input::get('user_id'))->first()):
+                        $blog->delete();
+                        $json_request['responseText'] = Lang::get('interface.DEFAULT.success_remove');
+                        $json_request['status'] = TRUE;
+                    endif;
                 endif;
             else:
                 $json_request['responseText'] = $validator->messages()->all();

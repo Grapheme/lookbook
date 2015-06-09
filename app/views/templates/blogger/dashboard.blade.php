@@ -8,7 +8,9 @@ $post_access = TRUE;
 $publication = 'all';
 $posts_total_count = Post::where('user_id',Auth::user()->id)->count();
 $recommended_blogs = $blog_list = $categories = array();
-
+if ($blogsIDs = BloggerSubscribe::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->take(5)->lists('blogger_id')):
+    $blog_list = Accounts::where('group_id', 4)->where('active', 1)->whereIn('id', $blogsIDs)->get();
+endif;
 $posts = Post::where('user_id',Auth::user()->id)->orderBy('publication','ASC')->orderBy('publish_at','DESC')->orderBy('id','DESC')->with('user','photo','tags_ids','views','likes','comments')->take($post_limit)->get();
 foreach(Dic::where('slug','categories')->first()->values as $category):
     $categories[$category->id] = array('slug'=>$category->slug,'title'=>$category->name);
@@ -44,36 +46,8 @@ endforeach;
                     @endif
                     </div>
                     <div class="reg-content__right">
-                        <div class="right-title">БЛОГИ РЕКОМЕНДОВАННЫЕ LOOKBOOK</div>
-                        <div class="right-content">
-                        @if(count($recommended_blogs))
-                            <ul class="right-content__list">
-                            @foreach($recommended_blogs as $recommended_blog)
-                                <li class="list__item">
-                                    @include(Helper::layout('assets.avatar'),array('user'=>$recommended_blog))
-                                </li>
-                            @endforeach
-                            </ul>
-                            <a href="javascript:void(0);" class="right-content__all-link">All blogs</a>
-                        @else
-                            У вас еще нет рекомендованных блогов.
-                        @endif
-                        </div>
-                        <div class="right-title">МОЙ БЛОГ-ЛИСТ</div>
-                        <div class="right-content">
-                        @if(count($blog_list))
-                            <ul class="right-content__list">
-                            @foreach($blog_list as $blog)
-                                <li class="list__item">
-                                    @include(Helper::layout('assets.avatar'),array('user'=>$blog))
-                                </li>
-                            @endforeach
-                            </ul>
-                            <a href="javascript:void(0);" class="right-content__all-link">All blogs</a>
-                        @else
-                            Вы еще не добавили ни один блог в свой блог-лист.<br>Читайте <a href="javascript:void(0);">TOP POST</a> и выбирайте любимые.
-                        @endif
-                        </div>
+                        @include(Helper::acclayout('assets.recommended-list'),compact('recommended_blogs'))
+                        @include(Helper::acclayout('assets.blog-list'),compact('blog_list'))
                     </div>
                     <div class="clearfix"></div>
                 </div>
