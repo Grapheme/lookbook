@@ -1,5 +1,6 @@
 {{ Form::model($profile,array('route'=>'profile.update','method'=>'put','id'=>'dashboard-main', 'class'=>'js-dashboard-form','files'=>TRUE)) }}
     {{ Form::hidden('birth','') }}
+    {{ Form::hidden('sex', 0) }}
 <div class="left-title">Основное</div>
 <table class="dashboard__form-table">
     <tr>

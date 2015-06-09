@@ -181,6 +181,7 @@ class AccountsBloggerController extends BaseController {
             $user->location = $post['location'];
             $user->links = $post['links'];
             $user->site = $post['site'];
+            $user->sex = $post['sex'];
             $user->inspiration = $post['inspiration'];
             $user->phone = $post['phone'];
             $user->blogname = $post['blogname'];

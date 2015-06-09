@@ -20,11 +20,7 @@
     <tr>
         <td class="form-table__name"><span>Пол</span></td>
         <td class="form-table__value js-form-value">
-            <select class="js-styled-select">
-                <option>Не выбрано</option>
-                <option>Мужской</option>
-                <option>Женский</option>
-            </select>
+            {{ Form::select('sex',array('Не выбрано','Мужской','Женский'),NULL,array('class'=>'js-styled-select')) }}
         </td>
     </tr>
     <tr>

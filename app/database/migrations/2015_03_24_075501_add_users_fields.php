@@ -12,6 +12,7 @@ class AddUsersFields extends Migration {
             $table->string('location',200)->after('active')->nullable();
             $table->string('links',255)->after('active')->nullable();
             $table->string('site',100)->after('active')->nullable();
+            $table->tinyInteger('sex')->default(0)->unsigned()->nullable();
             $table->string('inspiration',255)->after('active')->nullable();
             $table->string('phone',150)->after('active')->nullable();
             $table->string('blogname',100)->after('active')->nullable();
