@@ -18,6 +18,7 @@ class AccountsBloggerController extends BaseController {
 
                 Route::get('profile', array('as' => 'profile', 'uses' => $class . '@profile'));
                 Route::put('profile', array('before'=>'csrf', 'as' => 'profile.update', 'uses' => $class . '@profileUpdate'));
+                Route::put('profile/monitization', array('before'=>'csrf', 'as' => 'blogger.monitization.update', 'uses' => $class . '@profileMonitizationUpdate'));
                 Route::put('profile/password', array('before'=>'csrf', 'as' => 'profile.password.update', 'uses' => $class . '@profilePasswordUpdate'));
                 Route::post('profile/avatar/upload', array('before'=>'csrf', 'as' => 'profile.avatar.upload', 'uses' => $class . '@profileAvatarUpdate'));
                 Route::delete('profile/avatar/delete', array('before'=>'csrf', 'as' => 'profile.avatar.delete', 'uses' => $class . '@profileAvatarDelete'));
@@ -70,8 +71,14 @@ class AccountsBloggerController extends BaseController {
             'page_title'=> Lang::get('seo.BLOGGER.title'),
             'page_description'=> Lang::get('seo.BLOGGER.description'),
             'page_keywords'=> Lang::get('seo.BLOGGER.keywords'),
-            'profile' => User::where('id',Auth::user()->id)->first()
+            'profile' => Accounts::where('id',Auth::user()->id)->first(),
+            'monitization' => array()
         );
+
+        if(Auth::user()->brand):
+            $page_data['monitization'] = BloggerMonitization::where('user_id', Auth::user()->id)->first();
+        endif;
+
         if (Auth::user()->first_login):
             $user = Auth::user();
             $user->first_login = FALSE;
@@ -82,6 +89,31 @@ class AccountsBloggerController extends BaseController {
     }
 
     public function profileUpdate(){
+
+        $json_request = array('status'=>FALSE,'responseText'=>'','redirect'=>FALSE);
+        if(Request::ajax()):
+            $validator = Validator::make(Input::all(),array('name'=>'required','email'=>'required|email'));
+            if (Auth::user()->email != Input::get('email') && User::where('email',Input::get('email'))->exists()):
+                $json_request['responseText'] = Lang::get('interface.DEFAULT.email_exist');
+                return Response::json($json_request,200);
+            endif;
+            if($validator->passes()):
+                if(self::accountUpdate(Input::all())):
+                    $json_request['responseText'] = Lang::get('interface.DEFAULT.success_save');
+                    $json_request['status'] = TRUE;
+                else:
+                    $json_request['responseText'] = Lang::get('interface.DEFAULT.fail');
+                endif;
+            else:
+                $json_request['responseText'] = $validator->messages()->all();
+            endif;
+        else:
+            return Redirect::back();
+        endif;
+        return Response::json($json_request,200);
+    }
+
+    private function profileMonitizationUpdate(){
 
         $json_request = array('status'=>FALSE,'responseText'=>'','redirect'=>FALSE);
         if(Request::ajax()):
