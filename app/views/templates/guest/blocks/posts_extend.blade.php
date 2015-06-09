@@ -27,7 +27,7 @@ endforeach;
             <li class="list__item post-card">
                 <div class="item__cont">
                     @if($hasImage)
-                        <div class="post-photo" style="background-image: url({{ asset(Config::get('site.galleries_photo_public_dir').'/'.$post_ext->photo->name) }});" alt="{{ $post_ext->title }}">
+                        <div class="post-photo" style="background-image: url();" alt="{{ $post_ext->title }}">
                     @else
                         <div class="post-photo">
                     @endif
