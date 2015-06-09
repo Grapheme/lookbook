@@ -20,7 +20,7 @@ endif;
 @section('content')
 <div class="main-page">
     <div class="page__content">
-        <div class="content__logo"></div>
+        <a href="{{ URL::to('/about') }}" class="content__logo"></a>
         <div class="content__line"></div>
         <div class="content__desc">Первая в россии площадка<br>для фешн-блогов</div>
         <div class="content__btns">
