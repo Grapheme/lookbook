@@ -47,7 +47,7 @@ Help.ajaxSubmit = function(form, callbacks) {
             $(form).find('[type="submit"]').removeClass('loading')
                 .removeAttr('disabled');
             if(callbacks && callbacks.success) {
-                callbacks.success();
+                callbacks.success(data);
             }
             if($(form).hasClass('js-reg-form')) {
                 $('.js-full-reg').slideUp();
@@ -397,7 +397,18 @@ LookBook.DashForm = function() {
             var this_image = $('.js-crop-ava > img').cropper('getCroppedCanvas').toDataURL();
             form.find('input[name="photo"]').val(this_image);
             Help.ajaxSubmit(form, {
-                success: function() {
+                success: function(data) {
+                    $('.js-ava-cont').each(function(){
+                        $(this).removeClass('ava-empty');
+                        var img_cont = $(this).find('.js-ava-img-cont');
+                        var img_str = '<img alt="" src="' + data.image + '">';
+                        if(img_cont.length) {
+                            img_cont.html(img_str);
+                        } else {
+                            $(this).find('img').remove();
+                            $(this).append(img_str);
+                        }
+                    });
                     $('.js-ava-overlay').hide();
                 }
             });
