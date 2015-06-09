@@ -28,7 +28,7 @@
                     @else
                         <div class="dashboard-empty">
                             <div class="dashboard-empty__desc">
-                                Блог-лист пуст.
+                                Блог лист пуст.
                             </div>
                         </div>
                     @endif
