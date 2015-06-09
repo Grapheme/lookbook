@@ -131,7 +131,18 @@ class AccountsBloggerController extends BaseController {
 
         $json_request = array('status'=>FALSE,'responseText'=>'','image'=>'','redirect'=>FALSE);
         if(Request::ajax()):
-            if($uploaded = AdminUploadsController::createImageInBase64String('photo')):
+            $uploaded = array();
+            $base62string = Input::get('photo');
+            if(!empty($base62string)):
+                list($type, $base62string) = explode(';', $base62string);
+                list(, $base62string)      = explode(',', $base62string);
+                $base62string = base64_decode($base62string);
+                $fileName = time()."_".Auth::user()->id."_".rand(1000, 1999).'.png';
+                file_put_contents(public_path(Config::get('site.uploads_thumb_user_dir')).'/thumb_'.$fileName, $base62string);
+                file_put_contents(public_path(Config::get('site.uploads_image_user_dir')).'/'.$fileName, $base62string);
+                $uploaded =  array('main'=>Config::get('site.uploads_image_user_dir').'/'.$fileName,'thumb'=>Config::get('site.uploads_thumb_user_dir').'/thumb_'.$fileName);
+            endif;
+            if(!empty($uploaded)):
                 $user = Auth::user();
                 $user->photo = @$uploaded['main'];
                 $user->	thumbnail = @$uploaded['thumb'];
