@@ -395,7 +395,7 @@ LookBook.DashForm = function() {
             e.preventDefault();
             var form = $(this);
             var this_image = $('.js-crop-ava > img').cropper('getCroppedCanvas').toDataURL();
-            form.find('input[type="photo"]').val(this_image);
+            form.find('input[name="photo"]').val(this_image);
             Help.ajaxSubmit(form, {
                 success: function() {
                     $('.js-ava-overlay').hide();
