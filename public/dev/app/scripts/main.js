@@ -398,11 +398,17 @@ LookBook.DashForm = function() {
             form.find('input[name="photo"]').val(this_image);
             Help.ajaxSubmit(form, {
                 success: function(data) {
-                    console.log(data);
-                    $('.js-ava-cont img').remove();
-                    $('.js-ava-cont')
-                        .removeClass('ava-empty')
-                        .append('<img alt="" src="' + data.image + '">');
+                    $('.js-ava-cont').each(function(){
+                        $(this).removeClass('ava-empty');
+                        var img_cont = $(this).find('.js-ava-img-cont');
+                        var img_str = '<img alt="" src="' + data.image + '">';
+                        if(img_cont.length) {
+                            img_cont.html(img_str);
+                        } else {
+                            $(this).find('img').remove();
+                            $(this).append(img_str);
+                        }
+                    });
                     $('.js-ava-overlay').hide();
                 }
             });
