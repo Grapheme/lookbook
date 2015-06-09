@@ -75,10 +75,14 @@ class AccountsBloggerController extends BaseController {
             'monitization' => array()
         );
 
-        if(Auth::user()->brand):
-            $page_data['monitization'] = BloggerMonitization::where('user_id', Auth::user()->id)->first();
-        endif;
+        if(!Auth::user()->brand):
+            $page_data['monitization']['main'] = BloggerMonitization::where('user_id', Auth::user()->id)->first();
+            $page_data['monitization']['cooperation'] = BloggerCooperationBrands::where('user_id', Auth::user()->id)->first();
+            $page_data['monitization']['thrust'] = BloggerThrust::where('user_id', Auth::user()->id)->first();
 
+//            Helper::tad($page_data['monitization']);
+
+        endif;
         if (Auth::user()->first_login):
             $user = Auth::user();
             $user->first_login = FALSE;

@@ -9,8 +9,6 @@ class CreateUserMonetizationTable extends Migration {
 		Schema::create('user_monetization', function(Blueprint $table){
 			$table->increments('id');
             $table->integer('user_id')->unsigned()->nullable()->default(0);
-            $table->text('cooperation_brands')->nullable();
-            $table->text('thrust')->nullable();
             $table->text('features')->nullable();
             $table->string('phone',150)->nullable();
             $table->string('location',200)->nullable();

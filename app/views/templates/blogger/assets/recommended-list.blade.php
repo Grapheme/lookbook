@@ -1,4 +1,4 @@
-<div class="right-title">БЛОГИ РЕКОМЕНДОВАННЫЕ LOOKBOOK</div>
+<div class="right-title">Рекомендованные блоги</div>
 <div class="right-content">
     @if(count($recommended_blogs))
         <ul class="right-content__list">

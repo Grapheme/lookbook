@@ -20,7 +20,7 @@
         </div>
         <div class="info__auth-nav">
             <a href="{{ URL::route("dashboard") }}" {{ Helper::isRoute("dashboard") }} data-tab="dashboard">Мои посты</a>
-            <a href="{{ URL::route("subscribers") }}" {{ Helper::isRoute("subscribers") }} data-tab="subscribers">Мои подписки</a>
+            <a href="{{ URL::route("subscribers") }}" {{ Helper::isRoute("subscribers") }} data-tab="subscribers">Лента</a>
             <a href="{{ URL::route("profile") }}" {{ Helper::isRoute("profile") }}>профиль</a>
             <!-- <a href="#" data-tab="notifications">Настройка уведомлений</a> -->
             <!-- <a href="#" data-tab="adv">Реклама</a> -->

@@ -1,4 +1,4 @@
-<div class="right-title">МОЙ БЛОГ-ЛИСТ</div>
+<div class="right-title">МОЙ БЛОГ ЛИСТ</div>
 <div class="right-content">
     @if(count($blog_list))
         <ul class="right-content__list">
