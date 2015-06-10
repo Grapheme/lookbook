@@ -29,6 +29,8 @@
 		margin: 0 auto;
 
 		.content__logo {
+			display: inline-block;
+			vertical-align: top;
 			width: 290px;
 			height: 165px;
 			background: url(../images/ui/logo.svg) center center / 134%;
