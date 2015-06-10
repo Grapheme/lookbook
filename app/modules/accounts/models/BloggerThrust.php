@@ -7,6 +7,8 @@ class BloggerThrust extends BaseModel {
     protected $fillable = array('user_id','thrust_id');
     public static $rules = array('user_id'=>'required','thrust_id'=>'required');
 
+    public $timestamps = false;
+
     public function user() {
         return $this->belongsTo('User', 'user_id');
     }

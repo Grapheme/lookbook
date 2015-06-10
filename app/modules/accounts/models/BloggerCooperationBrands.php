@@ -7,6 +7,8 @@ class BloggerCooperationBrands extends BaseModel {
     protected $fillable = array('user_id','cooperation_brand_id');
     public static $rules = array('user_id'=>'required','cooperation_brand_id'=>'required');
 
+    public $timestamps = false;
+
     public function user() {
         return $this->belongsTo('User', 'user_id');
     }
