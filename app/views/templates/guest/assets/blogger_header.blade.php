@@ -31,7 +31,11 @@ endif;
         </div>
         <div class="info__quote">{{ $user->blogname }}</div>
         <div class="info__nav">
-            <a href="javascript:void(0);" class="white-black-btn">Все посты блогера</a>
+            @if(Route::currentRouteName() == 'user.profile.show')
+            <a href="{{ URL::route('user.posts.show', $user->id.'-'.BaseController::stringTranslite($user->name)) }}" class="white-black-btn">Все посты блогера</a>
+            @else
+                <a href="{{ URL::route('user.profile.show', $user->id.'-'.BaseController::stringTranslite($user->name)) }}" class="white-black-btn">Подробнее</a>
+            @endif
             @if(Auth::check() && Auth::user()->group_id == 4 && Auth::user()->id != $user->id)
                 @if(BloggerSubscribe::where('user_id',Auth::user()->id)->where('blogger_id',$user->id)->exists())
                     {{ Form::button('Добавлено в мой блог лист',array('class'=>'white-black-btn','disabled'=>'disabled')) }}

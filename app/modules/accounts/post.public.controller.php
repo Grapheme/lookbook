@@ -6,15 +6,19 @@ class PostPublicController extends BaseController {
     public static $group = 'public';
     public static $entity = 'post';
     public static $entity_name = 'Пост';
+
     /****************************************************************************/
     public static function returnRoutes($prefix = null) {
         $class = __CLASS__;
         if (in_array(Request::segment(1), array('admin')) === FALSE):
             Route::get('{category_title}/{post_url}', array('as' => 'post.public.show', 'uses' => $class . '@show'));
         endif;
-        Route::post('more/posts', array('before' => 'csrf', 'as' => 'post.public.more', 'uses' => $class . '@morePosts'));
-        Route::post('more/posts/subscribes', array('before' => 'csrf', 'as' => 'post.public.more.subscribes', 'uses' => $class . '@moreSubscribesPosts'));
-        Route::post('more/blogs', array('before' => 'csrf', 'as' => 'blogs.public.more', 'uses' => $class . '@moreSubscribesBlogs'));
+        Route::post('more/posts', array('before' => 'csrf', 'as' => 'post.public.more',
+            'uses' => $class . '@morePosts'));
+        Route::post('more/posts/subscribes', array('before' => 'csrf', 'as' => 'post.public.more.subscribes',
+            'uses' => $class . '@moreSubscribesPosts'));
+        Route::post('more/blogs', array('before' => 'csrf', 'as' => 'blogs.public.more',
+            'uses' => $class . '@moreSubscribesBlogs'));
     }
 
     public static function returnShortCodes() {
@@ -32,6 +36,7 @@ class PostPublicController extends BaseController {
     public static function returnMenu() {
         return NULL;
     }
+
     /****************************************************************************/
     public function __construct() {
 
@@ -196,11 +201,11 @@ class PostPublicController extends BaseController {
         return Response::json($json_request, 200);
     }
 
-    public function moreSubscribesBlogs(){
+    public function moreSubscribesBlogs() {
 
         $json_request = array('status' => FALSE, 'html' => '', 'from' => 0, 'hide_button' => TRUE);
         if (Request::ajax()):
-            $validator = Validator::make(Input::all(), array('limit' => 'required', 'from' => 'required','user' => ''));
+            $validator = Validator::make(Input::all(), array('limit' => 'required', 'from' => 'required', 'user' => ''));
             if ($validator->passes()):
                 $blogs = array();
                 $blog_from = Input::get('from');

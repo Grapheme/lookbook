@@ -1,6 +1,12 @@
 <?php
-if(!isset($post_access)):
+if (!isset($post_access)):
     $post_access = FALSE;
+endif;
+if (!isset($categories)):
+    $categories = array();
+    foreach (Dic::where('slug', 'categories')->first()->values as $category):
+        $categories[$category->id] = array('slug' => $category->slug, 'title' => $category->name);
+    endforeach;
 endif;
 ?>
 @foreach($posts as $post)
@@ -12,9 +18,9 @@ endif;
             <div class="right-block__pad">
                 @include(Helper::layout('assets.post'),array('post'=>$post,'categories'=>$categories))
             </div>
-        @if($post_access && Auth::check() && $post->user_id == Auth::user()->id)
-            @include(Helper::acclayout('assets.post_actions'),array('post'=>$post))
-        @endif
+            @if($post_access && Auth::check() && $post->user_id == Auth::user()->id)
+                @include(Helper::acclayout('assets.post_actions'),array('post'=>$post))
+            @endif
         </div>
     </li>
 @endforeach
