@@ -18,11 +18,11 @@ endif;
     @include(Helper::layout('assets.avatar'),array('user'=>$blog,'showName'=>FALSE))
     @if($blog->brand == 0)
         @if(count($top_blogger_ids) && in_array($blog->id,$top_blogger_ids))
-            <div class="item__best-blogger"></div>
+            <!-- <div class="item__best-blogger"></div> -->
         @endif
     @elseif($blog->brand == 1)
         @if(count($top_brands_ids) && in_array($blog->id,$top_brands_ids))
-            <div class="item__best-blogger"></div>
+            <!-- <div class="item__best-blogger"></div> -->
         @endif
     @endif
         <div class="item__content">

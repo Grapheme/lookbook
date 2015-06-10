@@ -32,6 +32,6 @@ endif;
         <div class="content__desc"><span>{{ $user->blogname }}</span></div>
     </div>
 @if(count($top_ids) && in_array($user->id,$top_ids))
-    <div class="header__best-top"></div>
+    <!-- <div class="header__best-top"></div> -->
 @endif
 </div>

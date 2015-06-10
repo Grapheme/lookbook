@@ -1458,6 +1458,11 @@ h1 {
   width: 95%;
   text-align: left;
 }
+.posts-list .list__item .post-photo {
+  height: 350px;
+  background-position: cover;
+  background-size: center center;
+}
 
 .nav__dot {
   display: inline-block;
@@ -2700,6 +2705,9 @@ h1 {
 }
 .money-block .block__section p:last-child {
   margin: 0;
+}
+.money-block .block__section .section__desc {
+  font-style: italic;
 }
 .money-block .block__section .section__content {
   margin-top: 15px;

@@ -18,7 +18,7 @@
             <div class="grid_12 reg-content">
                 <div class="dashboard-tab">
                     <div class="reg-content__left">
-                        <div class="left-title big-title">Мой блог-лист</div>
+                        <div class="left-title big-title">Мой блог лист</div>
                     @if(count($blogs))
                         <ul class="blog-list js-posts">
                             @include(Helper::layout('blocks.subscribes.blogs'),compact('blogs'))
