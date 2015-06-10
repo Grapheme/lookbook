@@ -14,7 +14,7 @@
         <div class="section__content">
         @foreach(Dic::where('slug','cooperation_brands')->first()->values as $cooperation)
             <div class="check-cont js-set-check">
-                <input type="checkbox" name="cooperation_brands[]" value="{{ $cooperation->id }}" class="js-styled-check">
+                <input type="checkbox" name="cooperation_brands[]" {{ in_array($cooperation->id, $monetization['cooperation']) ? 'checked' : '' }} value="{{ $cooperation->id }}" class="js-styled-check">
                 <label>{{ $cooperation->name }}</label>
             </div>
         @endforeach
@@ -23,7 +23,14 @@
     <div class="block__section">
         <div class="section__desc">Укажите, пожалуйста, некоторые особенности вашего блога</div>
         <div class="section__content">
-            {{ Form::textarea('features',NULL,array('class'=>'redactor dashboard-textarea js-autosize')) }}
+            <?php
+                if(isset($monetization['main']->features)):
+                    $features = $monetization['main']->features;
+                else:
+                    $features = '';
+                endif;
+            ?>
+            {{ Form::textarea('features',$features,array('class'=>'redactor dashboard-textarea js-autosize')) }}
         </div>
     </div>
     <div class="block__section">
@@ -31,7 +38,7 @@
         <div class="section__content">
         @foreach(Dic::where('slug','main_thrust')->first()->values as $thrust)
             <div class="check-cont js-set-check">
-                <input type="checkbox" name="thrust[]" value="{{ $thrust->id }}" class="js-styled-check">
+                <input type="checkbox" name="thrust[]" {{ in_array($thrust->id, $monetization['thrust']) ? 'checked' : '' }} value="{{ $thrust->id }}" class="js-styled-check">
                 <label>{{ $thrust->name }}</label>
             </div>
         @endforeach
@@ -49,7 +56,14 @@
             <td class="form-table__value js-form-value">
                 <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
                 <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                {{ Form::text('phone',NULL,array('class'=>'dashboard-input')) }}
+                <?php
+                if(isset($monetization['main']->phone)):
+                    $phone = $monetization['main']->phone;
+                else:
+                    $phone = '';
+                endif;
+                ?>
+                {{ Form::text('phone',$phone,array('class'=>'dashboard-input')) }}
             </td>
         </tr>
         <tr>
@@ -57,7 +71,14 @@
             <td class="form-table__value js-form-value">
                 <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
                 <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-                {{ Form::text('location',NULL,array('class'=>'dashboard-input')) }}
+                <?php
+                if(isset($monetization['main']->location)):
+                    $location = $monetization['main']->location;
+                else:
+                    $location = '';
+                endif;
+                ?>
+                {{ Form::text('location',$location,array('class'=>'dashboard-input')) }}
             </td>
         </tr>
     </table>

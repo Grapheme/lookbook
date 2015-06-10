@@ -72,16 +72,17 @@ class AccountsBloggerController extends BaseController {
             'page_description'=> Lang::get('seo.BLOGGER.description'),
             'page_keywords'=> Lang::get('seo.BLOGGER.keywords'),
             'profile' => Accounts::where('id',Auth::user()->id)->first(),
-            'monetization' => array()
+            'monetization' => array('main'=>array(),'cooperation'=>array(),'thrust'=>array())
         );
 
         if(!Auth::user()->brand):
             $page_data['monetization']['main'] = BloggerMonetization::where('user_id', Auth::user()->id)->first();
-            $page_data['monetization']['cooperation'] = BloggerCooperationBrands::where('user_id', Auth::user()->id)->get();
-            $page_data['monetization']['thrust'] = BloggerThrust::where('user_id', Auth::user()->id)->get();
-
-//            Helper::tad($page_data['monetization']);
-
+            foreach(BloggerCooperationBrands::where('user_id', Auth::user()->id)->get() as $cooperation):
+                $page_data['monetization']['cooperation'][] = $cooperation->cooperation_brand_id;
+            endforeach;
+            foreach(BloggerThrust::where('user_id', Auth::user()->id)->get() as $thrust):
+                $page_data['monetization']['thrust'][] = $thrust->thrust_id;
+            endforeach;
         endif;
         if (Auth::user()->first_login):
             $user = Auth::user();
