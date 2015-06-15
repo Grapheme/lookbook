@@ -646,7 +646,7 @@ th {
   font-style: normal;
 }
 
-.svg-icon {
+.svg-icon, .gallery-overlay .overlay__close:before, .fotorama__arr {
   font-family: 'icomoon';
   speak: none;
   font-style: normal;
@@ -717,6 +717,14 @@ th {
 
 .icon-cross:before {
   content: "\e60c";
+}
+
+.icon-arrow-left:before {
+  content: "\e60f";
+}
+
+.icon-arrow-right:before {
+  content: "\e60e";
 }
 
 html {
@@ -1096,32 +1104,32 @@ h1 {
 .white-btn:hover {
   color: #4bbeff;
 }
-.white-btn .svg-icon {
+.white-btn .svg-icon, .white-btn .gallery-overlay .overlay__close:before, .gallery-overlay .white-btn .overlay__close:before, .white-btn .fotorama__arr {
   display: inline-block;
   vertical-align: middle;
   color: #4bbeff;
   margin-right: 18px;
 }
-.white-btn .svg-icon.icon-edit {
+.white-btn .svg-icon.icon-edit, .white-btn .gallery-overlay .icon-edit.overlay__close:before, .gallery-overlay .white-btn .icon-edit.overlay__close:before, .white-btn .icon-edit.fotorama__arr {
   font-size: 38px;
   width: 23px;
 }
-.white-btn .svg-icon.icon-comments {
+.white-btn .svg-icon.icon-comments, .white-btn .gallery-overlay .icon-comments.overlay__close:before, .gallery-overlay .white-btn .icon-comments.overlay__close:before, .white-btn .icon-comments.fotorama__arr {
   font-size: 30px;
   width: 22px;
 }
-.white-btn .svg-icon.icon-cross {
+.white-btn .svg-icon.icon-cross, .white-btn .gallery-overlay .icon-cross.overlay__close:before, .gallery-overlay .white-btn .icon-cross.overlay__close:before, .white-btn .icon-cross.fotorama__arr {
   position: relative;
   top: -.05em;
   font-size: 22px;
   width: 19px;
 }
-.white-btn .svg-icon.icon-glasses {
+.white-btn .svg-icon.icon-glasses, .white-btn .gallery-overlay .icon-glasses.overlay__close:before, .gallery-overlay .white-btn .icon-glasses.overlay__close:before, .white-btn .icon-glasses.fotorama__arr {
   font-size: 30px;
   width: 28px;
   margin-left: -17px;
 }
-.white-btn .svg-icon.icon-person {
+.white-btn .svg-icon.icon-person, .white-btn .gallery-overlay .icon-person.overlay__close:before, .gallery-overlay .white-btn .icon-person.overlay__close:before, .white-btn .icon-person.fotorama__arr {
   font-size: 30px;
   width: 22px;
   margin-left: -25px;
@@ -1406,7 +1414,7 @@ h1 {
   font-size: 14px;
   margin-top: 5px;
 }
-.right-content__list.list-big .list__item .item__text .text__views .svg-icon {
+.right-content__list.list-big .list__item .item__text .text__views .svg-icon, .right-content__list.list-big .list__item .item__text .text__views .gallery-overlay .overlay__close:before, .gallery-overlay .right-content__list.list-big .list__item .item__text .text__views .overlay__close:before, .right-content__list.list-big .list__item .item__text .text__views .fotorama__arr {
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -1629,7 +1637,7 @@ h1 {
   vertical-align: middle;
   line-height: normal;
 }
-.header .header__top .header__login .header__user .svg-icon {
+.header .header__top .header__login .header__user .svg-icon, .header .header__top .header__login .header__user .gallery-overlay .overlay__close:before, .gallery-overlay .header .header__top .header__login .header__user .overlay__close:before, .header .header__top .header__login .header__user .fotorama__arr {
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -1880,6 +1888,44 @@ h1 {
   opacity: 1;
 }
 
+.gallery-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 99;
+}
+.gallery-overlay .overlay__close {
+  position: absolute;
+  z-index: 2;
+  right: 25px;
+  top: 30px;
+  width: 50px;
+  height: 50px;
+  line-height: 65px;
+  background: #fff;
+  text-align: center;
+  color: inherit;
+  text-decoration: none;
+}
+.gallery-overlay .overlay__close:before {
+  content: "\e60b";
+  font-size: 30px;
+}
+.gallery-overlay .overlay__close:hover {
+  opacity: .5;
+}
+.gallery-overlay .overlay__gallery {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 .auth-input {
   box-sizing: border-box;
   height: 40px;
@@ -1999,7 +2045,7 @@ h1 {
   color: inherit;
   text-decoration: none;
 }
-.dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .svg-icon {
+.dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .svg-icon, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .gallery-overlay .overlay__close:before, .gallery-overlay .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .overlay__close:before, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .fotorama__arr {
   display: inline-block;
   vertical-align: middle;
   font-size: 35px;
@@ -2025,9 +2071,8 @@ h1 {
 .dashboard-list .dashboard-item .right-block .post-actions .actions__btns {
   display: inline-block;
   vertical-align: top;
-  width: 465px;
 }
-.dashboard-list .dashboard-item .right-block .post-actions .actions__btns .svg-icon {
+.dashboard-list .dashboard-item .right-block .post-actions .actions__btns .svg-icon, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .gallery-overlay .overlay__close:before, .gallery-overlay .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .overlay__close:before, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .fotorama__arr {
   font-size: 30px;
   width: 15px;
   vertical-align: middle;
@@ -2401,6 +2446,56 @@ h1 {
 }
 .blog-list .list__item .item__content .post-actions {
   margin-top: 20px;
+}
+
+.fotorama__arr {
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  text-align: center;
+  background-color: #fff;
+  background-image: none;
+  font-size: 26px;
+}
+.fotorama__arr.fotorama__arr--prev {
+  left: 25px;
+}
+.fotorama__arr.fotorama__arr--prev:before {
+  content: "\e60f";
+}
+.fotorama__arr.fotorama__arr--next {
+  right: 25px;
+}
+.fotorama__arr.fotorama__arr--next:before {
+  content: "\e60e";
+}
+.fotorama__arr:hover {
+  opacity: .8;
+}
+
+.fotorama__caption {
+  position: absolute;
+  box-sizing: border-box;
+  bottom: 20px;
+  left: 15px;
+  right: 15px;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.8);
+}
+.fotorama__caption .fotorama__caption__wrap {
+  font-family: "Lato";
+  background: transparent;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333333;
+  line-height: 1.6;
+  overflow: hidden;
+}
+
+.gallery-overlay .fotorama__caption {
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .main-page {

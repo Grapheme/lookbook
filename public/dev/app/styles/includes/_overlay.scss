@@ -187,6 +187,49 @@ $overlayTransTime: .5s;
     }
 }
 
+.gallery-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    z-index: 99;
+
+    .overlay__close {
+        position: absolute;
+        z-index: 2;
+        right: 25px;
+        top: 30px;
+        width: 50px;
+        height: 50px;
+        line-height: 65px;
+        background: #fff;
+        text-align: center;
+        color: inherit;
+        text-decoration: none;
+
+        &:before {
+            @extend .svg-icon;
+            content: "\e60b";
+            font-size: 30px;
+        }
+
+        &:hover {
+            opacity: .5;
+        }
+    }
+
+    .overlay__gallery {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
 .auth-input {
     box-sizing: border-box;
     height: 40px;

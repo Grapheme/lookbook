@@ -55,14 +55,14 @@
                                 </div>
                             </div>
                             <div class="form__input-block">
-                                <div class="form__input-title">Текст публикации</div>
-                                {{ Form::textarea('content',NULL,array('class'=>'redactor')) }}
-                            </div>
-                            <div class="form__input-block">
                                 <div class="form__input-title">Изображение</div>
                                 <label class="input">
                                     {{ ExtForm::image('photo_id') }}
                                 </label>
+                            </div>
+                            <div class="form__input-block">
+                                <div class="form__input-title">Текст публикации</div>
+                                {{ Form::textarea('content',NULL,array('class'=>'redactor')) }}
                             </div>
                             <div class="form__input-block">
                                 <div class="form__input-title">Подпись к изображаению</div>

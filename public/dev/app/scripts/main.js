@@ -144,6 +144,47 @@ LookBook.UiButton = function() {
         this_id++;
     });
 }
+LookBook.Gallery = function() {
+    if(!$('.js-gallery').length) return;
+    var parent = $('.js-gallery');
+    var parent_full = $('.js-gallery-full');
+    var settings = {
+        nav: 'thumbs',
+        arrows: 'always',
+        click: false,
+        loop: true,
+        fit: 'cover'
+    };
+    var settings_full = {
+        nav: false,
+        arrows: 'always',
+        loop: true,
+        width: '100%',
+        height: '100%',
+        fit: 'contain'
+    };
+    var fotoramaDiv = parent.fotorama(settings);
+    var fotorama = fotoramaDiv.data('fotorama');
+    var fotoramaDiv_full = parent_full.fotorama(settings_full);
+    var fotorama_full = fotoramaDiv_full.data('fotorama');
+    parent.on('click', '.fotorama__stage__shaft', function(){
+        $('.js-gallery-overlay').show();
+        if(!fotorama_full) {
+            fotorama_full = fotoramaDiv_full.data('fotorama');
+        }
+        if(fotorama_full) {
+            fotorama_full.show(fotorama.activeIndex);
+        }
+    });
+    $('.js-gallery-close').on('click', function(){
+        $('.js-gallery-overlay').fadeOut('fast');
+        return false;
+    });
+    parent_full.on('fotorama:show', function (e, ftr) {
+            fotorama.show(ftr.activeIndex);
+        }
+    );
+}
 LookBook.ActionButton = function() {
     if(!$('.js-action-btn').length) return;
     $('.js-action-btn').on('submit', function(e){
@@ -712,6 +753,7 @@ $(function(){
     LookBook.ListSlider();
     LookBook.TopCollage();
     LookBook.DashForm();
+    LookBook.Gallery();
     LookBook.FitText();
     LookBook.Auth();
     LookBook.Like();

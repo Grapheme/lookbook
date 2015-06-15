@@ -1,0 +1,58 @@
+.fotorama__arr {
+	@extend .svg-icon;
+	height: 50px;
+	width: 50px;
+	line-height: 50px;
+	text-align: center;
+	background-color: #fff;
+	background-image: none;
+	font-size: 26px;
+
+	&.fotorama__arr--prev {
+		left: 25px;
+
+		&:before {
+			content: "\e60f";
+		}
+	}
+
+	&.fotorama__arr--next {
+		right: 25px;
+
+		&:before {
+			content: "\e60e";
+		}
+	}
+
+	&:hover {
+		opacity: .8;
+	}
+}
+
+.fotorama__caption {
+	position: absolute;
+	box-sizing: border-box;
+	bottom: 20px;
+	left: 15px;
+	right: 15px;
+	padding: 10px 15px;
+	background: rgba(255, 255, 255, .8);
+
+	.fotorama__caption__wrap {
+		font-family: "Lato";
+		background: transparent;
+		font-size: 14px;
+		font-weight: 400;
+		color: #333333;
+		line-height: 1.6;
+  		overflow: hidden;
+	}
+}
+
+.gallery-overlay {
+	.fotorama__caption {
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}

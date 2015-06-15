@@ -52,10 +52,10 @@
                                             {{ $post->content }}
                                         </div>
                                     @if(isset($post->gallery->photos) && count($post->gallery->photos))
-                                        <div class="post-info__gallery">
+                                        <div class="post-info__gallery js-gallery">
                                         @foreach($post->gallery->photos as $photo)
                                             @if(!empty($photo->name) && File::exists(Config::get('site.galleries_photo_dir').'/'.$photo->name))
-                                            <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$photo->name) }}" alt="{{ $post->title }}">
+                                            <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$photo->name) }}" alt="{{ $post->title }}" data-caption="Описание">
                                             @endif
                                         @endforeach
                                         </div>
@@ -68,9 +68,9 @@
                                         <a href="#" class="white-btn action-soc">
                                             <i class="svg-icon icon-facebook"></i>Facebook
                                         </a>
-                                        <a href="#" class="white-btn action-soc">
+                                        <!-- <a href="#" class="white-btn action-soc">
                                             <i class="svg-icon icon-instagram"></i>Instagram
-                                        </a>
+                                        </a> -->
                                         <a href="#" class="white-btn action-soc">
                                             <i class="svg-icon icon-vk"></i>Вконтакте
                                         </a>
@@ -95,6 +95,18 @@
             </div>
             <div class="clearfix"></div>
         </div>
+    </div>
+    <div class="gallery-overlay js-gallery-overlay">
+        <a href="#" class="overlay__close js-gallery-close"></a>
+        @if(isset($post->gallery->photos) && count($post->gallery->photos))
+            <div class="overlay__gallery js-gallery-full">
+            @foreach($post->gallery->photos as $photo)
+                @if(!empty($photo->name) && File::exists(Config::get('site.galleries_photo_dir').'/'.$photo->name))
+                <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$photo->name) }}" alt="{{ $post->title }}" data-caption="Описание">
+                @endif
+            @endforeach
+            </div>
+        @endif
     </div>
 @stop
 @section('scripts')
