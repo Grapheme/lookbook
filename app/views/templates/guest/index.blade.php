@@ -28,7 +28,7 @@ endif;
         </div>
     </div>
 </div>
-@if(0)
+@if(FALSE)
 <div class="wrapper">
     <div class="container_12">
     @if(count($promoted_posts))
