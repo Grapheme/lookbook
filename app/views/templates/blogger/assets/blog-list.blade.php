@@ -8,7 +8,7 @@
                 </li>
             @endforeach
         </ul>
-        <a href="{{ URL::route('blog-list') }}" class="right-content__all-link">All blogs</a>
+        <a href="{{ URL::route('blogger-blog-list') }}" class="right-content__all-link">All blogs</a>
     @else
         Вы еще не добавили ни один блог в свой блог-лист.<br>Читайте <a href="javascript:void(0);">TOP POST</a> и выбирайте любимые.
     @endif

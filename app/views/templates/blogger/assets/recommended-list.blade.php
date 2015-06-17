@@ -8,7 +8,7 @@
                 </li>
             @endforeach
         </ul>
-        <a href="javascript:void(0);" class="right-content__all-link">All blogs</a>
+        <a href="{{ pageurl('total-blogger-list') }}" class="right-content__all-link">All blogs</a>
     @else
         У вас еще нет рекомендованных блогов.
     @endif

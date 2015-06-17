@@ -14,7 +14,7 @@ class AccountsBloggerController extends BaseController {
         if (Auth::check() && Auth::user()->group_id == 4):
             Route::group(array('before' => 'auth.status.blogger', 'prefix' => self::$name), function() use ($class) {
                 Route::get('subscribers', array('as' => 'subscribers', 'uses' => $class . '@subscribers'));
-                Route::get('blog-list', array('as' => 'blog-list', 'uses' => $class . '@blogList'));
+                Route::get('blog-list', array('as' => 'blogger-blog-list', 'uses' => $class . '@blogList'));
 
                 Route::get('profile', array('as' => 'profile', 'uses' => $class . '@profile'));
                 Route::put('profile', array('before'=>'csrf', 'as' => 'profile.update', 'uses' => $class . '@profileUpdate'));
