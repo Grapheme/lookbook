@@ -35,8 +35,26 @@
                     <nav class="bottom__nav">
                         {{ Menu::placement('categories_menu') }}
                     </nav>
+                    <a href="#" class="bottom__search js-open-search">
+                        <i class="svg-icon icon-search"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </header>
+<div class="search__block js-search">
+    <div class="wrapper">
+        <div class="container_12">
+            <div class="grid_12">
+                <form>
+                    <div class="block__input">
+                        <button type="submit"></button>
+                        <input type="text" placeholder="Что вы ищете?">
+                    </div>
+                    <a href="#" class="js-close-search block__close"></a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

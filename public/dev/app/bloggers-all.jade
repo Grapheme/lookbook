@@ -10,12 +10,13 @@ block content
         .wrapper
             .container_12
                 .grid_12
-                    include profile_auth_header
+                    .category-header.header-lite.border-none
+                        .header__title Все блоггеры
                 .clearfix
                 .grid_12.reg-content
                     .dashboard-tab
                         .reg-content__left
-                            .left-title.big-title Мой блог-лист
+                            .left-title Top bloggers
                             ul.blog-list
                                 each i in [1,2,3,4,5]
                                     li.list__item
@@ -34,6 +35,28 @@ block content
                                                 |  подписчиков
                                             .content__quote Пишу о чем хочу!
                                             .content__desc Осенью созревают самые полезные, богатые витаминами и минеральными веществами овощи, фрукты и ягоды. Даже искушенные кулинары не могут перечислить всех рецептов ью созревают самые полезные, богатые витаминами и минеральными ...
+                            .left-title All bloggers
+                            ul.blog-list.js-posts
+                                each i in [1,2,3,4,5]
+                                    li.list__item
+                                        a(href="#")
+                                            span.author__photo
+                                                span.profile-ava.ava-min(data-empty-name="Анна Антропопва")
+                                                    img(src="images/tmp/profile-photo_huge.jpg")
+                                                    .ava-image__empty
+                                                        span.js-empty-chars
+                                        .item__content
+                                            .content__title
+                                                a(href="#") Анна Антропова
+                                            .content__followers
+                                                b 10 342
+                                                |  подписчиков
+                                            .content__quote Пишу о чем хочу!
+                                            .content__desc Осенью созревают самые полезные, богатые витаминами и минеральными веществами овощи, фрукты и ягоды. Даже искушенные кулинары не могут перечислить всех рецептов ью созревают самые полезные, богатые витаминами и минеральными ...
+                            .dashboard-btn-more
+                                form(action="json/get_bloggers.json").js-more-posts
+                                    button(type="submit").white-black-btn Показать еще
+                                    p.js-response-text
                         .reg-content__right
                             .right-title TOP POSTs
                             .right-content
@@ -66,6 +89,7 @@ block content
                                                 span.profile-name
                                                     span Сергей Мишуков
                                                 span.text__followers 4
+                                a(href="#").right-content__all-link All blogs
                         .clearfix
                 .clearfix
 
