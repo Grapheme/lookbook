@@ -34,7 +34,7 @@ class SearchPublicController extends BaseController {
     /****************************************************************************/
     public static function searchRequest() {
 
-        return Redirect::to(pageurl('search'));
+        return Redirect::to(pageurl('search'))->with('search_text',Input::get('search_text'));
     }
 
     /****************************************************************************/
