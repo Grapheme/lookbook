@@ -1,5 +1,5 @@
 <?
-/*
+/**
  * TITLE: Раздел (категория)
  * AVAILABLE_ONLY_IN_ADVANCED_MODE
  */
