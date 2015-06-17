@@ -15,6 +15,7 @@ class AccountsBloggerController extends BaseController {
             Route::group(array('before' => 'auth.status.blogger', 'prefix' => self::$name), function() use ($class) {
                 Route::get('subscribers', array('as' => 'subscribers', 'uses' => $class . '@subscribers'));
                 Route::get('blog-list', array('as' => 'blogger-blog-list', 'uses' => $class . '@blogList'));
+                Route::get('recommended-blogs-list', array('as' => 'recommended-blogs-list', 'uses' => $class . '@recommendedBlogList'));
 
                 Route::get('profile', array('as' => 'profile', 'uses' => $class . '@profile'));
                 Route::put('profile', array('before'=>'csrf', 'as' => 'profile.update', 'uses' => $class . '@profileUpdate'));
@@ -316,6 +317,16 @@ class AccountsBloggerController extends BaseController {
             $page_data['blogs_total_count'] = Accounts::where('group_id', 4)->where('active', 1)->whereIn('id', $blogsIDs)->count();
         endif;
         return View::make(Helper::acclayout('blog-list'),$page_data);
+    }
+
+    public function recommendedBlogList(){
+
+        $page_data = array(
+            'page_title' => Lang::get('seo.BLOGGER.title'), 'page_description' => Lang::get('seo.BLOGGER.description'),
+            'page_keywords' => Lang::get('seo.BLOGGER.keywords'),
+            'recommended_blogs' => array(), 'blogs_total_count' => 0
+        );
+        return View::make(Helper::acclayout('recommended-blogs'),$page_data);
     }
     /****************************************************************************/
     public function moreBlogs() {
