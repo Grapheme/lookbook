@@ -20,21 +20,23 @@ block content
                         .help-block
                             .block__title Популярные вопросы
                             .block__ques
-                                each i in [1,2]
-                                    .ques__item
-                                        a(href="one-question.html") Как мне стать партнером проекта?
-                                    .ques__item
-                                        a(href="one-question.html") Чем отличается аккаунт компании от персональной учетной записи?
-                                    .ques__item
-                                        a(href="one-question.html") Чем отличается аккаунт компании от персональной учетной записи?
+                                ul
+                                    each i in [1,2]
+                                        li
+                                            a(href="one-question.html") Как мне стать партнером проекта?
+                                        li
+                                            a(href="one-question.html") Чем отличается аккаунт компании от персональной учетной записи?
+                                        li
+                                            a(href="one-question.html") Чем отличается аккаунт компании от персональной учетной записи?
                         .help-block.block-mins
                             .block__title Разделы
                             each i in [1,2,3,4]
                                 .block__ques
                                     .ques__title Помощь в работе
-                                    each i in [1,2,3]
-                                        .ques__item
-                                            a(href="one-question.html") Как мне стать партнером проекта?
+                                    ul
+                                        each i in [1,2,3]
+                                            li
+                                                a(href="one-question.html") Как мне стать партнером проекта?
                     .reg-content__right.right-links
                         .right-title
                             a(href="about.html").active О проекте

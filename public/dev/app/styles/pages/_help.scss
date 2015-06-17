@@ -23,7 +23,7 @@
 			margin-top: 15px;
 		}
 
-		.ques__item {
+		li {
 			display: inline-block;
 			vertical-align: top;
 			width: 50%;
@@ -41,6 +41,12 @@
 				}
 			}
 		}
+
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
 	}
 
 	&.block-mins {
@@ -51,7 +57,7 @@
 			vertical-align: top;
 			width: 50%;
 
-			.ques__item {
+			li {
 				width: 100%;
 			}
 		}
