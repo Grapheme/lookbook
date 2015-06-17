@@ -146,10 +146,18 @@ LookBook.UiButton = function() {
 }
 LookBook.Search = function() {
     $('.js-open-search').on('click', function(){
+        $('.js-search-form input[type="text"]').trigger('focus');
         $('.js-search').addClass('active');
     });
     $('.js-close-search').on('click', function(){
         $('.js-search').removeClass('active');
+    });
+    $('.js-search-form').on('submit', function(){
+        var input = $(this).find('input[type="text"]');
+        if(input.val() == '') {
+            input.trigger('focus');
+            return false;
+        }
     });
 }
 LookBook.Gallery = function() {

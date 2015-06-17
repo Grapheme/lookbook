@@ -1,6 +1,7 @@
 .search__header {
 	position: relative;
 	border-bottom: 1px solid $borderColor;
+	padding-bottom: 60px;
 
 	.block__input {
 	    position: relative;
@@ -86,7 +87,7 @@
 	}
 
 	.header__desc {
-		padding: 20px 0 60px 5px;
+		padding: 20px 0 0 5px;
 		font-size: 16px;
 	}
 }
