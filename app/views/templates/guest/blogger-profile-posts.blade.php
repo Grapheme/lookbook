@@ -1,8 +1,7 @@
-<?
-/*
+<?php
+/**
  * TEMPLATE_IS_NOT_SETTABLE
  */
-
 $post_access = FALSE;
 $post_limit = Config::get('lookbook.posts_limit');
 ?>
