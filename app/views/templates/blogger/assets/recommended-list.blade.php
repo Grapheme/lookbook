@@ -8,7 +8,7 @@
                 </li>
             @endforeach
         </ul>
-        <a href="{{ pageurl('total-blogger-list') }}" class="right-content__all-link">All blogs</a>
+        <a href="{{ URL::route('recommended-blogs-list') }}" class="right-content__all-link">All blogs</a>
     @else
         У вас еще нет рекомендованных блогов.
     @endif

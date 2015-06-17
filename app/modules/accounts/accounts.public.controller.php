@@ -13,17 +13,13 @@ class AccountsPublicController extends BaseController {
             'uses' => $class . '@contactsSendQuestion'));
     }
 
-    public static function returnShortCodes() {
-    }
+    public static function returnShortCodes() {}
 
-    public static function returnActions() {
-    }
+    public static function returnActions() {}
 
-    public static function returnInfo() {
-    }
+    public static function returnInfo() {}
 
-    public static function returnMenu() {
-    }
+    public static function returnMenu() {}
 
     /****************************************************************************/
     public function __construct() {}
