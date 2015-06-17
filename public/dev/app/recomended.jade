@@ -1,0 +1,107 @@
+extends layout
+
+block vars
+  - var title = 'Профиль блоггера'
+  - var auth = true
+  //- var profile_active = 'profile_auth_main_empty.html'
+
+block content
+    header
+        .wrapper
+            .container_12
+                .grid_12
+                    .category-header.header-lite.border-none
+                        .header__title Рекомендованные блоги
+                .clearfix
+                .grid_12.reg-content
+                    .dashboard-tab
+                        .reg-content__left
+                            ul.blog-list.js-posts
+                                li.list__item.item-promo
+                                        a(href="#")
+                                            span.author__photo
+                                                span.profile-ava.ava-min(data-empty-name="Анна Антропопва")
+                                                    img(src="images/tmp/profile-photo_huge.jpg")
+                                                    .ava-image__empty
+                                                        span.js-empty-chars
+                                        .item__content
+                                            .content__title
+                                                a(href="#") Анна Антропова
+                                            .content__followers
+                                                b 10 342
+                                                |  подписчиков
+                                            .content__quote Пишу о чем хочу!
+                                            .content__desc Осенью созревают самые полезные, богатые витаминами и минеральными веществами овощи, фрукты и ягоды. Даже искушенные кулинары не могут перечислить всех рецептов ью созревают самые полезные, богатые витаминами и минеральными ...
+                                li.list__item.item-promo
+                                        a(href="#")
+                                            span.author__photo
+                                                span.profile-ava.ava-min(data-empty-name="Анна Антропопва")
+                                                    img(src="images/tmp/profile-photo_huge.jpg")
+                                                    .ava-image__empty
+                                                        span.js-empty-chars
+                                        .item__best-blogger
+                                        .item__content
+                                            .content__title
+                                                a(href="#") Анна Антропова
+                                            .content__followers
+                                                b 10 342
+                                                |  подписчиков
+                                            .content__quote Пишу о чем хочу!
+                                            .content__desc Осенью созревают самые полезные, богатые витаминами и минеральными веществами овощи, фрукты и ягоды. Даже искушенные кулинары не могут перечислить всех рецептов ью созревают самые полезные, богатые витаминами и минеральными ...
+                                each i in [1,2,3,4,5]
+                                    li.list__item
+                                        a(href="#")
+                                            span.author__photo
+                                                span.profile-ava.ava-min(data-empty-name="Анна Антропопва")
+                                                    img(src="images/tmp/profile-photo_huge.jpg")
+                                                    .ava-image__empty
+                                                        span.js-empty-chars
+                                        .item__best-blogger
+                                        .item__content
+                                            .content__title
+                                                a(href="#") Анна Антропова
+                                            .content__followers
+                                                b 10 342
+                                                |  подписчиков
+                                            .content__quote Пишу о чем хочу!
+                                            .content__desc Осенью созревают самые полезные, богатые витаминами и минеральными веществами овощи, фрукты и ягоды. Даже искушенные кулинары не могут перечислить всех рецептов ью созревают самые полезные, богатые витаминами и минеральными ...
+                            .dashboard-btn-more
+                                form(action="json/get_bloggers.json").js-more-posts
+                                    button(type="submit").white-black-btn Показать еще
+                                    p.js-response-text
+                        .reg-content__right
+                            .right-title TOP POSTs
+                            .right-content
+                                ul.right-content__list.list-big
+                                    each i in [1,2,3,4,5]
+                                        li.list__item
+                                            a(href="#").item__photo
+                                                img(src="http://dummyimage.com/120x120/000/fff" alt="")
+                                            .item__text
+                                                .text__subject
+                                                    a(href="#") Lifestyle
+                                                .text__title
+                                                    a(href="#") Почему американский сэндвичный хлеб хранится в 20 раз дольше, чем российский?
+                                                .text__author
+                                                    a(href="#") Antony Granichniy
+                                                .text__views
+                                                    i.svg-icon.icon-eye
+                                                    | 3987
+                                            .clearfix
+                            .right-title Top brands
+                            .right-content 
+                                ul.right-content__list.top-bloggers
+                                    each i in [1,2,3]
+                                        li.list__item
+                                            a(href="#")
+                                                span.author__photo
+                                                    span.profile-ava.ava-min.ava-empty(data-empty-name="Сережа Мишуков")
+                                                        .ava-image__empty
+                                                            span.js-empty-chars
+                                                span.profile-name
+                                                    span Сергей Мишуков
+                                                span.text__followers 4
+                                a(href="#").right-content__all-link All blogs
+                        .clearfix
+                .clearfix
+
