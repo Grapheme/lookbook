@@ -1,0 +1,92 @@
+.search__header {
+	position: relative;
+	border-bottom: 1px solid $borderColor;
+
+	.block__input {
+	    position: relative;
+	    display: inline-block;
+	    vertical-align: middle;
+	    width: 100%;
+	    padding-right: 200px;
+	    box-sizing: border-box;
+
+	    input {
+	        width: 100%;
+	        height: 50px;
+	        padding: 0 15px 0 60px;
+	        box-sizing: border-box;
+	        background: transparent;
+	        border: 1px solid #dddddd;
+	        outline: none;
+
+
+	        &::-webkit-input-placeholder {
+	            font-family: 'Lato';
+	            font-size: 16px;
+	            font-style: normal;
+	            font-weight: 500;
+	            text-transform: none;
+	            color: #333;
+	        }
+	        &::-moz-placeholder          {
+	            font-family: 'Lato';
+	            font-size: 16px;
+	            font-style: normal;
+	            text-transform: none;
+	            color: #333;
+	        }
+	        &:-moz-placeholder           {
+	            font-family: 'Lato';
+	            font-size: 16px;
+	            font-style: normal;
+	            text-transform: none;
+	            color: #333;
+	        }
+	        &:-ms-input-placeholder      {
+	            font-family: 'Lato';
+	            font-size: 16px;
+	            font-style: normal;
+	            text-transform: none;
+	            color: #333;
+	        }
+	    }
+
+	    button {
+	        @extend .svg-icon;
+	        @extend .icon-search;
+	        @extend .linkTrans;
+	        position: absolute;
+	        top: 50%;
+	        left: 0;
+	        margin-top: -25px;
+	        height: 50px;
+	        width: 60px;
+	        line-height: 50px;
+	        text-align: center;
+	        background: transparent;
+	        border: none;
+	        outline: none;
+	        font-size: 30px;
+	        color: #333;
+	        padding: 0;
+
+	        &:hover {
+	            color: #333;
+	        }
+	    }
+	}
+
+	.search-btn {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 180px;
+		height: 50px;
+		font-size: 20px;
+	}
+
+	.header__desc {
+		padding: 20px 0 60px 5px;
+		font-size: 16px;
+	}
+}

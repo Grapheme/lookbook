@@ -1,0 +1,131 @@
+extends layout
+
+block vars
+  - var title = 'Категория'
+  - var auth = false
+  - var active_page = 'category.html'
+
+block content
+    .wrapper
+        .container_12
+            .grid_12
+                .category-header.header-lite.border-bottom-none
+                    .header__title Результаты поиска
+                .search__header
+                    form
+                        .block__input
+                            button(type="submit")
+                            input(type="text" placeholder="Новый поиск")
+                        button(type="submit").us-btn.blue-hover.search-btn Найти
+                    .header__desc Вы искали «<b>модные тенденции 2015</b>»
+            .clearfix
+            .grid_12.reg-content.border-none
+                .dashboard-tab
+                    .reg-content__left
+                        ul.dashboard-list.list-search.js-posts
+                            li.dashboard-item.with-image.js-post
+                                .left-block
+                                    .profile-ava.ava-min.ava-empty(data-empty-name="Анна Антропова")
+                                        img(src="images/tmp/profile-photo_max.jpg")
+                                        .ava-image__empty
+                                            span.js-empty-chars
+                                    .profile-name Дурнев Константин
+                                .right-block
+                                    .right-block__image(style="background-image: url(images/tmp/post-photo-1.jpg);")
+                                    .right-block__pad
+                                        .post-info
+                                            .post-photo__alt
+                                                a(href="#") Shopping
+                                            .post-info__title
+                                                a(href="post.html") Новая коллекция обуви сезон 2014–2015
+                                            .post-info__desc В 1947 году, когда Европа только начала восстанавливаться после пятилетней войны, Кристиан Диор создал силуэт, который навсегда вошел в историю под названием New Look. Этим, без сомнения, главным своим изобретением дизайнер сделал выдающийся вклад в мировую моду. 
+                                        .post-footer
+                                            span.post-footer__date ЯНВ 26, 2015
+                                            span.post-footer__statisctics
+                                                span.statisctics-item
+                                                    i.svg-icon.icon-eye
+                                                    | 24
+                                                span.statisctics-item
+                                                    i.svg-icon.icon-like
+                                                    | 56
+                                                span.statisctics-item
+                                                    i.svg-icon.icon-comments
+                                                    | 36
+                                .clearfix
+                            li.dashboard-item.js-post
+                                .left-block
+                                    .profile-ava.ava-min.ava-empty(data-empty-name="Анна Антропова")
+                                        img(src="images/tmp/profile-photo_max.jpg")
+                                        .ava-image__empty
+                                            span.js-empty-chars
+                                    .profile-name Дурнев Константин
+                                .right-block
+                                    .right-block__pad
+                                        .post-info
+                                            .post-photo__alt
+                                                a(href="#") Shopping
+                                            .post-info__title
+                                                a(href="post.html") Новая коллекция обуви сезон 2014–2015
+                                            .post-info__desc В 1947 году, когда Европа только начала восстанавливаться после пятилетней войны, Кристиан Диор создал силуэт, который навсегда вошел в историю под названием New Look. Этим, без сомнения, главным своим изобретением дизайнер сделал выдающийся вклад в мировую моду. 
+                                        .post-footer
+                                            span.post-footer__date ЯНВ 26, 2015
+                                            span.post-footer__statisctics
+                                                span.statisctics-item
+                                                    i.svg-icon.icon-eye
+                                                    | 24
+                                                span.statisctics-item
+                                                    i.svg-icon.icon-like
+                                                    | 56
+                                                span.statisctics-item
+                                                    i.svg-icon.icon-comments
+                                                    | 36
+                                .clearfix
+                            li.dashboard-item.js-post
+                                .left-block
+                                    .profile-ava.ava-min.ava-empty(data-empty-name="Анна Антропова")
+                                        img(src="images/tmp/profile-photo_max.jpg")
+                                        .ava-image__empty
+                                            span.js-empty-chars
+                                    .profile-name Дурнев Константин
+                                .right-block
+                                    .right-block__pad
+                                        .post-info
+                                            .post-photo__alt
+                                                a(href="#") Shopping
+                                            .post-info__title
+                                                a(href="post.html") Новая коллекция обуви сезон 2014–2015
+                                            .post-info__desc В 1947 году, когда Европа только начала восстанавливаться после пятилетней войны, Кристиан Диор создал силуэт, который навсегда вошел в историю под названием New Look. Этим, без сомнения, главным своим изобретением дизайнер сделал выдающийся вклад в мировую моду. 
+                                        .post-footer
+                                            span.post-footer__date ЯНВ 26, 2015
+                                            span.post-footer__statisctics
+                                                span.statisctics-item
+                                                    i.svg-icon.icon-eye
+                                                    | 24
+                                                span.statisctics-item
+                                                    i.svg-icon.icon-like
+                                                    | 56
+                                                span.statisctics-item
+                                                    i.svg-icon.icon-comments
+                                                    | 36
+                                .clearfix
+                        .dashboard-btn-more
+                            form(action="json/get_search.json").js-more-posts
+                                button(type="submit").white-black-btn Показать еще
+                                p.js-response-text
+                        .clearfix
+                    .reg-content__right
+                        .right-title Bloggers 5
+                        .right-content 
+                            ul.right-content__list.top-bloggers
+                                each i in [1,2,3]
+                                    li.list__item
+                                        a(href="#")
+                                            span.author__photo
+                                                span.profile-ava.ava-min.ava-empty(data-empty-name="Сережа Мишуков")
+                                                    .ava-image__empty
+                                                        span.js-empty-chars
+                                            span.profile-name
+                                                span Сергей Мишуков
+                                            span.text__followers 4
+                    .clearfix
+            .clearfix

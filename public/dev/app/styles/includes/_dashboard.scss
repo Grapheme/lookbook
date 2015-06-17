@@ -32,6 +32,15 @@
         .right-block {
             padding-left: 98px;
 
+            .right-block__image {
+                display: inline-block;
+                width: 160px;
+                height: 160px;
+                background-size: cover;
+                background-position: center center;
+                float: left;
+            }
+
             .right-block__pad {
                 padding-right: $dashLeftPad;
             }
@@ -221,6 +230,18 @@
             }
         }
     }
+
+    &.list-search {
+        .post-info {
+            margin-top: 0 !important;
+        }
+
+        .with-image {
+            .right-block__pad {
+                padding-left: 200px;
+            }
+        }
+    }
 }
 
 .post-actions {
@@ -258,9 +279,26 @@
     padding-left: 30px;
 }
 
+.post-photo__alt {
+    background: #fff;
+    padding: 5px 9px 5px 3px;
+    color: $blue;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+
+    a {
+        color: inherit;
+        text-decoration: none;
+        border: none !important;
+    }
+}
+
 .post-photo {
     position: relative;
     text-align: center;
+    min-height: 20px;
 
     img {
         max-width: 100%;
@@ -270,18 +308,6 @@
         position: absolute;
         bottom: 0;
         left: 0;
-        background: #fff;
-        padding: 5px 9px 5px 3px;
-        color: $blue;
-        text-decoration: none;
-        text-transform: uppercase;
-        font-weight: 700;
-        font-size: 12px;
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
     }
 }
 
