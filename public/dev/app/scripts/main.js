@@ -270,6 +270,33 @@ LookBook.Dashboard = function() {
         return false;
     });
 }
+LookBook.ContactForm = function() {
+    var form = $('.js-contact-form');
+    if(!form.length) return;
+    form.validate({
+        rules: {
+            name: {
+                required: true
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            message: {
+                required: true
+            },
+        },
+        submitHandler: function(form) {
+            Help.ajaxSubmit(form, {
+                success: function() {
+                    $(form).slideUp();
+                    $('.js-contact-success').slideDown();
+                }
+            });
+            return false;
+        }
+    });
+}
 LookBook.DashForm = function() {
     var formParent = $('.js-dashboard-form');
     if(!formParent.length) return;
@@ -753,6 +780,7 @@ $(function(){
     LookBook.ListSlider();
     LookBook.TopCollage();
     LookBook.DashForm();
+    LookBook.ContactForm();
     LookBook.Gallery();
     LookBook.FitText();
     LookBook.Auth();

@@ -1,0 +1,48 @@
+extends layout
+
+block vars
+  - var title = 'Категория'
+  - var auth = false
+  - var active_page = 'category.html'
+
+block content
+    .wrapper
+        .container_12
+            .grid_12
+                .category-header.header-lite
+                    .header__title Помощь
+            .clearfix
+            .grid_12.reg-content.border-none
+                .dashboard-tab
+                    .reg-content__left
+                        .help-btn
+                            a(href="contact-us.html").us-btn.blue-hover Задать свой вопрос
+                        .help-block
+                            .block__title Популярные вопросы
+                            .block__ques
+                                each i in [1,2]
+                                    .ques__item
+                                        a(href="one-question.html") Как мне стать партнером проекта?
+                                    .ques__item
+                                        a(href="one-question.html") Чем отличается аккаунт компании от персональной учетной записи?
+                                    .ques__item
+                                        a(href="one-question.html") Чем отличается аккаунт компании от персональной учетной записи?
+                        .help-block.block-mins
+                            .block__title Разделы
+                            each i in [1,2,3,4]
+                                .block__ques
+                                    .ques__title Помощь в работе
+                                    each i in [1,2,3]
+                                        .ques__item
+                                            a(href="one-question.html") Как мне стать партнером проекта?
+                    .reg-content__right.right-links
+                        .right-title
+                            a(href="about.html").active О проекте
+                        //- .right-title
+                        //-     a(href="#") Реклама на сайте
+                        .right-title
+                            a(href="help.html") Помощь
+                        .right-title
+                            a(href="contact-us.html") Связаться с нами
+                    .clearfix
+            .clearfix

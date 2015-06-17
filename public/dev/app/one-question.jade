@@ -1,0 +1,38 @@
+extends layout
+
+block vars
+  - var title = 'Категория'
+  - var auth = false
+  - var active_page = 'category.html'
+
+block content
+    .wrapper
+        .container_12
+            .grid_12
+                .category-header.header-lite
+                    .header__title Помощь
+            .clearfix
+            .grid_12.reg-content.border-none
+                .dashboard-tab
+                    .reg-content__left
+                        .one-question
+                            .question__title Чем отличается аккаунт компании от персональной учетной записи?
+                            .question-cont
+                                .question__answer.
+                                    В 1947 году, когда Европа только начала восстанавливаться после пятилетней войны, Кристиан Диор создал силуэт, который навсегда вошел в историю под названием New Look. Этим, без сомнения, главным своим изобретением дизайнер сделал выдающийся вклад в мировую моду.  Throughout my sophomore to senior year in college, I volunteered as a counselor at the Berkeley Free Clinic providing mental health services to the homeless community and also as a visiting teacher at Harding Elementary working with underprivileged students.  After college, I continued to work with marginalized communities, mainly as an educator.  I volunteered at the San Francisco Juvenile Detention Center, working with incarcerated youths in the maximum security unit, for over a year and a half.  
+                                    Most of these youths, like me, were from broken homes and/or foster care.  I taught the high school curriculum with the goal of helping these youths pass the high school exit exam, so they’ll have a second chance in life once they leave juvenile hall.  Currently, I’m based in Los Angeles and volunteer at InsideOutWriters, a non-profit organization that provides mentorship to previously incarcerated youths.
+                                .question__btn
+                                    a(href="help.html").white-btn.action-question
+                                        i.svg-icon.icon-question
+                                        | Вернуться к списку вопросов
+                    .reg-content__right.right-links
+                        .right-title
+                            a(href="about.html").active О проекте
+                        //- .right-title
+                        //-     a(href="#") Реклама на сайте
+                        .right-title
+                            a(href="help.html") Помощь
+                        .right-title
+                            a(href="contact-us.html") Связаться с нами
+                    .clearfix
+            .clearfix

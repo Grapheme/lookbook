@@ -23,6 +23,30 @@
     }
 }
 
+.right-links {
+    .right-title {
+        font-weight: 500;
+
+        &:nth-child(2n-1) {
+            border: none;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            border: none;
+
+            &:hover {
+                color: $blue;
+            }
+
+            &.active {
+                color: $blue;
+            }
+        }
+    }
+}
+
 .right-title {
     padding: $dashTopPad 15px $dashTopPad $dashLeftPad;
     font-size: 14px;
@@ -418,4 +442,15 @@
     }
 }
 
-// .js-like { cursor: pointer; }
+.reg-text {
+    padding: 40px $dashLeftPad 40px 0;
+    line-height: 1.6;
+
+    p:first-child {
+        margin-top: 0;
+    }
+}
+
+.border-none {
+    border: none !important;
+}

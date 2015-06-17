@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>Категория</title>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory-->
+    <link rel="stylesheet" href="styles/vendor.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/vendor/modernizr.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__top">
+        <div class="wrapper">
+          <div class="container_12">
+            <div class="grid_12">
+              <nav class="header__nav">
+                <ul>
+                  <li><a href="#">О проекте</a></li>
+                  <li><a href="#">Связаться с нами</a></li>
+                </ul>
+              </nav>
+              <ul class="header__login">
+                <li><a href="#reg" class="login__create-blog">Создать блог</a></li>
+                <li><a href="#auth" class="login__enter">Войти</a></li>
+              </ul>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper">
+        <div class="container_12">
+          <div class="grid_12">
+            <div class="header__bottom"><a href="#" class="bottom__search"></a><a href="#" class="bottom__logo"></a>
+              <nav class="bottom__nav"><a href="#" class="active">Fashion</a><a href="#">Beauty</a><a href="#">Lifestyle</a></nav>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </header>
+    <div class="wrapper">
+      <div class="container_12">
+        <div class="grid_12">
+          <div class="category-header header-lite">
+            <div class="header__title">Помощь</div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="grid_12 reg-content border-none">
+          <div class="dashboard-tab">
+            <div class="reg-content__left">
+              <div class="one-question">
+                <div class="question__title">Чем отличается аккаунт компании от персональной учетной записи?</div>
+                <div class="question-cont">
+                  <div class="question__answer">
+                    В 1947 году, когда Европа только начала восстанавливаться после пятилетней войны, Кристиан Диор создал силуэт, который навсегда вошел в историю под названием New Look. Этим, без сомнения, главным своим изобретением дизайнер сделал выдающийся вклад в мировую моду.  Throughout my sophomore to senior year in college, I volunteered as a counselor at the Berkeley Free Clinic providing mental health services to the homeless community and also as a visiting teacher at Harding Elementary working with underprivileged students.  After college, I continued to work with marginalized communities, mainly as an educator.  I volunteered at the San Francisco Juvenile Detention Center, working with incarcerated youths in the maximum security unit, for over a year and a half.  
+                    Most of these youths, like me, were from broken homes and/or foster care.  I taught the high school curriculum with the goal of helping these youths pass the high school exit exam, so they’ll have a second chance in life once they leave juvenile hall.  Currently, I’m based in Los Angeles and volunteer at InsideOutWriters, a non-profit organization that provides mentorship to previously incarcerated youths.
+                  </div>
+                  <div class="question__btn"><a href="help.html" class="white-btn action-question"><i class="svg-icon icon-question"></i>Вернуться к списку вопросов</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="reg-content__right right-links">
+              <div class="right-title"><a href="about.html" class="active">О проекте</a></div>
+              <div class="right-title"><a href="help.html">Помощь</a></div>
+              <div class="right-title"><a href="contact-us.html">Связаться с нами</a></div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="wrapper">
+        <div class="container_12">
+          <div class="grid_12">
+            <div class="footer__top"><a href="#" class="footer__logo"></a>
+              <nav class="footer__nav"><a href="#">О проекте</a><a href="#">Помощь</a><a href="#">Реклама на сайте</a><a href="#">Связаться с нами</a>
+              </nav>
+            </div>
+            <div class="footer__bottom"><span>© LookBook, 2014</span><span class="fl-r">Сделано в <a href="http://grapheme.ru" target="_blank">ГРАФЕМА</a></span></div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div class="overlay js-overlay">
+      <div class="overlay__background"></div>
+      <div class="overlay__body">
+        <div data-popup="auth" class="overlay__tab overlay-auth"><a href="#" class="tab__close js-close-popup"><span></span></a>
+          <div class="auth__body anim-parent">
+            <h1>Войти</h1>
+            <div class="auth__desc">Пожалуйста авторизуйтесь, используя аккаунт в одной из социальных сетей:</div>
+            <div class="auth__socials"><a href="#" class="socials-facebook">Facebook</a><a href="#" class="socials-vk">Вконтакте</a><a href="#" class="socials-ok">Одноклассники</a></div>
+            <div class="auth_form">
+              <div class="auth__desc">или с помощью адреса электронной почты</div>
+              <form id="form-auth" action="json/test.json">
+                <div class="input-cont">
+                  <input name="email" placeholder="E-mail" class="auth-input">
+                </div>
+                <div class="input-cont">
+                  <input name="password" placeholder="Пароль" type="password" class="auth-input">
+                </div>
+                <div class="input-bottom"><a href="#restore_before">Забыли пароль?</a></div>
+                <div class="input-btn">
+                  <button type="submit" class="us-btn">Войти</button>
+                  <div class="ajax-message js-response-text"></div>
+                </div>
+              </form>
+              <div class="auth__toreg">До сих пор нет аккаунта? <a href="#reg">Зарегистрироваться</a></div>
+            </div>
+          </div>
+        </div>
+        <div data-popup="reg" class="overlay__tab overlay-auth"><a href="#" class="tab__close js-close-popup"><span></span></a>
+          <div class="auth__body anim-parent">
+            <h1>Регистрация</h1>
+            <div class="auth__desc">Пожалуйста авторизуйтесь, используя аккаунт в одной из социальных сетей:</div>
+            <div class="auth__socials"><a href="#" class="socials-facebook">Facebook</a><a href="#" class="socials-vk">Вконтакте</a><a href="#" class="socials-ok">Одноклассники</a></div>
+            <div class="auth_form">
+              <div class="auth__desc">или с помощью адреса электронной почты</div>
+              <form id="form-reg" action="json/test.json">
+                <div class="input-cont">
+                  <input name="email" placeholder="E-mail" class="auth-input">
+                </div>
+                <div class="input-cont">
+                  <input name="password" placeholder="Пароль" type="password" class="auth-input">
+                </div>
+                <div class="input-cont">
+                  <input name="password_verify" placeholder="Подтверждение пароля" type="password" class="auth-input">
+                </div>
+                <div class="input-cont">
+                  <input name="name" placeholder="Ваше имя" class="auth-input">
+                </div>
+                <div class="input-btn">
+                  <button type="submit" class="us-btn">Войти</button>
+                  <div class="ajax-message js-response-text"></div>
+                </div>
+              </form>
+              <div class="auth__toreg">Уже зарегистрировались? <a href="#auth">Войти на сайт</a></div>
+            </div>
+          </div>
+        </div>
+        <div data-popup="restore_before" class="overlay__tab overlay-auth"><a href="#" class="tab__close js-close-popup"><span></span></a>
+          <div class="auth__body anim-parent">
+            <h1>Восстановление пароля</h1>
+            <div class="auth_form">
+              <form id="form-restore_before" action="json/test.json">
+                <div class="input-cont">
+                  <input name="email" placeholder="E-mail" class="auth-input">
+                </div>
+                <div class="input-btn">
+                  <button type="submit" class="us-btn">Восстановить</button>
+                  <div class="ajax-message js-response-text"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div data-popup="restore" class="overlay__tab overlay-auth"><a href="#" class="tab__close js-close-popup"><span></span></a>
+          <div class="auth__body anim-parent">
+            <h1>Восстановление пароля</h1>
+            <div class="auth_form">
+              <form id="form-restore" action="json/test.json">
+                <div class="input-cont">
+                  <input name="password" placeholder="Пароль" type="password" class="auth-input">
+                </div>
+                <div class="input-cont">
+                  <input name="password_verify" placeholder="Подтверждение пароля" type="password" class="auth-input">
+                </div>
+                <div class="input-btn">
+                  <button type="submit" class="us-btn">Восстановить</button>
+                  <div class="ajax-message js-response-text"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="scripts/vendor.js"></script>
+    <script src="scripts/main.js"></script>
+  </body>
+</html>

@@ -304,6 +304,17 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-question {
+    font-family: "Lato";
+    font-weight: 500;
+    font-size: 25px;
+    width: auto;
+
+    &:before {
+        content: "?";
+    }
+}
+
 .icon-vk:before {
     content: "\e600";
 }

@@ -1,0 +1,52 @@
+extends layout
+
+block vars
+  - var title = 'Категория'
+  - var auth = false
+  - var active_page = 'category.html'
+
+block content
+    .wrapper
+        .container_12
+            .grid_12
+                .category-header.header-lite
+                    .header__title СВЯЗАТЬСЯ С НАМИ
+            .clearfix
+            .grid_12.reg-content.border-none
+                .dashboard-tab
+                    .reg-content__left
+                        .contact-us
+                            .us__desc Если у вас есть вопросы или предложения, заполните и отправьте форму:
+                            form(action="json/test.json").js-contact-form
+                                table.us__table
+                                    tr
+                                        td Представтесь
+                                        td
+                                            input(name="name")
+                                    tr
+                                        td Электронная почта
+                                        td
+                                            input(name="email")
+                                    tr
+                                        td Текст сообщения
+                                        td
+                                            textarea(name="message")
+                                    tr
+                                        td
+                                        td
+                                            button(type="submit").us-btn.blue-hover Отправить
+                                    tr
+                                        td
+                                        td.js-response-text
+                            .us__success.js-contact-success Ваше сообщение успешно отправленно!
+                    .reg-content__right.right-links
+                        .right-title
+                            a(href="about.html").active О проекте
+                        //- .right-title
+                        //-     a(href="#") Реклама на сайте
+                        .right-title
+                            a(href="help.html") Помощь
+                        .right-title
+                            a(href="contact-us.html") Связаться с нами
+                    .clearfix
+            .clearfix
