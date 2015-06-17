@@ -47,10 +47,10 @@
                     </div>
                     <div class="reg-content__right right-links">
                         <div class="right-title">
-                            <a href="{{ pageurl('about') }}" class="active">О проекте</a>
+                            <a href="{{ pageurl('about') }}">О проекте</a>
                         </div>
                         <div class="right-title">
-                            <a href="{{ pageurl('help') }}">Помощь</a>
+                            <a href="{{ pageurl('help') }}" class="active">Помощь</a>
                         </div>
                         <div class="right-title">
                             <a href="{{ pageurl('contacts') }}">Связаться с нами</a>
