@@ -144,6 +144,14 @@ LookBook.UiButton = function() {
         this_id++;
     });
 }
+LookBook.Search = function() {
+    $('.js-open-search').on('click', function(){
+        $('.js-search').addClass('active');
+    });
+    $('.js-close-search').on('click', function(){
+        $('.js-search').removeClass('active');
+    });
+}
 LookBook.Gallery = function() {
     if(!$('.js-gallery').length) return;
     var parent = $('.js-gallery');
@@ -782,6 +790,7 @@ $(function(){
     LookBook.DashForm();
     LookBook.ContactForm();
     LookBook.Gallery();
+    LookBook.Search();
     LookBook.FitText();
     LookBook.Auth();
     LookBook.Like();

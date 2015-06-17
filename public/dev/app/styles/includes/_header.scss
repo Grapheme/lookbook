@@ -123,5 +123,132 @@
                 }
             }
         }
+
+        .bottom__search {
+            position: relative;
+            top: .3em;
+            float: right;
+            font-size: 35px;
+            text-decoration: none;
+            color: inherit;
+            @extend .linkTrans;
+
+            &:hover {
+                color: $blue;
+            }
+        }
+    }
+}
+
+.search__block {
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 165px;
+    line-height: 165px;
+    background: #4bbeff;
+    transition: all .5s ease;
+    transform: translateY(-100%);
+
+    &.active {
+        transform: translateY(0);
+    }
+
+    .block__input {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        width: 100%;
+        padding-right: 60px;
+        box-sizing: border-box;
+
+        input {
+            width: 100%;
+            height: 50px;
+            padding: 0 15px 0 60px;
+            box-sizing: border-box;
+            background: transparent;
+            border: 1px solid #fff;
+            outline: none;
+
+
+            &::-webkit-input-placeholder {
+                font-family: 'Lato';
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+                text-transform: none;
+                color: #333;
+            }
+            &::-moz-placeholder          {
+                font-family: 'Lato';
+                font-size: 16px;
+                font-style: normal;
+                text-transform: none;
+                color: #333;
+            }
+            &:-moz-placeholder           {
+                font-family: 'Lato';
+                font-size: 16px;
+                font-style: normal;
+                text-transform: none;
+                color: #333;
+            }
+            &:-ms-input-placeholder      {
+                font-family: 'Lato';
+                font-size: 16px;
+                font-style: normal;
+                text-transform: none;
+                color: #333;
+            }
+        }
+
+        button {
+            @extend .svg-icon;
+            @extend .icon-search;
+            @extend .linkTrans;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            margin-top: -25px;
+            height: 50px;
+            width: 60px;
+            line-height: 50px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 30px;
+            color: #fff;
+            padding: 0;
+
+            &:hover {
+                color: #333;
+            }
+        }
+    }
+
+    .block__close {
+        @extend .svg-icon;
+        @extend .icon-cross37;
+        @extend .linkTrans;
+        display: inline-block;
+        position: absolute;
+        width: 60px;
+        height: 50px;
+        line-height: 50px;
+        right: 0;
+        top: 50%;
+        margin-top: -25px;
+        text-align: right;
+        color: #fff;
+        font-size: 30px;
+        text-decoration: none;
+
+        &:hover {
+            color: #333;
+        }
     }
 }
