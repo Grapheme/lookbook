@@ -6,9 +6,10 @@
 <body>
 	<div>
 		<p>
-            Сообщение: &lt;{{ $email }}&gt;
+            Сообщение от: &lt;{{ $post['name'] }}&gt;
+            <br>{{ $post['email'] }}
             <hr/>
-			{{ Helper::nl2br($content) }}
+			{{ Helper::nl2br($post['message']) }}
             <hr/>
 		</p>
 	</div>

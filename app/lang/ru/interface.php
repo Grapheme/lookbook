@@ -35,4 +35,7 @@ return array(
         'success_upload' => 'Загружено',
         'fail' => 'Возникла ошибка'
     ),
+    'MAIL' => array(
+        'success_send' => 'Письмо отправлено'
+    )
 );

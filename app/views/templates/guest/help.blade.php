@@ -22,7 +22,7 @@
                 <div class="dashboard-tab">
                     <div class="reg-content__left">
                         <div class="help-btn">
-                            <a href="{{ pageurl('ask-question') }}" class="us-btn blue-hover">Задать свой вопрос</a>
+                            <a href="{{ pageurl('contacts') }}" class="us-btn blue-hover">Задать свой вопрос</a>
                         </div>
                         <div class="help-block">
                             <div class="block__title">Популярные вопросы</div>
