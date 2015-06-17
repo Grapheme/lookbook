@@ -38,6 +38,10 @@ endforeach;
             <div class="grid_12 reg-content border-none">
                 <div class="dashboard-tab">
                     <div class="reg-content__left">
+                        <div class="dashboard-empty">
+                            <div class="dashboard-empty__desc">Ничего не найдено</div>
+                        </div>
+                        <div class="left-title search-title">Посты <b>{{ Post::where('publication', 1)->count() }}</b></div>
                         <ul class="dashboard-list list-search js-posts">
 
                         </ul>
