@@ -74,6 +74,11 @@
         font-size: 34px;
         font-weight: 300;
     }
+
+    &.search-title {
+        border-top: 1px solid $borderColor;
+        border-bottom: none;
+    }
 }
 
 .left-content {
