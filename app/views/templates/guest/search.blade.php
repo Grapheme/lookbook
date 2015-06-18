@@ -19,7 +19,7 @@ endforeach;
                     <div class="header__title">Результаты поиска</div>
                 </div>
                 <div class="search__header">
-                    {{ Form::open(array('url'=>URL::route('search.public.request'))) }}
+                    {{ Form::open(array('url'=>URL::route('search.public.request'), 'class'=>'js-search-form')) }}
                         <div class="block__input">
                             {{ Form::button('',array('type'=>'submit')) }}
                             {{ Form::text('search_text',NULL,array('placeholder'=>'Новый поиск')) }}

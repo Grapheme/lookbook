@@ -47,7 +47,7 @@
     <div class="wrapper">
         <div class="container_12">
             <div class="grid_12">
-                {{ Form::open(array('url'=>URL::route('search.public.request'))) }}
+                {{ Form::open(array('url'=>URL::route('search.public.request'), 'class'=>'js-search-form')) }}
                 <div class="block__input">
                     {{ Form::button('',array('type'=>'submit')) }}
                     {{ Form::text('search_text',NULL,array('placeholder'=>'Что вы ищете?')) }}
