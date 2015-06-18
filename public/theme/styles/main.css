@@ -2829,7 +2829,7 @@ h1 {
   height: 160px;
 }
 .user-header.user-page-header .header__info .info__name {
-  margin-top: -.8em;
+  margin-top: -.5em;
 }
 .user-header.user-page-header .header__info .info__quote {
   text-transform: uppercase;
