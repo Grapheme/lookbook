@@ -12,5 +12,5 @@ return array(
     'user_group'        => 'rikardo',
     'user_name'         => 'rikardo',
     'set_log'           => TRUE,
-    'directories'       => array('/public/uploads','/app/storage')
+    'directories'       => array('public/uploads','app/storage')
 );
