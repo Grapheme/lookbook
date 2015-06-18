@@ -408,7 +408,7 @@ th {
   padding: 0;
 }
 
-.linkTrans, .us-link, .reg-content a:not([class]), .ava-change .ava-links .ava-upload, .white-btn, .white-black-btn, .us-btn, .right-content .right-content__all-link, .right-tags .tags__item, .header .header__top a, .header .header__bottom .bottom__nav a, .header .header__bottom .bottom__search, .search__block .block__input button, .search__block .block__close, .footer .footer__top .footer__nav a, .footer .footer__bottom a, .overlay .tab__close span:before, .overlay .tab__close span:after, .overlay .overlay__body .overlay__tab.overlay-auth .auth__socials a, .overlay .overlay__body .overlay__tab.overlay-auth .auth_form a, .user-header .header__info .info__auth-nav a, .ava-change .ava-links .ava-delete, .ava-change .ava-image__cont, .category-header .header__links a {
+.linkTrans, .us-link, .reg-content a:not([class]), .ava-change .ava-links .ava-upload, .white-btn, .white-black-btn, .us-btn, .right-content .right-content__all-link, .right-tags .tags__item, .header .header__top a, .header .header__bottom .bottom__nav a, .header .header__bottom .bottom__search, .search__block .block__input button, .search__block .block__close, .footer .footer__top .footer__nav a, .footer .footer__bottom a, .overlay .tab__close span:before, .overlay .tab__close span:after, .overlay .overlay__body .overlay__tab.overlay-auth .auth__socials a, .overlay .overlay__body .overlay__tab.overlay-auth .auth_form a, .user-header .header__info .info__auth-nav a, .ava-change .ava-links .ava-delete, .ava-change .ava-image__cont, .category-header .header__links a, .search__header .block__input button {
   -webkit-transition: all .2s ease;
           transition: all .2s ease;
 }
@@ -646,7 +646,7 @@ th {
   font-style: normal;
 }
 
-.svg-icon, .search__block .block__input button, .search__block .block__close, .gallery-overlay .overlay__close:before, .fotorama__arr {
+.svg-icon, .search__block .block__input button, .search__block .block__close, .gallery-overlay .overlay__close:before, .fotorama__arr, .search__header .block__input button {
   font-family: 'icomoon';
   speak: none;
   font-style: normal;
@@ -689,7 +689,7 @@ th {
   content: "\e604";
 }
 
-.icon-search:before, .search__block .block__input button:before {
+.icon-search:before, .search__block .block__input button:before, .search__header .block__input button:before {
   content: "\e605";
 }
 
@@ -1114,32 +1114,32 @@ h1 {
 .white-btn:hover {
   color: #4bbeff;
 }
-.white-btn .svg-icon, .white-btn .search__block .block__input button, .search__block .block__input .white-btn button, .white-btn .search__block .block__close, .search__block .white-btn .block__close, .white-btn .gallery-overlay .overlay__close:before, .gallery-overlay .white-btn .overlay__close:before, .white-btn .fotorama__arr {
+.white-btn .svg-icon, .white-btn .search__block .block__input button, .search__block .block__input .white-btn button, .white-btn .search__block .block__close, .search__block .white-btn .block__close, .white-btn .gallery-overlay .overlay__close:before, .gallery-overlay .white-btn .overlay__close:before, .white-btn .fotorama__arr, .white-btn .search__header .block__input button, .search__header .block__input .white-btn button {
   display: inline-block;
   vertical-align: middle;
   color: #4bbeff;
   margin-right: 18px;
 }
-.white-btn .svg-icon.icon-edit, .white-btn .search__block .block__input button.icon-edit, .search__block .block__input .white-btn button.icon-edit, .white-btn .search__block .icon-edit.block__close, .search__block .white-btn .icon-edit.block__close, .white-btn .gallery-overlay .icon-edit.overlay__close:before, .gallery-overlay .white-btn .icon-edit.overlay__close:before, .white-btn .icon-edit.fotorama__arr {
+.white-btn .svg-icon.icon-edit, .white-btn .search__block .block__input button.icon-edit, .search__block .block__input .white-btn button.icon-edit, .white-btn .search__block .icon-edit.block__close, .search__block .white-btn .icon-edit.block__close, .white-btn .gallery-overlay .icon-edit.overlay__close:before, .gallery-overlay .white-btn .icon-edit.overlay__close:before, .white-btn .icon-edit.fotorama__arr, .white-btn .search__header .block__input button.icon-edit, .search__header .block__input .white-btn button.icon-edit {
   font-size: 38px;
   width: 23px;
 }
-.white-btn .svg-icon.icon-comments, .white-btn .search__block .block__input button.icon-comments, .search__block .block__input .white-btn button.icon-comments, .white-btn .search__block .icon-comments.block__close, .search__block .white-btn .icon-comments.block__close, .white-btn .gallery-overlay .icon-comments.overlay__close:before, .gallery-overlay .white-btn .icon-comments.overlay__close:before, .white-btn .icon-comments.fotorama__arr {
+.white-btn .svg-icon.icon-comments, .white-btn .search__block .block__input button.icon-comments, .search__block .block__input .white-btn button.icon-comments, .white-btn .search__block .icon-comments.block__close, .search__block .white-btn .icon-comments.block__close, .white-btn .gallery-overlay .icon-comments.overlay__close:before, .gallery-overlay .white-btn .icon-comments.overlay__close:before, .white-btn .icon-comments.fotorama__arr, .white-btn .search__header .block__input button.icon-comments, .search__header .block__input .white-btn button.icon-comments {
   font-size: 30px;
   width: 22px;
 }
-.white-btn .svg-icon.icon-cross, .white-btn .search__block .block__input button.icon-cross, .search__block .block__input .white-btn button.icon-cross, .white-btn .search__block .icon-cross.block__close, .search__block .white-btn .icon-cross.block__close, .white-btn .gallery-overlay .icon-cross.overlay__close:before, .gallery-overlay .white-btn .icon-cross.overlay__close:before, .white-btn .icon-cross.fotorama__arr {
+.white-btn .svg-icon.icon-cross, .white-btn .search__block .block__input button.icon-cross, .search__block .block__input .white-btn button.icon-cross, .white-btn .search__block .icon-cross.block__close, .search__block .white-btn .icon-cross.block__close, .white-btn .gallery-overlay .icon-cross.overlay__close:before, .gallery-overlay .white-btn .icon-cross.overlay__close:before, .white-btn .icon-cross.fotorama__arr, .white-btn .search__header .block__input button.icon-cross, .search__header .block__input .white-btn button.icon-cross {
   position: relative;
   top: -.05em;
   font-size: 22px;
   width: 19px;
 }
-.white-btn .svg-icon.icon-glasses, .white-btn .search__block .block__input button.icon-glasses, .search__block .block__input .white-btn button.icon-glasses, .white-btn .search__block .icon-glasses.block__close, .search__block .white-btn .icon-glasses.block__close, .white-btn .gallery-overlay .icon-glasses.overlay__close:before, .gallery-overlay .white-btn .icon-glasses.overlay__close:before, .white-btn .icon-glasses.fotorama__arr {
+.white-btn .svg-icon.icon-glasses, .white-btn .search__block .block__input button.icon-glasses, .search__block .block__input .white-btn button.icon-glasses, .white-btn .search__block .icon-glasses.block__close, .search__block .white-btn .icon-glasses.block__close, .white-btn .gallery-overlay .icon-glasses.overlay__close:before, .gallery-overlay .white-btn .icon-glasses.overlay__close:before, .white-btn .icon-glasses.fotorama__arr, .white-btn .search__header .block__input button.icon-glasses, .search__header .block__input .white-btn button.icon-glasses {
   font-size: 30px;
   width: 28px;
   margin-left: -17px;
 }
-.white-btn .svg-icon.icon-person, .white-btn .search__block .block__input button.icon-person, .search__block .block__input .white-btn button.icon-person, .white-btn .search__block .icon-person.block__close, .search__block .white-btn .icon-person.block__close, .white-btn .gallery-overlay .icon-person.overlay__close:before, .gallery-overlay .white-btn .icon-person.overlay__close:before, .white-btn .icon-person.fotorama__arr {
+.white-btn .svg-icon.icon-person, .white-btn .search__block .block__input button.icon-person, .search__block .block__input .white-btn button.icon-person, .white-btn .search__block .icon-person.block__close, .search__block .white-btn .icon-person.block__close, .white-btn .gallery-overlay .icon-person.overlay__close:before, .gallery-overlay .white-btn .icon-person.overlay__close:before, .white-btn .icon-person.fotorama__arr, .white-btn .search__header .block__input button.icon-person, .search__header .block__input .white-btn button.icon-person {
   font-size: 30px;
   width: 22px;
   margin-left: -25px;
@@ -1305,6 +1305,10 @@ h1 {
   font-size: 34px;
   font-weight: 300;
 }
+.left-title.search-title {
+  border-top: 1px solid #dddddd;
+  border-bottom: none;
+}
 
 .left-content {
   padding: 23px 27px 23px 0;
@@ -1442,7 +1446,7 @@ h1 {
   font-size: 14px;
   margin-top: 5px;
 }
-.right-content__list.list-big .list__item .item__text .text__views .svg-icon, .right-content__list.list-big .list__item .item__text .text__views .search__block .block__input button, .search__block .block__input .right-content__list.list-big .list__item .item__text .text__views button, .right-content__list.list-big .list__item .item__text .text__views .search__block .block__close, .search__block .right-content__list.list-big .list__item .item__text .text__views .block__close, .right-content__list.list-big .list__item .item__text .text__views .gallery-overlay .overlay__close:before, .gallery-overlay .right-content__list.list-big .list__item .item__text .text__views .overlay__close:before, .right-content__list.list-big .list__item .item__text .text__views .fotorama__arr {
+.right-content__list.list-big .list__item .item__text .text__views .svg-icon, .right-content__list.list-big .list__item .item__text .text__views .search__block .block__input button, .search__block .block__input .right-content__list.list-big .list__item .item__text .text__views button, .right-content__list.list-big .list__item .item__text .text__views .search__block .block__close, .search__block .right-content__list.list-big .list__item .item__text .text__views .block__close, .right-content__list.list-big .list__item .item__text .text__views .gallery-overlay .overlay__close:before, .gallery-overlay .right-content__list.list-big .list__item .item__text .text__views .overlay__close:before, .right-content__list.list-big .list__item .item__text .text__views .fotorama__arr, .right-content__list.list-big .list__item .item__text .text__views .search__header .block__input button, .search__header .block__input .right-content__list.list-big .list__item .item__text .text__views button {
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -1620,6 +1624,10 @@ h1 {
   border: none !important;
 }
 
+.border-bottom-none {
+  border-bottom: none !important;
+}
+
 .header {
   min-width: 980px;
 }
@@ -1677,7 +1685,7 @@ h1 {
   vertical-align: middle;
   line-height: normal;
 }
-.header .header__top .header__login .header__user .svg-icon, .header .header__top .header__login .header__user .search__block .block__input button, .search__block .block__input .header .header__top .header__login .header__user button, .header .header__top .header__login .header__user .search__block .block__close, .search__block .header .header__top .header__login .header__user .block__close, .header .header__top .header__login .header__user .gallery-overlay .overlay__close:before, .gallery-overlay .header .header__top .header__login .header__user .overlay__close:before, .header .header__top .header__login .header__user .fotorama__arr {
+.header .header__top .header__login .header__user .svg-icon, .header .header__top .header__login .header__user .search__block .block__input button, .search__block .block__input .header .header__top .header__login .header__user button, .header .header__top .header__login .header__user .search__block .block__close, .search__block .header .header__top .header__login .header__user .block__close, .header .header__top .header__login .header__user .gallery-overlay .overlay__close:before, .gallery-overlay .header .header__top .header__login .header__user .overlay__close:before, .header .header__top .header__login .header__user .fotorama__arr, .header .header__top .header__login .header__user .search__header .block__input button, .search__header .block__input .header .header__top .header__login .header__user button {
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -2157,6 +2165,14 @@ h1 {
 .dashboard-list .dashboard-item .right-block {
   padding-left: 98px;
 }
+.dashboard-list .dashboard-item .right-block .right-block__image {
+  display: inline-block;
+  width: 160px;
+  height: 160px;
+  background-size: cover;
+  background-position: center center;
+  float: left;
+}
 .dashboard-list .dashboard-item .right-block .right-block__pad {
   padding-right: 27px;
 }
@@ -2199,7 +2215,7 @@ h1 {
   color: inherit;
   text-decoration: none;
 }
-.dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .svg-icon, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .search__block .block__input button, .search__block .block__input .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item button, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .search__block .block__close, .search__block .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .block__close, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .gallery-overlay .overlay__close:before, .gallery-overlay .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .overlay__close:before, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .fotorama__arr {
+.dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .svg-icon, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .search__block .block__input button, .search__block .block__input .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item button, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .search__block .block__close, .search__block .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .block__close, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .gallery-overlay .overlay__close:before, .gallery-overlay .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .overlay__close:before, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .fotorama__arr, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .search__header .block__input button, .search__header .block__input .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item button {
   display: inline-block;
   vertical-align: middle;
   font-size: 35px;
@@ -2226,7 +2242,7 @@ h1 {
   display: inline-block;
   vertical-align: top;
 }
-.dashboard-list .dashboard-item .right-block .post-actions .actions__btns .svg-icon, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .search__block .block__input button, .search__block .block__input .dashboard-list .dashboard-item .right-block .post-actions .actions__btns button, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .search__block .block__close, .search__block .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .block__close, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .gallery-overlay .overlay__close:before, .gallery-overlay .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .overlay__close:before, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .fotorama__arr {
+.dashboard-list .dashboard-item .right-block .post-actions .actions__btns .svg-icon, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .search__block .block__input button, .search__block .block__input .dashboard-list .dashboard-item .right-block .post-actions .actions__btns button, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .search__block .block__close, .search__block .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .block__close, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .gallery-overlay .overlay__close:before, .gallery-overlay .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .overlay__close:before, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .fotorama__arr, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .search__header .block__input button, .search__header .block__input .dashboard-list .dashboard-item .right-block .post-actions .actions__btns button {
   font-size: 30px;
   width: 15px;
   vertical-align: middle;
@@ -2320,6 +2336,12 @@ h1 {
 .dashboard-list .dashboard-item.promo-block .post-footer {
   margin-left: 190px;
 }
+.dashboard-list.list-search .post-info {
+  margin-top: 0 !important;
+}
+.dashboard-list.list-search .with-image .right-block__pad {
+  padding-left: 200px;
+}
 
 .post-actions .white-btn {
   border-color: #ccc;
@@ -2349,17 +2371,7 @@ h1 {
   padding-left: 30px;
 }
 
-.post-photo {
-  position: relative;
-  text-align: center;
-}
-.post-photo img {
-  max-width: 100%;
-}
-.post-photo .post-photo__alt {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+.post-photo__alt {
   background: #fff;
   padding: 5px 9px 5px 3px;
   color: #4bbeff;
@@ -2368,9 +2380,24 @@ h1 {
   font-weight: 700;
   font-size: 12px;
 }
-.post-photo .post-photo__alt a {
+.post-photo__alt a {
   color: inherit;
   text-decoration: none;
+  border: none !important;
+}
+
+.post-photo {
+  position: relative;
+  text-align: center;
+  min-height: 20px;
+}
+.post-photo img {
+  max-width: 100%;
+}
+.post-photo .post-photo__alt {
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .dashboard-btn-more {
@@ -2560,6 +2587,7 @@ h1 {
   position: relative;
   padding: 23px 0;
   border-bottom: 1px solid #dddddd;
+  min-height: 122px;
 }
 .blog-list .list__item.item-promo {
   padding: 20px;
@@ -3622,4 +3650,87 @@ h1 {
   box-sizing: border-box;
   font-size: 16px;
   font-weight: 500;
+}
+
+.search__header {
+  position: relative;
+  border-bottom: 1px solid #dddddd;
+  padding-bottom: 60px;
+}
+.search__header .block__input {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  padding-right: 200px;
+  box-sizing: border-box;
+}
+.search__header .block__input input {
+  width: 100%;
+  height: 50px;
+  padding: 0 15px 0 60px;
+  box-sizing: border-box;
+  background: transparent;
+  border: 1px solid #dddddd;
+  outline: none;
+}
+.search__header .block__input input::-webkit-input-placeholder {
+  font-family: 'Lato';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  text-transform: none;
+  color: #333;
+}
+.search__header .block__input input::-moz-placeholder {
+  font-family: 'Lato';
+  font-size: 16px;
+  font-style: normal;
+  text-transform: none;
+  color: #333;
+}
+.search__header .block__input input:-moz-placeholder {
+  font-family: 'Lato';
+  font-size: 16px;
+  font-style: normal;
+  text-transform: none;
+  color: #333;
+}
+.search__header .block__input input:-ms-input-placeholder {
+  font-family: 'Lato';
+  font-size: 16px;
+  font-style: normal;
+  text-transform: none;
+  color: #333;
+}
+.search__header .block__input button {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -25px;
+  height: 50px;
+  width: 60px;
+  line-height: 50px;
+  text-align: center;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 30px;
+  color: #333;
+  padding: 0;
+}
+.search__header .block__input button:hover {
+  color: #333;
+}
+.search__header .search-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 180px;
+  height: 50px;
+  font-size: 20px;
+}
+.search__header .header__desc {
+  padding: 20px 0 0 5px;
+  font-size: 16px;
 }

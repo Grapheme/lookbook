@@ -31,6 +31,6 @@ endif;
             </li>
         @endforeach
     </ul>
-    <a href="javascript:void(0);" class="right-content__all-link">All brands</a>
+    <a href="{{ pageurl('total-brands-list') }}" class="right-content__all-link">All brands</a>
 </div>
 @endif

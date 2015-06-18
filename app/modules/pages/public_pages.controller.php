@@ -262,9 +262,9 @@ class PublicPagesController extends BaseController {
                 }
             }
         }
-
-        #Helper::tad($page);
-
+        if(Auth::check() && $page->start_page == 1):
+            return Redirect::route('dashboard');
+        endif;
         return View::make($template, compact('page'));
 	}
     

@@ -11,19 +11,28 @@
         <div class="slideshow">
             <div class="slide">
                 <div class="slide-bg" style="background-image: url({{asset('theme/img/404bg.jpg')}});"></div>
-                <section class="slide-cont" style="margin-top: 15.1%;">
+                <section class="slide-cont" style="margin-top: 60px;">
                     <header>
                         <div class="slide-logo" style="background: url({{asset('theme/img/404.png')}}); width: 215px; height: 96px;">
                             
                         </div>
-                        <h2 class="slide-head" style="margin-bottom: 0;">
-                            ОШИБКА
-                        </h2>
                         <div class="desc"></div>
                     </header>
+                    <div class="wrapper">
+                        <div class="container_12">
+                            <div class="grid_12">
+                                <h2 class="slide-head" style="margin-bottom: 0;">
+                                    ОШИБКА 404
+                                </h2>
+                                <div>
+                                    Запрашиваемая вами страница не существует.<br>
+                                    Вернитесь на <a href="/" class="us-link">главную</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="slide-desc">
-                        Запрашиваемая вами страница не существует.<br>
-                        Вернитесь на <a href="/">главную</a>
+                        
                     </div>
                 </section>
             </div>

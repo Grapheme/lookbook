@@ -70,7 +70,6 @@ class GlobalController extends \BaseController {
     } // функция регистрации пользователя
 
     public function logout() {
-
         Auth::logout();
         return Redirect::to('/');
     } // функция завершения сеанса пользователя

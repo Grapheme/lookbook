@@ -14,7 +14,8 @@ class AccountsBloggerController extends BaseController {
         if (Auth::check() && Auth::user()->group_id == 4):
             Route::group(array('before' => 'auth.status.blogger', 'prefix' => self::$name), function() use ($class) {
                 Route::get('subscribers', array('as' => 'subscribers', 'uses' => $class . '@subscribers'));
-                Route::get('blog-list', array('as' => 'blog-list', 'uses' => $class . '@blogList'));
+                Route::get('blog-list', array('as' => 'blogger-blog-list', 'uses' => $class . '@blogList'));
+                Route::get('recommended-blogs-list', array('as' => 'recommended-blogs-list', 'uses' => $class . '@recommendedBlogList'));
 
                 Route::get('profile', array('as' => 'profile', 'uses' => $class . '@profile'));
                 Route::put('profile', array('before'=>'csrf', 'as' => 'profile.update', 'uses' => $class . '@profileUpdate'));
@@ -29,6 +30,9 @@ class AccountsBloggerController extends BaseController {
         endif;
         Route::get('profile/{user_url}',array('as'=>'user.profile.show','uses'=>$class.'@guestProfileShow'));
         Route::get('profile/{user_url}/posts',array('as'=>'user.posts.show','uses'=>$class.'@guestProfilePostsShow'));
+
+        Route::post('more/blogs', array('before' => 'csrf', 'as' => 'blogs.public.more',
+            'uses' => $class . '@moreBlogs'));
     }
 
     public static function returnShortCodes() {
@@ -313,6 +317,52 @@ class AccountsBloggerController extends BaseController {
             $page_data['blogs_total_count'] = Accounts::where('group_id', 4)->where('active', 1)->whereIn('id', $blogsIDs)->count();
         endif;
         return View::make(Helper::acclayout('blog-list'),$page_data);
+    }
+
+    public function recommendedBlogList(){
+
+        $page_data = array(
+            'page_title' => Lang::get('seo.BLOGGER.title'), 'page_description' => Lang::get('seo.BLOGGER.description'),
+            'page_keywords' => Lang::get('seo.BLOGGER.keywords'),
+            'recommended_blogs' => array(), 'blogs_total_count' => 0
+        );
+        return View::make(Helper::acclayout('recommended-blogs'),$page_data);
+    }
+    /****************************************************************************/
+    public function moreBlogs() {
+
+        $json_request = array('status' => FALSE, 'html' => '', 'from' => 0, 'hide_button' => TRUE);
+        if (Request::ajax()):
+            $validator = Validator::make(Input::all(), array('limit' => 'required', 'from' => 'required', 'user' => '', 'brand'=>''));
+            if ($validator->passes()):
+                $blogs = array();
+                $blog_from = Input::get('from');
+                $blog_limit = Input::get('limit');
+                if(Input::has('user') && Input::get('user') > 0):
+                    if ($blogsIDs = BloggerSubscribe::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->lists('blogger_id')):
+                        $blogs_total_count = Accounts::where('group_id', 4)->where('active', 1)->whereIn('id', $blogsIDs)->count();
+                        $blogs = Accounts::where('group_id', 4)->where('active', 1)->whereIn('id', $blogsIDs)->with('me_signed')->skip($blog_from)->take($blog_limit)->get();
+                    endif;
+                    if (count($blogs)):
+                        $json_request['html'] = View::make(Helper::layout('blocks.subscribes.blogs'), compact('blogs'))->render();
+                        $json_request['status'] = TRUE;
+                        $json_request['from'] = $blog_from + $blog_limit;
+                        $json_request['hide_button'] = $blogs_total_count > ($blog_from + $blog_limit) ? FALSE : TRUE;
+                    endif;
+                else:
+                    $blogs_total_count = Accounts::where('group_id', 4)->where('active', 1)->where('brand', Input::get('brand'))->count();
+                    if ($blogs = Accounts::where('group_id', 4)->where('active', 1)->where('brand', Input::get('brand'))->with('me_signed')->skip($blog_from)->take($blog_limit)->get()):
+                        $json_request['html'] = View::make(Helper::layout('blocks.bloggers'), compact('blogs'))->render();
+                        $json_request['status'] = TRUE;
+                        $json_request['from'] = $blog_from + $blog_limit;
+                        $json_request['hide_button'] = $blogs_total_count > ($blog_from + $blog_limit) ? FALSE : TRUE;
+                    endif;
+                endif;
+            endif;
+        else:
+            return Redirect::back();
+        endif;
+        return Response::json($json_request, 200);
     }
     /****************************************************************************/
     public function guestProfileShow($user_url){
