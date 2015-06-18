@@ -16,7 +16,7 @@ return array(
 	'manifest' => storage_path('meta'),
 
 	'debug' => FALSE,
-	'url' => 'http://lookbook.dev.grapheme.ru/',
+	'url' => 'http://look-book.ru/',
 	'timezone' => 'UTC',
 
     'locales' => array(
