@@ -55,7 +55,7 @@ endif;
                             @include(Helper::layout('blocks.posts-search'),compact('posts'))
                         </ul>
                         @if($posts_total_count > count($posts))
-                            @include(Helper::layout('assets.more_post'),array('post_limit'=>Config::get('lookbook.posts_limit')))
+                            @include(Helper::layout('assets.more_post'),array('post_limit'=>Config::get('lookbook.posts_limit'),'route_name'=>'post.public.more.search'))
                         @endif
                     @endif
                         <div class="clearfix"></div>

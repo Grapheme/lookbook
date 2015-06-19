@@ -10,6 +10,8 @@ class SearchPublicController extends BaseController {
         $class = __CLASS__;
         Route::post('search', array('before' => 'csrf', 'as' => 'search.public.request',
             'uses' => $class . '@searchRequest'));
+        Route::post('more/posts/search', array('before' => 'csrf', 'as' => 'post.public.more.search',
+            'uses' => $class . '@moreSearchPosts'));
     }
 
     public static function returnShortCodes() {
@@ -35,6 +37,34 @@ class SearchPublicController extends BaseController {
     public static function searchRequest() {
 
         return Redirect::to(pageurl('search'))->with('search_text',Input::get('search_text'));
+    }
+
+    public function moreSearchPosts(){
+
+        $json_request = array('status' => FALSE, 'html' => '', 'from' => 0, 'hide_button' => TRUE);
+        if (Request::ajax()):
+            $validator = Validator::make(Input::all(), array('limit' => 'required', 'from' => 'required',
+                'search' => 'required'));
+            if ($validator->passes()):
+                $posts = array();
+                $post_from = Input::get('from');
+                $post_limit = Input::get('limit');
+
+                $posts_total = SearchPublicController::getResult(Input::get('search'));
+                $posts_total_count = count($posts_total);
+                $posts = SearchPublicController::getResult(Input::get('search'), $post_limit, $post_from);
+
+                if (count($posts)):
+                    $json_request['html'] = View::make(Helper::layout('blocks.posts-search'), compact('posts'))->render();
+                    $json_request['status'] = TRUE;
+                    $json_request['from'] = $post_from + $post_limit;
+                    $json_request['hide_button'] = $posts_total_count > ($post_from + $post_limit) ? FALSE : TRUE;
+                endif;
+            endif;
+        else:
+            return Redirect::back();
+        endif;
+        return Response::json($json_request, 200);
     }
 
     /****************************************************************************/
