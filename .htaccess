@@ -10,4 +10,4 @@ RewriteRule (.*) /public/$1 [L]
 AuthType Basic
 AuthName "Access restricted"
 AuthUserFile  /var/www/rikardo/.htpasswd
-#require valid-user
+require valid-user
