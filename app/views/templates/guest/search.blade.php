@@ -5,6 +5,10 @@
  */
 $posts = array();
 $posts_total_count = 0;
+$categories = array();
+foreach (Dic::where('slug', 'categories')->first()->values as $category):
+    $categories[$category->id] = array('slug' => $category->slug, 'title' => $category->name);
+endforeach;
 if(Session::has('search_text')):
     $posts_total = SearchPublicController::getResult(Session::get('search_text'));
     $posts_total_count = count($posts_total);
@@ -49,26 +53,6 @@ endif;
                         @else
                         <ul class="dashboard-list list-search js-posts">
                             @include(Helper::layout('blocks.posts-search'),compact('posts'))
-                            <li class="dashboard-item with-image js-post">
-                                <div class="left-block">
-                                    <div data-empty-name="Анна Антропова" class="profile-ava ava-min ava-empty"><img src="images/tmp/profile-photo_max.jpg">
-                                        <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
-                                    </div>
-                                    <div class="profile-name">Дурнев Константин</div>
-                                </div>
-                                <div class="right-block">
-                                    <div style="background-image: url(images/tmp/post-photo-1.jpg);" class="right-block__image"></div>
-                                    <div class="right-block__pad">
-                                        <div class="post-info">
-                                            <div class="post-photo__alt"><a href="#">Shopping</a></div>
-                                            <div class="post-info__title"><a href="post.html">Новая коллекция обуви сезон 2014–2015</a></div>
-                                            <div class="post-info__desc">В 1947 году, когда Европа только начала восстанавливаться после пятилетней войны, Кристиан Диор создал силуэт, который навсегда вошел в историю под названием New Look. Этим, без сомнения, главным своим изобретением дизайнер сделал выдающийся вклад в мировую моду. </div>
-                                        </div>
-                                        <div class="post-footer"><span class="post-footer__date">ЯНВ 26, 2015</span><span class="post-footer__statisctics"><span class="statisctics-item"><i class="svg-icon icon-eye"></i>24</span><span class="statisctics-item"><i class="svg-icon icon-like"></i>56</span><span class="statisctics-item"><i class="svg-icon icon-comments"></i>36</span></span></div>
-                                    </div>
-                                </div>
-                                <div class="clearfix"></div>
-                            </li>
                         </ul>
                         @endif
                         <div class="clearfix"></div>
