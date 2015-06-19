@@ -51,7 +51,7 @@ endif;
                             <div class="dashboard-empty__desc">Ничего не найдено</div>
                         </div>
                     @else
-                        <div class="left-title search-title"><b>{{ $posts_total_count }} {{ Lang::choice('пост|поста|постов',$posts_total_count) }}</b></div>
+                        <div class="left-title search-title"><b>Найдено {{ $posts_total_count }} {{ Lang::choice('пост|поста|постов',$posts_total_count) }}</b></div>
                         <ul class="dashboard-list list-search js-posts">
                             @include(Helper::layout('blocks.posts-search'),compact('posts', 'excerpts'))
                         </ul>
