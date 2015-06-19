@@ -53,9 +53,9 @@ class SearchPublicController extends BaseController {
                 $posts_total = SearchPublicController::getResult(Input::get('search'));
                 $posts_total_count = count($posts_total);
                 $posts = SearchPublicController::getResult(Input::get('search'), $post_limit, $post_from);
-
+                $excerpts = SearchPublicController::resultBuildExcerpts($posts, Input::get('search'));
                 if (count($posts)):
-                    $json_request['html'] = View::make(Helper::layout('blocks.posts-search'), compact('posts'))->render();
+                    $json_request['html'] = View::make(Helper::layout('blocks.posts-search'), compact('posts', 'excerpts'))->render();
                     $json_request['status'] = TRUE;
                     $json_request['from'] = $post_from + $post_limit;
                     $json_request['hide_button'] = $posts_total_count > ($post_from + $post_limit) ? FALSE : TRUE;
