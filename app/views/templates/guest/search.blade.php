@@ -7,6 +7,16 @@ $categories = array();
 foreach (Dic::where('slug', 'categories')->first()->values as $category):
     $categories[$category->id] = array('slug' => $category->slug, 'title' => $category->name);
 endforeach;
+if(Session::has('search_text')):
+$search_text = Session::get('search_text');
+$posts = SphinxSearch::search($search_text, 'postsIndexLookBook')
+        ->setFieldWeights(array('content' => 10, 'title' => 5))
+        ->setMatchMode(SphinxClient::SPH_MATCH_EXTENDED)
+        ->SetSortMode(\Sphinx\SphinxClient::SPH_SORT_RELEVANCE, "@weight DESC")
+        ->limit(Config::get('lookbook.posts_limit'))
+        ->get();
+Helper::tad($posts);
+endif;
 ?>
 @extends(Helper::layout())
 @section('page_class')
