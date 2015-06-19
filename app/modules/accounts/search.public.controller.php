@@ -78,4 +78,18 @@ class SearchPublicController extends BaseController {
             ->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')
             ->get();
     }
+
+    public static function resultBuildExcerpts($searched, $search_string){
+
+        if (count($searched)):
+            $docs = array();
+            foreach ($searched as $index => $search_model):
+                $line = Helper::multiSpace(strip_tags($search_model->content));
+                $searched[$index]->content = trim($line);
+            endforeach;
+            return Helper::buildExcerpts($searched, 'postsIndexLookBook', $search_string, array('before_match' => '<mark>', 'after_match' => '</mark>'));
+        else:
+            return array();
+        endif;
+    }
 }
