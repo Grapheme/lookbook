@@ -38,13 +38,13 @@ class SearchPublicController extends BaseController {
     }
 
     /****************************************************************************/
-    public static function getResult($search_text){
+    public static function getResult($search_text, $limit = 2147483647, $offset = 0){
 
         return SphinxSearch::search($search_text, 'postsIndexLookBook')
             ->setFieldWeights(array('content' => 10, 'title' => 5))
             ->setMatchMode(\Sphinx\SphinxClient::SPH_MATCH_EXTENDED)
             ->SetSortMode(\Sphinx\SphinxClient::SPH_SORT_RELEVANCE, "@weight DESC")
-            ->limit(Config::get('lookbook.posts_limit'), 0)
+            ->limit($limit, $offset)
             ->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')
             ->get();
     }
