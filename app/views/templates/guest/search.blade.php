@@ -5,6 +5,10 @@
  */
 $posts = array();
 $posts_total_count = 0;
+$categories = array();
+foreach (Dic::where('slug', 'categories')->first()->values as $category):
+    $categories[$category->id] = array('slug' => $category->slug, 'title' => $category->name);
+endforeach;
 if(Session::has('search_text')):
     $posts_total = SearchPublicController::getResult(Session::get('search_text'));
     $posts_total_count = count($posts_total);
