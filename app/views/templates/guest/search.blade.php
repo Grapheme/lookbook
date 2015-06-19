@@ -7,17 +7,14 @@ $categories = array();
 foreach (Dic::where('slug', 'categories')->first()->values as $category):
     $categories[$category->id] = array('slug' => $category->slug, 'title' => $category->name);
 endforeach;
+
+$posts = array();
 if(Session::has('search_text')):
-$search_text = Session::get('search_text');
-$posts = SphinxSearch::search($search_text, 'postsIndexLookBook')
-        ->setFieldWeights(array('content' => 10, 'title' => 5))
-        ->setMatchMode(\Sphinx\SphinxClient::SPH_MATCH_EXTENDED)
-        ->SetSortMode(\Sphinx\SphinxClient::SPH_SORT_RELEVANCE, "@weight DESC")
-        ->limit(Config::get('lookbook.posts_limit'))
-        ->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')
-        ->get();
-Helper::tad($posts);
+    $posts = SearchPublicController::getResult(Session::get('search_text'));
+    Helper::tad($posts);
 endif;
+
+
 ?>
 @extends(Helper::layout())
 @section('page_class')
@@ -49,6 +46,7 @@ endif;
             <div class="grid_12 reg-content border-none">
                 <div class="dashboard-tab">
                     <div class="reg-content__left">
+                        @
                         <div class="dashboard-empty">
                             <div class="dashboard-empty__desc">Ничего не найдено</div>
                         </div>
