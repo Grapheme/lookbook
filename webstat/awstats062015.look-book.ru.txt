@@ -1,0 +1,399 @@
+AWSTATS DATA FILE 7.0 (build 1.971)
+# If you remove this file, all statistics for date 201506 will be lost/reset.
+# Last config file used to build this data file was /etc/awstats/awstats.look-book.ru.conf.
+
+# Position (offset in bytes) in this file for beginning of each section for
+# direct I/O access. If you made changes somewhere in this file, you should
+# also remove completely the MAP section (AWStats will rewrite it at next
+# update).
+BEGIN_MAP 27
+POS_GENERAL 1992                
+POS_TIME 2678                
+POS_VISITOR 3466                
+POS_DAY 3612                
+POS_DOMAIN 3765                
+POS_LOGIN 3997                
+POS_ROBOT 4152                
+POS_WORMS 4382                
+POS_EMAILSENDER 4513                
+POS_EMAILRECEIVER 4656                
+POS_SESSION 4732                
+POS_SIDER 4894                
+POS_FILETYPES 8753                
+POS_DOWNLOADS 9026                
+POS_OS 9172                
+POS_BROWSER 9312                
+POS_SCREENSIZE 9611                
+POS_UNKNOWNREFERER 9685                
+POS_UNKNOWNREFERERBROWSER 9846                
+POS_ORIGIN 10002               
+POS_SEREFERRALS 10141               
+POS_PAGEREFS 10296               
+POS_SEARCHWORDS 10775               
+POS_KEYWORDS 10927               
+POS_MISC 2342                
+POS_ERRORS 10986               
+POS_CLUSTER 3853                
+POS_SIDER_404 11128               
+END_MAP
+
+# LastLine    = Date of last record processed - Last record line number in last log - Last record offset in last log - Last record signature value
+# FirstTime   = Date of first visit for history file
+# LastTime    = Date of last visit for history file
+# LastUpdate  = Date of last update - Nb of parsed records - Nb of parsed old records - Nb of parsed new records - Nb of parsed corrupted - Nb of parsed dropped
+# TotalVisits = Number of visits
+# TotalUnique = Number of unique visitors
+# MonthHostsKnown   = Number of hosts known
+# MonthHostsUnKnown = Number of hosts unknown
+BEGIN_GENERAL 8
+LastLine 20150619000058 1835 430940 12691735438674
+FirstTime 20150618002032
+LastTime 20150618235556
+LastUpdate 20150619000105 1835 0 1835 0 0
+TotalVisits 4                   
+TotalUnique 1                   
+MonthHostsKnown 0                   
+MonthHostsUnknown 2                   
+END_GENERAL
+
+# Misc ID - Pages - Hits - Bandwidth
+BEGIN_MISC 10
+QuickTimeSupport 0 0 0
+JavaEnabled 0 0 0
+JavascriptDisabled 0 0 0
+PDFSupport 0 0 0
+WindowsMediaPlayerSupport 0 0 0
+AddToFavourites 0 2 0
+RealPlayerSupport 0 0 0
+TotalMisc 0 0 0
+DirectorSupport 0 0 0
+FlashSupport 0 0 0
+END_MISC
+
+# Hour - Pages - Hits - Bandwidth - Not viewed Pages - Not viewed Hits - Not viewed Bandwidth
+BEGIN_TIME 24
+0 4 4 4633 0 1 0
+1 12 12 15192 0 0 0
+2 4 4 5064 0 0 0
+3 0 0 0 0 0 0
+4 0 0 0 1 1 1266
+5 3 3 3798 0 0 0
+6 0 0 0 0 0 0
+7 0 0 0 0 0 0
+8 0 0 0 0 0 0
+9 0 0 0 0 0 0
+10 0 0 0 0 0 0
+11 2 2 2101 1 2 482
+12 0 0 0 1 1 1266
+13 0 0 0 0 0 0
+14 0 0 0 0 0 0
+15 0 0 0 1 1 774
+16 3 34 504658 27 148 282734
+17 38 200 4897856 48 318 1004179
+18 31 101 2900374 9 18 111755
+19 159 209 7996695 7 10 45934
+20 1 1 11486 1 1 12636
+21 2 2 14616 1 1 12634
+22 54 116 5286744 3 79 260805
+23 245 448 4834096 5 116 145525
+END_TIME
+
+# Host - Pages - Hits - Bandwidth - Last visit date - [Start date of last visit] - [Last page of last visit]
+# [Start date of last visit] and [Last page of last visit] are saved only if session is not finished
+# The 10 first Hits must be first (order not required for others)
+BEGIN_VISITOR 2
+92.63.103.191 558 1134 26208470 20150618235556
+178.76.195.226 0 4 233404 
+END_VISITOR
+
+# Date - Pages - Hits - Bandwidth - Visits
+BEGIN_DAY 1
+20150618 558 1136 26477313 4
+END_DAY
+
+# Domain - Pages - Hits - Bandwidth
+# The 10 first Pages must be first (order not required for others)
+BEGIN_DOMAIN 1
+ip 558 1136 26441874
+END_DOMAIN
+
+# Cluster ID - Pages - Hits - Bandwidth
+BEGIN_CLUSTER 0
+END_CLUSTER
+
+# Login - Pages - Hits - Bandwidth - Last visit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_LOGIN 0
+END_LOGIN
+
+# Robot ID - Hits - Bandwidth - Last visit - Hits on robots.txt
+# The 10 first Hits must be first (order not required for others)
+BEGIN_ROBOT 3
+no_user_agent 1 1266 20150618120141 0
+yandex 1 338 20150618184656 1
+crawl 1 1266 20150618045139 0
+END_ROBOT
+
+# Worm ID - Hits - Bandwidth - Last visit
+# The 5 first Hits must be first (order not required for others)
+BEGIN_WORMS 0
+END_WORMS
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first Hits must be first (order not required for others)
+BEGIN_EMAILSENDER 0
+END_EMAILSENDER
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first hits must be first (order not required for others)
+BEGIN_EMAILRECEIVER 0
+END_EMAILRECEIVER
+
+# Session range - Number of visits
+BEGIN_SESSION 3
+1h+ 2
+0s-30s 1
+30mn-1h 1
+END_SESSION
+
+# URL - Pages - Bandwidth - Entry - Exit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_SIDER 95
+/blogger/posts/48/auto-save 62 56134 0 0
+/ 56 220156 3 3
+/blogger 41 204753 0 0
+/blogger/posts/49/auto-save 29 26254 0 0
+/blogger/posts/47/auto-save 26 23512 0 0
+/admin/galleries/abstractupload 21 20124 0 0
+/theme/fonts/Lato-Regular-webfont.woff 13 718960 0 0
+/theme/fonts/Lato-Light-webfont.woff 13 711744 0 0
+/theme/fonts/Lato-Thin-webfont.woff 13 699996 0 0
+/theme/fonts/Lato-Medium-webfont.woff 13 721556 0 0
+/blogger/posts/preview 3 67068 0 0
+/fashion 1 3074 0 0
+/signin 7 7124 0 0
+/redactor/get-uploaded-images 3 14226 0 0
+/registration 1 934 0 0
+/contacts 6 21075 0 0
+/help 2 7018 0 0
+/blogger/posts/46/edit 1 3773 0 0
+/theme/fonts/BodoniC-webfont.woff 7 252448 0 0
+/profile/7-vera-mirko/posts 1 4491 0 0
+/theme/fonts/Lato-BlackItalic-webfont.woff 1 77281 0 0
+/profile/6-elena-andreeva 1 3934 0 0
+/7-fashion/34-novyiy-post 1 4585 0 0
+/redactor/upload 3 936 0 0
+/7-fashion/49-na-trope-voiyny 2 10966 0 0
+/theme/fonts/BodoniC-Italic-webfont.woff 12 434720 0 0
+/spisok-bloggerov 2 10702 0 0
+/json/like.json 1 337 0 0
+/theme/fonts/Lato-BoldItalic-webfont.woff 2 157666 0 0
+/profile/11-olga-bondarenko/posts 1 4335 0 0
+/git-deploy/master 4 6828 0 0
+/search 3 13291 0 0
+/admin/galleries/singleupload 6 5742 0 0
+/theme/fonts/Lato-Bold-webfont.woff 12 652760 0 0
+/profile/7-vera-mirko 3 11148 0 0
+/7-fashion/26-ego-velichestvo-denim 1 5729 0 0
+/git-deploy/master/test 1 902 0 0
+/theme/fonts/Lato-SemiboldItalic-webfont.woff 1 78977 0 0
+/theme/fonts/icomoon.woff 12 40380 0 0
+/blogger/subscribers 7 28252 0 1
+/7-fashion/11-pervyiy-samyiy-pervyiy-post 1 4464 0 0
+/git-deploy/master/JvpVCsEdajPLLei9XEOvWpJjpRlOI8EX 2 2291 0 0
+/theme/fonts/Lato-Black-webfont.woff 12 654080 0 0
+/blogger/posts/49 1 842 0 0
+/blogger/posts/46/auto-save 11 9948 0 0
+/admin/pages/1 1 838 0 0
+/login 2 4800 1 0
+/blogger/posts/47/edit 3 14840 0 0
+/theme/fonts/BodoniC-BoldItalic-webfont.woff 12 453040 0 0
+/theme/fonts/Lato-LightItalic-webfont.woff 1 79937 0 0
+/lifestyle 1 5737 0 0
+/theme/fonts/Lato-Italic-webfont.woff 4 239799 0 0
+/blogger/posts/20 1 798 0 0
+/admin/xmygP1Yf/X0KkBfnJ/5rjpdCl4/8bNwroKV/collector-js 4 44334 0 0
+/profile/4-sereja-mishukov/posts 1 5599 0 0
+/theme/fonts/Lato-Regular-webfont.ttf 1 141810 0 0
+/blogger/posts/23 1 804 0 0
+/profile/5-vladimir-harseev 1 3750 0 0
+/blogger/posts/44 1 800 0 0
+/admin/galleries/photodelete 4 2886 0 0
+/restore-password 2 2158 0 0
+/blogger/posts/48 2 1678 0 0
+/7-fashion/48-belokuryiy-angel-sasha-luss 3 17730 0 0
+/theme/fonts/Lato-Semibold-webfont.woff 9 591120 0 0
+/theme/fonts/Lato-Hairline-webfont.woff 8 501312 0 0
+/profile/4-sereja-mishukov 6 25663 0 0
+/7-fashion/33-otkryt-vse-ili-v-mode-crop-top 1 5534 0 0
+/blogger/blog-list 2 6752 0 0
+/admin/pages 1 3882 0 0
+/theme/fonts/BodoniC-Bold-webfont.woff 7 253400 0 0
+/profile/11-olga-bondarenko 1 3618 0 0
+/blogger/posts/48/edit 2 9949 0 0
+/theme/fonts/Lato-ThinItalic-webfont.woff 1 79049 0 0
+/theme/fonts/Lato-HeavyItalic-webfont.woff 1 77877 0 0
+/profile/15-alla-bakukina 1 3576 0 0
+/blogger/posts/49/edit 1 3815 0 0
+/7-fashion/20-na-trope-voiyny 3 16783 0 0
+/blogger/posts/46 1 838 0 0
+/admin 2 5734 0 0
+/admin/pages/1/edit 1 6729 0 0
+/about 6 22387 0 0
+/theme/fonts/Lato-Heavy-webfont.woff 7 461027 0 0
+/profile/6-elena-andreeva/posts 1 5757 0 0
+/7-fashion/27-novyiy-post 1 4538 0 0
+/private/fonts/fontawesome-webfont.woff 2 84037 0 0
+/7-fashion/47-anna-evers 6 32456 0 0
+/7-fashion/44-svoboda-dlya-tvoeiy-dushi 2 11257 0 0
+/theme/fonts/Lato-MediumItalic-webfont.woff 1 79017 0 0
+/profile/12-kostya-durnev 1 3612 0 0
+/blogger/posts/26 1 798 0 0
+/theme/fonts/Lato-Medium-webfont.ttf 1 141650 0 0
+/ajax-pages-get-page-blocks 1 715 0 0
+/blogger/posts/47 3 2520 0 0
+/theme/fonts/Lato-HairlineItalic-webfont.woff 1 77505 0 0
+/blogger/profile 9 29360 0 0
+END_SIDER
+
+# Files type - Hits - Bandwidth - Bandwidth without compression - Bandwidth after compression
+BEGIN_FILETYPES 11
+css 100 1444317 0 0
+png 34 2494028 0 0
+ttf 2 283460 0 0
+woff 165 8177688 0 0
+json 1 337 0 0
+html 56 220156 0 0
+js 220 6174358 0 0
+jpg 199 6494467 0 0
+jpeg 2 147190 0 0
+Unknown 334 897480 0 0
+svg 23 72954 0 0
+END_FILETYPES
+
+# Downloads - Hits - Bandwidth
+BEGIN_DOWNLOADS 3
+/robots.txt 1 0 338
+/private/sound/smallbox.ogg 0 1 24720
+/private/sound/messagebox.mp3 0 1 10719
+END_DOWNLOADS
+
+# OS ID - Hits
+BEGIN_OS 10
+winlong 3
+winxp 21
+linuxubuntu 1
+linux 1
+winvista 332
+win7 611
+win16 3
+macosx 157
+win95 3
+Unknown 6
+END_OS
+
+# Browser ID - Hits
+BEGIN_BROWSER 17
+safari7.0 29
+msie6.0 15
+firefox38.0 329
+msie8.0 50
+chrome43.0.2357.81 1
+mozilla 39
+chrome39.0.2171.65 1
+msie7.0 3
+chrome37.0.2062.120 1
+msie2.0 3
+safari8.0 70
+msie5.0 3
+chrome42.0.2311.152 561
+chrome23.0.1271.97 1
+Unknown 6
+firefox36.0 2
+safari 24
+END_BROWSER
+
+# Screen size - Hits
+BEGIN_SCREENSIZE 0
+END_SCREENSIZE
+
+# Unknown referer OS - Last visit date
+BEGIN_UNKNOWNREFERER 2
+GitHub-Hookshot/becf8d8 20150618181337
+Go_1.1_package_http 20150618234731
+END_UNKNOWNREFERER
+
+# Unknown referer Browser - Last visit date
+BEGIN_UNKNOWNREFERERBROWSER 2
+GitHub-Hookshot/becf8d8 20150618181337
+Go_1.1_package_http 20150618234731
+END_UNKNOWNREFERERBROWSER
+
+# Origin - Pages - Hits 
+BEGIN_ORIGIN 6
+From0 28 35
+From1 0 0
+From2 2 2
+From3 31 31
+From4 497 1070
+From5 0 0
+END_ORIGIN
+
+# Search engine referers ID - Pages - Hits
+BEGIN_SEREFERRALS 1
+yandex 2 2
+END_SEREFERRALS
+
+# External page referers - Pages - Hits
+# The 10 first Pages must be first (order not required for others)
+BEGIN_PAGEREFS 11
+http://sosdepotdebilan.com 3 3
+http://photokitchendesign.com 3 3
+http://www.slkrm.ru 3 3
+http://bristolhotel.com.ua 3 3
+http://alpharma.net 3 3
+http://www.germes-trans.com// 3 3
+http://aruplighting.com 3 3
+http://bestmobilityscooterstoday.com 3 3
+http://tattooha.com 3 3
+http://petrovka-online.com 3 3
+http://pizza-tycoon.com 1 1
+END_PAGEREFS
+
+# Search keyphrases - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_SEARCHWORDS 0
+END_SEARCHWORDS
+
+# Search keywords - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_KEYWORDS 0
+END_KEYWORDS
+
+# Errors - Hits - Bandwidth
+BEGIN_ERRORS 5
+302 25 31730
+206 2 257039
+400 1 759
+500 382 299554
+404 104 1286490
+END_ERRORS
+
+# URL with 404 errors - Hits - Last URL referer
+BEGIN_SIDER_404 15
+/theme/styles/main.css 2 http://look-book.ru/theme/styles/vendor.css
+/ 52 -
+/git-deploy/master 2 -
+/theme/img/404bg.jpg 7 http://look-book.ru/git-deploy/master
+/about 6 http://look-book.ru/
+/fantasy/1239-skachat-besplatno-knigi.kir-bulychev.html 1 http://look-book.ru/fantasy/1239-skachat-besplatno-knigi.kir-bulychev.html
+/theme/styles/images/ui-bg_flat_75_ffffff_40x100.png 1 http://look-book.ru/blogger/posts/46/edit
+/theme/scripts/vendor.js 3 http://look-book.ru/theme/styles/vendor.css
+/fantasy/ 2 http://look-book.ru/fantasy/
+/theme/styles/images/ui-icons_454545_256x240.png 5 http://look-book.ru/theme/styles/vendor.css
+/theme/img/404.png 7 http://look-book.ru/git-deploy/master
+/contacts 1 http://look-book.ru/
+/theme/styles/images/ui-icons_888888_256x240.png 10 http://look-book.ru/theme/styles/vendor.css
+/theme/scripts/vendor/modernizr.js 2 http://look-book.ru/theme/styles/vendor.css
+/theme/styles/vendor.css 3 http://look-book.ru/theme/styles/vendor.css
+END_SIDER_404
