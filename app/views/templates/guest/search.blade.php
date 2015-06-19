@@ -11,7 +11,7 @@ if(Session::has('search_text')):
 $search_text = Session::get('search_text');
 $posts = SphinxSearch::search($search_text, 'postsIndexLookBook')
         ->setFieldWeights(array('content' => 10, 'title' => 5))
-        ->setMatchMode(SphinxClient::SPH_MATCH_EXTENDED)
+        ->setMatchMode(\Sphinx\SphinxClient::SPH_MATCH_EXTENDED)
         ->SetSortMode(\Sphinx\SphinxClient::SPH_SORT_RELEVANCE, "@weight DESC")
         ->limit(Config::get('lookbook.posts_limit'))
         ->get();
