@@ -32,7 +32,13 @@ endforeach;
                             {{ $post['title'] }}
                         </a>
                     </div>
-                    <div class="post-info__desc">{{ str_limit(strip_tags($post->content), $limit = 500, $end = ' ...') }}</div>
+                    <div class="post-info__desc">
+                    @if(isset($excerpts[$post->id]))
+                        {{ @$excerpts[$post->id] }}
+                    @else
+                        {{ str_limit(strip_tags($post->content), $limit = 500, $end = ' ...') }}
+                    @endif
+                    </div>
                 </div>
                 <div class="post-footer">
                     <span class="post-footer__date">
