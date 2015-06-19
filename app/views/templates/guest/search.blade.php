@@ -37,7 +37,8 @@ endif;
                     {{ Form::close() }}
                     @if(Session::has('search_text'))
                     <div class="header__desc">
-                        Вы искали «<b>{{ Session::get('search_text') }}</b>»
+                        Вы искали «<b>{{ Session::get('search_text') }}</b>»<br>
+                        Всего найдено «<b>{{ $posts_total_count }} {{ Lang::choice('пост|поста|постов',$posts_total_count) }}</b>»
                     </div>
                     @endif
                 </div>
