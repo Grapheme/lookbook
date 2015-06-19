@@ -45,16 +45,19 @@ endif;
             <div class="grid_12 reg-content border-none">
                 <div class="dashboard-tab">
                     <div class="reg-content__left">
-                        @if(empty($posts))
+                    @if(empty($posts))
                         <div class="dashboard-empty">
                             <div class="dashboard-empty__desc">Ничего не найдено</div>
                         </div>
                         <div class="left-title search-title">Посты <b>{{ Post::where('publication', 1)->count() }}</b></div>
-                        @else
+                    @else
                         <ul class="dashboard-list list-search js-posts">
                             @include(Helper::layout('blocks.posts-search'),compact('posts'))
                         </ul>
+                        @if($posts_total_count > count($posts))
+                            @include(Helper::layout('assets.more_post'),array('post_limit'=>Config::get('lookbook.posts_limit')))
                         @endif
+                    @endif
                         <div class="clearfix"></div>
                     </div>
                     <div class="reg-content__right">
