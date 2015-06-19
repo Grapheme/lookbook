@@ -18,7 +18,7 @@ endforeach;
         </div>
         <div class="right-block">
             @if($hasImage)
-            <div style="background-image: url({{ Config::get('site.galleries_photo_dir').'/'.$post->photo->name }}});" class="right-block__image"></div>
+            <div style="background-image: url({{ asset(Config::get('site.galleries_photo_public_dir').'/'.$post->photo->name) }});" class="right-block__image"></div>
             @endif
             <div class="right-block__pad">
                 <div class="post-info">
