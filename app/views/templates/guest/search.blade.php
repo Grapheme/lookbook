@@ -12,9 +12,10 @@ $post_access = FALSE;
 $posts = array();
 $posts_total_count = 0;
 if(Session::has('search_text')):
-    $posts_total_count = SearchPublicController::getResult(Session::get('search_text'));
+    $posts_total = SearchPublicController::getResult(Session::get('search_text'));
+    $posts_total_count = count($posts_total);
     $posts = SearchPublicController::getResult(Session::get('search_text'), Config::get('lookbook.posts_limit'));
-    Helper::tad($posts_total_count);
+    Helper::ta($posts_total_count);
     Helper::tad($posts);
 endif;
 
