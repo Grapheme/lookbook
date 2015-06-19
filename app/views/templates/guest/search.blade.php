@@ -37,8 +37,7 @@ endif;
                     {{ Form::close() }}
                     @if(Session::has('search_text'))
                     <div class="header__desc">
-                        Вы искали «<b>{{ Session::get('search_text') }}</b>»<br>
-                        Всего найдено «<b>{{ $posts_total_count }} {{ Lang::choice('пост|поста|постов',$posts_total_count) }}</b>»
+                        Вы искали «<b>{{ Session::get('search_text') }}</b>»
                     </div>
                     @endif
                 </div>
@@ -51,8 +50,8 @@ endif;
                         <div class="dashboard-empty">
                             <div class="dashboard-empty__desc">Ничего не найдено</div>
                         </div>
-                        <div class="left-title search-title">Посты <b>{{ Post::where('publication', 1)->count() }}</b></div>
                     @else
+                        <div class="left-title search-title"><b>{{ $posts_total_count }} {{ Lang::choice('пост|поста|постов',$posts_total_count) }}</b></div>
                         <ul class="dashboard-list list-search js-posts">
                             @include(Helper::layout('blocks.posts-search'),compact('posts', 'excerpts'))
                         </ul>
