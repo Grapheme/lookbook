@@ -53,7 +53,7 @@ class SearchPublicController extends BaseController {
                 $posts_total = SearchPublicController::getResult(Input::get('search'));
                 $posts_total_count = count($posts_total);
                 $posts = SearchPublicController::getResult(Input::get('search'), $post_limit, $post_from);
-                $excerpts = SearchPublicController::resultBuildExcerpts($posts, Session::get('search_text'));
+                $excerpts = SearchPublicController::resultBuildExcerpts($posts, Input::get('search'));
                 if (count($posts)):
                     $json_request['html'] = View::make(Helper::layout('blocks.posts-search'), compact('posts', 'excerpts'))->render();
                     $json_request['status'] = TRUE;
