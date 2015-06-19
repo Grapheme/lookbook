@@ -14,7 +14,7 @@ $posts_total_count = 0;
 if(Session::has('search_text')):
     $posts_total_count = SearchPublicController::getResult(Session::get('search_text'));
     $posts = SearchPublicController::getResult(Session::get('search_text'), Config::get('lookbook.posts_limit'));
-    Helper::ta($posts_total_count);
+    Helper::tad($posts_total_count);
     Helper::tad($posts);
 endif;
 
