@@ -14,6 +14,7 @@ $posts = SphinxSearch::search($search_text, 'postsIndexLookBook')
         ->setMatchMode(\Sphinx\SphinxClient::SPH_MATCH_EXTENDED)
         ->SetSortMode(\Sphinx\SphinxClient::SPH_SORT_RELEVANCE, "@weight DESC")
         ->limit(Config::get('lookbook.posts_limit'))
+        ->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')
         ->get();
 Helper::tad($posts);
 endif;
