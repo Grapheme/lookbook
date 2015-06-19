@@ -83,11 +83,11 @@ class SearchPublicController extends BaseController {
 
         if (count($searched)):
             $docs = array();
-            foreach ($searched as $index => $search_model):
+            foreach ($searched as $search_model):
                 $line = Helper::multiSpace(strip_tags($search_model->content));
-                $searched[$index]->content = trim($line);
+                $docs[$search_model->id]->content = trim($line);
             endforeach;
-            return Helper::buildExcerpts($searched, 'postsIndexLookBook', $search_string, array('before_match' => '<mark>', 'after_match' => '</mark>'));
+            return Helper::buildExcerpts($docs, 'postsIndexLookBook', $search_string, array('before_match' => '<mark>', 'after_match' => '</mark>'));
         else:
             return array();
         endif;
