@@ -63,39 +63,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="right-title">Статистика</div>
-                        <div class="right-content">
-                            <table class="stat-table">
-                                <tr>
-                                    <td>Рейтинг</td>
-                                    <td>132 место из 2356</td>
-                                </tr>
-                                <tr>
-                                    <td>Записей в блоге</td>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td>Комментариев опубликовано</td>
-                                    <td>42</td>
-                                </tr>
-                                <tr>
-                                    <td>Количество подписчиков</td>
-                                    <td>10444</td>
-                                </tr>
-                                <tr>
-                                    <td>Количество посетителей в день</td>
-                                    <td>31233</td>
-                                </tr>
-                                <tr>
-                                    <td>Количество посетителей с февраля</td>
-                                    <td>233</td>
-                                </tr>
-                                <tr>
-                                    <td>Количество посетителей в год</td>
-                                    <td>1232032</td>
-                                </tr>
-                            </table>
-                        </div>
+                        @include(Helper::acclayout('assets.statistic'))
                     </div>
                     <div class="clearfix"></div>
                 </div>

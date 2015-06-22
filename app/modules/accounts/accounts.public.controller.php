@@ -73,6 +73,35 @@ class AccountsPublicController extends BaseController {
         endif;
         return array('top_bloggers' => $top_bloggers, 'users_top_posts' => $users_top_posts);
     }
+
+    public static function getPlaceRating($user_id){
+
+        $rating_place = 0;
+        $rating_list = BloggerSubscribe::select(DB::raw('blogger_id as subscribe_user_id, COUNT(blogger_id) as subscribes'))->groupBy('blogger_id')->orderBy('subscribes', 'DESC')->get();
+        if($rating = self::calculateRating($rating_list)):
+            foreach($rating as $place => $user_rating):
+                if($user_rating['user_id'] == $user_id):
+                    $rating_place = $place;
+                    break;
+                endif;
+            endforeach;
+        endif;
+        return $rating_place;
+    }
+    /****************************************************************************/
+    private static function calculateRating($rating_list){
+
+        if(count($rating_list)):
+            foreach ($rating_list as $index => $user_rating):
+                $rating[$index + 1]['user_id'] = $user_rating->subscribe_user_id;
+                $rating[$index + 1]['subscribes'] = $user_rating->subscribes;
+                $rating[$index + 1]['you'] = FALSE;
+            endforeach;
+            return $rating;
+        else:
+            return array();
+        endif;
+    }
     /****************************************************************************/
     public function contactsSendQuestion() {
 
