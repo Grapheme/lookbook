@@ -1,3 +1,4 @@
+@if(FALSE)
 <div class="post-actions">
     <span class="actions__title">Поделиться</span>
     <span class="actions__btns">
@@ -15,3 +16,4 @@
         </a>
     </span>
 </div>
+@endif
