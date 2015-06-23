@@ -3,6 +3,11 @@
  * TEMPLATE_IS_NOT_SETTABLE
  */
 ?>
+
+@section('title'){{ $user->name }}@stop
+@section('description')@stop
+@section('keywords')@stop
+
 @extends(Helper::layout())
 @section('style')
 @stop

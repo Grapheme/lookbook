@@ -5,6 +5,11 @@
 $post_access = FALSE;
 $post_limit = Config::get('lookbook.posts_limit');
 ?>
+
+@section('title'){{ $user->name }}@stop
+@section('description')@stop
+@section('keywords')@stop
+
 @extends(Helper::layout())
 @section('style')
 @stop

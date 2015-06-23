@@ -17,6 +17,12 @@ class PostPublicController extends BaseController {
             'uses' => $class . '@morePosts'));
         Route::post('more/posts/subscribes', array('before' => 'csrf', 'as' => 'post.public.more.subscribes',
             'uses' => $class . '@moreSubscribesPosts'));
+        if (Auth::check()):
+            Route::post('post/send-comment', array('before' => 'csrf', 'as' => 'post.public.comment.insert',
+                'uses' => $class . '@sendComment'));
+            Route::delete('post/delete-comment/{comment_id}', array('before' => 'csrf', 'as' => 'post.public.comment.destroy',
+                'uses' => $class . '@destroyComment'));
+        endif;
     }
 
     public static function returnShortCodes() {
@@ -93,6 +99,40 @@ class PostPublicController extends BaseController {
         endif;
     }
     /****************************************************************************/
+    public function sendComment(){
+
+        $json_request = array('status' => FALSE, 'html' => '');
+        if (Request::ajax()):
+            $validator = Validator::make(Input::all(), PostComments::$rules);
+            if ($validator->passes()):
+                $comment = new PostComments();
+                $comment->post_id = Input::get('post_id');
+                $comment->rating = Input::get('rating');
+                $comment->content = Input::get('content');
+                $comment->user_id = Auth::user()->id;
+                $comment->save();
+                $comment->touch();
+                $json_request['html'] = View::make(Helper::layout('blocks.comments'), array('comments'=>array($comment)))->render();
+                $json_request['status'] = TRUE;
+            endif;
+        else:
+            return Redirect::back();
+        endif;
+        return Response::json($json_request, 200);
+    }
+
+    public function destroyComment($comment_id){
+
+        $json_request = array('status' => FALSE);
+        if (Request::ajax()):
+            if (PostComments::where('id',$comment_id)->where('user_id', Auth::user()->id)->delete()):
+                $json_request['status'] = TRUE;
+            endif;
+        else:
+            return Redirect::back();
+        endif;
+        return Response::json($json_request, 200);
+    }
     /****************************************************************************/
     public function show($category_title, $post_title) {
 
