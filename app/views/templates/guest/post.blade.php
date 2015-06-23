@@ -4,6 +4,11 @@
  * AVAILABLE_ONLY_IN_ADVANCED_MODE
  */
 ?>
+
+@section('title'){{ $post->title }}@stop
+@section('description')@stop
+@section('keywords')@stop
+
 @extends(Helper::layout())
 @section('style')
 @stop
@@ -62,27 +67,8 @@
                                     @endif
                                     </div>
                                 </div>
-                                <div class="post-actions">
-                                    <span class="actions__title">Поделиться</span>
-                                    <span class="actions__btns">
-                                        <a href="#" class="white-btn action-soc">
-                                            <i class="svg-icon icon-facebook"></i>Facebook
-                                        </a>
-                                        <!-- <a href="#" class="white-btn action-soc">
-                                            <i class="svg-icon icon-instagram"></i>Instagram
-                                        </a> -->
-                                        <a href="#" class="white-btn action-soc">
-                                            <i class="svg-icon icon-vk"></i>Вконтакте
-                                        </a>
-                                        <a href="#" class="white-btn action-soc">
-                                            <i class="svg-icon icon-ok"></i>Одноклассники
-                                        </a>
-                                    </span>
-                                </div>
-                                <div class="post-comments">
-                                    <div class="comments__title">Комментировать</div>
-                                    <div class="comments__body"></div>
-                                </div>
+                                @include(Helper::layout('assets.post-share'), array('post' => $post))
+                                @include(Helper::layout('assets.post-comments'), array('comments' => $post->comments))
                             </div>
                         </li>
                     </ul>
