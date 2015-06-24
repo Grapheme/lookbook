@@ -10,7 +10,7 @@ if(!isset($showName)):
     $showName = TRUE;
 endif;
 ?>
-<a class="avatar-link" href="{{ URL::route('user.profile.show',$user['id'].'-'.BaseController::stringTranslite($user['name'])) }}">
+<a class="avatar-link" href="{{ URL::route('user.posts.show',$user['id'].'-'.BaseController::stringTranslite($user['name'])) }}">
     @if(isset($no_avatar) && $no_avatar === TRUE)
         {{ $user['name'] }}
     @else
