@@ -41,7 +41,7 @@ $blogs = Accounts::where('group_id', 4)->where('active', 1)->where('brand', 1)->
                                         <div class="item__best-blogger"></div>
                                         <div class="item__content">
                                             <div class="content__title">
-                                                <a href="{{ URL::route('user.profile.show',$blog->id.'-'.BaseController::stringTranslite($blog->name)) }}">{{ $blog->name }}</a>
+                                                <a href="{{ URL::route('user.posts.show',$blog->id.'-'.BaseController::stringTranslite($blog->name)) }}">{{ $blog->name }}</a>
                                             </div>
                                             <div class="content__followers">
                                                 <b>{{ $blog->me_signed->count() }}</b> {{ Lang::choice('подписчик|подписчика|подписчиков',$blog->me_signed->count()) }}
