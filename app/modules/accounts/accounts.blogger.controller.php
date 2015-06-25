@@ -388,7 +388,7 @@ class AccountsBloggerController extends BaseController {
         if ($user = Accounts::where('id',(int)$user_url)->where('active',TRUE)->first()):
             $post_limit = Config::get('lookbook.posts_limit');
             $posts_total_count = Post::where('user_id', $user->id)->where('publication', 1)->count();
-            $posts = Post::where('user_id', $user->id)->orderBy('publication', 'ASC')->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->take($post_limit)->get();
+            $posts = Post::where('user_id', $user->id)->where('publication', 1)->orderBy('publication', 'ASC')->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->take($post_limit)->get();
             if ($user->brand):
                 return View::make(Helper::layout('brand-profile-posts'),compact('user','posts','posts_total_count'));
             else:
