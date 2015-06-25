@@ -134,7 +134,7 @@ class PostPublicController extends BaseController {
         return Response::json($json_request, 200);
     }
     /****************************************************************************/
-    public function show($category_title, $post_title) {
+    public function show1($category_title, $post_title) {
 
         if ($post = Post::where('id', (int)$post_title)->where('category_id', (int)$category_title)->with('user', 'tags_ids', 'comments', 'likes', 'views', 'photo', 'gallery.photos')->first()):
             list($categories, $tags) = PostBloggerController::getCategoriesAndTags();
