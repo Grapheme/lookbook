@@ -7,7 +7,7 @@
     <div class="comments__body">
         @if(Auth::check())
         <div class="comments__form">
-            @include(Helper::layout('assets.avatar'),array('user'=>$post->user))
+            @include(Helper::layout('assets.avatar'),array('user'=>Auth::user()))
             {{ Form::open(array('route'=>'post.public.comment.insert','method'=>'post','class'=>'js-comment-form')) }}
                 {{ Form::hidden('post_id', $post->id) }}
                 {{ Form::hidden('rating', 0) }}
