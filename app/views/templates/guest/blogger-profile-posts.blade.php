@@ -4,9 +4,6 @@
  */
 $post_access = FALSE;
 $post_limit = Config::get('lookbook.posts_limit');
-
-Helper::tad($posts);
-
 ?>
 
 @section('title'){{ $user->name }}@stop
