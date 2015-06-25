@@ -244,7 +244,7 @@ LookBook.CommentForm = function() {
         } else {
             Help.ajaxSubmit(parent, {
                 success: function(data){
-                    $('.js-comments').prepend(data.html);
+                    $('.js-comments').append(data.html);
                     textarea.val('').removeAttr('style');
                     Help.avaGenerator();
                 }

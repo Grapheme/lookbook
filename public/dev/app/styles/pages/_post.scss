@@ -123,7 +123,7 @@
                 }
 
                 .post-info__gallery {
-
+                    margin-top: 20px;
                 }
             }
         }
@@ -178,9 +178,18 @@
 
     .dashboard-list {
         border: none;
+        margin-top: $dashTopPad;
 
         .right-block__pad {
             padding: 0 $dashLeftPad $dashTopPad 0;
+        }
+
+        .dashboard-item {
+            border-top: 1px solid $borderColor !important;
+
+            .left-block {
+                margin-bottom: $dashTopPad;
+            }
         }
     }
 }

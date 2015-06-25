@@ -49,6 +49,23 @@
 	}
 }
 
+.post-info__gallery {
+	.fotorama__stage__frame {
+		.fotorama__caption {
+			opacity: 0;
+			transform: scale(.9);
+			transition: all .2s ease;
+		}
+		
+		&:hover {
+			.fotorama__caption {
+				opacity: 1;
+				transform: scale(1);
+			}
+		}
+	}
+}
+
 .gallery-overlay {
 	.fotorama__caption {
 		left: 0;

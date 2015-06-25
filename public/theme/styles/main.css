@@ -1157,7 +1157,7 @@ h1 {
   padding: 0 35px;
   background: transparent;
 }
-.white-black-btn:hover {
+.white-black-btn:hover, .white-black-btn[disabled="disabled"] {
   background: #333;
   color: #fff;
 }
@@ -2696,6 +2696,21 @@ h1 {
   overflow: hidden;
 }
 
+.post-info__gallery .fotorama__stage__frame .fotorama__caption {
+  opacity: 0;
+  -webkit-transform: scale(0.9);
+      -ms-transform: scale(0.9);
+          transform: scale(0.9);
+  -webkit-transition: all .2s ease;
+          transition: all .2s ease;
+}
+.post-info__gallery .fotorama__stage__frame:hover .fotorama__caption {
+  opacity: 1;
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+}
+
 .gallery-overlay .fotorama__caption {
   left: 0;
   right: 0;
@@ -3493,6 +3508,9 @@ h1 {
 .one-post .dashboard-item .right-block .post-info .post-info__desc p:first-child {
   margin-top: 0;
 }
+.one-post .dashboard-item .right-block .post-info .post-info__gallery {
+  margin-top: 20px;
+}
 
 .post-comments {
   border-top: 1px solid #dddddd;
@@ -3535,9 +3553,16 @@ h1 {
 }
 .post-comments .dashboard-list {
   border: none;
+  margin-top: 23px;
 }
 .post-comments .dashboard-list .right-block__pad {
   padding: 0 27px 23px 0;
+}
+.post-comments .dashboard-list .dashboard-item {
+  border-top: 1px solid #dddddd !important;
+}
+.post-comments .dashboard-list .dashboard-item .left-block {
+  margin-bottom: 23px;
 }
 
 .category-header {
