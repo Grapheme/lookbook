@@ -3504,6 +3504,41 @@ h1 {
   font-style: italic;
   text-transform: uppercase;
 }
+.post-comments .comments__form {
+  position: relative;
+  padding-top: 20px;
+}
+.post-comments .comments__form .form__textearea-cont {
+  position: relative;
+  margin-left: 98px;
+  margin-right: 27px;
+}
+.post-comments .comments__form .form__textearea-cont textarea {
+  display: block;
+  width: 100%;
+  min-height: 60px;
+  box-sizing: border-box;
+  resize: none;
+  outline: none;
+  padding: 5px;
+}
+.post-comments .comments__form .form__btn-cont {
+  text-align: right;
+  padding: 23px 27px 0 23px;
+}
+.post-comments .comments__form .profile-ava {
+  position: absolute;
+  left: 0;
+}
+.post-comments .comments__form .profile-name {
+  display: none;
+}
+.post-comments .dashboard-list {
+  border: none;
+}
+.post-comments .dashboard-list .right-block__pad {
+  padding: 0 27px 23px 0;
+}
 
 .category-header {
   padding: 10px 0 20px;
