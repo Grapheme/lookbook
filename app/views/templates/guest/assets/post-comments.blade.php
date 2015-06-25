@@ -6,18 +6,23 @@
 @endif
     <div class="comments__body">
         @if(Auth::check())
-        <div class="comment-form">
-            @include(Helper::layout('assets.avatar'),array('user'=>$post->user))
-            {{ Form::open(array('route'=>'post.public.comment.insert','method'=>'post','class'=>'js-ajax-form')) }}
+        <div class="comments__form">
+            @include(Helper::layout('assets.avatar'),array('user'=>Auth::user()))
+            {{ Form::open(array('route'=>'post.public.comment.insert','method'=>'post','class'=>'js-comment-form')) }}
                 {{ Form::hidden('post_id', $post->id) }}
                 {{ Form::hidden('rating', 0) }}
-                {{ Form::textarea('content') }}
-                {{ Form::button('Отправить',array('class'=>'white-black-btn','type'=>'submit')) }}
+                <div class="form__textearea-cont">
+                    <textarea class="js-autosize" name="content"></textarea>
+                </div>
+                {{-- Form::textarea('content', null, ['class'=>'js-autosize form__textarea', 'size'=>null]) --}}
+                <div class="form__btn-cont">
+                    {{ Form::button('Отправить',array('class'=>'white-black-btn','type'=>'submit')) }}
+                </div>
                 <p class="js-response-text"></p>
             {{ Form::close() }}
         </div>
         @endif
-        <ul class="dashboard-list js-posts">
+        <ul class="dashboard-list js-comments">
             @include(Helper::layout('blocks.comments'), compact('comments'))
         </ul>
     </div>

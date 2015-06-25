@@ -227,9 +227,34 @@ LookBook.ActionButton = function() {
         return false;
     });
 }
+LookBook.CommentForm = function() {
+    var parent = $('.js-comment-form');
+    if(!parent.length) return;
+    var textarea = parent.find('textarea');
+    textarea.on('keydown', function(e){
+        if(e.keyCode == 13 && !e.shiftKey) {
+            parent.trigger('submit');
+            return false;
+        }
+    });
+    parent.on('submit', function(e){
+        e.preventDefault();
+        if(textarea.val().trim().length < 1) {
+            return false;
+        } else {
+            Help.ajaxSubmit(parent, {
+                success: function(data){
+                    $('.js-comments').append(data.html);
+                    textarea.val('').removeAttr('style');
+                    Help.avaGenerator();
+                }
+            });
+        }
+    });
+}
 LookBook.Dashboard = function() {
     var postDelete = function(form) {
-        var post_cont = form.parents('.js-post'),
+        var post_cont = form.parents('.js-post').first(),
             options = { 
             beforeSubmit: function(){
                 post_cont.addClass('opacity05');
@@ -797,6 +822,7 @@ $(function(){
     LookBook.TopCollage();
     LookBook.DashForm();
     LookBook.ContactForm();
+    LookBook.CommentForm();
     LookBook.Gallery();
     LookBook.Search();
     LookBook.FitText();
