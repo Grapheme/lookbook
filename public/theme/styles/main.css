@@ -1299,6 +1299,10 @@ h1 {
   letter-spacing: 1px;
   text-transform: uppercase;
   border-bottom: 1px solid #dddddd;
+  border-top: 1px solid #dddddd;
+}
+.left-title:first-child, .left-title:first-of-type {
+  border-top: none;
 }
 .left-title.big-title {
   padding: 43px 15px 43px 5px;
@@ -2240,7 +2244,8 @@ h1 {
 }
 .dashboard-list .dashboard-item .right-block .post-actions .actions__btns {
   display: inline-block;
-  vertical-align: top;
+  vertical-align: middle;
+  line-height: 35px;
 }
 .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .svg-icon, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .search__block .block__input button, .search__block .block__input .dashboard-list .dashboard-item .right-block .post-actions .actions__btns button, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .search__block .block__close, .search__block .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .block__close, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .gallery-overlay .overlay__close:before, .gallery-overlay .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .overlay__close:before, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .fotorama__arr, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .search__header .block__input button, .search__header .block__input .dashboard-list .dashboard-item .right-block .post-actions .actions__btns button {
   font-size: 30px;
@@ -2717,6 +2722,30 @@ h1 {
   bottom: 0;
 }
 
+.moder-table {
+  font-size: 13px;
+  margin: 23px auto;
+}
+.moder-table th {
+  padding: 5px;
+  border: 1px solid #dddddd;
+}
+.moder-table td {
+  padding: 10px;
+  border: none;
+  border: 1px solid #dddddd;
+  vertical-align: top;
+}
+.moder-table .table__actions .white-btn {
+  margin-top: 20px;
+}
+.moder-table .table__number {
+  text-align: center;
+}
+.moder-table .table__user-info {
+  max-width: 250px;
+}
+
 .main-page {
   position: absolute;
   top: 0;
@@ -2749,8 +2778,8 @@ h1 {
 .main-page .page__content .content__logo {
   display: inline-block;
   vertical-align: top;
-  width: 290px;
-  height: 165px;
+  width: 200px;
+  height: 115px;
   background: url(../images/ui/logo.svg) center center/134%;
   margin-left: 55px;
 }

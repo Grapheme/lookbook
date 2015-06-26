@@ -169,7 +169,8 @@ LookBook.Gallery = function() {
         arrows: 'always',
         click: false,
         loop: true,
-        fit: 'cover'
+        width: '100%',
+        fit: 'contain'
     };
     var settings_full = {
         nav: false,
