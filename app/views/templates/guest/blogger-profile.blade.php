@@ -90,7 +90,7 @@
                             <div class="content__us-block">
                                 <div class="content__us-text">Мой сайт</div>
                                 <ul class="block__links">
-                                    <li><a href="{{ $user->site }}" class="us-link">{{ $user->site }}</a></li>
+                                    <li><a href="{{ parse_url($user->site, PHP_URL_SCHEME)=='' ? 'http://'.$user->site : $user->site }}" class="us-link">{{ $user->site }}</a></li>
                                 </ul>
                             </div>
                             @endif
