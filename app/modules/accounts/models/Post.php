@@ -43,6 +43,6 @@ class Post extends BaseModel{
 
     public function comments(){
 
-        return $this->hasMany('PostComments','post_id','id');
+        return $this->hasMany('PostComments','post_id','id')->orderBy('created_at', 'DESC');
     }
 }

@@ -15,7 +15,7 @@ return array(
 
 	'manifest' => storage_path('meta'),
 
-	'debug' => FALSE,
+	'debug' => TRUE,
 	'url' => 'http://look-book.ru/',
 	'timezone' => 'UTC',
 
