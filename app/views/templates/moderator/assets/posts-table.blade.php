@@ -16,6 +16,10 @@
                     {{ $post->title }}
                 </a><br>
                 {{ $categories[$post->category_id] }}
+                <br>
+                <a target="_blank" href="{{ URL::route('user.profile.show',$post->user->id.'-'.BaseController::stringTranslite($post->user->name)) }}">
+                    {{ $post->user->name }}
+                </a>
             </td>
             <td>{{ (new myDateTime())->setDateString($post->publish_at)->format('d.m.Y') }}</td>
             <td>{{ $post->updated_at->format('d.m.Y H:i') }}</td>
@@ -32,7 +36,7 @@
             </td>
             <td>
                 {{ Form::model($post,array('route'=>array('moderator.posts.delete',$post->id),'method'=>'delete','class'=>'inline-block')) }}
-                    {{ Form::button('Сохранить',array('class'=>'white-btn','type'=>'submit')) }}
+                    {{ Form::button('Удалить',array('class'=>'white-btn','type'=>'submit')) }}
                 {{ Form::close() }}
             </td>
         </tr>
