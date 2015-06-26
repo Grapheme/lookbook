@@ -19,12 +19,7 @@
             <div class="grid_12 reg-content">
                 <div class="dashboard-tab">
                     <div class="reg-content__left">
-                    @if(Auth::user()->brand)
-                        @include(Helper::acclayout('assets.forms.brand-profile'))
-                    @else
-                        @include(Helper::acclayout('assets.forms.blogger-profile'))
-                    @endif
-                        @include(Helper::acclayout('assets.forms.password-update'))
+                        @include(Helper::acclayout('assets.forms.blogger_monetization'))
                     </div>
                     <div class="reg-content__right">
                         <div class="right-title">Аватарка</div>

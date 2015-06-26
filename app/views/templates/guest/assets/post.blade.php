@@ -7,16 +7,16 @@ if(!empty($post['photo']) && File::exists(Config::get('site.galleries_photo_dir'
     $hasImage = TRUE;
 endif;
 ?>
-<div class="post-photo">
+<a href="{{ URL::route('post.public.show',array($post['category_id'].'-'.BaseController::stringTranslite($categories[$post['category_id']]['title']),$post['id'].'-'.BaseController::stringTranslite($post['title']))) }}" class="post-photo">
 @if($hasImage)
     <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$post['photo']['name']) }}" alt="{{ $post['title'] }}">
 @endif
 @if(isset($categories[$post['category_id']]['title']))
-    <div class="post-photo__alt">
+    <span class="post-photo__alt">
         {{ $categories[$post['category_id']]['title'] }}
-    </div>
+    </span>
 @endif
-</div>
+</a>
 <div class="post-info">
     <div class="post-info__title">
         <a href="{{ URL::route('post.public.show',array($post['category_id'].'-'.BaseController::stringTranslite($categories[$post['category_id']]['title']),$post['id'].'-'.BaseController::stringTranslite($post['title']))) }}">

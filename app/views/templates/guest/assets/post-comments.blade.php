@@ -14,7 +14,6 @@
                 <div class="form__textearea-cont">
                     <textarea class="js-autosize" name="content"></textarea>
                 </div>
-                {{-- Form::textarea('content', null, ['class'=>'js-autosize form__textarea', 'size'=>null]) --}}
                 <div class="form__btn-cont">
                     {{ Form::button('Отправить',array('class'=>'white-black-btn','type'=>'submit')) }}
                 </div>
