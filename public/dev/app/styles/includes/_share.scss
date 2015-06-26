@@ -72,6 +72,14 @@
 	}
 }
 
+.actions__btns .b-share {
+	padding: 0 !important;
+}
+
 .b-share_theme_counter .b-share-btn__counter .b-share-counter {
 	display: inline-block !important;
+}
+
+.b-share_theme_counter .b-share-btn__wrap {
+	margin: 0 5px 5px 0 !important;
 }

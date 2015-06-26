@@ -1504,6 +1504,7 @@ h1 {
   text-align: left;
 }
 .posts-list .list__item .post-photo {
+  display: block;
   height: 350px;
   background-position: cover;
   background-size: center center;
@@ -2243,16 +2244,6 @@ h1 {
     display: none;
   }
 }
-.dashboard-list .dashboard-item .right-block .post-actions .actions__btns {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 35px;
-}
-.dashboard-list .dashboard-item .right-block .post-actions .actions__btns .svg-icon, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .search__block .block__input button, .search__block .block__input .dashboard-list .dashboard-item .right-block .post-actions .actions__btns button, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .search__block .block__close, .search__block .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .block__close, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .gallery-overlay .overlay__close:before, .gallery-overlay .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .overlay__close:before, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .fotorama__arr, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .b-share .b-share__link .b-share-icon, .b-share .b-share__link .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .b-share-icon, .dashboard-list .dashboard-item .right-block .post-actions .actions__btns .search__header .block__input button, .search__header .block__input .dashboard-list .dashboard-item .right-block .post-actions .actions__btns button {
-  font-size: 30px;
-  width: 15px;
-  vertical-align: middle;
-}
 .dashboard-list .dashboard-item.promo-block-full {
   padding-bottom: 23px;
   padding-right: 27px;
@@ -2349,6 +2340,17 @@ h1 {
   padding-left: 200px;
 }
 
+.actions__btns {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 35px;
+}
+.actions__btns .svg-icon, .actions__btns .search__block .block__input button, .search__block .block__input .actions__btns button, .actions__btns .search__block .block__close, .search__block .actions__btns .block__close, .actions__btns .gallery-overlay .overlay__close:before, .gallery-overlay .actions__btns .overlay__close:before, .actions__btns .fotorama__arr, .actions__btns .b-share .b-share__link .b-share-icon, .b-share .b-share__link .actions__btns .b-share-icon, .actions__btns .search__header .block__input button, .search__header .block__input .actions__btns button {
+  font-size: 30px;
+  width: 15px;
+  vertical-align: middle;
+}
+
 .post-actions .white-btn {
   border-color: #ccc;
   vertical-align: middle;
@@ -2393,6 +2395,7 @@ h1 {
 }
 
 .post-photo {
+  display: block;
   position: relative;
   text-align: center;
   min-height: 20px;
@@ -2788,8 +2791,16 @@ h1 {
   margin: 0 10px !important;
 }
 
+.actions__btns .b-share {
+  padding: 0 !important;
+}
+
 .b-share_theme_counter .b-share-btn__counter .b-share-counter {
   display: inline-block !important;
+}
+
+.b-share_theme_counter .b-share-btn__wrap {
+  margin: 0 5px 5px 0 !important;
 }
 
 .main-page {

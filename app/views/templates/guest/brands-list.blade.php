@@ -38,7 +38,7 @@ $blogs = Accounts::where('group_id', 4)->where('active', 1)->where('brand', 1)->
                                 @foreach($top_bloggers as $blog)
                                     <li class="list__item">
                                         @include(Helper::layout('assets.avatar'),array('user'=>$blog,'showName'=>FALSE))
-                                        <div class="item__best-blogger"></div>
+                                        <!-- <div class="item__best-blogger"></div> -->
                                         <div class="item__content">
                                             <div class="content__title">
                                                 <a href="{{ URL::route('user.posts.show',$blog->id.'-'.BaseController::stringTranslite($blog->name)) }}">{{ $blog->name }}</a>
