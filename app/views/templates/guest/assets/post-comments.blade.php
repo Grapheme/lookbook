@@ -5,9 +5,10 @@
     <div class="comments__title">Комментарии</div>
 @endif
     <div class="comments__body">
+        <a name="comments"></a>
         @if(Auth::check())
         <div class="comments__form">
-            @include(Helper::layout('assets.avatar'),array('user'=>Auth::user()))
+            @include(Helper::layout('assets.avatar'),array('user'=>Auth::user(), 'showName' => FALSE))
             {{ Form::open(array('route'=>'post.public.comment.insert','method'=>'post','class'=>'js-comment-form')) }}
                 {{ Form::hidden('post_id', $post->id) }}
                 {{ Form::hidden('rating', 0) }}
