@@ -17,6 +17,7 @@ class AccountsBloggerController extends BaseController {
                 Route::get('blog-list', array('as' => 'blogger-blog-list', 'uses' => $class . '@blogList'));
                 Route::get('recommended-blogs-list', array('as' => 'recommended-blogs-list', 'uses' => $class . '@recommendedBlogList'));
 
+                Route::get('monetization', array('as' => 'monetization', 'uses' => $class . '@monetization'));
                 Route::get('profile', array('as' => 'profile', 'uses' => $class . '@profile'));
                 Route::put('profile', array('before'=>'csrf', 'as' => 'profile.update', 'uses' => $class . '@profileUpdate'));
                 Route::put('profile/monetization', array('before'=>'csrf', 'as' => 'blogger.monetization.update', 'uses' => $class . '@profileMonetizationUpdate'));
@@ -69,7 +70,11 @@ class AccountsBloggerController extends BaseController {
     }
     /****************************************************************************/
     /****************************************************************************/
-    public function profile(){
+    public function monetization(){
+
+        if(Auth::user()->brand):
+            App::abort(404);
+        endif;
 
         $page_data = array(
             'page_title'=> Lang::get('seo.BLOGGER.title'),
@@ -79,15 +84,24 @@ class AccountsBloggerController extends BaseController {
             'monetization' => array('main'=>array(),'cooperation'=>array(),'thrust'=>array())
         );
 
-        if(!Auth::user()->brand):
-            $page_data['monetization']['main'] = BloggerMonetization::where('user_id', Auth::user()->id)->first();
-            foreach(BloggerCooperationBrands::where('user_id', Auth::user()->id)->get() as $cooperation):
-                $page_data['monetization']['cooperation'][] = $cooperation->cooperation_brand_id;
-            endforeach;
-            foreach(BloggerThrust::where('user_id', Auth::user()->id)->get() as $thrust):
-                $page_data['monetization']['thrust'][] = $thrust->thrust_id;
-            endforeach;
-        endif;
+        $page_data['monetization']['main'] = BloggerMonetization::where('user_id', Auth::user()->id)->first();
+        foreach(BloggerCooperationBrands::where('user_id', Auth::user()->id)->get() as $cooperation):
+            $page_data['monetization']['cooperation'][] = $cooperation->cooperation_brand_id;
+        endforeach;
+        foreach(BloggerThrust::where('user_id', Auth::user()->id)->get() as $thrust):
+            $page_data['monetization']['thrust'][] = $thrust->thrust_id;
+        endforeach;
+        return View::make(Helper::acclayout('monetization'),$page_data);
+    }
+    /****************************************************************************/
+    public function profile(){
+
+        $page_data = array(
+            'page_title'=> Lang::get('seo.BLOGGER.title'),
+            'page_description'=> Lang::get('seo.BLOGGER.description'),
+            'page_keywords'=> Lang::get('seo.BLOGGER.keywords'),
+            'profile' => Accounts::where('id',Auth::user()->id)->first(),
+        );
         if (Auth::user()->first_login):
             $user = Auth::user();
             $user->first_login = FALSE;
