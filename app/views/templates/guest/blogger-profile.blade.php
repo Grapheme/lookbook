@@ -81,7 +81,7 @@
                                 <?php $links = explode(',',$user->links);?>
                                 <ul class="block__links">
                                 @foreach($links as $link)
-                                    <li><a href="{{ $link }}" class="us-link">{{ $link }}</a></li>
+                                    <li><a href="{{ parse_url($link, PHP_URL_SCHEME)=='' ? 'http://'.$link : $link }} }}" class="us-link">{{ $link }}</a></li>
                                 @endforeach
                                 </ul>
                             </div>
