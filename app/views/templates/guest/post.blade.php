@@ -11,6 +11,17 @@
 
 @extends(Helper::layout())
 @section('style')
+    <meta property="og:title" content="{{ $post->title }}" />
+    <meta property="og:description" content="{{ str_limit(strip_tags($post->content), $limit = 500, $end = ' ...') }}" />
+    <?php
+        $hasImage = FALSE;
+        if(!empty($post->photo) && File::exists(Config::get('site.galleries_photo_dir').'/'.$post->photo->name)):
+            $hasImage = TRUE;
+        endif;
+    ?>
+    @if($hasImage)
+        <meta property="og:image" content="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$post->photo->name) }}" />
+    @endif
 @stop
 @section('page_class')
 @stop
@@ -32,12 +43,6 @@
             <div class="grid_12 reg-content">
                 <div class="reg-content__left">
                     <ul class="dashboard-list one-post js-posts">
-                    <?php
-                        $hasImage = FALSE;
-                        if(!empty($post->photo) && File::exists(Config::get('site.galleries_photo_dir').'/'.$post->photo->name)):
-                            $hasImage = TRUE;
-                        endif;
-                    ?>
                         <li class="dashboard-item js-post">
                             <div class="left-block">
                                 @include(Helper::layout('assets.avatar'),array('user'=>$post->user))

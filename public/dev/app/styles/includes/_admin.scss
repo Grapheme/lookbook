@@ -1,0 +1,30 @@
+.moder-table {
+	font-size: 13px;
+	margin: $dashTopPad auto;
+
+	th {
+		padding: 5px;
+		border: 1px solid $borderColor;
+	}
+
+	td {
+		padding: 10px;
+		border: none;
+		border: 1px solid $borderColor;
+		vertical-align: top;
+	}
+
+	.table__actions {
+		.white-btn {
+			margin-top: 20px;
+		}
+	}
+
+	.table__number {
+		text-align: center;
+	}
+
+	.table__user-info {
+		max-width: 250px;
+	}
+}

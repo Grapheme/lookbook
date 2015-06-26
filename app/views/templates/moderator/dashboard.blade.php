@@ -22,9 +22,11 @@
                     </div>
                     <div class="reg-content__right">
                         <div class="right-title">Статистика</div>
-                        <div class="right-content">Всего постов: {{ Post::where('publication',1)->count() }}</div>
-                        <div class="right-content">Всего пользователей: {{ User::where('group_id',4)->count() }}</div>
-                        <div class="right-content">Всего брендов: {{ User::where('group_id',4)->where('brand',1)->count() }}</div>
+                        <div class="right-content">
+                            <p>Всего постов: {{ Post::where('publication',1)->count() }}</p>
+                            <p>Всего пользователей: {{ User::where('group_id',4)->count() }}</p>
+                            <p>Всего брендов: {{ User::where('group_id',4)->where('brand',1)->count() }}</p>
+                        </div>
                     </div>
                     <div class="clearfix"></div>
                 </div>

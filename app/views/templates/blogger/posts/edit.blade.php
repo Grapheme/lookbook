@@ -61,12 +61,12 @@
                                 </label>
                             </div>
                             <div class="form__input-block">
-                                <div class="form__input-title">Текст публикации</div>
-                                {{ Form::textarea('content',NULL,array('class'=>'redactor')) }}
-                            </div>
-                            <div class="form__input-block">
                                 <div class="form__input-title">Подпись к изображаению</div>
                                 {{ Form::text('photo_title',NULL,array('class'=>'us-input')) }}
+                            </div>
+                            <div class="form__input-block">
+                                <div class="form__input-title">Текст, изображение, видео поста</div>
+                                {{ Form::textarea('content',NULL,array('class'=>'redactor')) }}
                             </div>
                             <div class="form__input-block">
                                 <div class="form__input-title">Галерея</div>
