@@ -116,19 +116,6 @@
                         display: none;
                     }
                 }
-
-                .actions__btns {
-                    display: inline-block;
-                    vertical-align: middle;
-                    line-height: 35px;
-                    //width: 465px;
-
-                    .svg-icon {
-                        font-size: 30px;
-                        width: 15px;
-                        vertical-align: middle;
-                    }
-                }
             }
         }
 
@@ -245,6 +232,19 @@
     }
 }
 
+.actions__btns {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 35px;
+    //width: 465px;
+
+    .svg-icon {
+        font-size: 30px;
+        width: 15px;
+        vertical-align: middle;
+    }
+}
+
 .post-actions {
     .white-btn {
         border-color: #ccc;
@@ -297,6 +297,7 @@
 }
 
 .post-photo {
+    display: block;
     position: relative;
     text-align: center;
     min-height: 20px;
