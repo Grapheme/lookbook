@@ -5,6 +5,7 @@
     <div class="comments__title">Комментарии</div>
 @endif
     <div class="comments__body">
+        <a name="comments"></a>
         @if(Auth::check())
         <div class="comments__form">
             @include(Helper::layout('assets.avatar'),array('user'=>Auth::user()))
