@@ -29,6 +29,8 @@ h1 {
 .white-btn {
     @extend .reg-italic;
     @extend .linkTrans;
+    @extend .loading-black-btn;
+    position: relative;
     display: inline-block;
     vertical-align: top;
     box-sizing: border-box;
@@ -41,6 +43,10 @@ h1 {
 
     &:hover {
         color: $blue;
+    }
+
+    &.loading {
+        background: transparent;
     }
 
     .svg-icon {
@@ -77,6 +83,22 @@ h1 {
             width: 22px;
             margin-left: -25px;
         }
+    }
+
+    &.action-edit {
+        padding: 0 20px 0 3px;
+    }
+
+    &.action-comment {
+        padding: 0 20px 0 10px;
+    }
+
+    &.action-delete {
+        padding: 0 20px 0 10px;
+    }
+
+    &.action-soc {
+        padding: 0 20px 0 10px;
     }
 }
 
@@ -170,6 +192,10 @@ h1 {
     a {
         border: none !important;
     }
+}
+
+.hidden {
+    display: none;
 }
 
 .ui-widget {

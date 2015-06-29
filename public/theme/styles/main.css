@@ -424,7 +424,7 @@ th {
   list-style: none;
 }
 
-.loading-black-btn:after, .white-black-btn:after, .us-btn:after {
+.loading-black-btn:after, .white-btn:after, .white-black-btn:after, .us-btn:after {
   content: "\f110";
   position: absolute;
   right: 20px;
@@ -433,12 +433,12 @@ th {
   -webkit-transition: opacity .2s ease;
           transition: opacity .2s ease;
 }
-.loading-black-btn.loading, .loading.white-black-btn, .loading.us-btn {
+.loading-black-btn.loading, .loading.white-btn, .loading.white-black-btn, .loading.us-btn {
   background: #333333;
   padding-right: 50px;
   color: #fff;
 }
-.loading-black-btn.loading:after, .loading.white-black-btn:after, .loading.us-btn:after {
+.loading-black-btn.loading:after, .loading.white-btn:after, .loading.white-black-btn:after, .loading.us-btn:after {
   opacity: 1;
   -webkit-animation: fa-spin 1s infinite steps(8);
           animation: fa-spin 1s infinite steps(8);
@@ -453,7 +453,7 @@ th {
   font-family: "bodonic";
 }
 
-.fontawesome, .loading-black-btn:after, .white-black-btn:after, .us-btn:after {
+.fontawesome, .loading-black-btn:after, .white-btn:after, .white-black-btn:after, .us-btn:after {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
@@ -1102,6 +1102,7 @@ h1 {
 }
 
 .white-btn {
+  position: relative;
   display: inline-block;
   vertical-align: top;
   box-sizing: border-box;
@@ -1114,6 +1115,9 @@ h1 {
 }
 .white-btn:hover {
   color: #4bbeff;
+}
+.white-btn.loading {
+  background: transparent;
 }
 .white-btn .svg-icon, .white-btn .search__block .block__input button, .search__block .block__input .white-btn button, .white-btn .search__block .block__close, .search__block .white-btn .block__close, .white-btn .gallery-overlay .overlay__close:before, .gallery-overlay .white-btn .overlay__close:before, .white-btn .fotorama__arr, .white-btn .b-share .b-share__link .b-share-icon, .b-share .b-share__link .white-btn .b-share-icon, .white-btn .search__header .block__input button, .search__header .block__input .white-btn button {
   display: inline-block;
@@ -1144,6 +1148,18 @@ h1 {
   font-size: 30px;
   width: 22px;
   margin-left: -25px;
+}
+.white-btn.action-edit {
+  padding: 0 20px 0 3px;
+}
+.white-btn.action-comment {
+  padding: 0 20px 0 10px;
+}
+.white-btn.action-delete {
+  padding: 0 20px 0 10px;
+}
+.white-btn.action-soc {
+  padding: 0 20px 0 10px;
 }
 
 .white-black-btn {
@@ -1221,6 +1237,10 @@ h1 {
 }
 .category-name a {
   border: none !important;
+}
+
+.hidden {
+  display: none;
 }
 
 .ui-widget {
@@ -1478,6 +1498,15 @@ h1 {
   padding: 23px 0;
 }
 
+.req-content__half {
+  float: left;
+  width: 50%;
+  border-top: 1px solid #dddddd;
+}
+.req-content__half .half__content {
+  padding: 23px 27px 23px 27px;
+}
+
 .posts-list {
   font-size: 0;
   padding: 0 0 50px;
@@ -1634,6 +1663,10 @@ h1 {
 
 .border-bottom-none {
   border-bottom: none !important;
+}
+
+.border-top {
+  border-top: 1px solid #dddddd !important;
 }
 
 .header {
@@ -2364,18 +2397,6 @@ h1 {
 .post-actions .white-btn:hover {
   border-color: #4bbeff;
 }
-.post-actions .white-btn.action-edit {
-  padding: 0 20px 0 3px;
-}
-.post-actions .white-btn.action-comment {
-  padding: 0 20px 0 10px;
-}
-.post-actions .white-btn.action-delete {
-  padding: 0 20px 0 10px;
-}
-.post-actions .white-btn.action-soc {
-  padding: 0 20px 0 10px;
-}
 
 .white-btn.action-question {
   padding-left: 30px;
@@ -2497,7 +2518,7 @@ h1 {
   vertical-align: top;
   width: 355px;
   max-width: 95%;
-  height: 370px;
+  height: 355px;
   text-align: left;
   background-size: cover;
   background-position: center center;
@@ -2730,19 +2751,27 @@ h1 {
 
 .moder-table {
   font-size: 13px;
-  margin: 23px auto;
+  margin: 23px 0;
+  width: 100%;
 }
 .moder-table th {
   padding: 5px;
-  border: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
 }
 .moder-table td {
   padding: 10px;
   border: none;
-  border: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
   vertical-align: top;
 }
-.moder-table .table__actions .white-btn {
+.moder-table tr:last-child td {
+  border-bottom: none !important;
+}
+.moder-table .table__actions {
+  width: 350px;
+  vertical-align: middle;
+}
+.moder-table .table__actions .actions__btn {
   margin-top: 20px;
 }
 .moder-table .table__number {
@@ -2750,6 +2779,35 @@ h1 {
 }
 .moder-table .table__user-info {
   max-width: 250px;
+}
+.moder-table .table__delete {
+  vertical-align: middle;
+}
+
+.pagination {
+  margin: 0;
+  padding: 0 27px 23px;
+  list-style: none;
+  text-align: center;
+}
+.pagination li {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 5px;
+  font-size: 18px;
+}
+.pagination li a {
+  color: inherit !important;
+  border: none !important;
+}
+.pagination li a:hover {
+  color: #4bbeff !important;
+}
+.pagination li.disabled {
+  color: #ccc;
+}
+.pagination li.active {
+  color: #4bbeff;
 }
 
 .b-share .b-share__link {

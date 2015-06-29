@@ -289,6 +289,16 @@
     }
 }
 
+.req-content__half {
+    float: left;
+    width: 50%;
+    border-top: 1px solid $borderColor;
+
+    .half__content {
+        padding: $dashTopPad $dashLeftPad $dashTopPad $dashLeftPad;
+    }
+}
+
 .posts-list {
     font-size: 0;
     padding: 0 0 50px;
@@ -470,4 +480,8 @@
 
 .border-bottom-none {
     border-bottom: none !important;
+}
+
+.border-top {
+    border-top: 1px solid $borderColor !important;
 }

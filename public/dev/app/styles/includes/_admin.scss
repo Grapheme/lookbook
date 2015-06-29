@@ -1,21 +1,33 @@
 .moder-table {
 	font-size: 13px;
-	margin: $dashTopPad auto;
+	margin: $dashTopPad 0;
+	width: 100%;
 
 	th {
 		padding: 5px;
-		border: 1px solid $borderColor;
+		border-bottom: 1px solid $borderColor;
 	}
 
 	td {
 		padding: 10px;
 		border: none;
-		border: 1px solid $borderColor;
+		border-bottom: 1px solid $borderColor;
 		vertical-align: top;
 	}
 
+	tr {
+		&:last-child {
+			td {
+				border-bottom: none !important;
+			}
+		}
+	}
+
 	.table__actions {
-		.white-btn {
+		width: 350px;
+		vertical-align: middle;
+
+		.actions__btn {
 			margin-top: 20px;
 		}
 	}
@@ -26,5 +38,40 @@
 
 	.table__user-info {
 		max-width: 250px;
+	}
+
+	.table__delete {
+		vertical-align: middle;
+	}
+}
+
+.pagination {
+	margin: 0;
+	padding: 0 $dashLeftPad $dashTopPad;
+	list-style: none;
+	text-align: center;
+
+	li {
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0 5px;
+		font-size: 18px;
+
+		a {
+			color: inherit !important;
+			border: none !important;
+
+			&:hover {
+				color: $blue !important;
+			}
+		}
+
+		&.disabled {
+			color: #ccc;
+		}
+
+		&.active {
+			color: $blue;
+		}
 	}
 }

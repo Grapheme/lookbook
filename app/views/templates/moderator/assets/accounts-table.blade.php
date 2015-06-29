@@ -18,12 +18,17 @@
             </td>
             <td>{{ $account->location }}</td>
             <td>{{ $account->updated_at->format('d.m.Y H:i') }}</td>
-            <td class="table__actions">
-                {{ Form::model($account,array('route'=>array('moderator.accounts.save',$account->id),'method'=>'post','class'=>'inline-block')) }}
-                    {{ Form::checkbox('active') }} Активный <br>
-                    {{ Form::checkbox('brand') }} Бренд <br>
-                    {{ Form::button('Сохранить',array('class'=>'white-btn','type'=>'submit')) }}
-                {{ Form::close() }}
+            <td class="table__actions js-slide-parent">
+                <div class="js-slide-item hidden">
+                    {{ Form::model($account,array('route'=>array('moderator.accounts.save',$account->id),'method'=>'post','class'=>'inline-block js-ajax-form')) }}
+                        {{ Form::checkbox('active') }} Активный <br>
+                        {{ Form::checkbox('brand') }} Бренд <br>
+                        {{ Form::button('Сохранить',array('class'=>'white-btn actions__btn','type'=>'submit')) }}
+                    {{ Form::close() }}
+                </div>
+                <div>
+                    <a href="#" class="white-btn js-slide-link">Редактировать</a>
+                </div>
             </td>
         </tr>
     @endforeach

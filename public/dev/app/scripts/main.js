@@ -132,6 +132,14 @@ jQuery.extend(jQuery.validator.messages, {
     min: jQuery.validator.format("Пожалуйста, введите число, большее или равное {0}."),
     extension: jQuery.validator.format("Вы можете загрузить изображение только со следующими расширениями: jpeg, jpg, png, gif.")
 });
+LookBook.SimpleSlide = function() {
+    if(!$('.js-slide-item').length) return;
+    $('.js-slide-link').on('click', function(){
+        $(this).parents('.js-slide-parent').find('.js-slide-item').slideDown();
+        $(this).parent().slideUp();
+        return false;
+    });
+}
 LookBook.UiButton = function() {
     if(!$('.js-set-check').length) return;
     var parent = $('.js-set-check');
@@ -673,42 +681,42 @@ LookBook.TopCollage = function() {
     if($('.js-collage li').length > 3) {
         var options = [
             {
-                x: [0, 50],
-                y: [0, 25]
+                x: [0, 60],
+                y: [0, 35]
             },
             {
-                x: [-25, 25],
-                y: [0, 25]
+                x: [-35, 35],
+                y: [0, 35]
             },
             {
-                x: [0, -25],
-                y: [0, 25]
+                x: [0, -35],
+                y: [0, 35]
             },
             {
-                x: [0, 50],
-                y: [-25, 0]
+                x: [0, 60],
+                y: [-35, 0]
             },
             {
-                x: [-25, 25],
-                y: [-25, 0]
+                x: [-35, 35],
+                y: [-35, 0]
             },
             {
-                x: [0, -25],
-                y: [-25, 0]
+                x: [0, -35],
+                y: [-35, 0]
             }
         ];
     } else {
         var options = [
             {
-                x: [0, 50],
+                x: [0, 60],
                 y: [-5, 5]
             },
             {
-                x: [-25, 25],
+                x: [-35, 35],
                 y: [-5, 5]
             },
             {
-                x: [0, -25],
+                x: [0, -35],
                 y: [-5, 5]
             }
         ];
@@ -831,6 +839,7 @@ $(function(){
     LookBook.Like();
     LookBook.ActionButton();
     LookBook.UiButton();
+    LookBook.SimpleSlide();
     $('.js-autosize').autosize();
     $('.js-styled-select').selectmenu();
     $('.js-styled-check').button();
