@@ -1395,6 +1395,8 @@ h1 {
   width: 60px;
   height: 60px;
   float: left;
+  background-size: cover;
+  background-position: center center;
 }
 .right-content__list .list__item .item__photo img, .right-content__list .list__item .author__photo img {
   max-width: 100%;
@@ -3649,6 +3651,14 @@ h1 {
 }
 .post-comments .dashboard-list .dashboard-item .left-block {
   margin-bottom: 23px;
+}
+.post-comments .comment-date {
+  font-size: 12px;
+  padding-bottom: 10px;
+}
+.post-comments .comment-date a {
+  color: inherit;
+  border: none;
 }
 
 .category-header {
