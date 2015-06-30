@@ -10,13 +10,17 @@ if (!isset($categories)):
 endif;
 ?>
 @foreach($posts as $post)
-    <li class="dashboard-item js-post">
+    <li class="dashboard-item{{ $post->in_advertising ? ' promo-block' : '' }} js-post">
         <div class="left-block">
             @include(Helper::layout('assets.avatar'),array('user'=>$post->user))
         </div>
         <div class="right-block">
             <div class="right-block__pad">
-                @include(Helper::layout('assets.post'),array('post'=>$post,'categories'=>$categories))
+                @if($post->in_advertising)
+                    @include(Helper::layout('assets.post-advertising'),array('post'=>$post,'categories'=>$categories))
+                @else
+                    @include(Helper::layout('assets.post'),array('post'=>$post,'categories'=>$categories))
+                @endif
             </div>
             @if($post_access && Auth::check() && $post->user_id == Auth::user()->id)
                 @include(Helper::acclayout('assets.post_actions'),array('post'=>$post))

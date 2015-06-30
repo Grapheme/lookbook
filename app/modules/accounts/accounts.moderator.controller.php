@@ -121,11 +121,13 @@ class AccountsModeratorController extends BaseController {
     }
 
     public function postPublication($post_id){
+
         if($post = Post::where('id',$post_id)->first()):
             $post->publication = Input::has('publication') ? 1 : 0;
             $post->in_index = Input::has('in_index') ? 1 : 0;
             $post->in_section = Input::has('in_section') ? 1 : 0;
             $post->in_promoted = Input::has('in_promoted') ? 1 : 0;
+            $post->in_advertising = Input::has('in_advertising') ? 1 : 0;
             if (Input::file('photo')):
                 AdminUploadsController::deleteUploadedImageFile($post->promoted_photo_id);
                 $post->promoted_photo_id = AdminUploadsController::getUploadedImageFile('photo');
