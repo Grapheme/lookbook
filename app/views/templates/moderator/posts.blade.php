@@ -17,18 +17,23 @@
             <div class="clearfix"></div>
             <div class="grid_12 reg-content">
                 <div class="dashboard-tab">
-                    <div class="req-content__full border-none">
+                    <div class="req-content__half border-none">
                         <div class="left-title">Статистика</div>
-                        <div class="full__content">
+                        <div class="half_content">
                             <p>Всего постов: {{ Post::where('publication',1)->count() }}</p>
                             <p>На главной: {{ Post::where('publication',1)->where('in_index',1)->count() }}</p>
                         </div>
+                    </div>
+                    <div class="req-content__half border-none">
                         <div class="left-title">По разделам</div>
-                        <div class="full__content">
+                        <div class="half_content">
                         @foreach($categories as $category_id => $category)
                             <p>{{ $category }}: {{ Post::where('publication',1)->where('in_section',1)->where('category_id',$category_id)->count() }}</p>
                         @endforeach
                         </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="req-content__full">
                         @if($posts->count())
                             @include(Helper::acclayout('assets.posts-table'),compact('posts'))
                             {{ $posts->links() }}
