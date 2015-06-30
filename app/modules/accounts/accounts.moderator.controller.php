@@ -18,6 +18,8 @@ class AccountsModeratorController extends BaseController {
                 Route::post('posts/{post_id}/publication',array('before'=>'csrf', 'as'=>'moderator.posts.publication','uses'=>$class.'@postPublication'));
                 Route::delete('posts/{post_id}/delete', array('before'=>'csrf', 'as' => 'moderator.posts.delete', 'uses' => $class.'@postDelete'));
 
+                Route::get('posts/comments',array('as'=>'moderator.posts.comments','uses'=>$class.'@postsCommentsList'));
+
                 Route::get('accounts',array('as'=>'moderator.accounts','uses'=>$class.'@accountsList'));
                 Route::post('accounts/{account_id}/save',array('as'=>'moderator.accounts.save','uses'=>$class.'@accountSave'));
 
@@ -101,6 +103,14 @@ class AccountsModeratorController extends BaseController {
             return Redirect::back();
         endif;
         return Response::json($json_request,200);
+    }
+    /****************************************************************************/
+    public function postsCommentsList(){
+
+        $comments = PostComments::orderBy('created_at','DESC')->orderBy('id','DESC')
+            ->with('user','post.user')->paginate(Config::get('lookbook.posts_limit'));
+        list($categories,$tags) = PostBloggerController::getCategoriesAndTags();
+        return View::make(Helper::acclayout('post-comments'),compact('comments','categories','tags'));
     }
     /****************************************************************************/
     public function postsList(){
