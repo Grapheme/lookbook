@@ -18,7 +18,7 @@ endif;
 @section('page_class')
 @stop
 @section('content')
-@if(FALSE)
+@if(TRUE)
 <div class="main-page">
     <div class="page__content">
         <a href="{{ URL::to('/about') }}" class="content__logo"></a>
@@ -30,7 +30,7 @@ endif;
     </div>
 </div>
 @endif
-@if(TRUE)
+@if(FALSE)
 <div class="wrapper">
     <div class="container_12">
     @if(count($promoted_posts))
