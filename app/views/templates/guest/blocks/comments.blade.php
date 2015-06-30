@@ -1,5 +1,5 @@
 @foreach($comments as $comment)
-    <li class="dashboard-item js-post">
+    <li class="dashboard-item comments__item js-post">
         <div class="left-block">
             @include(Helper::layout('assets.avatar'),array('user'=>$comment->user, 'showName' => FALSE))
         </div>

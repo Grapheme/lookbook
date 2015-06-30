@@ -2755,8 +2755,9 @@ h1 {
   width: 100%;
 }
 .moder-table th {
-  padding: 5px;
+  padding: 10px;
   border-bottom: 1px solid #dddddd;
+  text-align: left;
 }
 .moder-table td {
   padding: 10px;
@@ -2782,6 +2783,15 @@ h1 {
 }
 .moder-table .table__delete {
   vertical-align: middle;
+}
+.moder-table .comments__item {
+  border-top: none !important;
+}
+.moder-table .comments__item .left-block {
+  float: left;
+}
+.moder-table .comments__item .right-block {
+  margin-left: 80px;
 }
 
 .pagination {
@@ -3701,20 +3711,21 @@ h1 {
   border: none;
   margin-top: 23px;
 }
-.post-comments .dashboard-list .right-block__pad {
-  padding: 0 27px 23px 0;
-}
-.post-comments .dashboard-list .dashboard-item {
+
+.comments__item {
   border-top: 1px solid #dddddd !important;
 }
-.post-comments .dashboard-list .dashboard-item .left-block {
+.comments__item .left-block {
   margin-bottom: 23px;
 }
-.post-comments .comment-date {
+.comments__item .right-block__pad {
+  padding: 0 27px 23px 0;
+}
+.comments__item .comment-date {
   font-size: 12px;
   padding-bottom: 10px;
 }
-.post-comments .comment-date a {
+.comments__item .comment-date a {
   color: inherit;
   border: none;
 }

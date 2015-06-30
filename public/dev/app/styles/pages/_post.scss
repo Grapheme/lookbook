@@ -179,18 +179,18 @@
     .dashboard-list {
         border: none;
         margin-top: $dashTopPad;
+    }
+}
 
-        .right-block__pad {
-            padding: 0 $dashLeftPad $dashTopPad 0;
-        }
+.comments__item {
+    border-top: 1px solid $borderColor !important;
 
-        .dashboard-item {
-            border-top: 1px solid $borderColor !important;
+    .left-block {
+        margin-bottom: $dashTopPad;
+    }
 
-            .left-block {
-                margin-bottom: $dashTopPad;
-            }
-        }
+    .right-block__pad {
+        padding: 0 $dashLeftPad $dashTopPad 0;
     }
 
     .comment-date {
