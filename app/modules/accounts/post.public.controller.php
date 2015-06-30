@@ -125,7 +125,11 @@ class PostPublicController extends BaseController {
 
         $json_request = array('status' => FALSE);
         if (Request::ajax()):
-            if (PostComments::where('id',$comment_id)->where('user_id', Auth::user()->id)->delete()):
+            if (PostComments::where('id', $comment_id)->where('user_id', Auth::user()->id)->delete()):
+                $json_request['status'] = TRUE;
+            endif;
+            if (Auth::user()->group_id == 3):
+                PostComments::where('id', $comment_id)->delete();
                 $json_request['status'] = TRUE;
             endif;
         else:

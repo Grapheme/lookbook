@@ -3,7 +3,7 @@
 </div>
 <table class="moder-table">
     <thead>
-    <th>№<!--  п.п --></th>
+    <th class="table__number">№<!--  п.п --></th>
     <th>Имя</th>
     <th>Местонахождение</th>
     <th>Дата регистрации</th>

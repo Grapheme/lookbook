@@ -4,8 +4,9 @@
 	width: 100%;
 
 	th {
-		padding: 5px;
+		padding: 10px;
 		border-bottom: 1px solid $borderColor;
+		text-align: left;
 	}
 
 	td {
@@ -42,6 +43,18 @@
 
 	.table__delete {
 		vertical-align: middle;
+	}
+
+	.comments__item {
+		border-top: none !important;
+
+		.left-block {
+			float: left;
+		}
+
+		.right-block {
+			margin-left: 80px;
+		}
 	}
 }
 
