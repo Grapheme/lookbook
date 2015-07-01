@@ -10,6 +10,7 @@
     "autosize": "~2.0.0",
     "jquery-ui": "~1.11.4",
     "cropper": "~0.9.3",
-    "fotorama": "~4.6.4"
+    "fotorama": "~4.6.4",
+    "superbox": "~1.0.2"
   }
 }

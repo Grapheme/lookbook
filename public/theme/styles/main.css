@@ -409,7 +409,7 @@ th {
   padding: 0;
 }
 
-.linkTrans, .us-link, .reg-content a:not([class]), .ava-change .ava-links .ava-upload, .white-btn, .white-black-btn, .us-btn, .right-content .right-content__all-link, .right-tags .tags__item, .header .header__top a, .header .header__bottom .bottom__nav a, .header .header__bottom .bottom__search, .search__block .block__input button, .search__block .block__close, .footer .footer__top .footer__nav a, .footer .footer__bottom a, .overlay .tab__close span:before, .overlay .tab__close span:after, .overlay .overlay__body .overlay__tab.overlay-auth .auth__socials a, .overlay .overlay__body .overlay__tab.overlay-auth .auth_form a, .b-share .b-share__link, .user-header .header__info .info__auth-nav a, .ava-change .ava-links .ava-delete, .ava-change .ava-image__cont, .category-header .header__links a, .search__header .block__input button {
+.linkTrans, .us-link, .reg-content a:not([class]), .ava-change .ava-links .ava-upload, .white-btn, .MessageBoxContainer .btn-default, .white-black-btn, .us-btn, .right-content .right-content__all-link, .right-tags .tags__item, .header .header__top a, .header .header__bottom .bottom__nav a, .header .header__bottom .bottom__search, .search__block .block__input button, .search__block .block__close, .footer .footer__top .footer__nav a, .footer .footer__bottom a, .overlay .tab__close span:before, .overlay .tab__close span:after, .overlay .overlay__body .overlay__tab.overlay-auth .auth__socials a, .overlay .overlay__body .overlay__tab.overlay-auth .auth_form a, .b-share .b-share__link, .user-header .header__info .info__auth-nav a, .ava-change .ava-links .ava-delete, .ava-change .ava-image__cont, .category-header .header__links a, .search__header .block__input button {
   -webkit-transition: all .2s ease;
           transition: all .2s ease;
 }
@@ -424,7 +424,7 @@ th {
   list-style: none;
 }
 
-.loading-black-btn:after, .white-btn:after, .white-black-btn:after, .us-btn:after {
+.loading-black-btn:after, .white-btn:after, .MessageBoxContainer .btn-default:after, .white-black-btn:after, .us-btn:after {
   content: "\f110";
   position: absolute;
   right: 20px;
@@ -433,12 +433,12 @@ th {
   -webkit-transition: opacity .2s ease;
           transition: opacity .2s ease;
 }
-.loading-black-btn.loading, .loading.white-btn, .loading.white-black-btn, .loading.us-btn {
+.loading-black-btn.loading, .loading.white-btn, .MessageBoxContainer .loading.btn-default, .loading.white-black-btn, .loading.us-btn {
   background: #333333;
   padding-right: 50px;
   color: #fff;
 }
-.loading-black-btn.loading:after, .loading.white-btn:after, .loading.white-black-btn:after, .loading.us-btn:after {
+.loading-black-btn.loading:after, .loading.white-btn:after, .MessageBoxContainer .loading.btn-default:after, .loading.white-black-btn:after, .loading.us-btn:after {
   opacity: 1;
   -webkit-animation: fa-spin 1s infinite steps(8);
           animation: fa-spin 1s infinite steps(8);
@@ -453,7 +453,7 @@ th {
   font-family: "bodonic";
 }
 
-.fontawesome, .loading-black-btn:after, .white-btn:after, .white-black-btn:after, .us-btn:after {
+.fontawesome, .loading-black-btn:after, .white-btn:after, .MessageBoxContainer .btn-default:after, .white-black-btn:after, .us-btn:after {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
@@ -647,7 +647,7 @@ th {
   font-style: normal;
 }
 
-.svg-icon, .search__block .block__input button, .search__block .block__close, .gallery-overlay .overlay__close:before, .fotorama__arr, .b-share .b-share__link .b-share-icon, .search__header .block__input button {
+.svg-icon, .search__block .block__input button, .search__block .block__close, .gallery-overlay .overlay__close:before, .fotorama__arr, .b-share .b-share__link .b-share-icon, label.input .photo-delete, .photo-preview a.photo-delete-single, .search__header .block__input button {
   font-family: 'icomoon';
   speak: none;
   font-style: normal;
@@ -726,7 +726,7 @@ th {
   content: "\e60b";
 }
 
-.icon-cross:before {
+.icon-cross:before, label.input .photo-delete:before, .photo-preview a.photo-delete-single:before {
   content: "\e60c";
 }
 
@@ -1082,7 +1082,7 @@ h1 {
   text-transform: uppercase;
 }
 
-.reg-italic, .white-btn, .white-black-btn, .us-btn, .right-tags .tags__item .item__text span, .blog-list .list__item .item__content .content__quote, .b-share .b-share__link {
+.reg-italic, .white-btn, .MessageBoxContainer .btn-default, .white-black-btn, .us-btn, .right-tags .tags__item .item__text span, .blog-list .list__item .item__content .content__quote, .b-share .b-share__link {
   font-family: 'bodonic';
   font-size: 14px;
   font-style: italic;
@@ -1101,7 +1101,7 @@ h1 {
   border-color: transparent;
 }
 
-.white-btn {
+.white-btn, .MessageBoxContainer .btn-default {
   position: relative;
   display: inline-block;
   vertical-align: top;
@@ -1113,52 +1113,52 @@ h1 {
   background: transparent;
   outline: none;
 }
-.white-btn:hover {
+.white-btn:hover, .MessageBoxContainer .btn-default:hover {
   color: #4bbeff;
 }
-.white-btn.loading {
+.white-btn.loading, .MessageBoxContainer .loading.btn-default {
   background: transparent;
 }
-.white-btn .svg-icon, .white-btn .search__block .block__input button, .search__block .block__input .white-btn button, .white-btn .search__block .block__close, .search__block .white-btn .block__close, .white-btn .gallery-overlay .overlay__close:before, .gallery-overlay .white-btn .overlay__close:before, .white-btn .fotorama__arr, .white-btn .b-share .b-share__link .b-share-icon, .b-share .b-share__link .white-btn .b-share-icon, .white-btn .search__header .block__input button, .search__header .block__input .white-btn button {
+.white-btn .svg-icon, .MessageBoxContainer .btn-default .svg-icon, .white-btn .search__block .block__input button, .search__block .block__input .white-btn button, .MessageBoxContainer .btn-default .search__block .block__input button, .search__block .block__input .MessageBoxContainer .btn-default button, .white-btn .search__block .block__close, .search__block .white-btn .block__close, .MessageBoxContainer .btn-default .search__block .block__close, .search__block .MessageBoxContainer .btn-default .block__close, .white-btn .gallery-overlay .overlay__close:before, .gallery-overlay .white-btn .overlay__close:before, .MessageBoxContainer .btn-default .gallery-overlay .overlay__close:before, .gallery-overlay .MessageBoxContainer .btn-default .overlay__close:before, .white-btn .fotorama__arr, .MessageBoxContainer .btn-default .fotorama__arr, .white-btn .b-share .b-share__link .b-share-icon, .b-share .b-share__link .white-btn .b-share-icon, .MessageBoxContainer .btn-default .b-share .b-share__link .b-share-icon, .b-share .b-share__link .MessageBoxContainer .btn-default .b-share-icon, .white-btn label.input .photo-delete, label.input .white-btn .photo-delete, .MessageBoxContainer .btn-default label.input .photo-delete, label.input .MessageBoxContainer .btn-default .photo-delete, .white-btn .photo-preview a.photo-delete-single, .photo-preview .white-btn a.photo-delete-single, .MessageBoxContainer .btn-default .photo-preview a.photo-delete-single, .photo-preview .MessageBoxContainer .btn-default a.photo-delete-single, .white-btn .search__header .block__input button, .search__header .block__input .white-btn button, .MessageBoxContainer .btn-default .search__header .block__input button, .search__header .block__input .MessageBoxContainer .btn-default button {
   display: inline-block;
   vertical-align: middle;
   color: #4bbeff;
   margin-right: 18px;
 }
-.white-btn .svg-icon.icon-edit, .white-btn .search__block .block__input button.icon-edit, .search__block .block__input .white-btn button.icon-edit, .white-btn .search__block .icon-edit.block__close, .search__block .white-btn .icon-edit.block__close, .white-btn .gallery-overlay .icon-edit.overlay__close:before, .gallery-overlay .white-btn .icon-edit.overlay__close:before, .white-btn .icon-edit.fotorama__arr, .white-btn .b-share .b-share__link .icon-edit.b-share-icon, .b-share .b-share__link .white-btn .icon-edit.b-share-icon, .white-btn .search__header .block__input button.icon-edit, .search__header .block__input .white-btn button.icon-edit {
+.white-btn .svg-icon.icon-edit, .MessageBoxContainer .btn-default .svg-icon.icon-edit, .white-btn .search__block .block__input button.icon-edit, .search__block .block__input .white-btn button.icon-edit, .MessageBoxContainer .btn-default .search__block .block__input button.icon-edit, .search__block .block__input .MessageBoxContainer .btn-default button.icon-edit, .white-btn .search__block .icon-edit.block__close, .search__block .white-btn .icon-edit.block__close, .MessageBoxContainer .btn-default .search__block .icon-edit.block__close, .search__block .MessageBoxContainer .btn-default .icon-edit.block__close, .white-btn .gallery-overlay .icon-edit.overlay__close:before, .gallery-overlay .white-btn .icon-edit.overlay__close:before, .MessageBoxContainer .btn-default .gallery-overlay .icon-edit.overlay__close:before, .gallery-overlay .MessageBoxContainer .btn-default .icon-edit.overlay__close:before, .white-btn .icon-edit.fotorama__arr, .MessageBoxContainer .btn-default .icon-edit.fotorama__arr, .white-btn .b-share .b-share__link .icon-edit.b-share-icon, .b-share .b-share__link .white-btn .icon-edit.b-share-icon, .MessageBoxContainer .btn-default .b-share .b-share__link .icon-edit.b-share-icon, .b-share .b-share__link .MessageBoxContainer .btn-default .icon-edit.b-share-icon, .white-btn label.input .icon-edit.photo-delete, label.input .white-btn .icon-edit.photo-delete, .MessageBoxContainer .btn-default label.input .icon-edit.photo-delete, label.input .MessageBoxContainer .btn-default .icon-edit.photo-delete, .white-btn .photo-preview a.icon-edit.photo-delete-single, .photo-preview .white-btn a.icon-edit.photo-delete-single, .MessageBoxContainer .btn-default .photo-preview a.icon-edit.photo-delete-single, .photo-preview .MessageBoxContainer .btn-default a.icon-edit.photo-delete-single, .white-btn .search__header .block__input button.icon-edit, .search__header .block__input .white-btn button.icon-edit, .MessageBoxContainer .btn-default .search__header .block__input button.icon-edit, .search__header .block__input .MessageBoxContainer .btn-default button.icon-edit {
   font-size: 38px;
   width: 23px;
 }
-.white-btn .svg-icon.icon-comments, .white-btn .search__block .block__input button.icon-comments, .search__block .block__input .white-btn button.icon-comments, .white-btn .search__block .icon-comments.block__close, .search__block .white-btn .icon-comments.block__close, .white-btn .gallery-overlay .icon-comments.overlay__close:before, .gallery-overlay .white-btn .icon-comments.overlay__close:before, .white-btn .icon-comments.fotorama__arr, .white-btn .b-share .b-share__link .icon-comments.b-share-icon, .b-share .b-share__link .white-btn .icon-comments.b-share-icon, .white-btn .search__header .block__input button.icon-comments, .search__header .block__input .white-btn button.icon-comments {
+.white-btn .svg-icon.icon-comments, .MessageBoxContainer .btn-default .svg-icon.icon-comments, .white-btn .search__block .block__input button.icon-comments, .search__block .block__input .white-btn button.icon-comments, .MessageBoxContainer .btn-default .search__block .block__input button.icon-comments, .search__block .block__input .MessageBoxContainer .btn-default button.icon-comments, .white-btn .search__block .icon-comments.block__close, .search__block .white-btn .icon-comments.block__close, .MessageBoxContainer .btn-default .search__block .icon-comments.block__close, .search__block .MessageBoxContainer .btn-default .icon-comments.block__close, .white-btn .gallery-overlay .icon-comments.overlay__close:before, .gallery-overlay .white-btn .icon-comments.overlay__close:before, .MessageBoxContainer .btn-default .gallery-overlay .icon-comments.overlay__close:before, .gallery-overlay .MessageBoxContainer .btn-default .icon-comments.overlay__close:before, .white-btn .icon-comments.fotorama__arr, .MessageBoxContainer .btn-default .icon-comments.fotorama__arr, .white-btn .b-share .b-share__link .icon-comments.b-share-icon, .b-share .b-share__link .white-btn .icon-comments.b-share-icon, .MessageBoxContainer .btn-default .b-share .b-share__link .icon-comments.b-share-icon, .b-share .b-share__link .MessageBoxContainer .btn-default .icon-comments.b-share-icon, .white-btn label.input .icon-comments.photo-delete, label.input .white-btn .icon-comments.photo-delete, .MessageBoxContainer .btn-default label.input .icon-comments.photo-delete, label.input .MessageBoxContainer .btn-default .icon-comments.photo-delete, .white-btn .photo-preview a.icon-comments.photo-delete-single, .photo-preview .white-btn a.icon-comments.photo-delete-single, .MessageBoxContainer .btn-default .photo-preview a.icon-comments.photo-delete-single, .photo-preview .MessageBoxContainer .btn-default a.icon-comments.photo-delete-single, .white-btn .search__header .block__input button.icon-comments, .search__header .block__input .white-btn button.icon-comments, .MessageBoxContainer .btn-default .search__header .block__input button.icon-comments, .search__header .block__input .MessageBoxContainer .btn-default button.icon-comments {
   font-size: 30px;
   width: 22px;
 }
-.white-btn .svg-icon.icon-cross, .white-btn .search__block .block__input button.icon-cross, .search__block .block__input .white-btn button.icon-cross, .white-btn .search__block .icon-cross.block__close, .search__block .white-btn .icon-cross.block__close, .white-btn .gallery-overlay .icon-cross.overlay__close:before, .gallery-overlay .white-btn .icon-cross.overlay__close:before, .white-btn .icon-cross.fotorama__arr, .white-btn .b-share .b-share__link .icon-cross.b-share-icon, .b-share .b-share__link .white-btn .icon-cross.b-share-icon, .white-btn .search__header .block__input button.icon-cross, .search__header .block__input .white-btn button.icon-cross {
+.white-btn .svg-icon.icon-cross, .MessageBoxContainer .btn-default .svg-icon.icon-cross, .white-btn .search__block .block__input button.icon-cross, .search__block .block__input .white-btn button.icon-cross, .MessageBoxContainer .btn-default .search__block .block__input button.icon-cross, .search__block .block__input .MessageBoxContainer .btn-default button.icon-cross, .white-btn .search__block .icon-cross.block__close, .search__block .white-btn .icon-cross.block__close, .MessageBoxContainer .btn-default .search__block .icon-cross.block__close, .search__block .MessageBoxContainer .btn-default .icon-cross.block__close, .white-btn .gallery-overlay .icon-cross.overlay__close:before, .gallery-overlay .white-btn .icon-cross.overlay__close:before, .MessageBoxContainer .btn-default .gallery-overlay .icon-cross.overlay__close:before, .gallery-overlay .MessageBoxContainer .btn-default .icon-cross.overlay__close:before, .white-btn .gallery-overlay label.input .overlay__close.photo-delete:before, .gallery-overlay label.input .white-btn .overlay__close.photo-delete:before, .MessageBoxContainer .btn-default .gallery-overlay label.input .overlay__close.photo-delete:before, .gallery-overlay label.input .MessageBoxContainer .btn-default .overlay__close.photo-delete:before, .white-btn label.input .gallery-overlay .overlay__close.photo-delete:before, label.input .gallery-overlay .white-btn .overlay__close.photo-delete:before, .MessageBoxContainer .btn-default label.input .gallery-overlay .overlay__close.photo-delete:before, label.input .gallery-overlay .MessageBoxContainer .btn-default .overlay__close.photo-delete:before, .white-btn .gallery-overlay .photo-preview a.overlay__close.photo-delete-single:before, .gallery-overlay .photo-preview .white-btn a.overlay__close.photo-delete-single:before, .MessageBoxContainer .btn-default .gallery-overlay .photo-preview a.overlay__close.photo-delete-single:before, .gallery-overlay .photo-preview .MessageBoxContainer .btn-default a.overlay__close.photo-delete-single:before, .white-btn .photo-preview .gallery-overlay a.overlay__close.photo-delete-single:before, .photo-preview .gallery-overlay .white-btn a.overlay__close.photo-delete-single:before, .MessageBoxContainer .btn-default .photo-preview .gallery-overlay a.overlay__close.photo-delete-single:before, .photo-preview .gallery-overlay .MessageBoxContainer .btn-default a.overlay__close.photo-delete-single:before, .white-btn .icon-cross.fotorama__arr, .MessageBoxContainer .btn-default .icon-cross.fotorama__arr, .white-btn .b-share .b-share__link .icon-cross.b-share-icon, .b-share .b-share__link .white-btn .icon-cross.b-share-icon, .MessageBoxContainer .btn-default .b-share .b-share__link .icon-cross.b-share-icon, .b-share .b-share__link .MessageBoxContainer .btn-default .icon-cross.b-share-icon, .white-btn label.input .photo-delete, label.input .white-btn .photo-delete, .MessageBoxContainer .btn-default label.input .photo-delete, label.input .MessageBoxContainer .btn-default .photo-delete, .white-btn .photo-preview a.photo-delete-single, .photo-preview .white-btn a.photo-delete-single, .MessageBoxContainer .btn-default .photo-preview a.photo-delete-single, .photo-preview .MessageBoxContainer .btn-default a.photo-delete-single, .white-btn .search__header .block__input button.icon-cross, .search__header .block__input .white-btn button.icon-cross, .MessageBoxContainer .btn-default .search__header .block__input button.icon-cross, .search__header .block__input .MessageBoxContainer .btn-default button.icon-cross {
   position: relative;
   top: -.05em;
   font-size: 22px;
   width: 19px;
 }
-.white-btn .svg-icon.icon-glasses, .white-btn .search__block .block__input button.icon-glasses, .search__block .block__input .white-btn button.icon-glasses, .white-btn .search__block .icon-glasses.block__close, .search__block .white-btn .icon-glasses.block__close, .white-btn .gallery-overlay .icon-glasses.overlay__close:before, .gallery-overlay .white-btn .icon-glasses.overlay__close:before, .white-btn .icon-glasses.fotorama__arr, .white-btn .b-share .b-share__link .icon-glasses.b-share-icon, .b-share .b-share__link .white-btn .icon-glasses.b-share-icon, .white-btn .search__header .block__input button.icon-glasses, .search__header .block__input .white-btn button.icon-glasses {
+.white-btn .svg-icon.icon-glasses, .MessageBoxContainer .btn-default .svg-icon.icon-glasses, .white-btn .search__block .block__input button.icon-glasses, .search__block .block__input .white-btn button.icon-glasses, .MessageBoxContainer .btn-default .search__block .block__input button.icon-glasses, .search__block .block__input .MessageBoxContainer .btn-default button.icon-glasses, .white-btn .search__block .icon-glasses.block__close, .search__block .white-btn .icon-glasses.block__close, .MessageBoxContainer .btn-default .search__block .icon-glasses.block__close, .search__block .MessageBoxContainer .btn-default .icon-glasses.block__close, .white-btn .gallery-overlay .icon-glasses.overlay__close:before, .gallery-overlay .white-btn .icon-glasses.overlay__close:before, .MessageBoxContainer .btn-default .gallery-overlay .icon-glasses.overlay__close:before, .gallery-overlay .MessageBoxContainer .btn-default .icon-glasses.overlay__close:before, .white-btn .icon-glasses.fotorama__arr, .MessageBoxContainer .btn-default .icon-glasses.fotorama__arr, .white-btn .b-share .b-share__link .icon-glasses.b-share-icon, .b-share .b-share__link .white-btn .icon-glasses.b-share-icon, .MessageBoxContainer .btn-default .b-share .b-share__link .icon-glasses.b-share-icon, .b-share .b-share__link .MessageBoxContainer .btn-default .icon-glasses.b-share-icon, .white-btn label.input .icon-glasses.photo-delete, label.input .white-btn .icon-glasses.photo-delete, .MessageBoxContainer .btn-default label.input .icon-glasses.photo-delete, label.input .MessageBoxContainer .btn-default .icon-glasses.photo-delete, .white-btn .photo-preview a.icon-glasses.photo-delete-single, .photo-preview .white-btn a.icon-glasses.photo-delete-single, .MessageBoxContainer .btn-default .photo-preview a.icon-glasses.photo-delete-single, .photo-preview .MessageBoxContainer .btn-default a.icon-glasses.photo-delete-single, .white-btn .search__header .block__input button.icon-glasses, .search__header .block__input .white-btn button.icon-glasses, .MessageBoxContainer .btn-default .search__header .block__input button.icon-glasses, .search__header .block__input .MessageBoxContainer .btn-default button.icon-glasses {
   font-size: 30px;
   width: 28px;
   margin-left: -17px;
 }
-.white-btn .svg-icon.icon-person, .white-btn .search__block .block__input button.icon-person, .search__block .block__input .white-btn button.icon-person, .white-btn .search__block .icon-person.block__close, .search__block .white-btn .icon-person.block__close, .white-btn .gallery-overlay .icon-person.overlay__close:before, .gallery-overlay .white-btn .icon-person.overlay__close:before, .white-btn .icon-person.fotorama__arr, .white-btn .b-share .b-share__link .icon-person.b-share-icon, .b-share .b-share__link .white-btn .icon-person.b-share-icon, .white-btn .search__header .block__input button.icon-person, .search__header .block__input .white-btn button.icon-person {
+.white-btn .svg-icon.icon-person, .MessageBoxContainer .btn-default .svg-icon.icon-person, .white-btn .search__block .block__input button.icon-person, .search__block .block__input .white-btn button.icon-person, .MessageBoxContainer .btn-default .search__block .block__input button.icon-person, .search__block .block__input .MessageBoxContainer .btn-default button.icon-person, .white-btn .search__block .icon-person.block__close, .search__block .white-btn .icon-person.block__close, .MessageBoxContainer .btn-default .search__block .icon-person.block__close, .search__block .MessageBoxContainer .btn-default .icon-person.block__close, .white-btn .gallery-overlay .icon-person.overlay__close:before, .gallery-overlay .white-btn .icon-person.overlay__close:before, .MessageBoxContainer .btn-default .gallery-overlay .icon-person.overlay__close:before, .gallery-overlay .MessageBoxContainer .btn-default .icon-person.overlay__close:before, .white-btn .icon-person.fotorama__arr, .MessageBoxContainer .btn-default .icon-person.fotorama__arr, .white-btn .b-share .b-share__link .icon-person.b-share-icon, .b-share .b-share__link .white-btn .icon-person.b-share-icon, .MessageBoxContainer .btn-default .b-share .b-share__link .icon-person.b-share-icon, .b-share .b-share__link .MessageBoxContainer .btn-default .icon-person.b-share-icon, .white-btn label.input .icon-person.photo-delete, label.input .white-btn .icon-person.photo-delete, .MessageBoxContainer .btn-default label.input .icon-person.photo-delete, label.input .MessageBoxContainer .btn-default .icon-person.photo-delete, .white-btn .photo-preview a.icon-person.photo-delete-single, .photo-preview .white-btn a.icon-person.photo-delete-single, .MessageBoxContainer .btn-default .photo-preview a.icon-person.photo-delete-single, .photo-preview .MessageBoxContainer .btn-default a.icon-person.photo-delete-single, .white-btn .search__header .block__input button.icon-person, .search__header .block__input .white-btn button.icon-person, .MessageBoxContainer .btn-default .search__header .block__input button.icon-person, .search__header .block__input .MessageBoxContainer .btn-default button.icon-person {
   font-size: 30px;
   width: 22px;
   margin-left: -25px;
 }
-.white-btn.action-edit {
+.white-btn.action-edit, .MessageBoxContainer .action-edit.btn-default {
   padding: 0 20px 0 3px;
 }
-.white-btn.action-comment {
+.white-btn.action-comment, .MessageBoxContainer .action-comment.btn-default {
   padding: 0 20px 0 10px;
 }
-.white-btn.action-delete {
+.white-btn.action-delete, .MessageBoxContainer .action-delete.btn-default {
   padding: 0 20px 0 10px;
 }
-.white-btn.action-soc {
+.white-btn.action-soc, .MessageBoxContainer .action-soc.btn-default {
   padding: 0 20px 0 10px;
 }
 
@@ -1211,7 +1211,7 @@ h1 {
   color: #ffffff;
 }
 
-.us-input {
+.us-input, label.input textarea {
   box-sizing: border-box;
   height: 40px;
   border: 1px solid #cccccc;
@@ -1473,7 +1473,7 @@ h1 {
   font-size: 14px;
   margin-top: 5px;
 }
-.right-content__list.list-big .list__item .item__text .text__views .svg-icon, .right-content__list.list-big .list__item .item__text .text__views .search__block .block__input button, .search__block .block__input .right-content__list.list-big .list__item .item__text .text__views button, .right-content__list.list-big .list__item .item__text .text__views .search__block .block__close, .search__block .right-content__list.list-big .list__item .item__text .text__views .block__close, .right-content__list.list-big .list__item .item__text .text__views .gallery-overlay .overlay__close:before, .gallery-overlay .right-content__list.list-big .list__item .item__text .text__views .overlay__close:before, .right-content__list.list-big .list__item .item__text .text__views .fotorama__arr, .right-content__list.list-big .list__item .item__text .text__views .b-share .b-share__link .b-share-icon, .b-share .b-share__link .right-content__list.list-big .list__item .item__text .text__views .b-share-icon, .right-content__list.list-big .list__item .item__text .text__views .search__header .block__input button, .search__header .block__input .right-content__list.list-big .list__item .item__text .text__views button {
+.right-content__list.list-big .list__item .item__text .text__views .svg-icon, .right-content__list.list-big .list__item .item__text .text__views .search__block .block__input button, .search__block .block__input .right-content__list.list-big .list__item .item__text .text__views button, .right-content__list.list-big .list__item .item__text .text__views .search__block .block__close, .search__block .right-content__list.list-big .list__item .item__text .text__views .block__close, .right-content__list.list-big .list__item .item__text .text__views .gallery-overlay .overlay__close:before, .gallery-overlay .right-content__list.list-big .list__item .item__text .text__views .overlay__close:before, .right-content__list.list-big .list__item .item__text .text__views .fotorama__arr, .right-content__list.list-big .list__item .item__text .text__views .b-share .b-share__link .b-share-icon, .b-share .b-share__link .right-content__list.list-big .list__item .item__text .text__views .b-share-icon, .right-content__list.list-big .list__item .item__text .text__views label.input .photo-delete, label.input .right-content__list.list-big .list__item .item__text .text__views .photo-delete, .right-content__list.list-big .list__item .item__text .text__views .photo-preview a.photo-delete-single, .photo-preview .right-content__list.list-big .list__item .item__text .text__views a.photo-delete-single, .right-content__list.list-big .list__item .item__text .text__views .search__header .block__input button, .search__header .block__input .right-content__list.list-big .list__item .item__text .text__views button {
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -1537,8 +1537,8 @@ h1 {
 .posts-list .list__item .post-photo {
   display: block;
   height: 350px;
-  background-position: cover;
-  background-size: center center;
+  background-position: center center;
+  background-size: cover;
 }
 
 .nav__dot {
@@ -1726,7 +1726,7 @@ h1 {
   vertical-align: middle;
   line-height: normal;
 }
-.header .header__top .header__login .header__user .svg-icon, .header .header__top .header__login .header__user .search__block .block__input button, .search__block .block__input .header .header__top .header__login .header__user button, .header .header__top .header__login .header__user .search__block .block__close, .search__block .header .header__top .header__login .header__user .block__close, .header .header__top .header__login .header__user .gallery-overlay .overlay__close:before, .gallery-overlay .header .header__top .header__login .header__user .overlay__close:before, .header .header__top .header__login .header__user .fotorama__arr, .header .header__top .header__login .header__user .b-share .b-share__link .b-share-icon, .b-share .b-share__link .header .header__top .header__login .header__user .b-share-icon, .header .header__top .header__login .header__user .search__header .block__input button, .search__header .block__input .header .header__top .header__login .header__user button {
+.header .header__top .header__login .header__user .svg-icon, .header .header__top .header__login .header__user .search__block .block__input button, .search__block .block__input .header .header__top .header__login .header__user button, .header .header__top .header__login .header__user .search__block .block__close, .search__block .header .header__top .header__login .header__user .block__close, .header .header__top .header__login .header__user .gallery-overlay .overlay__close:before, .gallery-overlay .header .header__top .header__login .header__user .overlay__close:before, .header .header__top .header__login .header__user .fotorama__arr, .header .header__top .header__login .header__user .b-share .b-share__link .b-share-icon, .b-share .b-share__link .header .header__top .header__login .header__user .b-share-icon, .header .header__top .header__login .header__user label.input .photo-delete, label.input .header .header__top .header__login .header__user .photo-delete, .header .header__top .header__login .header__user .photo-preview a.photo-delete-single, .photo-preview .header .header__top .header__login .header__user a.photo-delete-single, .header .header__top .header__login .header__user .search__header .block__input button, .search__header .block__input .header .header__top .header__login .header__user button {
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -2256,7 +2256,7 @@ h1 {
   color: inherit;
   text-decoration: none;
 }
-.dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .svg-icon, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .search__block .block__input button, .search__block .block__input .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item button, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .search__block .block__close, .search__block .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .block__close, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .gallery-overlay .overlay__close:before, .gallery-overlay .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .overlay__close:before, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .fotorama__arr, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .b-share .b-share__link .b-share-icon, .b-share .b-share__link .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .b-share-icon, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .search__header .block__input button, .search__header .block__input .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item button {
+.dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .svg-icon, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .search__block .block__input button, .search__block .block__input .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item button, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .search__block .block__close, .search__block .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .block__close, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .gallery-overlay .overlay__close:before, .gallery-overlay .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .overlay__close:before, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .fotorama__arr, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .b-share .b-share__link .b-share-icon, .b-share .b-share__link .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .b-share-icon, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item label.input .photo-delete, label.input .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .photo-delete, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .photo-preview a.photo-delete-single, .photo-preview .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item a.photo-delete-single, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .search__header .block__input button, .search__header .block__input .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item button {
   display: inline-block;
   vertical-align: middle;
   font-size: 35px;
@@ -2380,13 +2380,13 @@ h1 {
   vertical-align: middle;
   line-height: 35px;
 }
-.actions__btns .svg-icon, .actions__btns .search__block .block__input button, .search__block .block__input .actions__btns button, .actions__btns .search__block .block__close, .search__block .actions__btns .block__close, .actions__btns .gallery-overlay .overlay__close:before, .gallery-overlay .actions__btns .overlay__close:before, .actions__btns .fotorama__arr, .actions__btns .b-share .b-share__link .b-share-icon, .b-share .b-share__link .actions__btns .b-share-icon, .actions__btns .search__header .block__input button, .search__header .block__input .actions__btns button {
+.actions__btns .svg-icon, .actions__btns .search__block .block__input button, .search__block .block__input .actions__btns button, .actions__btns .search__block .block__close, .search__block .actions__btns .block__close, .actions__btns .gallery-overlay .overlay__close:before, .gallery-overlay .actions__btns .overlay__close:before, .actions__btns .fotorama__arr, .actions__btns .b-share .b-share__link .b-share-icon, .b-share .b-share__link .actions__btns .b-share-icon, .actions__btns label.input .photo-delete, label.input .actions__btns .photo-delete, .actions__btns .photo-preview a.photo-delete-single, .photo-preview .actions__btns a.photo-delete-single, .actions__btns .search__header .block__input button, .search__header .block__input .actions__btns button {
   font-size: 30px;
   width: 15px;
   vertical-align: middle;
 }
 
-.post-actions .white-btn {
+.post-actions .white-btn, .post-actions .MessageBoxContainer .btn-default, .MessageBoxContainer .post-actions .btn-default {
   border-color: #ccc;
   vertical-align: middle;
   margin-right: 10px;
@@ -2394,11 +2394,11 @@ h1 {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-.post-actions .white-btn:hover {
+.post-actions .white-btn:hover, .post-actions .MessageBoxContainer .btn-default:hover, .MessageBoxContainer .post-actions .btn-default:hover {
   border-color: #4bbeff;
 }
 
-.white-btn.action-question {
+.white-btn.action-question, .MessageBoxContainer .action-question.btn-default {
   padding-left: 30px;
 }
 
@@ -3553,6 +3553,173 @@ h1 {
   display: none;
 }
 
+label.input .image-data-popover {
+  display: inline-block;
+  vertical-align: top;
+  padding: 15px 0;
+  cursor: default !important;
+  outline: none;
+  width: 20%;
+}
+label.input .image-data {
+  display: inline-block;
+  vertical-align: top;
+  width: 80%;
+  padding: 15px 0;
+}
+label.input .photo-delete {
+  display: inline-block;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  font-size: 0;
+  color: #000;
+  cursor: pointer !important;
+}
+label.input .photo-delete:before {
+  font-size: 20px;
+}
+label.input textarea {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 70px;
+  resize: none;
+  font-size: 14px;
+}
+label.input textarea::-webkit-input-placeholder {
+  font-family: 'Lato';
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: none;
+  color: #aaa;
+}
+label.input textarea::-moz-placeholder {
+  font-family: 'Lato';
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: none;
+  color: #aaa;
+}
+label.input textarea:-moz-placeholder {
+  font-family: 'Lato';
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: none;
+  color: #aaa;
+}
+label.input textarea:-ms-input-placeholder {
+  font-family: 'Lato';
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: none;
+  color: #aaa;
+}
+label.input .save-image-data {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+label.input .save-image-data.loading {
+  cursor: default;
+}
+label.input .image-data-preview-link {
+  display: none;
+}
+label.input .sortable {
+  font-size: 0;
+}
+
+.photo-preview a.photo-delete-single {
+  position: absolute;
+  display: inline-block !important;
+  top: 0;
+  left: 0;
+  bottom: auto !important;
+  right: auto !important;
+  width: 30px !important;
+  height: 30px !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  padding: 0;
+  font-size: 0;
+  color: #000 !important;
+  text-decoration: none;
+  cursor: pointer !important;
+  text-align: center;
+  line-height: 30px;
+}
+.photo-preview a.photo-delete-single:before {
+  font-size: 20px;
+}
+
+/* 
+@-webkit-keyframes gradAnimation {
+    0%{background-position:0 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes gradAnimation {
+    0%{background-position:0 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-o-keyframes gradAnimation {
+    0%{background-position:0 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes gradAnimation { 
+    0%{background-position:0 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.btn-colored {
+	position: relative;
+	display: inline-block;
+	padding: 2px;
+	color: #222;
+	font: 400 13px "Geometria", "Open Sans", sans-serif;
+	text-transform: uppercase;
+
+	span {
+		position: relative;
+		z-index: 2;
+		display: inline-block;
+		height: 35px;
+		line-height: 35px;
+		padding: 0 15px;
+		background: #fff;
+		transition: all .5s ease;
+	}
+
+	&:before {
+		content: "";
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #bb252d;
+		background-image: linear-gradient(90deg, #bb252d, #78a725, #e4b51e, #5e52ac, #db7336, #4bc8bb);
+		background-size: auto 1600%;
+		-webkit-animation: gradAnimation 15s linear infinite;
+		-moz-animation: gradAnimation 15s linear infinite;
+		-o-animation: gradAnimation 15s linear infinite;
+		animation: gradAnimation 15s linear infinite;
+	}
+
+	&:hover {
+		span {
+			background: transparent;
+			color: #fff;
+		}
+	}
+} */
 .one-post-cont .reg-content__left {
   padding-bottom: 0;
 }

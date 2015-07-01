@@ -25,7 +25,7 @@
                 <div class="dashboard-tab">
                     <div class="reg-content__left new-post-form">
                         <div class="form__title">Новый пост</div>
-                        {{ Form::model($post,array('route'=>array('posts.update',$post->id),'method'=>'put','class'=>'newpost-form js-ajax-form')) }}
+                        {{ Form::model($post,array('route'=>array('posts.update',$post->id),'method'=>'put','class'=>'newpost-form js-ajax-form-gallery')) }}
                             {{ Form::hidden('publish_at',(new myDateTime())->setDateString($post->publish_at)->format('d.m.Y'),array()) }}
                             <div class="form__date">
                                 {{-- Form::text('publish_at',(new myDateTime())->setDateString($post->publish_at)->format('d.m.Y'),array('disabled' => 'disabled', 'class' => 'js-datepicker')) --}}
@@ -70,7 +70,7 @@
                             </div>
                             <div class="form__input-block">
                                 <div class="form__input-title">Галерея</div>
-                                <label class="input">
+                                <label class="input js-gallery-extform">
                                     {{ ExtForm::gallery('gallery',is_object($post->gallery) ? $post->gallery->id : NULL) }}
                                 </label>
                             </div>
@@ -99,4 +99,76 @@
 
     {{ HTML::script('private/js/vendor/redactor.min.js') }}
     {{ HTML::script('private/js/system/redactor-config.js') }}
+
+    <script>
+        var saveCaption = function($this, callback) {
+            var image_id = $this.attr('data-photo-id');
+            var image_title = $this.parents('.image-data').find('.image-data-field[data-name=title]').val();
+            var popover = $this.parents('.popover');
+            var popover_link = $(popover).prev('a.image-data-popover');
+            var popover_error = $(popover).find('.image-save-data-error');
+            $(popover_link).attr('data-image-title', image_title);
+
+            $this.removeClass('btn-danger').addClass('btn-primary');
+            $(popover_error).text('');
+
+            $this.addClass('loading').attr('disabled', 'disabled');
+            $.ajax({
+                url: base_url + "/admin/galleries/photoupdate",
+                data: { id: image_id, title: image_title },
+                type: 'post'
+            }).done(function(){
+                if(callback) callback();
+                return true;
+            }).fail(function(data){
+                console.log(data);
+                $(popover_error).text('Ошибка при сохранении');
+                $this.removeClass('btn-primary').addClass('btn-danger');
+                return false;
+            }).always(function(){
+                $this.removeClass('loading').removeAttr('disabled');
+            });
+        }
+
+        $(function(){
+            $('.image-data-popover').each(function(){
+                $(this).after($(this).attr('data-content'));
+                $(this).next().find('textarea').val($(this).attr('data-image-title'));
+            });
+        });
+
+        $(document).on('click', '.image-data-popover', function(event) {
+            console.log($(this).next('.popover').length);
+            var popover = $(this).next('.popover');
+            var current_title = $(this).attr('data-image-title');
+            $(popover).find('.image-data-field[data-name=title]').val(current_title);
+        });
+
+        $(document).on('click', '.image-data-preview-link', function(e){
+            var popover = $(this).parents('.popover');
+            $(popover).fadeOut();
+        });
+
+        $(document).on('click', '.save-image-data', function(event){
+            event.preventDefault();
+            saveCaption($(this));
+        });
+
+        $('.js-ajax-form-gallery').on('submit', function(e){
+            e.preventDefault();
+            var $this = $(this);
+            $this.find('[type="submit"]').addClass('loading');
+            var saveCaptionEq = function(eq) {
+                saveCaption($('.save-image-data').eq(eq), function(){
+                    if($('.save-image-data').eq(eq+1).length) {
+                        saveCaptionEq(eq+1);
+                    } else {
+                        Help.ajaxSubmit($this);
+                    }
+                });
+            }
+            saveCaptionEq(0);
+        });
+
+    </script>
 @stop

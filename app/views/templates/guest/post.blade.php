@@ -65,7 +65,7 @@
                                         <div class="post-info__gallery js-gallery">
                                         @foreach($post->gallery->photos as $photo)
                                             @if(!empty($photo->name) && File::exists(Config::get('site.galleries_photo_dir').'/'.$photo->name))
-                                            <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$photo->name) }}" alt="{{ $post->title }}" data-caption="Описание">
+                                            <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$photo->name) }}" alt="{{ $post->title }}" data-caption="{{ $photo->title }}">
                                             @endif
                                         @endforeach
                                         </div>
@@ -93,7 +93,7 @@
             <div class="overlay__gallery js-gallery-full">
             @foreach($post->gallery->photos as $photo)
                 @if(!empty($photo->name) && File::exists(Config::get('site.galleries_photo_dir').'/'.$photo->name))
-                <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$photo->name) }}" alt="{{ $post->title }}" data-caption="Описание">
+                <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$photo->name) }}" alt="{{ $post->title }}" data-caption="{{ $photo->title }}">
                 @endif
             @endforeach
             </div>

@@ -2,7 +2,6 @@
  * @author: Alexander Zelensky
  * Gallery functionality JS file
  */
-
 var dropzone_translate = {
 
     // Dictionary
@@ -178,7 +177,6 @@ var dropzone_translate = {
         }); // jQuery.each
         
         /*************************************************************************/
-        
         $(document).on('click', '.photo-delete', function(event){
 
             var popover = $(this).parents('.image-data-popover').next('.popover');

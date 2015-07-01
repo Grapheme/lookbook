@@ -276,13 +276,13 @@ LookBook.Dashboard = function() {
                 if(data.status) {
                     post_cont.slideUp();
                 } else {
-                    console.log(data);
+                    //console.log(data);
                 }
             },
             error: function(data) {
                 post_cont.removeClass('opacity05');
                 $(form).find('[type="submit"]').removeAttr('disabled');
-                console.log(data);
+                //console.log(data);
             }
         };
         form.ajaxSubmit(options);
@@ -297,7 +297,7 @@ LookBook.Dashboard = function() {
                     .attr('disabled', 'disabled');
             }, 
             success: function(data){
-                console.log(posts_cont);
+                //console.log(posts_cont);
                 posts_cont.append(data.html);
                 if(data.hide_button) {
                     form.hide();
