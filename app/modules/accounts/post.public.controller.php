@@ -66,12 +66,13 @@ class PostPublicController extends BaseController {
         foreach (Dic::where('slug', 'categories')->first()->values as $category):
             $categories[$category->id] = array('slug' => $category->slug, 'title' => $category->name);
         endforeach;
-        $posts_total_count = Post::where('in_index', 1)->where('publication', 1)->count();
-        $posts = Post::where('in_index', 1)->where('publication', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->take($post_limit)->get();
+        $posts_total_count = Post::where('in_index', 1)->where('in_advertising', 0)->where('publication', 1)->count();
+        $posts = Post::where('in_index', 1)->where('in_advertising', 0)->where('publication', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->take($post_limit)->get();
         $promoted_posts = Post::where('in_index', 1)->where('publication', 1)->where('in_promoted', 1)->with('user', 'photo', 'promoted_photo', 'tags_ids', 'views', 'likes', 'comments')->get();
+        $advertising_posts = Post::where('publication', 1)->where('in_advertising', 1)->where('in_index', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip(0)->take(1)->get();
         return array(
             'post_limit' => $post_limit, 'post_access' => FALSE, 'posts_total_count' => $posts_total_count,
-            'tags' => $tags, 'posts' => $posts, 'promoted_posts' => $promoted_posts, 'categories' => $categories
+            'tags' => $tags, 'posts' => $posts, 'advertising_posts' => $advertising_posts,'promoted_posts' => $promoted_posts, 'categories' => $categories
         );
     }
 
@@ -86,13 +87,14 @@ class PostPublicController extends BaseController {
             $posts_total_count = Post::where('category_id', $category_id)->where('publication', 1)->where('in_section', 1)->count();
             $posts = Post::where('category_id', $category_id)->where('publication', 1)->where('in_section', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->take($post_limit)->get();
             $promoted_posts = Post::where('category_id', $category_id)->where('publication', 1)->where('in_section', 1)->where('in_promoted', 1)->with('user', 'photo', 'promoted_photo', 'tags_ids', 'views', 'likes', 'comments')->get();
+            $advertising_posts = Post::where('category_id', $category_id)->where('publication', 1)->where('in_advertising', 1)->where('in_section', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip(0)->take(1)->get();
             if (isset($tags_lists[$category_id]['category_tags'])):
                 $tags = $tags_lists[$category_id]['category_tags'];
             endif;
             return array(
                 'post_limit' => $post_limit, 'post_access' => FALSE, 'posts_total_count' => $posts_total_count,
                 'tags' => $tags, 'posts' => $posts, 'promoted_posts' => $promoted_posts, 'category_id' => $category_id,
-                'categories' => $categories
+                'categories' => $categories, 'advertising_posts' => $advertising_posts
             );
         else:
             return FALSE;
@@ -174,14 +176,17 @@ class PostPublicController extends BaseController {
                 $post_limit = Input::get('limit');
                 $post_publication = Input::get('publication') == 'all' ? array(0, 1) : array(1);
                 $post_access = FALSE;
-                $posts = array();
+                $posts = $advertising_posts = array();
                 if (!$user_id):
+                    $advertising_post_from  = round($post_from / $post_limit, 0);
                     if (!$category_id):
-                        $posts_total_count = Post::where('publication', 1)->where('in_index', 1)->count();
-                        $posts = Post::where('publication', 1)->where('in_index', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($post_from)->take($post_limit)->get();
+                        $posts_total_count = Post::where('publication', 1)->where('in_advertising', 0)->where('in_index', 1)->count();
+                        $posts = Post::where('publication', 1)->where('in_advertising', 0)->where('in_index', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($post_from)->take($post_limit)->get();
+                        $advertising_posts = Post::where('publication', 1)->where('in_advertising', 1)->where('in_index', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($advertising_post_from)->take(1)->get();
                     else:
                         $posts_total_count = Post::where('category_id', $category_id)->where('publication', 1)->where('in_section', 1)->count();
                         $posts = Post::where('category_id', $category_id)->where('publication', 1)->where('in_section', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($post_from)->take($post_limit)->get();
+                        $advertising_posts = Post::where('category_id', $category_id)->where('publication', 1)->where('in_advertising', 1)->where('in_section', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($advertising_post_from)->take(1)->get();
                     endif;
                 else:
                     if (Auth::check() && Input::get('publication') == 'all'):
@@ -196,11 +201,10 @@ class PostPublicController extends BaseController {
                     endif;
                 endif;
                 if (count($posts)):
-                    $categories = array();
-                    foreach (Dic::where('slug', 'categories')->first()->values as $category):
-                        $categories[$category->id] = array('slug' => $category->slug, 'title' => $category->name);
-                    endforeach;
-                    $json_request['html'] = View::make(Helper::layout('blocks.posts'), compact('posts', 'categories', 'post_access'))->render();
+                    $json_request['html'] = View::make(Helper::layout('blocks.posts'), compact('posts'))->render();
+                    if(count($advertising_posts)):
+                        $json_request['html'] .= View::make(Helper::layout('blocks.posts-advertising'), array('posts'=>$advertising_posts))->render();
+                    endif;
                     $json_request['status'] = TRUE;
                     $json_request['from'] = $post_from + $post_limit;
                     $json_request['hide_button'] = $posts_total_count > ($post_from + $post_limit) ? FALSE : TRUE;
@@ -223,8 +227,10 @@ class PostPublicController extends BaseController {
                 $post_from = Input::get('from');
                 $post_limit = Input::get('limit');
                 if ($blogsIDs = BloggerSubscribe::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->lists('blogger_id')):
-                    $posts_total_count = Post::whereIn('user_id', $blogsIDs)->count();
-                    $posts = Post::whereIn('user_id', $blogsIDs)->where('publication', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($post_from)->take($post_limit)->get();
+                    $posts_total_count = Post::whereIn('user_id', $blogsIDs)->where('in_advertising', 0)->count();
+                    $posts = Post::whereIn('user_id', $blogsIDs)->where('in_advertising', 0)->where('publication', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($post_from)->take($post_limit)->get();
+                    $advertising_post_from  = round($post_from / $post_limit, 0);
+                    $advertising_posts = Post::where('publication', 1)->where('in_advertising', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($advertising_post_from)->take(1)->get();
                 endif;
                 if (count($posts)):
                     $categories = array();
@@ -232,6 +238,9 @@ class PostPublicController extends BaseController {
                         $categories[$category->id] = array('slug' => $category->slug, 'title' => $category->name);
                     endforeach;
                     $json_request['html'] = View::make(Helper::layout('blocks.posts'), compact('posts', 'categories'))->render();
+                    if(count($advertising_posts)):
+                        $json_request['html'] .= View::make(Helper::layout('blocks.posts-advertising'), array('posts'=>$advertising_posts))->render();
+                    endif;
                     $json_request['status'] = TRUE;
                     $json_request['from'] = $post_from + $post_limit;
                     $json_request['hide_button'] = $posts_total_count > ($post_from + $post_limit) ? FALSE : TRUE;
