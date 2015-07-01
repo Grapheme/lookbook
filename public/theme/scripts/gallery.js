@@ -104,8 +104,11 @@ var dropzone_translate = {
     // You can use {{maxFiles}} here, which will be replaced by the option.
     dictMaxFilesExceeded: "Достигнут лимит на кол-во загруженных файлов: {{maxFiles}}"
 };
-
 $(document).ready(function () {
+
+    /*$(document).on('change', '.js-gallery-extform textarea', function(){
+        $(this).parents('.image-data').find('.save-image-data').trigger('click');
+    });*/
 
     Dropzone.autoDiscover = false;
 
@@ -141,6 +144,15 @@ $(document).ready(function () {
 
         myDropzone.on("success", function (file, response) {
             //alert(response.image_id);
+            $.get(window.location.href, function(data){
+                var captions = $(data).find('.js-gallery-extform .superbox_');
+                $('.js-gallery-extform .superbox_').html(captions.html());
+                $('.image-data-popover').each(function(){
+                    $(this).after($(this).attr('data-content'));
+                    $(this).next().find('textarea').val($(this).attr('data-image-title'));
+                });
+                // $('html').append(captions.html());
+            });
             $(el).append("<input type='hidden' name='" + el_name + "[uploaded_images][]' value='" + response.image_id + "' id='uploaded_image_" + response.image_id + "' />");
         });
 
@@ -234,7 +246,7 @@ $(document).ready(function () {
     $('.photo-delete').click(function (event) {
         event.preventDefault();
         var image_id = $(this).attr('data-photo-id');
-        var $photoDiv = $(this).parent();
+        var $photoDiv = $(this).parent().parent();
         $.SmartMessageBox({
             title: "Удалить изображение?",
             content: "",
@@ -246,7 +258,8 @@ $(document).ready(function () {
                     data: {id: image_id},
                     type: 'post'
                 }).done(function () {
-                    $photoDiv.fadeOut('fast');
+                    $photoDiv.fadeOut('fast')
+                        .next().fadeOut('fast');
                 }).fail(function (data) {
                     $photoDiv.fadeOut('fast');
                     console.log(data);
