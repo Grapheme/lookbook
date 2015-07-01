@@ -9,11 +9,13 @@ endif;
 ?>
 @extends(Helper::layout())
 @section('style')
+@if(Config::get('lookbook.main_enabled') === FALSE)
     <style>
         .header, .footer {
             display: none;
         }
     </style>
+@endif
 @stop
 @section('page_class')
 @stop
