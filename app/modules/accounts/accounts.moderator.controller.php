@@ -18,6 +18,8 @@ class AccountsModeratorController extends BaseController {
                 Route::post('posts/{post_id}/publication',array('before'=>'csrf', 'as'=>'moderator.posts.publication','uses'=>$class.'@postPublication'));
                 Route::delete('posts/{post_id}/delete', array('before'=>'csrf', 'as' => 'moderator.posts.delete', 'uses' => $class.'@postDelete'));
 
+                Route::get('posts/comments',array('as'=>'moderator.posts.comments','uses'=>$class.'@postsCommentsList'));
+
                 Route::get('accounts',array('as'=>'moderator.accounts','uses'=>$class.'@accountsList'));
                 Route::post('accounts/{account_id}/save',array('as'=>'moderator.accounts.save','uses'=>$class.'@accountSave'));
 
@@ -103,6 +105,14 @@ class AccountsModeratorController extends BaseController {
         return Response::json($json_request,200);
     }
     /****************************************************************************/
+    public function postsCommentsList(){
+
+        $comments = PostComments::orderBy('created_at','DESC')->orderBy('id','DESC')
+            ->with('user','post.user')->paginate(Config::get('lookbook.posts_limit'));
+        list($categories,$tags) = PostBloggerController::getCategoriesAndTags();
+        return View::make(Helper::acclayout('post-comments'),compact('comments','categories','tags'));
+    }
+    /****************************************************************************/
     public function postsList(){
         $posts = Post::where('publication',1)->orderBy('publication','DESC')->orderBy('publish_at','DESC')->orderBy('id','DESC')
             ->with('user','photo','tags_ids','views','likes','comments')->paginate(Config::get('lookbook.posts_limit'));
@@ -111,11 +121,13 @@ class AccountsModeratorController extends BaseController {
     }
 
     public function postPublication($post_id){
+
         if($post = Post::where('id',$post_id)->first()):
             $post->publication = Input::has('publication') ? 1 : 0;
             $post->in_index = Input::has('in_index') ? 1 : 0;
             $post->in_section = Input::has('in_section') ? 1 : 0;
             $post->in_promoted = Input::has('in_promoted') ? 1 : 0;
+            $post->in_advertising = Input::has('in_advertising') ? 1 : 0;
             if (Input::file('photo')):
                 AdminUploadsController::deleteUploadedImageFile($post->promoted_photo_id);
                 $post->promoted_photo_id = AdminUploadsController::getUploadedImageFile('photo');
