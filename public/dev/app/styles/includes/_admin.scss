@@ -45,6 +45,27 @@
 		vertical-align: middle;
 	}
 
+	.table__promo {
+		.promo__image {
+			.image__link {
+				display: inline-block;
+				height: 98px;
+				width: 170px;
+				float: left;
+				background-size: cover;
+				background-position: center center;
+			}
+		}
+
+		.promo__info {
+			margin-left: 180px;
+
+			.info__date {
+				margin-top: 10px;
+			}
+		}
+	}
+
 	.comments__item {
 		border-top: none !important;
 
@@ -56,6 +77,10 @@
 			margin-left: 80px;
 		}
 	}
+}
+
+.promo-btn {
+	padding: $dashTopPad 0;
 }
 
 .pagination {
@@ -87,4 +112,26 @@
 			color: $blue;
 		}
 	}
+}
+
+.ui-datepicker {
+	border-radius: 0 !important;
+
+	.ui-widget-header {
+		border-radius: 0 !important;		
+	}
+}
+
+.ui-datepicker-prev, .ui-datepicker-next {
+	@extend .svg-icon;
+	line-height: 31px;
+	text-align: center;
+}
+
+.ui-datepicker-next {
+	@extend .icon-arrow-right;
+}
+
+.ui-datepicker-prev {
+	@extend .icon-arrow-left;
 }
