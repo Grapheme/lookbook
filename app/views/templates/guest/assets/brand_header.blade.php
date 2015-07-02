@@ -63,6 +63,7 @@ endif;
                         {{ Form::close() }}
                     @endif
                 @endif
+                <a href="#" class="white-black-btn">Монетизация</a>
             </div>
         </div>
         <div class="clearfix"></div>
