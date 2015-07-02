@@ -647,7 +647,7 @@ th {
   font-style: normal;
 }
 
-.svg-icon, .search__block .block__input button, .search__block .block__close, .gallery-overlay .overlay__close:before, .fotorama__arr, .b-share .b-share__link .b-share-icon, label.input .photo-delete, .photo-preview a.photo-delete-single, .search__header .block__input button {
+.svg-icon, .search__block .block__input button, .search__block .block__close, .gallery-overlay .overlay__close:before, .fotorama__arr, .ui-datepicker-prev, .ui-datepicker-next, .b-share .b-share__link .b-share-icon, label.input .photo-delete, .photo-preview a.photo-delete-single, .search__header .block__input button {
   font-family: 'icomoon';
   speak: none;
   font-style: normal;
@@ -730,11 +730,11 @@ th {
   content: "\e60c";
 }
 
-.icon-arrow-left:before {
+.icon-arrow-left:before, .ui-datepicker-prev:before {
   content: "\e60f";
 }
 
-.icon-arrow-right:before {
+.icon-arrow-right:before, .ui-datepicker-next:before {
   content: "\e60e";
 }
 
@@ -1119,32 +1119,32 @@ h1 {
 .white-btn.loading, .MessageBoxContainer .loading.btn-default {
   background: transparent;
 }
-.white-btn .svg-icon, .MessageBoxContainer .btn-default .svg-icon, .white-btn .search__block .block__input button, .search__block .block__input .white-btn button, .MessageBoxContainer .btn-default .search__block .block__input button, .search__block .block__input .MessageBoxContainer .btn-default button, .white-btn .search__block .block__close, .search__block .white-btn .block__close, .MessageBoxContainer .btn-default .search__block .block__close, .search__block .MessageBoxContainer .btn-default .block__close, .white-btn .gallery-overlay .overlay__close:before, .gallery-overlay .white-btn .overlay__close:before, .MessageBoxContainer .btn-default .gallery-overlay .overlay__close:before, .gallery-overlay .MessageBoxContainer .btn-default .overlay__close:before, .white-btn .fotorama__arr, .MessageBoxContainer .btn-default .fotorama__arr, .white-btn .b-share .b-share__link .b-share-icon, .b-share .b-share__link .white-btn .b-share-icon, .MessageBoxContainer .btn-default .b-share .b-share__link .b-share-icon, .b-share .b-share__link .MessageBoxContainer .btn-default .b-share-icon, .white-btn label.input .photo-delete, label.input .white-btn .photo-delete, .MessageBoxContainer .btn-default label.input .photo-delete, label.input .MessageBoxContainer .btn-default .photo-delete, .white-btn .photo-preview a.photo-delete-single, .photo-preview .white-btn a.photo-delete-single, .MessageBoxContainer .btn-default .photo-preview a.photo-delete-single, .photo-preview .MessageBoxContainer .btn-default a.photo-delete-single, .white-btn .search__header .block__input button, .search__header .block__input .white-btn button, .MessageBoxContainer .btn-default .search__header .block__input button, .search__header .block__input .MessageBoxContainer .btn-default button {
+.white-btn .svg-icon, .MessageBoxContainer .btn-default .svg-icon, .white-btn .search__block .block__input button, .search__block .block__input .white-btn button, .MessageBoxContainer .btn-default .search__block .block__input button, .search__block .block__input .MessageBoxContainer .btn-default button, .white-btn .search__block .block__close, .search__block .white-btn .block__close, .MessageBoxContainer .btn-default .search__block .block__close, .search__block .MessageBoxContainer .btn-default .block__close, .white-btn .gallery-overlay .overlay__close:before, .gallery-overlay .white-btn .overlay__close:before, .MessageBoxContainer .btn-default .gallery-overlay .overlay__close:before, .gallery-overlay .MessageBoxContainer .btn-default .overlay__close:before, .white-btn .fotorama__arr, .MessageBoxContainer .btn-default .fotorama__arr, .white-btn .ui-datepicker-prev, .MessageBoxContainer .btn-default .ui-datepicker-prev, .white-btn .ui-datepicker-next, .MessageBoxContainer .btn-default .ui-datepicker-next, .white-btn .b-share .b-share__link .b-share-icon, .b-share .b-share__link .white-btn .b-share-icon, .MessageBoxContainer .btn-default .b-share .b-share__link .b-share-icon, .b-share .b-share__link .MessageBoxContainer .btn-default .b-share-icon, .white-btn label.input .photo-delete, label.input .white-btn .photo-delete, .MessageBoxContainer .btn-default label.input .photo-delete, label.input .MessageBoxContainer .btn-default .photo-delete, .white-btn .photo-preview a.photo-delete-single, .photo-preview .white-btn a.photo-delete-single, .MessageBoxContainer .btn-default .photo-preview a.photo-delete-single, .photo-preview .MessageBoxContainer .btn-default a.photo-delete-single, .white-btn .search__header .block__input button, .search__header .block__input .white-btn button, .MessageBoxContainer .btn-default .search__header .block__input button, .search__header .block__input .MessageBoxContainer .btn-default button {
   display: inline-block;
   vertical-align: middle;
   color: #4bbeff;
   margin-right: 18px;
 }
-.white-btn .svg-icon.icon-edit, .MessageBoxContainer .btn-default .svg-icon.icon-edit, .white-btn .search__block .block__input button.icon-edit, .search__block .block__input .white-btn button.icon-edit, .MessageBoxContainer .btn-default .search__block .block__input button.icon-edit, .search__block .block__input .MessageBoxContainer .btn-default button.icon-edit, .white-btn .search__block .icon-edit.block__close, .search__block .white-btn .icon-edit.block__close, .MessageBoxContainer .btn-default .search__block .icon-edit.block__close, .search__block .MessageBoxContainer .btn-default .icon-edit.block__close, .white-btn .gallery-overlay .icon-edit.overlay__close:before, .gallery-overlay .white-btn .icon-edit.overlay__close:before, .MessageBoxContainer .btn-default .gallery-overlay .icon-edit.overlay__close:before, .gallery-overlay .MessageBoxContainer .btn-default .icon-edit.overlay__close:before, .white-btn .icon-edit.fotorama__arr, .MessageBoxContainer .btn-default .icon-edit.fotorama__arr, .white-btn .b-share .b-share__link .icon-edit.b-share-icon, .b-share .b-share__link .white-btn .icon-edit.b-share-icon, .MessageBoxContainer .btn-default .b-share .b-share__link .icon-edit.b-share-icon, .b-share .b-share__link .MessageBoxContainer .btn-default .icon-edit.b-share-icon, .white-btn label.input .icon-edit.photo-delete, label.input .white-btn .icon-edit.photo-delete, .MessageBoxContainer .btn-default label.input .icon-edit.photo-delete, label.input .MessageBoxContainer .btn-default .icon-edit.photo-delete, .white-btn .photo-preview a.icon-edit.photo-delete-single, .photo-preview .white-btn a.icon-edit.photo-delete-single, .MessageBoxContainer .btn-default .photo-preview a.icon-edit.photo-delete-single, .photo-preview .MessageBoxContainer .btn-default a.icon-edit.photo-delete-single, .white-btn .search__header .block__input button.icon-edit, .search__header .block__input .white-btn button.icon-edit, .MessageBoxContainer .btn-default .search__header .block__input button.icon-edit, .search__header .block__input .MessageBoxContainer .btn-default button.icon-edit {
+.white-btn .svg-icon.icon-edit, .MessageBoxContainer .btn-default .svg-icon.icon-edit, .white-btn .search__block .block__input button.icon-edit, .search__block .block__input .white-btn button.icon-edit, .MessageBoxContainer .btn-default .search__block .block__input button.icon-edit, .search__block .block__input .MessageBoxContainer .btn-default button.icon-edit, .white-btn .search__block .icon-edit.block__close, .search__block .white-btn .icon-edit.block__close, .MessageBoxContainer .btn-default .search__block .icon-edit.block__close, .search__block .MessageBoxContainer .btn-default .icon-edit.block__close, .white-btn .gallery-overlay .icon-edit.overlay__close:before, .gallery-overlay .white-btn .icon-edit.overlay__close:before, .MessageBoxContainer .btn-default .gallery-overlay .icon-edit.overlay__close:before, .gallery-overlay .MessageBoxContainer .btn-default .icon-edit.overlay__close:before, .white-btn .icon-edit.fotorama__arr, .MessageBoxContainer .btn-default .icon-edit.fotorama__arr, .white-btn .icon-edit.ui-datepicker-prev, .MessageBoxContainer .btn-default .icon-edit.ui-datepicker-prev, .white-btn .icon-edit.ui-datepicker-next, .MessageBoxContainer .btn-default .icon-edit.ui-datepicker-next, .white-btn .b-share .b-share__link .icon-edit.b-share-icon, .b-share .b-share__link .white-btn .icon-edit.b-share-icon, .MessageBoxContainer .btn-default .b-share .b-share__link .icon-edit.b-share-icon, .b-share .b-share__link .MessageBoxContainer .btn-default .icon-edit.b-share-icon, .white-btn label.input .icon-edit.photo-delete, label.input .white-btn .icon-edit.photo-delete, .MessageBoxContainer .btn-default label.input .icon-edit.photo-delete, label.input .MessageBoxContainer .btn-default .icon-edit.photo-delete, .white-btn .photo-preview a.icon-edit.photo-delete-single, .photo-preview .white-btn a.icon-edit.photo-delete-single, .MessageBoxContainer .btn-default .photo-preview a.icon-edit.photo-delete-single, .photo-preview .MessageBoxContainer .btn-default a.icon-edit.photo-delete-single, .white-btn .search__header .block__input button.icon-edit, .search__header .block__input .white-btn button.icon-edit, .MessageBoxContainer .btn-default .search__header .block__input button.icon-edit, .search__header .block__input .MessageBoxContainer .btn-default button.icon-edit {
   font-size: 38px;
   width: 23px;
 }
-.white-btn .svg-icon.icon-comments, .MessageBoxContainer .btn-default .svg-icon.icon-comments, .white-btn .search__block .block__input button.icon-comments, .search__block .block__input .white-btn button.icon-comments, .MessageBoxContainer .btn-default .search__block .block__input button.icon-comments, .search__block .block__input .MessageBoxContainer .btn-default button.icon-comments, .white-btn .search__block .icon-comments.block__close, .search__block .white-btn .icon-comments.block__close, .MessageBoxContainer .btn-default .search__block .icon-comments.block__close, .search__block .MessageBoxContainer .btn-default .icon-comments.block__close, .white-btn .gallery-overlay .icon-comments.overlay__close:before, .gallery-overlay .white-btn .icon-comments.overlay__close:before, .MessageBoxContainer .btn-default .gallery-overlay .icon-comments.overlay__close:before, .gallery-overlay .MessageBoxContainer .btn-default .icon-comments.overlay__close:before, .white-btn .icon-comments.fotorama__arr, .MessageBoxContainer .btn-default .icon-comments.fotorama__arr, .white-btn .b-share .b-share__link .icon-comments.b-share-icon, .b-share .b-share__link .white-btn .icon-comments.b-share-icon, .MessageBoxContainer .btn-default .b-share .b-share__link .icon-comments.b-share-icon, .b-share .b-share__link .MessageBoxContainer .btn-default .icon-comments.b-share-icon, .white-btn label.input .icon-comments.photo-delete, label.input .white-btn .icon-comments.photo-delete, .MessageBoxContainer .btn-default label.input .icon-comments.photo-delete, label.input .MessageBoxContainer .btn-default .icon-comments.photo-delete, .white-btn .photo-preview a.icon-comments.photo-delete-single, .photo-preview .white-btn a.icon-comments.photo-delete-single, .MessageBoxContainer .btn-default .photo-preview a.icon-comments.photo-delete-single, .photo-preview .MessageBoxContainer .btn-default a.icon-comments.photo-delete-single, .white-btn .search__header .block__input button.icon-comments, .search__header .block__input .white-btn button.icon-comments, .MessageBoxContainer .btn-default .search__header .block__input button.icon-comments, .search__header .block__input .MessageBoxContainer .btn-default button.icon-comments {
+.white-btn .svg-icon.icon-comments, .MessageBoxContainer .btn-default .svg-icon.icon-comments, .white-btn .search__block .block__input button.icon-comments, .search__block .block__input .white-btn button.icon-comments, .MessageBoxContainer .btn-default .search__block .block__input button.icon-comments, .search__block .block__input .MessageBoxContainer .btn-default button.icon-comments, .white-btn .search__block .icon-comments.block__close, .search__block .white-btn .icon-comments.block__close, .MessageBoxContainer .btn-default .search__block .icon-comments.block__close, .search__block .MessageBoxContainer .btn-default .icon-comments.block__close, .white-btn .gallery-overlay .icon-comments.overlay__close:before, .gallery-overlay .white-btn .icon-comments.overlay__close:before, .MessageBoxContainer .btn-default .gallery-overlay .icon-comments.overlay__close:before, .gallery-overlay .MessageBoxContainer .btn-default .icon-comments.overlay__close:before, .white-btn .icon-comments.fotorama__arr, .MessageBoxContainer .btn-default .icon-comments.fotorama__arr, .white-btn .icon-comments.ui-datepicker-prev, .MessageBoxContainer .btn-default .icon-comments.ui-datepicker-prev, .white-btn .icon-comments.ui-datepicker-next, .MessageBoxContainer .btn-default .icon-comments.ui-datepicker-next, .white-btn .b-share .b-share__link .icon-comments.b-share-icon, .b-share .b-share__link .white-btn .icon-comments.b-share-icon, .MessageBoxContainer .btn-default .b-share .b-share__link .icon-comments.b-share-icon, .b-share .b-share__link .MessageBoxContainer .btn-default .icon-comments.b-share-icon, .white-btn label.input .icon-comments.photo-delete, label.input .white-btn .icon-comments.photo-delete, .MessageBoxContainer .btn-default label.input .icon-comments.photo-delete, label.input .MessageBoxContainer .btn-default .icon-comments.photo-delete, .white-btn .photo-preview a.icon-comments.photo-delete-single, .photo-preview .white-btn a.icon-comments.photo-delete-single, .MessageBoxContainer .btn-default .photo-preview a.icon-comments.photo-delete-single, .photo-preview .MessageBoxContainer .btn-default a.icon-comments.photo-delete-single, .white-btn .search__header .block__input button.icon-comments, .search__header .block__input .white-btn button.icon-comments, .MessageBoxContainer .btn-default .search__header .block__input button.icon-comments, .search__header .block__input .MessageBoxContainer .btn-default button.icon-comments {
   font-size: 30px;
   width: 22px;
 }
-.white-btn .svg-icon.icon-cross, .MessageBoxContainer .btn-default .svg-icon.icon-cross, .white-btn .search__block .block__input button.icon-cross, .search__block .block__input .white-btn button.icon-cross, .MessageBoxContainer .btn-default .search__block .block__input button.icon-cross, .search__block .block__input .MessageBoxContainer .btn-default button.icon-cross, .white-btn .search__block .icon-cross.block__close, .search__block .white-btn .icon-cross.block__close, .MessageBoxContainer .btn-default .search__block .icon-cross.block__close, .search__block .MessageBoxContainer .btn-default .icon-cross.block__close, .white-btn .gallery-overlay .icon-cross.overlay__close:before, .gallery-overlay .white-btn .icon-cross.overlay__close:before, .MessageBoxContainer .btn-default .gallery-overlay .icon-cross.overlay__close:before, .gallery-overlay .MessageBoxContainer .btn-default .icon-cross.overlay__close:before, .white-btn .gallery-overlay label.input .overlay__close.photo-delete:before, .gallery-overlay label.input .white-btn .overlay__close.photo-delete:before, .MessageBoxContainer .btn-default .gallery-overlay label.input .overlay__close.photo-delete:before, .gallery-overlay label.input .MessageBoxContainer .btn-default .overlay__close.photo-delete:before, .white-btn label.input .gallery-overlay .overlay__close.photo-delete:before, label.input .gallery-overlay .white-btn .overlay__close.photo-delete:before, .MessageBoxContainer .btn-default label.input .gallery-overlay .overlay__close.photo-delete:before, label.input .gallery-overlay .MessageBoxContainer .btn-default .overlay__close.photo-delete:before, .white-btn .gallery-overlay .photo-preview a.overlay__close.photo-delete-single:before, .gallery-overlay .photo-preview .white-btn a.overlay__close.photo-delete-single:before, .MessageBoxContainer .btn-default .gallery-overlay .photo-preview a.overlay__close.photo-delete-single:before, .gallery-overlay .photo-preview .MessageBoxContainer .btn-default a.overlay__close.photo-delete-single:before, .white-btn .photo-preview .gallery-overlay a.overlay__close.photo-delete-single:before, .photo-preview .gallery-overlay .white-btn a.overlay__close.photo-delete-single:before, .MessageBoxContainer .btn-default .photo-preview .gallery-overlay a.overlay__close.photo-delete-single:before, .photo-preview .gallery-overlay .MessageBoxContainer .btn-default a.overlay__close.photo-delete-single:before, .white-btn .icon-cross.fotorama__arr, .MessageBoxContainer .btn-default .icon-cross.fotorama__arr, .white-btn .b-share .b-share__link .icon-cross.b-share-icon, .b-share .b-share__link .white-btn .icon-cross.b-share-icon, .MessageBoxContainer .btn-default .b-share .b-share__link .icon-cross.b-share-icon, .b-share .b-share__link .MessageBoxContainer .btn-default .icon-cross.b-share-icon, .white-btn label.input .photo-delete, label.input .white-btn .photo-delete, .MessageBoxContainer .btn-default label.input .photo-delete, label.input .MessageBoxContainer .btn-default .photo-delete, .white-btn .photo-preview a.photo-delete-single, .photo-preview .white-btn a.photo-delete-single, .MessageBoxContainer .btn-default .photo-preview a.photo-delete-single, .photo-preview .MessageBoxContainer .btn-default a.photo-delete-single, .white-btn .search__header .block__input button.icon-cross, .search__header .block__input .white-btn button.icon-cross, .MessageBoxContainer .btn-default .search__header .block__input button.icon-cross, .search__header .block__input .MessageBoxContainer .btn-default button.icon-cross {
+.white-btn .svg-icon.icon-cross, .MessageBoxContainer .btn-default .svg-icon.icon-cross, .white-btn .search__block .block__input button.icon-cross, .search__block .block__input .white-btn button.icon-cross, .MessageBoxContainer .btn-default .search__block .block__input button.icon-cross, .search__block .block__input .MessageBoxContainer .btn-default button.icon-cross, .white-btn .search__block .icon-cross.block__close, .search__block .white-btn .icon-cross.block__close, .MessageBoxContainer .btn-default .search__block .icon-cross.block__close, .search__block .MessageBoxContainer .btn-default .icon-cross.block__close, .white-btn .gallery-overlay .icon-cross.overlay__close:before, .gallery-overlay .white-btn .icon-cross.overlay__close:before, .MessageBoxContainer .btn-default .gallery-overlay .icon-cross.overlay__close:before, .gallery-overlay .MessageBoxContainer .btn-default .icon-cross.overlay__close:before, .white-btn .gallery-overlay label.input .overlay__close.photo-delete:before, .gallery-overlay label.input .white-btn .overlay__close.photo-delete:before, .MessageBoxContainer .btn-default .gallery-overlay label.input .overlay__close.photo-delete:before, .gallery-overlay label.input .MessageBoxContainer .btn-default .overlay__close.photo-delete:before, .white-btn label.input .gallery-overlay .overlay__close.photo-delete:before, label.input .gallery-overlay .white-btn .overlay__close.photo-delete:before, .MessageBoxContainer .btn-default label.input .gallery-overlay .overlay__close.photo-delete:before, label.input .gallery-overlay .MessageBoxContainer .btn-default .overlay__close.photo-delete:before, .white-btn .gallery-overlay .photo-preview a.overlay__close.photo-delete-single:before, .gallery-overlay .photo-preview .white-btn a.overlay__close.photo-delete-single:before, .MessageBoxContainer .btn-default .gallery-overlay .photo-preview a.overlay__close.photo-delete-single:before, .gallery-overlay .photo-preview .MessageBoxContainer .btn-default a.overlay__close.photo-delete-single:before, .white-btn .photo-preview .gallery-overlay a.overlay__close.photo-delete-single:before, .photo-preview .gallery-overlay .white-btn a.overlay__close.photo-delete-single:before, .MessageBoxContainer .btn-default .photo-preview .gallery-overlay a.overlay__close.photo-delete-single:before, .photo-preview .gallery-overlay .MessageBoxContainer .btn-default a.overlay__close.photo-delete-single:before, .white-btn .icon-cross.fotorama__arr, .MessageBoxContainer .btn-default .icon-cross.fotorama__arr, .white-btn .icon-cross.ui-datepicker-prev, .MessageBoxContainer .btn-default .icon-cross.ui-datepicker-prev, .white-btn .icon-cross.ui-datepicker-next, .MessageBoxContainer .btn-default .icon-cross.ui-datepicker-next, .white-btn .b-share .b-share__link .icon-cross.b-share-icon, .b-share .b-share__link .white-btn .icon-cross.b-share-icon, .MessageBoxContainer .btn-default .b-share .b-share__link .icon-cross.b-share-icon, .b-share .b-share__link .MessageBoxContainer .btn-default .icon-cross.b-share-icon, .white-btn label.input .photo-delete, label.input .white-btn .photo-delete, .MessageBoxContainer .btn-default label.input .photo-delete, label.input .MessageBoxContainer .btn-default .photo-delete, .white-btn .photo-preview a.photo-delete-single, .photo-preview .white-btn a.photo-delete-single, .MessageBoxContainer .btn-default .photo-preview a.photo-delete-single, .photo-preview .MessageBoxContainer .btn-default a.photo-delete-single, .white-btn .search__header .block__input button.icon-cross, .search__header .block__input .white-btn button.icon-cross, .MessageBoxContainer .btn-default .search__header .block__input button.icon-cross, .search__header .block__input .MessageBoxContainer .btn-default button.icon-cross {
   position: relative;
   top: -.05em;
   font-size: 22px;
   width: 19px;
 }
-.white-btn .svg-icon.icon-glasses, .MessageBoxContainer .btn-default .svg-icon.icon-glasses, .white-btn .search__block .block__input button.icon-glasses, .search__block .block__input .white-btn button.icon-glasses, .MessageBoxContainer .btn-default .search__block .block__input button.icon-glasses, .search__block .block__input .MessageBoxContainer .btn-default button.icon-glasses, .white-btn .search__block .icon-glasses.block__close, .search__block .white-btn .icon-glasses.block__close, .MessageBoxContainer .btn-default .search__block .icon-glasses.block__close, .search__block .MessageBoxContainer .btn-default .icon-glasses.block__close, .white-btn .gallery-overlay .icon-glasses.overlay__close:before, .gallery-overlay .white-btn .icon-glasses.overlay__close:before, .MessageBoxContainer .btn-default .gallery-overlay .icon-glasses.overlay__close:before, .gallery-overlay .MessageBoxContainer .btn-default .icon-glasses.overlay__close:before, .white-btn .icon-glasses.fotorama__arr, .MessageBoxContainer .btn-default .icon-glasses.fotorama__arr, .white-btn .b-share .b-share__link .icon-glasses.b-share-icon, .b-share .b-share__link .white-btn .icon-glasses.b-share-icon, .MessageBoxContainer .btn-default .b-share .b-share__link .icon-glasses.b-share-icon, .b-share .b-share__link .MessageBoxContainer .btn-default .icon-glasses.b-share-icon, .white-btn label.input .icon-glasses.photo-delete, label.input .white-btn .icon-glasses.photo-delete, .MessageBoxContainer .btn-default label.input .icon-glasses.photo-delete, label.input .MessageBoxContainer .btn-default .icon-glasses.photo-delete, .white-btn .photo-preview a.icon-glasses.photo-delete-single, .photo-preview .white-btn a.icon-glasses.photo-delete-single, .MessageBoxContainer .btn-default .photo-preview a.icon-glasses.photo-delete-single, .photo-preview .MessageBoxContainer .btn-default a.icon-glasses.photo-delete-single, .white-btn .search__header .block__input button.icon-glasses, .search__header .block__input .white-btn button.icon-glasses, .MessageBoxContainer .btn-default .search__header .block__input button.icon-glasses, .search__header .block__input .MessageBoxContainer .btn-default button.icon-glasses {
+.white-btn .svg-icon.icon-glasses, .MessageBoxContainer .btn-default .svg-icon.icon-glasses, .white-btn .search__block .block__input button.icon-glasses, .search__block .block__input .white-btn button.icon-glasses, .MessageBoxContainer .btn-default .search__block .block__input button.icon-glasses, .search__block .block__input .MessageBoxContainer .btn-default button.icon-glasses, .white-btn .search__block .icon-glasses.block__close, .search__block .white-btn .icon-glasses.block__close, .MessageBoxContainer .btn-default .search__block .icon-glasses.block__close, .search__block .MessageBoxContainer .btn-default .icon-glasses.block__close, .white-btn .gallery-overlay .icon-glasses.overlay__close:before, .gallery-overlay .white-btn .icon-glasses.overlay__close:before, .MessageBoxContainer .btn-default .gallery-overlay .icon-glasses.overlay__close:before, .gallery-overlay .MessageBoxContainer .btn-default .icon-glasses.overlay__close:before, .white-btn .icon-glasses.fotorama__arr, .MessageBoxContainer .btn-default .icon-glasses.fotorama__arr, .white-btn .icon-glasses.ui-datepicker-prev, .MessageBoxContainer .btn-default .icon-glasses.ui-datepicker-prev, .white-btn .icon-glasses.ui-datepicker-next, .MessageBoxContainer .btn-default .icon-glasses.ui-datepicker-next, .white-btn .b-share .b-share__link .icon-glasses.b-share-icon, .b-share .b-share__link .white-btn .icon-glasses.b-share-icon, .MessageBoxContainer .btn-default .b-share .b-share__link .icon-glasses.b-share-icon, .b-share .b-share__link .MessageBoxContainer .btn-default .icon-glasses.b-share-icon, .white-btn label.input .icon-glasses.photo-delete, label.input .white-btn .icon-glasses.photo-delete, .MessageBoxContainer .btn-default label.input .icon-glasses.photo-delete, label.input .MessageBoxContainer .btn-default .icon-glasses.photo-delete, .white-btn .photo-preview a.icon-glasses.photo-delete-single, .photo-preview .white-btn a.icon-glasses.photo-delete-single, .MessageBoxContainer .btn-default .photo-preview a.icon-glasses.photo-delete-single, .photo-preview .MessageBoxContainer .btn-default a.icon-glasses.photo-delete-single, .white-btn .search__header .block__input button.icon-glasses, .search__header .block__input .white-btn button.icon-glasses, .MessageBoxContainer .btn-default .search__header .block__input button.icon-glasses, .search__header .block__input .MessageBoxContainer .btn-default button.icon-glasses {
   font-size: 30px;
   width: 28px;
   margin-left: -17px;
 }
-.white-btn .svg-icon.icon-person, .MessageBoxContainer .btn-default .svg-icon.icon-person, .white-btn .search__block .block__input button.icon-person, .search__block .block__input .white-btn button.icon-person, .MessageBoxContainer .btn-default .search__block .block__input button.icon-person, .search__block .block__input .MessageBoxContainer .btn-default button.icon-person, .white-btn .search__block .icon-person.block__close, .search__block .white-btn .icon-person.block__close, .MessageBoxContainer .btn-default .search__block .icon-person.block__close, .search__block .MessageBoxContainer .btn-default .icon-person.block__close, .white-btn .gallery-overlay .icon-person.overlay__close:before, .gallery-overlay .white-btn .icon-person.overlay__close:before, .MessageBoxContainer .btn-default .gallery-overlay .icon-person.overlay__close:before, .gallery-overlay .MessageBoxContainer .btn-default .icon-person.overlay__close:before, .white-btn .icon-person.fotorama__arr, .MessageBoxContainer .btn-default .icon-person.fotorama__arr, .white-btn .b-share .b-share__link .icon-person.b-share-icon, .b-share .b-share__link .white-btn .icon-person.b-share-icon, .MessageBoxContainer .btn-default .b-share .b-share__link .icon-person.b-share-icon, .b-share .b-share__link .MessageBoxContainer .btn-default .icon-person.b-share-icon, .white-btn label.input .icon-person.photo-delete, label.input .white-btn .icon-person.photo-delete, .MessageBoxContainer .btn-default label.input .icon-person.photo-delete, label.input .MessageBoxContainer .btn-default .icon-person.photo-delete, .white-btn .photo-preview a.icon-person.photo-delete-single, .photo-preview .white-btn a.icon-person.photo-delete-single, .MessageBoxContainer .btn-default .photo-preview a.icon-person.photo-delete-single, .photo-preview .MessageBoxContainer .btn-default a.icon-person.photo-delete-single, .white-btn .search__header .block__input button.icon-person, .search__header .block__input .white-btn button.icon-person, .MessageBoxContainer .btn-default .search__header .block__input button.icon-person, .search__header .block__input .MessageBoxContainer .btn-default button.icon-person {
+.white-btn .svg-icon.icon-person, .MessageBoxContainer .btn-default .svg-icon.icon-person, .white-btn .search__block .block__input button.icon-person, .search__block .block__input .white-btn button.icon-person, .MessageBoxContainer .btn-default .search__block .block__input button.icon-person, .search__block .block__input .MessageBoxContainer .btn-default button.icon-person, .white-btn .search__block .icon-person.block__close, .search__block .white-btn .icon-person.block__close, .MessageBoxContainer .btn-default .search__block .icon-person.block__close, .search__block .MessageBoxContainer .btn-default .icon-person.block__close, .white-btn .gallery-overlay .icon-person.overlay__close:before, .gallery-overlay .white-btn .icon-person.overlay__close:before, .MessageBoxContainer .btn-default .gallery-overlay .icon-person.overlay__close:before, .gallery-overlay .MessageBoxContainer .btn-default .icon-person.overlay__close:before, .white-btn .icon-person.fotorama__arr, .MessageBoxContainer .btn-default .icon-person.fotorama__arr, .white-btn .icon-person.ui-datepicker-prev, .MessageBoxContainer .btn-default .icon-person.ui-datepicker-prev, .white-btn .icon-person.ui-datepicker-next, .MessageBoxContainer .btn-default .icon-person.ui-datepicker-next, .white-btn .b-share .b-share__link .icon-person.b-share-icon, .b-share .b-share__link .white-btn .icon-person.b-share-icon, .MessageBoxContainer .btn-default .b-share .b-share__link .icon-person.b-share-icon, .b-share .b-share__link .MessageBoxContainer .btn-default .icon-person.b-share-icon, .white-btn label.input .icon-person.photo-delete, label.input .white-btn .icon-person.photo-delete, .MessageBoxContainer .btn-default label.input .icon-person.photo-delete, label.input .MessageBoxContainer .btn-default .icon-person.photo-delete, .white-btn .photo-preview a.icon-person.photo-delete-single, .photo-preview .white-btn a.icon-person.photo-delete-single, .MessageBoxContainer .btn-default .photo-preview a.icon-person.photo-delete-single, .photo-preview .MessageBoxContainer .btn-default a.icon-person.photo-delete-single, .white-btn .search__header .block__input button.icon-person, .search__header .block__input .white-btn button.icon-person, .MessageBoxContainer .btn-default .search__header .block__input button.icon-person, .search__header .block__input .MessageBoxContainer .btn-default button.icon-person {
   font-size: 30px;
   width: 22px;
   margin-left: -25px;
@@ -1211,7 +1211,7 @@ h1 {
   color: #ffffff;
 }
 
-.us-input, label.input textarea {
+.us-input, .us-textarea, label.input textarea {
   box-sizing: border-box;
   height: 40px;
   border: 1px solid #cccccc;
@@ -1237,6 +1237,45 @@ h1 {
 }
 .category-name a {
   border: none !important;
+}
+
+.us-textarea, label.input textarea {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 70px;
+  resize: none;
+}
+.us-textarea::-webkit-input-placeholder, label.input textarea::-webkit-input-placeholder {
+  font-family: 'Lato';
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: none;
+  color: #aaa;
+}
+.us-textarea::-moz-placeholder, label.input textarea::-moz-placeholder {
+  font-family: 'Lato';
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: none;
+  color: #aaa;
+}
+.us-textarea:-moz-placeholder, label.input textarea:-moz-placeholder {
+  font-family: 'Lato';
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: none;
+  color: #aaa;
+}
+.us-textarea:-ms-input-placeholder, label.input textarea:-ms-input-placeholder {
+  font-family: 'Lato';
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: none;
+  color: #aaa;
 }
 
 .hidden {
@@ -1473,7 +1512,7 @@ h1 {
   font-size: 14px;
   margin-top: 5px;
 }
-.right-content__list.list-big .list__item .item__text .text__views .svg-icon, .right-content__list.list-big .list__item .item__text .text__views .search__block .block__input button, .search__block .block__input .right-content__list.list-big .list__item .item__text .text__views button, .right-content__list.list-big .list__item .item__text .text__views .search__block .block__close, .search__block .right-content__list.list-big .list__item .item__text .text__views .block__close, .right-content__list.list-big .list__item .item__text .text__views .gallery-overlay .overlay__close:before, .gallery-overlay .right-content__list.list-big .list__item .item__text .text__views .overlay__close:before, .right-content__list.list-big .list__item .item__text .text__views .fotorama__arr, .right-content__list.list-big .list__item .item__text .text__views .b-share .b-share__link .b-share-icon, .b-share .b-share__link .right-content__list.list-big .list__item .item__text .text__views .b-share-icon, .right-content__list.list-big .list__item .item__text .text__views label.input .photo-delete, label.input .right-content__list.list-big .list__item .item__text .text__views .photo-delete, .right-content__list.list-big .list__item .item__text .text__views .photo-preview a.photo-delete-single, .photo-preview .right-content__list.list-big .list__item .item__text .text__views a.photo-delete-single, .right-content__list.list-big .list__item .item__text .text__views .search__header .block__input button, .search__header .block__input .right-content__list.list-big .list__item .item__text .text__views button {
+.right-content__list.list-big .list__item .item__text .text__views .svg-icon, .right-content__list.list-big .list__item .item__text .text__views .search__block .block__input button, .search__block .block__input .right-content__list.list-big .list__item .item__text .text__views button, .right-content__list.list-big .list__item .item__text .text__views .search__block .block__close, .search__block .right-content__list.list-big .list__item .item__text .text__views .block__close, .right-content__list.list-big .list__item .item__text .text__views .gallery-overlay .overlay__close:before, .gallery-overlay .right-content__list.list-big .list__item .item__text .text__views .overlay__close:before, .right-content__list.list-big .list__item .item__text .text__views .fotorama__arr, .right-content__list.list-big .list__item .item__text .text__views .ui-datepicker-prev, .right-content__list.list-big .list__item .item__text .text__views .ui-datepicker-next, .right-content__list.list-big .list__item .item__text .text__views .b-share .b-share__link .b-share-icon, .b-share .b-share__link .right-content__list.list-big .list__item .item__text .text__views .b-share-icon, .right-content__list.list-big .list__item .item__text .text__views label.input .photo-delete, label.input .right-content__list.list-big .list__item .item__text .text__views .photo-delete, .right-content__list.list-big .list__item .item__text .text__views .photo-preview a.photo-delete-single, .photo-preview .right-content__list.list-big .list__item .item__text .text__views a.photo-delete-single, .right-content__list.list-big .list__item .item__text .text__views .search__header .block__input button, .search__header .block__input .right-content__list.list-big .list__item .item__text .text__views button {
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -1726,7 +1765,7 @@ h1 {
   vertical-align: middle;
   line-height: normal;
 }
-.header .header__top .header__login .header__user .svg-icon, .header .header__top .header__login .header__user .search__block .block__input button, .search__block .block__input .header .header__top .header__login .header__user button, .header .header__top .header__login .header__user .search__block .block__close, .search__block .header .header__top .header__login .header__user .block__close, .header .header__top .header__login .header__user .gallery-overlay .overlay__close:before, .gallery-overlay .header .header__top .header__login .header__user .overlay__close:before, .header .header__top .header__login .header__user .fotorama__arr, .header .header__top .header__login .header__user .b-share .b-share__link .b-share-icon, .b-share .b-share__link .header .header__top .header__login .header__user .b-share-icon, .header .header__top .header__login .header__user label.input .photo-delete, label.input .header .header__top .header__login .header__user .photo-delete, .header .header__top .header__login .header__user .photo-preview a.photo-delete-single, .photo-preview .header .header__top .header__login .header__user a.photo-delete-single, .header .header__top .header__login .header__user .search__header .block__input button, .search__header .block__input .header .header__top .header__login .header__user button {
+.header .header__top .header__login .header__user .svg-icon, .header .header__top .header__login .header__user .search__block .block__input button, .search__block .block__input .header .header__top .header__login .header__user button, .header .header__top .header__login .header__user .search__block .block__close, .search__block .header .header__top .header__login .header__user .block__close, .header .header__top .header__login .header__user .gallery-overlay .overlay__close:before, .gallery-overlay .header .header__top .header__login .header__user .overlay__close:before, .header .header__top .header__login .header__user .fotorama__arr, .header .header__top .header__login .header__user .ui-datepicker-prev, .header .header__top .header__login .header__user .ui-datepicker-next, .header .header__top .header__login .header__user .b-share .b-share__link .b-share-icon, .b-share .b-share__link .header .header__top .header__login .header__user .b-share-icon, .header .header__top .header__login .header__user label.input .photo-delete, label.input .header .header__top .header__login .header__user .photo-delete, .header .header__top .header__login .header__user .photo-preview a.photo-delete-single, .photo-preview .header .header__top .header__login .header__user a.photo-delete-single, .header .header__top .header__login .header__user .search__header .block__input button, .search__header .block__input .header .header__top .header__login .header__user button {
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -2256,7 +2295,7 @@ h1 {
   color: inherit;
   text-decoration: none;
 }
-.dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .svg-icon, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .search__block .block__input button, .search__block .block__input .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item button, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .search__block .block__close, .search__block .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .block__close, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .gallery-overlay .overlay__close:before, .gallery-overlay .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .overlay__close:before, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .fotorama__arr, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .b-share .b-share__link .b-share-icon, .b-share .b-share__link .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .b-share-icon, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item label.input .photo-delete, label.input .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .photo-delete, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .photo-preview a.photo-delete-single, .photo-preview .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item a.photo-delete-single, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .search__header .block__input button, .search__header .block__input .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item button {
+.dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .svg-icon, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .search__block .block__input button, .search__block .block__input .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item button, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .search__block .block__close, .search__block .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .block__close, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .gallery-overlay .overlay__close:before, .gallery-overlay .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .overlay__close:before, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .fotorama__arr, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .ui-datepicker-prev, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .ui-datepicker-next, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .b-share .b-share__link .b-share-icon, .b-share .b-share__link .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .b-share-icon, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item label.input .photo-delete, label.input .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .photo-delete, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .photo-preview a.photo-delete-single, .photo-preview .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item a.photo-delete-single, .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item .search__header .block__input button, .search__header .block__input .dashboard-list .dashboard-item .right-block .post-footer .post-footer__statisctics .statisctics-item button {
   display: inline-block;
   vertical-align: middle;
   font-size: 35px;
@@ -2380,7 +2419,7 @@ h1 {
   vertical-align: middle;
   line-height: 35px;
 }
-.actions__btns .svg-icon, .actions__btns .search__block .block__input button, .search__block .block__input .actions__btns button, .actions__btns .search__block .block__close, .search__block .actions__btns .block__close, .actions__btns .gallery-overlay .overlay__close:before, .gallery-overlay .actions__btns .overlay__close:before, .actions__btns .fotorama__arr, .actions__btns .b-share .b-share__link .b-share-icon, .b-share .b-share__link .actions__btns .b-share-icon, .actions__btns label.input .photo-delete, label.input .actions__btns .photo-delete, .actions__btns .photo-preview a.photo-delete-single, .photo-preview .actions__btns a.photo-delete-single, .actions__btns .search__header .block__input button, .search__header .block__input .actions__btns button {
+.actions__btns .svg-icon, .actions__btns .search__block .block__input button, .search__block .block__input .actions__btns button, .actions__btns .search__block .block__close, .search__block .actions__btns .block__close, .actions__btns .gallery-overlay .overlay__close:before, .gallery-overlay .actions__btns .overlay__close:before, .actions__btns .fotorama__arr, .actions__btns .ui-datepicker-prev, .actions__btns .ui-datepicker-next, .actions__btns .b-share .b-share__link .b-share-icon, .b-share .b-share__link .actions__btns .b-share-icon, .actions__btns label.input .photo-delete, label.input .actions__btns .photo-delete, .actions__btns .photo-preview a.photo-delete-single, .photo-preview .actions__btns a.photo-delete-single, .actions__btns .search__header .block__input button, .search__header .block__input .actions__btns button {
   font-size: 30px;
   width: 15px;
   vertical-align: middle;
@@ -2784,6 +2823,20 @@ h1 {
 .moder-table .table__delete {
   vertical-align: middle;
 }
+.moder-table .table__promo .promo__image .image__link {
+  display: inline-block;
+  height: 98px;
+  width: 170px;
+  float: left;
+  background-size: cover;
+  background-position: center center;
+}
+.moder-table .table__promo .promo__info {
+  margin-left: 180px;
+}
+.moder-table .table__promo .promo__info .info__date {
+  margin-top: 10px;
+}
 .moder-table .comments__item {
   border-top: none !important;
 }
@@ -2792,6 +2845,10 @@ h1 {
 }
 .moder-table .comments__item .right-block {
   margin-left: 80px;
+}
+
+.promo-btn {
+  padding: 23px 0;
 }
 
 .pagination {
@@ -2818,6 +2875,18 @@ h1 {
 }
 .pagination li.active {
   color: #4bbeff;
+}
+
+.ui-datepicker {
+  border-radius: 0 !important;
+}
+.ui-datepicker .ui-widget-header {
+  border-radius: 0 !important;
+}
+
+.ui-datepicker-prev, .ui-datepicker-next {
+  line-height: 31px;
+  text-align: center;
 }
 
 .b-share .b-share__link {
@@ -3486,7 +3555,7 @@ h1 {
   width: 50%;
   float: left;
 }
-.new-post-form .top__select-block .ui-selectmenu-button {
+.new-post-form .ui-selectmenu-button {
   position: relative;
   width: 100% !important;
   outline: none !important;
@@ -3502,7 +3571,7 @@ h1 {
   padding: 0 15px;
   box-sizing: border-box;
 }
-.new-post-form .top__select-block .ui-selectmenu-button:before {
+.new-post-form .ui-selectmenu-button:before {
   content: "";
   position: absolute;
   right: 15px;
@@ -3514,7 +3583,7 @@ h1 {
   border-width: 6px 6px 0 6px;
   border-color: #333333 transparent transparent transparent;
 }
-.new-post-form .top__select-block .ui-selectmenu-button .ui-selectmenu-text {
+.new-post-form .ui-selectmenu-button .ui-selectmenu-text {
   padding: 0;
   line-height: 40px;
 }
@@ -3579,43 +3648,7 @@ label.input .photo-delete:before {
   font-size: 20px;
 }
 label.input textarea {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  height: 70px;
-  resize: none;
   font-size: 14px;
-}
-label.input textarea::-webkit-input-placeholder {
-  font-family: 'Lato';
-  font-size: 16px;
-  font-weight: 400;
-  font-style: normal;
-  text-transform: none;
-  color: #aaa;
-}
-label.input textarea::-moz-placeholder {
-  font-family: 'Lato';
-  font-size: 16px;
-  font-weight: 400;
-  font-style: normal;
-  text-transform: none;
-  color: #aaa;
-}
-label.input textarea:-moz-placeholder {
-  font-family: 'Lato';
-  font-size: 16px;
-  font-weight: 400;
-  font-style: normal;
-  text-transform: none;
-  color: #aaa;
-}
-label.input textarea:-ms-input-placeholder {
-  font-family: 'Lato';
-  font-size: 16px;
-  font-weight: 400;
-  font-style: normal;
-  text-transform: none;
-  color: #aaa;
 }
 label.input .save-image-data {
   position: absolute;

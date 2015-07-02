@@ -3,20 +3,26 @@
 </div>
 <table class="moder-table">
     <thead>
-    <th class="table__number">№<!--  п.п --></th>
-    <th>Имя</th>
-    <th>Местонахождение</th>
-    <th>Дата регистрации</th>
-    <th></th>
+        <th class="table__number">№</th>
+        <th>Имя</th>
+        <th>Местонахождение</th>
+        <th>Монетизация</th>
+        <th>Дата регистрации</th>
+        <th></th>
     </thead>
     <tbody>
     @foreach($accounts as $index => $account)
         <tr>
             <td class="table__number">{{ $index+1 }}</td>
             <td class="table__user-info">
-                <a target="_blank" href="javascript:void(0)">{{ $account->name }}</a><br>{{ $account->email }}
+                <a target="_blank" href="{{ URL::route('user.profile.show',$account->id.'-'.BaseController::stringTranslite($account->name)) }}">{{ $account->name }}</a><br>{{ $account->email }}
             </td>
             <td>{{ $account->location }}</td>
+            <td>
+                @if(!empty($account->monetization))
+                    <a target="_blank" href="{{ URL::route('user.monetization.show',$account->id.'-'.BaseController::stringTranslite($account->name)) }}">Смотреть</a>
+                @endif
+            </td>
             <td>{{ $account->updated_at->format('d.m.Y H:i') }}</td>
             <td class="table__actions js-slide-parent">
                 <div class="js-slide-item hidden">
