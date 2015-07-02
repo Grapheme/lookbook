@@ -180,7 +180,7 @@ class AccountsModeratorController extends BaseController {
     /****************************************************************************/
     public function accountsList(){
 
-        $accounts = Accounts::where('group_id',4)->orderBy('created_at','DESC')->with('posts')->paginate(Config::get('lookbook.accounts_limit'));
+        $accounts = Accounts::where('group_id',4)->orderBy('created_at','DESC')->with('posts','monetization')->paginate(Config::get('lookbook.accounts_limit'));
         return View::make(Helper::acclayout('accounts'),compact('accounts'));
     }
 

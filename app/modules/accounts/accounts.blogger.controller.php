@@ -31,7 +31,9 @@ class AccountsBloggerController extends BaseController {
         endif;
         Route::get('profile/{user_url}',array('as'=>'user.profile.show','uses'=>$class.'@guestProfileShow'));
         Route::get('profile/{user_url}/posts',array('as'=>'user.posts.show','uses'=>$class.'@guestProfilePostsShow'));
-
+        if(Auth::check() && Auth::user()->group_id == 3):
+        Route::get('profile/{user_url}/monetization',array('as'=>'user.monetization.show','uses'=>$class.'@guestProfileMonetizationShow'));
+        endif;
         Route::post('more/blogs', array('before' => 'csrf', 'as' => 'blogs.public.more',
             'uses' => $class . '@moreBlogs'));
     }
@@ -416,6 +418,35 @@ class AccountsBloggerController extends BaseController {
             else:
                 return View::make(Helper::layout('blogger-profile-posts'),compact('user','posts','posts_total_count'));
             endif;
+        endif;
+    }
+
+    public function guestProfileMonetizationShow($user_url){
+
+        if(Auth::user()->group_id != 3):
+            App::abort(404);
+        endif;
+        if ($user = Accounts::where('id',(int)$user_url)->where('brand', 0)->where('active',TRUE)->first()):
+            $page_data = array(
+                'page_title'=> Lang::get('seo.BLOGGER.title'),
+                'page_description'=> Lang::get('seo.BLOGGER.description'),
+                'page_keywords'=> Lang::get('seo.BLOGGER.keywords'),
+                'user' => $user,
+                'monetization' => array('main'=>array(),'cooperation'=>array(),'thrust'=>array())
+            );
+            $page_data['monetization']['main'] = BloggerMonetization::where('user_id', $user->id)->first();
+            foreach(BloggerCooperationBrands::where('user_id', $user->id)->get() as $cooperation):
+                $page_data['monetization']['cooperation'][] = $cooperation->cooperation_brand_id;
+            endforeach;
+            foreach(BloggerThrust::where('user_id', $user->id)->get() as $thrust):
+                $page_data['monetization']['thrust'][] = $thrust->thrust_id;
+            endforeach;
+
+            #Helper::ta($page_data['monetization']['main']);
+            #Helper::ta($page_data['monetization']['cooperation']);
+            #Helper::tad($page_data['monetization']['thrust']);
+
+            return View::make(Helper::layout('blogger-monetization'), $page_data);
         endif;
     }
 
