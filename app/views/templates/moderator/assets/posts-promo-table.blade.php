@@ -1,4 +1,4 @@
-<div class="left-title">Список опубликованных постов</div>
+<div class="left-title">Список промо постов</div>
 <table class="moder-table">
     <thead>
         <th class="table__number">№</th>
@@ -29,23 +29,6 @@
                 </div>
             </td>
             <td>{{ $post->updated_at->format('d.m.Y H:i') }}</td>
-            <td class="table__actions js-slide-parent">
-                <div class="js-slide-item hidden">
-                    {{ Form::model($post,array('route'=>array('moderator.posts.publication',$post->id),'method'=>'post','class'=>'inline-block js-ajax-form','files'=>TRUE)) }}
-                    {{ Form::checkbox('publication') }} Опубликован <br>
-                    {{ Form::checkbox('in_index') }} Опубликовать на главную <br>
-                    {{ Form::checkbox('in_section') }} Опубликовать в разделе <br>
-                    {{ Form::checkbox('in_promoted') }} Продвигаемый пост <br>
-                    {{ Form::checkbox('in_advertising') }} Рекламный пост <br><br>
-                    Изображение поста: <br>
-                    {{ Form::file('photo') }}
-                    {{ Form::button('Сохранить',array('class'=>'white-btn actions__btn','type'=>'submit')) }}
-                    {{ Form::close() }}
-                </div>
-                <div>
-                    <a href="#" class="white-btn js-slide-link">Редактировать</a>
-                </div>
-            </td>
             <td class="table__delete">
                 {{ Form::model($post,array('route'=>array('moderator.posts.delete',$post->id),'method'=>'delete','class'=>'inline-block js-delete-post')) }}
                 {{ Form::button('<i class="svg-icon icon-cross"></i>Удалить',array('class'=>'white-btn action-delete','type'=>'submit')) }}

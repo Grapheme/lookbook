@@ -22,6 +22,7 @@ class CreatePostsTable extends Migration {
             $table->boolean('in_section')->default(0)->unsigned()->nullable();
             $table->boolean('in_promoted')->default(0)->unsigned()->nullable();
             $table->boolean('in_advertising')->default(0)->unsigned()->nullable();
+            $table->boolean('in_promo_banner')->default(0)->unsigned()->nullable();
             $table->integer('promoted_photo_id')->unsigned()->nullable();
 			$table->timestamps();
 		});
