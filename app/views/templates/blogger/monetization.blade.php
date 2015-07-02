@@ -22,42 +22,7 @@
                         @include(Helper::acclayout('assets.forms.blogger_monetization'))
                     </div>
                     <div class="reg-content__right">
-                        <div class="right-title">Аватарка</div>
-                        <div class="right-content">
-                        <?php
-                            $hasImage = FALSE;
-                            if(!empty(Auth::user()->photo) && File::exists(public_path($profile->photo))):
-                                $hasImage = TRUE;
-                            endif;
-                        ?>
-                            <div data-empty-name="{{ $profile->name }} {{ $profile->surname }}" class="ava-change{{ !$hasImage ? ' ava-empty ' : ' ' }}js-ava-cont">
-                                <div class="ava-image">
-                                    {{ Form::open(array('route'=>'profile.avatar.upload','method'=>'post','id'=>'ava-change','class'=>'ava-image__cont')) }}
-                                        <a href="javascript:void(0);" class="ava-change js-submit">Изменить</a>
-                                        {{ Form::file('photo',array('class'=>'js-ava-input')) }}
-                                    {{ Form::close() }}
-                                    <div class="js-ava-img-cont">
-                                    @if($hasImage)
-                                        <img src="{{ asset($profile->photo) }}">
-                                    @endif
-                                    </div>
-                                    <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
-                                </div>
-                                <div class="ava-links">
-                                    {{ Form::open(array('route'=>'profile.avatar.delete','method'=>'delete','id'=>'ava-delete','class'=>'ava-delete-form')) }}
-                                        <a href="javascript:void(0);" class="ava-delete js-submit"><i class="icon-cross37 svg-icon"></i></a>
-                                    {{ Form::close() }}
-                                    {{ Form::open(array('route'=>'profile.avatar.upload','method'=>'post','id'=>'ava-upload','class'=>'ava-upload-form')) }}
-                                        <a href="javascript:void(0);" class="ava-upload js-submit"><span>Загрузить аватарку</span>
-                                            {{ Form::file('photo',array('class'=>'js-ava-input')) }}
-                                        </a>
-                                    {{ Form::close() }}
-                                    <div id="ava-error-cont" class="ava-error"></div>
-                                    <div id="ava-error-server" class="ava-error"></div>
-                                </div>
-                            </div>
-                        </div>
-                        @include(Helper::acclayout('assets.statistic'))
+                        @include(Helper::acclayout('assets.recommended-list'))
                     </div>
                     <div class="clearfix"></div>
                 </div>

@@ -35,7 +35,7 @@
                     @endif
                     </div>
                     <div class="reg-content__right">
-                        @include(Helper::acclayout('assets.recommended-list'),compact('recommended_blogs'))
+                        @include(Helper::acclayout('assets.recommended-list'))
                         @include(Helper::acclayout('assets.blog-list'),compact('blog_list'))
                     </div>
                     <div class="clearfix"></div>

@@ -189,6 +189,7 @@ class AccountsModeratorController extends BaseController {
         if($user = User::where('id',$account_id)->first()):
             $user->active = Input::has('active') ? 1 : 0;
             $user->brand = Input::has('brand') ? 1 : 0;
+            $user->recommended = Input::has('recommended') ? 1 : 0;
             $user->save();
             return Redirect::back()->with('message',Lang::get('interface.DEFAULT.success_save'));
         endif;
