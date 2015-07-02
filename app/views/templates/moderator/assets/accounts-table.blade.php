@@ -23,6 +23,7 @@
                     {{ Form::model($account,array('route'=>array('moderator.accounts.save',$account->id),'method'=>'post','class'=>'inline-block js-ajax-form')) }}
                         {{ Form::checkbox('active') }} Активный <br>
                         {{ Form::checkbox('brand') }} Бренд <br>
+                        {{ Form::checkbox('recommended') }} Рекомендованный <br>
                         {{ Form::button('Сохранить',array('class'=>'white-btn actions__btn','type'=>'submit')) }}
                     {{ Form::close() }}
                 </div>

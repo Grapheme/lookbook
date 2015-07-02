@@ -1,3 +1,6 @@
+<?
+$recommended_blogs = Accounts::where('group_id', 4)->where('recommended', 1)->where('active', 1)->take(3)->get();
+?>
 <div class="right-title">Рекомендованные блоги</div>
 <div class="right-content">
     @if(count($recommended_blogs))

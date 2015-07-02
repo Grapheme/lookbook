@@ -19,6 +19,7 @@ class AddUsersFields extends Migration {
             $table->string('blogpicture',100)->after('active')->nullable();
             $table->text('about')->after('active')->nullable();
             $table->boolean('brand')->after('active')->default(0)->unsigned()->nullable();
+            $table->boolean('recommended')->after('active')->default(0)->unsigned()->nullable();
 		});
 	}
 
