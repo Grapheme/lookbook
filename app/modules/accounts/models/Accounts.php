@@ -20,7 +20,7 @@ class Accounts extends BaseModel {
 
     public function monetization() {
 
-        return $this->hasOne('BloggerMonitization', 'user_id', 'id');
+        return $this->hasOne('BloggerMonetization', 'user_id', 'id');
     }
 
     public function cooperation_brands(){
