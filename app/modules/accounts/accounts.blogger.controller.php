@@ -304,7 +304,7 @@ class AccountsBloggerController extends BaseController {
         $page_data = array(
             'page_title' => Lang::get('seo.BLOGGER.title'), 'page_description' => Lang::get('seo.BLOGGER.description'),
             'page_keywords' => Lang::get('seo.BLOGGER.keywords'),
-            'posts' => array(), 'posts_advertising' => array(), 'recommended_blogs' => array(), 'blog_list' => array(), 'categories' => array(),
+            'posts' => array(), 'posts_advertising' => array(), 'blog_list' => array(), 'categories' => array(),
             'posts_total_count' => 0, 'post_limit' => Config::get('lookbook.posts_limit')
         );
         foreach(Dic::where('slug','categories')->first()->values as $category):
@@ -325,7 +325,7 @@ class AccountsBloggerController extends BaseController {
         $page_data = array(
             'page_title' => Lang::get('seo.BLOGGER.title'), 'page_description' => Lang::get('seo.BLOGGER.description'),
             'page_keywords' => Lang::get('seo.BLOGGER.keywords'),
-            'blogs' => array(), 'recommended_blogs' => array(), 'blogs_total_count' => 0
+            'blogs' => array(), 'blogs_total_count' => 0
         );
         if ($blogsIDs = BloggerSubscribe::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->lists('blogger_id')):
             $page_data['blogs'] = Accounts::where('group_id', 4)->where('active', 1)->whereIn('id', $blogsIDs)->take(Config::get('lookbook.blogs_limit'))->with('me_signed')->get();
@@ -339,7 +339,7 @@ class AccountsBloggerController extends BaseController {
         $page_data = array(
             'page_title' => Lang::get('seo.BLOGGER.title'), 'page_description' => Lang::get('seo.BLOGGER.description'),
             'page_keywords' => Lang::get('seo.BLOGGER.keywords'),
-            'recommended_blogs' => array(), 'blogs_total_count' => 0
+            'blogs_total_count' => 0
         );
         return View::make(Helper::acclayout('recommended-blogs'),$page_data);
     }
@@ -348,7 +348,7 @@ class AccountsBloggerController extends BaseController {
 
         $json_request = array('status' => FALSE, 'html' => '', 'from' => 0, 'hide_button' => TRUE);
         if (Request::ajax()):
-            $validator = Validator::make(Input::all(), array('limit' => 'required', 'from' => 'required', 'user' => '', 'brand'=>''));
+            $validator = Validator::make(Input::all(), array('limit' => 'required', 'from' => 'required', 'user' => '', 'brand'=>'', 'recommended' => ''));
             if ($validator->passes()):
                 $blogs = array();
                 $blog_from = Input::get('from');
@@ -365,8 +365,15 @@ class AccountsBloggerController extends BaseController {
                         $json_request['hide_button'] = $blogs_total_count > ($blog_from + $blog_limit) ? FALSE : TRUE;
                     endif;
                 else:
-                    $blogs_total_count = Accounts::where('group_id', 4)->where('active', 1)->where('brand', Input::get('brand'))->count();
-                    if ($blogs = Accounts::where('group_id', 4)->where('active', 1)->where('brand', Input::get('brand'))->with('me_signed')->skip($blog_from)->take($blog_limit)->get()):
+                    if(Input::has('brand')):
+                        $blogs_total_count = Accounts::where('group_id', 4)->where('active', 1)->where('brand', Input::get('brand'))->count();
+                        $blogs = Accounts::where('group_id', 4)->where('active', 1)->where('brand', Input::get('brand'))->with('me_signed')->skip($blog_from)->take($blog_limit)->get();
+                    endif;
+                    if(Input::has('recommended')):
+                        $blogs_total_count = Accounts::where('group_id', 4)->where('active', 1)->where('recommended', 1)->count();
+                        $blogs = Accounts::where('group_id', 4)->where('active', 1)->where('recommended', 1)->with('me_signed')->skip($blog_from)->take($blog_limit)->get();
+                    endif;
+                    if (count($blogs)):
                         $json_request['html'] = View::make(Helper::layout('blocks.bloggers'), compact('blogs'))->render();
                         $json_request['status'] = TRUE;
                         $json_request['from'] = $blog_from + $blog_limit;
