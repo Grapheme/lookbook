@@ -194,6 +194,47 @@ h1 {
     }
 }
 
+.us-textarea {
+    @extend .us-input;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 70px;
+    resize: none;
+
+    &::-webkit-input-placeholder {
+        font-family: 'Lato';
+        font-size: 16px;
+        font-weight: 400;
+        font-style: normal;
+        text-transform: none;
+        color: #aaa;
+    }
+    &::-moz-placeholder          {
+        font-family: 'Lato';
+        font-size: 16px;
+        font-weight: 400;
+        font-style: normal;
+        text-transform: none;
+        color: #aaa;
+    }
+    &:-moz-placeholder           {
+        font-family: 'Lato';
+        font-size: 16px;
+        font-weight: 400;
+        font-style: normal;
+        text-transform: none;
+        color: #aaa;
+    }
+    &:-ms-input-placeholder      {
+        font-family: 'Lato';
+        font-size: 16px;
+        font-weight: 400;
+        font-style: normal;
+        text-transform: none;
+        color: #aaa;
+    }
+}
+
 .hidden {
     display: none;
 }
