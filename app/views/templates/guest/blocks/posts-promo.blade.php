@@ -14,9 +14,15 @@
         ?>
             @if(!empty($post->start_date) && !empty($post->stop_date))
                 @if($hasImage)
-                <a href="{{ parse_url($post->link, PHP_URL_SCHEME)=='' ? 'http://'.$post->link : $post->link }}" style="background-image: url({{ asset(Config::get('site.galleries_photo_public_dir').'/'.$post->photo->name) }});" class="js-list-slide items__slide"></a>
+                <?php
+                    $link = 'javascript:void(0);';
+                    if(!empty($post->link)):
+                        $link = parse_url($post->link, PHP_URL_SCHEME)=='' ? 'http://'.$post->link : $post->link;
+                    endif;
+                ?>
+                <a href="{{ $link }}" style="background-image: url({{ asset(Config::get('site.galleries_photo_public_dir').'/'.$post->photo->name) }});" class="js-list-slide items__slide"></a>
                 @else
-                <a href="{{ parse_url($post->link, PHP_URL_SCHEME)=='' ? 'http://'.$post->link : $post->link }}" class="js-list-slide items__slide">{{ $post->video }}</a>
+                <a href="{{ $link }}" class="js-list-slide items__slide">{{ $post->video }}</a>
                 @endif
             @endif
         @endforeach
