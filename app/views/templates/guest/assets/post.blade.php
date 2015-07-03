@@ -32,9 +32,9 @@ endif;
         <span class="statisctics-item">
             <i class="svg-icon icon-eye"></i>{{ count(@$post['views']) }}
         </span>
-        <span class="statisctics-item js-like" data-post-id="{{ $post['id'] }}" data-action="json/like.json">
-            <i class="svg-icon icon-like"></i><span><span class="js-like-count">{{ count(@$post['likes']) }}</span></span>
-        </span>
+        {{--<span class="statisctics-item js-like" data-post-id="{{ $post['id'] }}" data-action="json/like.json">--}}
+            {{--<i class="svg-icon icon-like"></i><span><span class="js-like-count">{{ count(@$post['likes']) }}</span></span>--}}
+        {{--</span>--}}
         <span class="statisctics-item">
             <i class="svg-icon icon-comments"></i>{{ count(@$post['comments']) }}
         </span>
