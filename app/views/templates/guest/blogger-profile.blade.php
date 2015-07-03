@@ -99,7 +99,12 @@
                         <div class="right-content bottom-border">
                             <div class="content__us-block">
                                 <div class="content__us-text">Источники вдохновения</div>
-                                <div class="block__links">{{ str_limit($user->inspiration, $limit = 40, $end = ' ...') }}</div>
+                                <div class="block__links">
+                                @if(parse_url($user->inspiration, PHP_URL_SCHEME) == '')
+                                    <a href="{{ 'http://'.$user->inspiration }}" class="us-link">{{ str_limit($user->inspiration, $limit = 25, $end = ' ...') }}</a>
+                                @else
+                                    {{ str_limit($user->inspiration, $limit = 40, $end = ' ...') }}</div>
+                                @endif
                             </div>
                         </div>
                         @endif
