@@ -22,7 +22,7 @@
                 ?>
                 <a href="{{ $link }}" style="background-image: url({{ asset(Config::get('site.galleries_photo_public_dir').'/'.$post->photo->name) }});" class="js-list-slide items__slide"></a>
                 @else
-                <a href="{{ $link }}" class="js-list-slide items__slide">{{ $post->video }}</a>
+                <a href="javascript:void(0);" class="js-list-slide items__slide">{{ $post->video }}</a>
                 @endif
             @endif
         @endforeach
