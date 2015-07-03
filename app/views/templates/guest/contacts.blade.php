@@ -41,11 +41,11 @@
                                     <tr>
                                         <td>Тема</td>
                                         <td>
-                                            <select class="us-select js-styled-select">
-                                                <option>Служба технической поддержки</option>
-                                                <option>Для прессы</option>
-                                                <option>Реклама на сайте</option>
-                                                <option>Другое</option>
+                                            <select name="theme" class="us-select js-styled-select">
+                                                <option value="Служба технической поддержки">Служба технической поддержки</option>
+                                                <option value="Для прессы">Для прессы</option>
+                                                <option value="Реклама на сайте">Реклама на сайте</option>
+                                                <option value="Другое">Другое</option>
                                             </select>
                                         </td>
                                     </tr>
