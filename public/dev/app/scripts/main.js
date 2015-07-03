@@ -305,6 +305,9 @@ LookBook.Dashboard = function() {
                 $('#js-input-from').val(data.from);
                 form.find('[type="submit"]').removeClass('loading')
                     .removeAttr('disabled');
+                if($('.js-list-slide').not('.done').length) {
+                    LookBook.ListSlider();
+                }
             },
             error: function(data) {
                 response_cont.show().text('Ошибка на сервере, попробуйте позже');
@@ -756,6 +759,7 @@ LookBook.TopCollage = function() {
 LookBook.ListSlider = function() {
     if(!$('.js-list-slider').length) return;
     $('.js-list-slider').each(function(){
+        if($(this).hasClass('done')) return;
         var parent = $(this),
             item = parent.find('.js-list-slide'),
             dots_parent = parent.find('.js-list-dots'),
@@ -795,6 +799,7 @@ LookBook.ListSlider = function() {
             }
             show(0);
             setEvents();
+            parent.addClass('done');
         }
         init();
     });
@@ -823,6 +828,16 @@ LookBook.Like = function() {
     }
     init();
 }
+LookBook.Mask = function() {
+    if(!$('[data-mask]').length) return;
+    $('[data-mask]').each(function(){
+        var settings = {};
+        if($(this).attr('data-placeholder')) {
+            settings.placeholder = $(this).attr('data-placeholder');
+        }
+        $(this).mask($(this).attr('data-mask'), settings);
+    });
+}
 LookBook.init = function() {
     Help.avaGenerator();
     Help.typicalSubmit();
@@ -841,6 +856,7 @@ LookBook.init = function() {
     LookBook.ActionButton();
     LookBook.UiButton();
     LookBook.SimpleSlide();
+    LookBook.Mask();
     $('.js-autosize').autosize();
     $('.js-styled-select').selectmenu();
     $('.js-styled-check').button();

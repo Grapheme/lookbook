@@ -13,9 +13,6 @@ class AccountsModeratorController extends BaseController {
         $class = __CLASS__;
         if (Auth::check() && Auth::user()->group_id == 3):
             Route::group(array('before' => 'auth.status.moderator', 'prefix' => self::$name), function() use ($class) {
-
-//                Route::get('promo-posts',array('as'=>'moderator.promo.index','uses'=>'PromoModeratorController@index'));
-
                 Route::get('posts',array('as'=>'moderator.posts','uses'=>$class.'@postsList'));
                 Route::post('posts/{post_id}/publication',array('before'=>'csrf', 'as'=>'moderator.posts.publication','uses'=>$class.'@postPublication'));
                 Route::delete('posts/{post_id}/delete', array('before'=>'csrf', 'as' => 'moderator.posts.delete', 'uses' => $class.'@postDelete'));

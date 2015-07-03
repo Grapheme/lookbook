@@ -39,6 +39,17 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>Тема</td>
+                                        <td>
+                                            <select class="us-select js-styled-select">
+                                                <option>Служба технической поддержки</option>
+                                                <option>Для прессы</option>
+                                                <option>Реклама на сайте</option>
+                                                <option>Другое</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>Текст сообщения</td>
                                         <td>
                                             {{ Form::textarea('message') }}

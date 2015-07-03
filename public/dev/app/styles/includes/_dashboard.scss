@@ -154,6 +154,8 @@
                         left: 0;
                         right: 0;
                         bottom: 0;
+                        background-size: cover;
+                        background-position: center center;
 
                         &.with-transition {
                             transition: all .5s ease;

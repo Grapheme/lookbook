@@ -31,17 +31,25 @@
                 <td class="table__promo">
                     @if($hasImage)
                     <div class="promo__image">
-                        <a href="{{ parse_url($post->link, PHP_URL_SCHEME)=='' ? 'http://'.$post->link : $post->link }}" class="image__link"
+                        <?php
+                            $link = 'javascript:void(0);';
+                            if(!empty($post->link)):
+                                $link = parse_url($post->link, PHP_URL_SCHEME)=='' ? 'http://'.$post->link : $post->link;
+                            endif;
+                        ?>
+                        <a href="{{ $link }}" class="image__link"
                            style="background-image: url({{ asset(Config::get('site.galleries_photo_public_dir').'/'.$post->photo->name) }});">
                         </a>
                     </div>
                     @endif
                     <div class="promo__info">
+                        @if(!empty($post->link))
                         <div class="info__link">
                             <a href="{{ parse_url($post->link, PHP_URL_SCHEME)=='' ? 'http://'.$post->link : $post->link }}">
                                 {{ parse_url($post->link, PHP_URL_SCHEME)=='' ? 'http://'.$post->link : $post->link }}
                             </a>
                         </div>
+                        @endif
                         <div class="info__date">
                             {{ (new myDateTime())->setDateString($post->start_date)->format('d.m.Y') }}
                             -

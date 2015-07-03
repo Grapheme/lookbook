@@ -51,6 +51,7 @@ endif;
                         <ul class="dashboard-list js-posts">
                             @include(Helper::layout('blocks.posts'),compact('posts','categories','post_access'))
                             @include(Helper::layout('blocks.posts-advertising'),array('posts'=>$advertising_posts,'categories'=>$categories,'post_access'=>$post_access))
+                            @include(Helper::layout('blocks.posts-promo'),array('posts'=>$promo_posts))
                         </ul>
                         @if($posts_total_count > count($posts))
                             @include(Helper::layout('assets.more_post'),array('category_id'=>$category_id,'tag'=>Input::get('tag'),'post_limit'=>$post_limit,'category_title'=>' '.$categories[$category_id]['title']))
