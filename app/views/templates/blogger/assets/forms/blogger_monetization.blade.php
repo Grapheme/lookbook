@@ -9,6 +9,9 @@
                 Уделяйте внимание увеличению числа постоянных читателей, регулярно 
                 пишите и комментируйте интересные вам посты,  – и вас обязательно 
                 заметят и предложат сотрудничество.</p>
+            <p>
+                Какие из вариантов сотрудничества Вам наиболее интересны:
+            </p>
         </div>
         <div class="section__content">
         @foreach(Dic::where('slug','cooperation_brands')->first()->values as $cooperation)
@@ -19,7 +22,7 @@
         @endforeach
         </div>
     </div>
-    <div class="block__section">
+    <!-- <div class="block__section">
         <div class="section__desc">Укажите отличительные особенности Вашего блога</div>
         <div class="section__content">
             <?php
@@ -31,9 +34,9 @@
             ?>
             {{ Form::textarea('features',$features,array('class'=>'redactor dashboard-textarea js-autosize')) }}
         </div>
-    </div>
+    </div> -->
     <div class="block__section">
-        <div class="section__desc">Основная направленность:</div>
+        <div class="section__desc">Укажите основную направленность вашего блога:</div>
         <div class="section__content">
         @foreach(Dic::where('slug','main_thrust')->first()->values as $thrust)
             <div class="check-cont js-set-check">

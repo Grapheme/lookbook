@@ -28,18 +28,12 @@
                         <div class="form-desc money-block">
                             <div class="block__section">
                                 <div class="section__desc">
-                                    <p>Интересующие типы сотрудничества:</p>
+                                    <p>Интересующие варианты сотрудничества:</p>
                                 </div>
                                 <div class="section__content">
                                     <ul>
                                         <li> Сотрудничество на платной основе
                                     </ul>
-                                </div>
-                            </div>
-                            <div class="block__section">
-                                <div class="section__desc">Отличительные особенности блога:</div>
-                                <div class="section__content">
-                                    Мой блог повествует о загадочной жизни Европейских звезд
                                 </div>
                             </div>
                             <div class="block__section">
