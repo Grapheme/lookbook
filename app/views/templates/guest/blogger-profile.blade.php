@@ -99,7 +99,7 @@
                         <div class="right-content bottom-border">
                             <div class="content__us-block">
                                 <div class="content__us-text">Источники вдохновения</div>
-                                <div class="block__links">{{ $user->inspiration }}</div>
+                                <div class="block__links">{{ str_limit($user->inspiration, $limit = 40, $end = ' ...') }}</div>
                             </div>
                         </div>
                         @endif
