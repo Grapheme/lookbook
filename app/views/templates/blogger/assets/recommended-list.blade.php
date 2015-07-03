@@ -1,6 +1,7 @@
 <?
 $recommended_blogs = Accounts::where('group_id', 4)->where('recommended', 1)->where('active', 1)->take(3)->get();
 ?>
+@if(0)
 <div class="right-title">Рекомендованные блоги</div>
 <div class="right-content">
     @if(count($recommended_blogs))
@@ -16,3 +17,4 @@ $recommended_blogs = Accounts::where('group_id', 4)->where('recommended', 1)->wh
         У вас еще нет рекомендованных блогов.
     @endif
 </div>
+@endif
