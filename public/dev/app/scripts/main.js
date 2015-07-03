@@ -823,6 +823,16 @@ LookBook.Like = function() {
     }
     init();
 }
+LookBook.Mask = function() {
+    if(!$('[data-mask]').length) return;
+    $('[data-mask]').each(function(){
+        var settings = {};
+        if($(this).attr('data-placeholder')) {
+            setTimeout.placeholder = $(this).attr('data-placeholder')
+        }
+        $(this).mask($(this).attr('data-mask'), settings);
+    });
+}
 LookBook.init = function() {
     Help.avaGenerator();
     Help.typicalSubmit();
@@ -841,6 +851,7 @@ LookBook.init = function() {
     LookBook.ActionButton();
     LookBook.UiButton();
     LookBook.SimpleSlide();
+    LookBook.Mask();
     $('.js-autosize').autosize();
     $('.js-styled-select').selectmenu();
     $('.js-styled-check').button();

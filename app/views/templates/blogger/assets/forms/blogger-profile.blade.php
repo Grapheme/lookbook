@@ -14,7 +14,7 @@
         <td class="form-table__value js-form-value">
             <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
             <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-            {{ Form::text('birth',Input::old('birth'),array('class'=>'dashboard-input')) }}
+            {{ Form::text('birth',Input::old('birth'),array('class'=>'dashboard-input', 'data-mask'=>'99.99.9999', 'data-placeholder'=>'__.__.____')) }}
         </td>
     </tr>
     <tr>

@@ -95,7 +95,7 @@ class BannersModeratorController extends BaseController {
                 $post->position = Input::get('position');
                 $post->order = Input::get('order');
                 $post->link = Input::get('link');
-                $post->photo_id = Input::get('photo_id');
+                $post->photo_id = (int)Input::get('photo_id');
                 $post->video = Input::get('video');
                 $post->save();
                 $post->touch();
@@ -122,7 +122,7 @@ class BannersModeratorController extends BaseController {
                     $post->position = Input::get('position');
                     $post->order = Input::get('order');
                     $post->link = Input::get('link');
-                    $post->photo_id = Input::get('photo_id');
+                    $post->photo_id = (int)Input::get('photo_id');
                     $post->video = Input::get('video');
                     $post->save();
                     $post->touch();

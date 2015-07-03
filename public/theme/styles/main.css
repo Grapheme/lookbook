@@ -2352,6 +2352,8 @@ h1 {
   left: 0;
   right: 0;
   bottom: 0;
+  background-size: cover;
+  background-position: center center;
 }
 .dashboard-list .dashboard-item.promo-block-full .promo-slider .slider__items .items__slide.with-transition {
   -webkit-transition: all .5s ease;
@@ -2820,6 +2822,13 @@ h1 {
 }
 .moder-table .table__actions .actions__btn {
   margin-top: 20px;
+}
+.moder-table .table__comment-owners {
+  width: 350px;
+  vertical-align: top;
+}
+.moder-table .table__btns {
+  min-width: 220px;
 }
 .moder-table .table__number {
   text-align: center;

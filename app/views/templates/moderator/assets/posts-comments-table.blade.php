@@ -29,7 +29,7 @@
                     <div class="clearfix"></div>
                 </div>
             </td>
-            <td>
+            <td class="table__comment-owners">
                 <a target="_blank"
                    href="{{ URL::route('post.public.show',array($comment->post->category_id.'-'.BaseController::stringTranslite($categories[$comment->post->category_id]),$comment->post->id.'-'.BaseController::stringTranslite($comment->post->title))) }}">
                     {{ $comment->post->title }}
@@ -46,7 +46,7 @@
                     {{ $categories[$comment->post->category_id] }}
                 </div>
             </td>
-            <td>
+            <td class="table__btns">
                 <div style="margin-bottom: 5px;">
                     <a href="{{ URL::route('post.public.show',array($comment->post->category_id.'-'.BaseController::stringTranslite($categories[$comment->post->category_id]),$comment->post->id.'-'.BaseController::stringTranslite($comment->post->title))) }}#comments" class="white-btn action-comment">
                         <i class="svg-icon icon-comments"></i>Комментировать
