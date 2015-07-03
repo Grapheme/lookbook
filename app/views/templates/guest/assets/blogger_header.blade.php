@@ -26,10 +26,17 @@ endif;
         <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
     </div>
     <div class="header__info">
-        <div class="info__name js-fit-parent">
-            <h1 class="js-fit-text">{{ $user->blogname }}</h1>
-        </div>
-        <div class="info__quote">{{ $user->name }}</div>
+        @if($user->blogname != "")
+            <div class="info__name js-fit-parent">
+                <h1 class="js-fit-text">{{ $user->blogname }}</h1>
+            </div>
+            <div class="info__quote">{{ $user->name }}</div>
+        @else
+            <div class="info__name js-fit-parent">
+                <h1 class="js-fit-text">{{ $user->name }}</h1>
+            </div>
+            <div class="info__quote"></div>
+        @endif
         <div class="info__nav">
             @if(Route::currentRouteName() == 'user.profile.show')
             <a href="{{ URL::route('user.posts.show', $user->id.'-'.BaseController::stringTranslite($user->name)) }}" class="white-black-btn">Все посты блогера</a>

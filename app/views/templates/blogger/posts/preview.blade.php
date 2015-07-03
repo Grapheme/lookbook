@@ -5,6 +5,11 @@
 ?>
 @extends(Helper::layout())
 @section('style')
+    <style>
+        .header, .footer {
+            display: none;
+        }
+    </style>
 @stop
 @section('page_class')
 @stop
@@ -51,7 +56,7 @@
                                             {{ $post['content'] }}
                                         </div>
                                     @if(count($post['gallery']))
-                                        <div class="post-info__gallery">
+                                        <div class="post-info__gallery js-gallery">
                                         @foreach($post['gallery'] as $photo_name)
                                             @if(!empty($photo_name) && File::exists(Config::get('site.galleries_photo_dir').'/'.$photo_name))
                                             <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$photo_name) }}" alt="{{ $post['title'] }}">
@@ -74,4 +79,6 @@
     </div>
 @stop
 @section('scripts')
+    <!-- {{ HTML::scriptmod(Config::get('site.theme_path')."/scripts/vendor.js") }} -->
+    <!-- {{ HTML::scriptmod(Config::get('site.theme_path')."/../dev/app/scripts/main.js") }} -->
 @stop
