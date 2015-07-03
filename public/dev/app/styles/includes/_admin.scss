@@ -114,6 +114,31 @@
 	}
 }
 
+.disabled-overlay {
+	position: fixed;
+	z-index: 999;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+#auto-save {
+	position: absolute;
+	bottom: 60px;
+	background: transparent;
+	border: none;
+	font-size: 14px;
+	outline: none;
+}
+
+.monetization {
+	ul {
+		padding: 0 0 0 20px;
+		margin: 0;
+	}
+}
+
 .ui-datepicker {
 	border-radius: 0 !important;
 
