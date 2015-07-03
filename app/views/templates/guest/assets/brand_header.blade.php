@@ -42,7 +42,7 @@ endif;
     <div class="user-header user-page-header">
         <div data-empty-name="{{ $user->name }}" class="header__photo{{ !$hasLogo ? ' ava-empty ' : ' ' }}js-ava-cont">
             @if($hasLogo)
-                <img src="{{ asset($user->thumbnail) }}">
+                <img src="{{ asset($user->photo) }}">
             @endif
             <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
         </div>

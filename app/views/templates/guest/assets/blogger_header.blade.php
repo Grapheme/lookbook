@@ -14,14 +14,14 @@ if ($users_top_posts):
     endforeach;
 endif;
 $hasImage = FALSE;
-if(!empty($user->thumbnail) && File::exists(public_path($user->thumbnail))):
+if(!empty($user->photo) && File::exists(public_path($user->photo))):
     $hasImage = TRUE;
 endif;
 ?>
 <div class="user-header user-page-header">
     <div data-empty-name="{{ $user->name }}" class="header__photo{{ !$hasImage ? ' ava-empty ' : ' ' }}js-ava-cont">
     @if($hasImage)
-        <img src="{{ asset($user->thumbnail) }}">
+        <img src="{{ asset($user->photo) }}">
     @endif
         <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
     </div>
