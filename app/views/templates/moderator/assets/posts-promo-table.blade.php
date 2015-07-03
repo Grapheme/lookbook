@@ -1,40 +1,66 @@
-<div class="left-title">Список промо постов</div>
-<table class="moder-table">
-    <thead>
-        <th class="table__number">№</th>
-        <th>Название</th>
-        <th>Опубликован</th>
-        <th></th>
-        <th></th>
-    </thead>
-    <tbody>
-    @foreach($posts as $index => $post)
-        <tr class="js-post">
-            <td class="table__number">{{ $index+1 }}</td>
-            <td>
-                <a target="_blank"
-                   href="{{ URL::route('post.public.show',array($post->category_id.'-'.BaseController::stringTranslite($categories[$post->category_id]),$post->id.'-'.BaseController::stringTranslite($post->title))) }}">
-                    {{ $post->title }}
-                </a>
-                <br>
-                <br>
-                <a target="_blank"
-                   href="{{ URL::route('user.profile.show',$post->user->id.'-'.BaseController::stringTranslite($post->user->name)) }}">
-                    {{ $post->user->name }}
-                </a>
-                <br>
-
-                <div style="margin-top: 5px;">
-                    {{ $categories[$post->category_id] }}
-                </div>
-            </td>
-            <td>{{ $post->updated_at->format('d.m.Y H:i') }}</td>
-            <td class="table__delete">
-                {{ Form::model($post,array('route'=>array('moderator.posts.delete',$post->id),'method'=>'delete','class'=>'inline-block js-delete-post')) }}
-                {{ Form::button('<i class="svg-icon icon-cross"></i>Удалить',array('class'=>'white-btn action-delete','type'=>'submit')) }}
-                {{ Form::close() }}
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
+@if(count($posts))
+<?php
+    if(!isset($position)):
+        $position = 0;
+    endif;
+    $showPosts = FALSE;
+    foreach($posts as $post):
+        if($post->position == $position):
+            $showPosts = TRUE;
+        endif;
+    endforeach;
+?>
+    @if($showPosts)
+    <table class="moder-table">
+        <thead>
+            <th class="table__number">№</th>
+            <th>Информация</th>
+            <th></th>
+        </thead>
+        <tbody>
+        @foreach($posts as $post)
+        <?php
+            $hasImage = FALSE;
+            if(!empty($post->photo) && File::exists(Config::get('site.galleries_photo_dir').'/'.$post->photo->name)):
+                $hasImage = TRUE;
+            endif;
+        ?>
+            @if($post->position == $position)
+            <tr class="js-post">
+                <td class="table__number">{{ $post->order }}</td>
+                <td class="table__promo">
+                    @if($hasImage)
+                    <div class="promo__image">
+                        <a href="{{ parse_url($post->link, PHP_URL_SCHEME)=='' ? 'http://'.$post->link : $post->link }}" class="image__link"
+                           style="background-image: url({{ asset(Config::get('site.galleries_photo_public_dir').'/'.$post->photo->name) }});">
+                        </a>
+                    </div>
+                    @endif
+                    <div class="promo__info">
+                        <div class="info__link">
+                            <a href="{{ parse_url($post->link, PHP_URL_SCHEME)=='' ? 'http://'.$post->link : $post->link }}">
+                                {{ parse_url($post->link, PHP_URL_SCHEME)=='' ? 'http://'.$post->link : $post->link }}
+                            </a>
+                        </div>
+                        <div class="info__date">
+                            {{ (new myDateTime())->setDateString($post->start_date)->format('d.m.Y') }}
+                            -
+                            {{ (new myDateTime())->setDateString($post->stop_date)->format('d.m.Y') }}
+                        </div>
+                    </div>
+                </td>
+                <td class="table__actions js-slide-parent">
+                    <a href="{{ URL::route('moderator.promo.edit', $post->id) }}" class="white-btn">Редактировать</a>
+                    {{ Form::open(array('route'=>array('moderator.promo.destroy',$post->id),'method'=>'delete','class'=>'js-delete-post','style'=>'margin-top: 10px')) }}
+                        <button class="white-btn action-delete" type="submit"><i class="svg-icon icon-cross"></i>Удалить</button>
+                    {{ Form::close() }}
+                </td>
+            </tr>
+            @endif
+        @endforeach
+        </tbody>
+    </table>
+    @else
+        Промо посты отсутствуют
+    @endif
+@endif

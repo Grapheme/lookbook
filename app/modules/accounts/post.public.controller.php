@@ -70,9 +70,10 @@ class PostPublicController extends BaseController {
         $posts = Post::where('in_index', 1)->where('in_advertising', 0)->where('publication', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->take($post_limit)->get();
         $promoted_posts = Post::where('in_index', 1)->where('publication', 1)->where('in_promoted', 1)->with('user', 'photo', 'promoted_photo', 'tags_ids', 'views', 'likes', 'comments')->get();
         $advertising_posts = Post::where('publication', 1)->where('in_advertising', 1)->where('in_index', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip(0)->take(1)->get();
+        $promo_posts = PostPromo::where('position', 0)->orderBy('order')->with('photo')->get();
         return array(
             'post_limit' => $post_limit, 'post_access' => FALSE, 'posts_total_count' => $posts_total_count,
-            'tags' => $tags, 'posts' => $posts, 'advertising_posts' => $advertising_posts,'promoted_posts' => $promoted_posts, 'categories' => $categories
+            'tags' => $tags, 'posts' => $posts, 'advertising_posts' => $advertising_posts, 'promoted_posts' => $promoted_posts, 'promo_posts' => $promo_posts, 'categories' => $categories
         );
     }
 
