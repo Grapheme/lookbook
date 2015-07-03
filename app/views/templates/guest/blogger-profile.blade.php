@@ -81,7 +81,7 @@
                                 <?php $links = explode(',',$user->links);?>
                                 <ul class="block__links">
                                 @foreach($links as $link)
-                                    <li><a href="{{ parse_url($link, PHP_URL_SCHEME)=='' ? 'http://'.$link : $link }} }}" class="us-link">{{ $link }}</a></li>
+                                    <li><a href="{{ parse_url($link, PHP_URL_SCHEME)=='' ? 'http://'.$link : $link }} }}" class="us-link">{{ str_limit($link, $limit = 25, $end = ' ...') }}</a></li>
                                 @endforeach
                                 </ul>
                             </div>
@@ -90,7 +90,7 @@
                             <div class="content__us-block">
                                 <div class="content__us-text">Мой сайт</div>
                                 <ul class="block__links">
-                                    <li><a href="{{ parse_url($user->site, PHP_URL_SCHEME)=='' ? 'http://'.$user->site : $user->site }}" class="us-link">{{ $user->site }}</a></li>
+                                    <li><a href="{{ parse_url($user->site, PHP_URL_SCHEME)=='' ? 'http://'.$user->site : $user->site }}" class="us-link">{{ str_limit($user->site, $limit = 25, $end = ' ...') }}</a></li>
                                 </ul>
                             </div>
                             @endif
@@ -99,7 +99,13 @@
                         <div class="right-content bottom-border">
                             <div class="content__us-block">
                                 <div class="content__us-text">Источники вдохновения</div>
-                                <div class="block__links">{{ $user->inspiration }}</div>
+                                <div class="block__links">
+                                @if(Helper::is_url($user->inspiration))
+                                    <a href="{{ $user->inspiration }}" class="us-link">{{ str_limit($user->inspiration, $limit = 25, $end = ' ...') }}</a>
+                                @else
+                                    {{ str_limit($user->inspiration, $limit = 40, $end = ' ...') }}
+                                @endif
+                                </div>
                             </div>
                         </div>
                         @endif
