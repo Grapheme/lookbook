@@ -97,6 +97,9 @@ class BannersModeratorController extends BaseController {
                 $post->link = Input::get('link');
                 $post->photo_id = (int)Input::get('photo_id');
                 $post->video = Input::get('video');
+                $post->in_index = Input::has('in_index') ? 1 : 0;
+                $post->in_section = Input::has('in_section') ? 1 : 0;
+                $post->in_line = Input::has('in_line') ? 1 : 0;
                 $post->save();
                 $post->touch();
                 $json_request['redirect'] = URL::route('moderator.promo.index');
@@ -124,6 +127,9 @@ class BannersModeratorController extends BaseController {
                     $post->link = Input::get('link');
                     $post->photo_id = (int)Input::get('photo_id');
                     $post->video = Input::get('video');
+                    $post->in_index = Input::has('in_index') ? 1 : 0;
+                    $post->in_section = Input::has('in_section') ? 1 : 0;
+                    $post->in_line = Input::has('in_line') ? 1 : 0;
                     $post->save();
                     $post->touch();
                     $json_request['redirect'] = URL::route('moderator.promo.index');

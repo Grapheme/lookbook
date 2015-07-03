@@ -70,7 +70,7 @@ class PostPublicController extends BaseController {
         $posts = Post::where('in_index', 1)->where('in_advertising', 0)->where('publication', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->take($post_limit)->get();
         $promoted_posts = Post::where('in_index', 1)->where('publication', 1)->where('in_promoted', 1)->with('user', 'photo', 'promoted_photo', 'tags_ids', 'views', 'likes', 'comments')->get();
         $advertising_posts = Post::where('publication', 1)->where('in_advertising', 1)->where('in_index', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip(0)->take(1)->get();
-        $promo_posts = PostPromo::where('position', 0)->orderBy('order')->with('photo')->get();
+        $promo_posts = PostPromo::where('position', 0)->where('in_index', 1)->orderBy('order')->with('photo')->get();
         return array(
             'post_limit' => $post_limit, 'post_access' => FALSE, 'posts_total_count' => $posts_total_count,
             'tags' => $tags, 'posts' => $posts, 'advertising_posts' => $advertising_posts, 'promoted_posts' => $promoted_posts, 'promo_posts' => $promo_posts, 'categories' => $categories
@@ -89,13 +89,14 @@ class PostPublicController extends BaseController {
             $posts = Post::where('category_id', $category_id)->where('publication', 1)->where('in_section', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->take($post_limit)->get();
             $promoted_posts = Post::where('category_id', $category_id)->where('publication', 1)->where('in_section', 1)->where('in_promoted', 1)->with('user', 'photo', 'promoted_photo', 'tags_ids', 'views', 'likes', 'comments')->get();
             $advertising_posts = Post::where('category_id', $category_id)->where('publication', 1)->where('in_advertising', 1)->where('in_section', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip(0)->take(1)->get();
+            $promo_posts = PostPromo::where('position', 0)->where('in_section', 1)->orderBy('order')->with('photo')->get();
             if (isset($tags_lists[$category_id]['category_tags'])):
                 $tags = $tags_lists[$category_id]['category_tags'];
             endif;
             return array(
                 'post_limit' => $post_limit, 'post_access' => FALSE, 'posts_total_count' => $posts_total_count,
                 'tags' => $tags, 'posts' => $posts, 'promoted_posts' => $promoted_posts, 'category_id' => $category_id,
-                'categories' => $categories, 'advertising_posts' => $advertising_posts
+                'categories' => $categories, 'advertising_posts' => $advertising_posts, 'promo_posts' => $promo_posts
             );
         else:
             return FALSE;
@@ -184,11 +185,12 @@ class PostPublicController extends BaseController {
                         $posts_total_count = Post::where('publication', 1)->where('in_advertising', 0)->where('in_index', 1)->count();
                         $posts = Post::where('publication', 1)->where('in_advertising', 0)->where('in_index', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($post_from)->take($post_limit)->get();
                         $advertising_posts = Post::where('publication', 1)->where('in_advertising', 1)->where('in_index', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($advertising_post_from)->take(1)->get();
-                        $promo_posts = PostPromo::where('position', $advertising_post_from)->orderBy('order')->with('photo')->get();
+                        $promo_posts = PostPromo::where('position', $advertising_post_from)->where('in_index', 1)->orderBy('order')->with('photo')->get();
                     else:
                         $posts_total_count = Post::where('category_id', $category_id)->where('publication', 1)->where('in_section', 1)->count();
                         $posts = Post::where('category_id', $category_id)->where('publication', 1)->where('in_section', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($post_from)->take($post_limit)->get();
                         $advertising_posts = Post::where('category_id', $category_id)->where('publication', 1)->where('in_advertising', 1)->where('in_section', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($advertising_post_from)->take(1)->get();
+                        $promo_posts = PostPromo::where('position', $advertising_post_from)->where('in_section', 1)->orderBy('order')->with('photo')->get();
                     endif;
                 else:
                     if (Auth::check() && Input::get('publication') == 'all'):
@@ -236,6 +238,7 @@ class PostPublicController extends BaseController {
                     $posts = Post::whereIn('user_id', $blogsIDs)->where('in_advertising', 0)->where('publication', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($post_from)->take($post_limit)->get();
                     $advertising_post_from  = round($post_from / $post_limit, 0);
                     $advertising_posts = Post::where('publication', 1)->where('in_advertising', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($advertising_post_from)->take(1)->get();
+                    $promo_posts = PostPromo::where('position', $advertising_post_from)->where('in_line', 1)->orderBy('order')->with('photo')->get();
                 endif;
                 if (count($posts)):
                     $categories = array();
@@ -245,6 +248,9 @@ class PostPublicController extends BaseController {
                     $json_request['html'] = View::make(Helper::layout('blocks.posts'), compact('posts', 'categories'))->render();
                     if(count($advertising_posts)):
                         $json_request['html'] .= View::make(Helper::layout('blocks.posts-advertising'), array('posts'=>$advertising_posts))->render();
+                    endif;
+                    if(count($promo_posts)):
+                        $json_request['html'] .= View::make(Helper::layout('blocks.posts-promo'), array('posts'=>$promo_posts))->render();
                     endif;
                     $json_request['status'] = TRUE;
                     $json_request['from'] = $post_from + $post_limit;

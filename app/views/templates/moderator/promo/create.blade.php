@@ -57,18 +57,19 @@
                                 {{ Form::textarea('video',NULL,array('class'=>'us-textarea js-autosize')) }}
                             </div>
                             <div class="form__input-block">
+                                <div class="form__input-title">Места размещения</div>
                                 <div class="section__content">
                                     <div class="check-cont js-set-check">
-                                        <input type="checkbox" class="js-styled-check">
-                                        <label>Текст чекбокса</label>
+                                        {{ Form::checkbox('in_index',1,NULL,array('class'=>'js-styled-check')) }}
+                                        <label>На главной</label>
                                     </div>
                                     <div class="check-cont js-set-check">
-                                        <input type="checkbox" class="js-styled-check">
-                                        <label>Текст чекбокса</label>
+                                        {{ Form::checkbox('in_section',1,NULL,array('class'=>'js-styled-check')) }}
+                                        <label>В разделе</label>
                                     </div>
                                     <div class="check-cont js-set-check">
-                                        <input type="checkbox" class="js-styled-check">
-                                        <label>Текст чекбокса</label>
+                                        {{ Form::checkbox('in_line',1,NULL,array('class'=>'js-styled-check')) }}
+                                        <label>В ленте</label>
                                     </div>
                                 </div>
                             </div>

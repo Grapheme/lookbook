@@ -15,6 +15,9 @@ class CreatePromoPostTable extends Migration {
             $table->string('link',255)->nullable();
             $table->integer('photo_id')->unsigned()->nullable();
             $table->text('video')->nullable();
+            $table->boolean('in_index')->default(0)->unsigned()->nullable();
+            $table->boolean('in_section')->default(0)->unsigned()->nullable();
+            $table->boolean('in_line')->default(0)->unsigned()->nullable();
 			$table->timestamps();
 		});
 	}

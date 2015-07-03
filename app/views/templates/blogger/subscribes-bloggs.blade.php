@@ -22,6 +22,7 @@
                         <ul class="dashboard-list js-posts">
                             @include(Helper::layout('blocks.posts'),compact('posts','categories'))
                             @include(Helper::layout('blocks.posts-advertising'), array('posts'=>$posts_advertising,'categories'=>$categories))
+                            @include(Helper::layout('blocks.posts-promo'),array('posts'=>$promo_posts))
                         </ul>
                         @if($posts_total_count > count($posts))
                             @include(Helper::layout('assets.more_post'),array('user'=>Auth::user()->id,'post_limit'=>$post_limit,'route_name'=>'post.public.more.subscribes'))
