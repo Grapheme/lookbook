@@ -823,8 +823,7 @@ LookBook.Like = function() {
     }
     init();
 }
-
-$(function(){
+LookBook.init = function() {
     Help.avaGenerator();
     Help.typicalSubmit();
     LookBook.Dashboard();
@@ -839,11 +838,12 @@ $(function(){
     LookBook.Search();
     LookBook.FitText();
     LookBook.Auth();
-    LookBook.Like();
     LookBook.ActionButton();
     LookBook.UiButton();
     LookBook.SimpleSlide();
     $('.js-autosize').autosize();
     $('.js-styled-select').selectmenu();
     $('.js-styled-check').button();
-});
+}
+
+$(LookBook.init);

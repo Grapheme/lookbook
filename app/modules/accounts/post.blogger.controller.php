@@ -67,7 +67,6 @@ class PostBloggerController extends BaseController {
     }
     /****************************************************************************/
     /****************************************************************************/
-
     public function preview(){
 
         $json_request = array('status'=>FALSE,'html'=>'','redirect'=>FALSE);

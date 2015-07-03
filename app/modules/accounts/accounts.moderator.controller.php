@@ -2,8 +2,8 @@
 
 class AccountsModeratorController extends BaseController {
 
-    public static $name = 'moderator';
-    public static $group = 'accounts';
+    public static $name = 'accounts';
+    public static $group = 'moderator';
     public static $entity = 'moderator';
     public static $entity_name = 'Кабинет модератор';
 
@@ -13,12 +13,14 @@ class AccountsModeratorController extends BaseController {
         $class = __CLASS__;
         if (Auth::check() && Auth::user()->group_id == 3):
             Route::group(array('before' => 'auth.status.moderator', 'prefix' => self::$name), function() use ($class) {
+
+//                Route::get('promo-posts',array('as'=>'moderator.promo.index','uses'=>'PromoModeratorController@index'));
+
                 Route::get('posts',array('as'=>'moderator.posts','uses'=>$class.'@postsList'));
                 Route::post('posts/{post_id}/publication',array('before'=>'csrf', 'as'=>'moderator.posts.publication','uses'=>$class.'@postPublication'));
                 Route::delete('posts/{post_id}/delete', array('before'=>'csrf', 'as' => 'moderator.posts.delete', 'uses' => $class.'@postDelete'));
 
                 Route::get('posts/comments',array('as'=>'moderator.posts.comments','uses'=>$class.'@postsCommentsList'));
-                Route::get('posts/promo',array('as'=>'moderator.posts.promo','uses'=>$class.'@postsPromoList'));
 
                 Route::get('accounts',array('as'=>'moderator.accounts','uses'=>$class.'@accountsList'));
                 Route::post('accounts/{account_id}/save',array('as'=>'moderator.accounts.save','uses'=>$class.'@accountSave'));
@@ -103,14 +105,6 @@ class AccountsModeratorController extends BaseController {
             return Redirect::back();
         endif;
         return Response::json($json_request,200);
-    }
-    /****************************************************************************/
-    public function postsPromoList(){
-
-        $posts = Post::where('in_promo_banner', 1)->orderBy('publication','DESC')->orderBy('publish_at','DESC')->orderBy('id','DESC')
-            ->paginate(Config::get('lookbook.posts_limit'));
-        list($categories, $tags) = PostBloggerController::getCategoriesAndTags();
-        return View::make(Helper::acclayout('post-promo'),compact('posts','categories','tags'));
     }
     /****************************************************************************/
     public function postsCommentsList(){

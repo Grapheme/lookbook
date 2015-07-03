@@ -47,10 +47,17 @@ endif;
             <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
         </div>
         <div class="header__info">
-            <div class="info__name js-fit-parent">
-                <h1 class="js-fit-text">{{ $user->blogname }}</h1>
-            </div>
-            <div class="info__quote">{{ $user->name }}</div>
+            @if($user->blogname != "")
+                <div class="info__name js-fit-parent">
+                    <h1 class="js-fit-text">{{ $user->blogname }}</h1>
+                </div>
+                <div class="info__quote">{{ $user->name }}</div>
+            @else
+                <div class="info__name js-fit-parent">
+                    <h1 class="js-fit-text">{{ $user->name }}</h1>
+                </div>
+                <div class="info__quote"></div>
+            @endif
             <div class="info__nav">
                 <a href="{{ URL::route('user.profile.show', $user->id.'-'.BaseController::stringTranslite($user->name)) }}" class="white-black-btn">Подробнее</a>
                 @if(Auth::check() && Auth::user()->group_id == 4 && Auth::user()->id != $user->id)
@@ -63,6 +70,7 @@ endif;
                         {{ Form::close() }}
                     @endif
                 @endif
+                <a href="#" class="white-black-btn">Монетизация</a>
             </div>
         </div>
         <div class="clearfix"></div>

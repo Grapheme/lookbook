@@ -35,7 +35,7 @@
                             <div class="form__top">
                                 <div class="clearfix">
                                     <div class="top__select-block form__input-block">
-                                        <div class="form__input-title">Выберите категорию</div>
+                                        <div class="form__input-title">Выберите категорию <a href="#" class="sub-link">Подробнее</a></div>
                                         {{ Form::select('category_id',$categories,$post->category_id,array('autocomplete'=>'off', 'class'=>'us-select js-styled-select')) }}
                                     </div>
                                     <div style="display: none;" class="top__select-block form__input-block">
@@ -55,17 +55,17 @@
                                 </div>
                             </div>
                             <div class="form__input-block">
-                                <div class="form__input-title">Изображение</div>
+                                <div class="form__input-title">Главное изображение</div>
                                 <label class="input">
                                     {{ ExtForm::image('photo_id') }}
                                 </label>
                             </div>
                             <div class="form__input-block">
-                                <div class="form__input-title">Подпись к изображаению</div>
+                                <div class="form__input-title">Подпись к изображению</div>
                                 {{ Form::text('photo_title',NULL,array('class'=>'us-input')) }}
                             </div>
                             <div class="form__input-block">
-                                <div class="form__input-title">Текст, изображение, видео поста</div>
+                                <div class="form__input-title">Текст, изображение, видео</div>
                                 {{ Form::textarea('content',NULL,array('class'=>'redactor')) }}
                             </div>
                             <div class="form__input-block">
@@ -75,7 +75,7 @@
                                 </label>
                             </div>
                             <div class="form__btns">
-                                {{ Form::button('Просмотр',array('class'=>'blue-hover us-btn btn-preview gray-btn','data-url'=>URL::route('post.preview'))) }}
+                                {{ Form::button('Посмотреть',array('class'=>'blue-hover us-btn btn-preview gray-btn','data-url'=>URL::route('post.preview'))) }}
                                 {{ Form::button('Опубликовать',array('class'=>'blue-hover us-btn','type'=>'submit')) }}
                             </div>
                             <button id="auto-save" data-url="{{ URL::route('post.auto.save',$post->id) }}" style="display: none"></button>

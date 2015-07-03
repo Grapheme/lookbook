@@ -409,7 +409,7 @@ th {
   padding: 0;
 }
 
-.linkTrans, .us-link, .reg-content a:not([class]), .ava-change .ava-links .ava-upload, .white-btn, .MessageBoxContainer .btn-default, .white-black-btn, .us-btn, .right-content .right-content__all-link, .right-tags .tags__item, .header .header__top a, .header .header__bottom .bottom__nav a, .header .header__bottom .bottom__search, .search__block .block__input button, .search__block .block__close, .footer .footer__top .footer__nav a, .footer .footer__bottom a, .overlay .tab__close span:before, .overlay .tab__close span:after, .overlay .overlay__body .overlay__tab.overlay-auth .auth__socials a, .overlay .overlay__body .overlay__tab.overlay-auth .auth_form a, .b-share .b-share__link, .user-header .header__info .info__auth-nav a, .ava-change .ava-links .ava-delete, .ava-change .ava-image__cont, .category-header .header__links a, .search__header .block__input button {
+.linkTrans, .us-link, .reg-content a:not([class]), .ava-change .ava-links .ava-upload, .new-post-form .form__input-title .sub-link, .white-btn, .MessageBoxContainer .btn-default, .white-black-btn, .us-btn, .right-content .right-content__all-link, .right-tags .tags__item, .header .header__top a, .header .header__bottom .bottom__nav a, .header .header__bottom .bottom__search, .search__block .block__input button, .search__block .block__close, .footer .footer__top .footer__nav a, .footer .footer__bottom a, .overlay .tab__close span:before, .overlay .tab__close span:after, .overlay .overlay__body .overlay__tab.overlay-auth .auth__socials a, .overlay .overlay__body .overlay__tab.overlay-auth .auth_form a, .b-share .b-share__link, .user-header .header__info .info__auth-nav a, .ava-change .ava-links .ava-delete, .ava-change .ava-image__cont, .category-header .header__links a, .search__header .block__input button {
   -webkit-transition: all .2s ease;
           transition: all .2s ease;
 }
@@ -1092,12 +1092,12 @@ h1 {
   color: inherit;
 }
 
-.us-link, .reg-content a:not([class]), .ava-change .ava-links .ava-upload {
+.us-link, .reg-content a:not([class]), .ava-change .ava-links .ava-upload, .new-post-form .form__input-title .sub-link {
   color: #4bbeff;
   text-decoration: none;
   border-bottom: 1px solid;
 }
-.us-link:hover, .reg-content a:hover:not([class]), .ava-change .ava-links .ava-upload:hover {
+.us-link:hover, .reg-content a:hover:not([class]), .ava-change .ava-links .ava-upload:hover, .new-post-form .form__input-title .sub-link:hover {
   border-color: transparent;
 }
 
@@ -2235,11 +2235,14 @@ h1 {
   width: 60px;
 }
 .dashboard-list .dashboard-item .left-block .profile-name {
+  display: inline-block;
   font-size: 12px;
-  margin-top: 12px;
+  margin-top: 6px;
+  margin-bottom: 6px;
   font-weight: 500;
+  line-height: 1.8;
   word-wrap: break-word;
-  width: 140%;
+  width: 150%;
   color: #333;
 }
 .dashboard-list .dashboard-item .right-block {
@@ -2373,6 +2376,10 @@ h1 {
   -webkit-transform: translateX(214%);
       -ms-transform: translateX(214%);
           transform: translateX(214%);
+}
+.dashboard-list .dashboard-item.promo-block-full .promo-slider .slider__items .items__slide iframe {
+  width: 100%;
+  height: 100%;
 }
 .dashboard-list .dashboard-item.promo-block-full .promo-slider .slider__nav {
   position: absolute;
@@ -2875,6 +2882,29 @@ h1 {
 }
 .pagination li.active {
   color: #4bbeff;
+}
+
+.disabled-overlay {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#auto-save {
+  position: absolute;
+  bottom: 60px;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  outline: none;
+}
+
+.monetization ul {
+  padding: 0 0 0 20px;
+  margin: 0;
 }
 
 .ui-datepicker {
@@ -3427,7 +3457,7 @@ h1 {
 .stat-table td:first-child {
   width: 155px;
   font-size: 14px;
-  padding: 15px 20px 15px 0;
+  padding: 5px 20px 5px 0;
 }
 
 .ava-image__empty {
@@ -3595,6 +3625,9 @@ h1 {
 .new-post-form .form__input-title {
   margin-bottom: 10px;
   font-weight: 500;
+}
+.new-post-form .form__input-title .sub-link {
+  margin-left: 1em;
 }
 .new-post-form .form__btns {
   margin-top: 15px;
