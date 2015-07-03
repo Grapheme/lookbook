@@ -828,7 +828,7 @@ LookBook.Mask = function() {
     $('[data-mask]').each(function(){
         var settings = {};
         if($(this).attr('data-placeholder')) {
-            setTimeout.placeholder = $(this).attr('data-placeholder')
+            settings.placeholder = $(this).attr('data-placeholder');
         }
         $(this).mask($(this).attr('data-mask'), settings);
     });

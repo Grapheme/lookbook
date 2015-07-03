@@ -56,6 +56,22 @@
                                 <div class="form__input-title">Код видео</div>
                                 {{ Form::textarea('video',NULL,array('class'=>'us-textarea js-autosize')) }}
                             </div>
+                            <div class="form__input-block">
+                                <div class="section__content">
+                                    <div class="check-cont js-set-check">
+                                        <input type="checkbox" class="js-styled-check">
+                                        <label>Текст чекбокса</label>
+                                    </div>
+                                    <div class="check-cont js-set-check">
+                                        <input type="checkbox" class="js-styled-check">
+                                        <label>Текст чекбокса</label>
+                                    </div>
+                                    <div class="check-cont js-set-check">
+                                        <input type="checkbox" class="js-styled-check">
+                                        <label>Текст чекбокса</label>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form__btns">
                                 {{ Form::button('Опубликовать',array('class'=>'blue-hover us-btn','type'=>'submit')) }}
                             </div>

@@ -3183,6 +3183,7 @@ h1 {
 .dashboard__form-table .form-table__value .input-add-value, .dashboard__form-table .form-table__value .input-change-value, .dashboard__form-table .form-table__value .input-file-value {
   display: none;
   position: absolute;
+  z-index: 2;
   top: 0;
   left: 0;
   right: 1px;
@@ -3219,6 +3220,9 @@ h1 {
 .dashboard__form-table .form-table__value.empty-value:hover .input-change-value {
   display: none;
 }
+.dashboard__form-table .form-table__value.empty-value .dashboard-input {
+  opacity: 0;
+}
 .dashboard__form-table .form-table__value.focus-value .input-add-value {
   display: none;
 }
@@ -3251,6 +3255,9 @@ h1 {
   font-size: 16px;
   background: transparent;
   outline: none;
+}
+.dashboard__form-table .dashboard-input:focus {
+  opacity: 1 !important;
 }
 .dashboard__form-table .form-table__texarea-cont {
   padding: 25px 20px 21px 0;
@@ -3630,6 +3637,9 @@ h1 {
   box-sizing: border-box;
   margin-top: 25px;
   padding-right: 40px;
+}
+.new-post-form .form__input-block .check-cont .ui-button-text {
+  font-size: 16px;
 }
 .new-post-form .form__input-title {
   margin-bottom: 10px;
