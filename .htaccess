@@ -4,7 +4,7 @@ Options -Indexes
 
 RewriteEngine on
 
-RewriteRule ^(spisok-bloggerov)$ /about [R=302,L]
+RewriteRule ^(spisok-bloggerov|fashion|lifestyle|beauty)$ /about [R=302,L]
 
 RewriteCond %{REQUEST_URI} !public/
 RewriteRule (.*) /public/$1 [L]
