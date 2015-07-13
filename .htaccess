@@ -4,6 +4,8 @@ Options -Indexes
 
 RewriteEngine on
 
+RewriteRule ^(spisok-bloggerov)$ /about [R=302,L]
+
 RewriteCond %{REQUEST_URI} !public/
 RewriteRule (.*) /public/$1 [L]
 
@@ -16,5 +18,3 @@ RewriteRule (.*) /public/$1 [L]
 #Redirect 302 fashion /about
 #Redirect 302 lifestyle /about
 #Redirect 302 beauty /about
-
-RewriteRule ^spisok-bloggerov$ /about [R=302,L]
