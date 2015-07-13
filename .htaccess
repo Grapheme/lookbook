@@ -12,7 +12,7 @@ RewriteRule (.*) /public/$1 [L]
 #AuthUserFile  /var/www/rikardo/.htpasswd
 #require valid-user
 
-Redirect spisok-bloggerov /about
-Redirect fashion /about
-Redirect lifestyle /about
-Redirect beauty /about
+Redirect 302 spisok-bloggerov /about
+Redirect 302 fashion /about
+Redirect 302 lifestyle /about
+Redirect 302 beauty /about
