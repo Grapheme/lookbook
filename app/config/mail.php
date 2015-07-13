@@ -3,7 +3,7 @@
 return array(
 
     'feedback' => array(
-        'address' => 'support@grapheme.ru',
+        'address' => ' support@look-book.ru',
     ),
 
     'driver' => 'smtp',

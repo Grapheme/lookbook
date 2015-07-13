@@ -7,7 +7,12 @@ RewriteEngine on
 RewriteCond %{REQUEST_URI} !public/
 RewriteRule (.*) /public/$1 [L]
 
-AuthType Basic
-AuthName "Access restricted"
-AuthUserFile  /var/www/rikardo/.htpasswd
-require valid-user
+#AuthType Basic
+#AuthName "Access restricted"
+#AuthUserFile  /var/www/rikardo/.htpasswd
+#require valid-user
+
+Redirect spisok-bloggerov /about
+Redirect fashion /about
+Redirect lifestyle /about
+Redirect beauty /about

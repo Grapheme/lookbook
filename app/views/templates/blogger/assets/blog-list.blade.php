@@ -13,3 +13,9 @@
         Вы еще не добавили ни один блог в свой блог лист.
     @endif
 </div>
+
+<div class="right-title">ПРАВИЛА ВЕДЕНИЯ БЛОГА</div>
+<div class="right-content">
+    <p>LOOKBOOK&nbsp;&mdash; первая в&nbsp;России площадка для ведения <nobr>фешн-блогов</nobr>. Настоятельно рекомендуем ознакомиться с&nbsp;правилами ведения блога на&nbsp;Lookbook во&nbsp;избежание блокировки вашего аккаунта модератором.</p>
+    <a href="{{ URL::route('page', 'rules') }}" class="right-content__all-link">ПОДРОБНЕЕ</a>
+</div>
