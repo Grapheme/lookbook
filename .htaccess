@@ -4,17 +4,14 @@ Options -Indexes
 
 RewriteEngine on
 
+## https://basecamp.com/1763145/projects/6824300/todos/189350846
 RewriteRule ^(spisok-bloggerov|fashion|lifestyle|beauty)$ /about [R=302,L]
 
 RewriteCond %{REQUEST_URI} !public/
 RewriteRule (.*) /public/$1 [L]
 
+## https://basecamp.com/1763145/projects/6824300/todos/189948003
 #AuthType Basic
 #AuthName "Access restricted"
 #AuthUserFile  /var/www/rikardo/.htpasswd
 #require valid-user
-
-#Redirect 302 spisok-bloggerov /about
-#Redirect 302 fashion /about
-#Redirect 302 lifestyle /about
-#Redirect 302 beauty /about

@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="form__input-block">
                                     <div class="form__input-title">Название</div>
-                                    {{ Form::text('title',NULL,array('class' => 'us-input')) }}
+                                    {{ Form::text('title',NULL,array('class' => 'us-input', 'placeholder' => 'Новый пост')) }}
                                 </div>
                             </div>
                             <div class="form__input-block">
