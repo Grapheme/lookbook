@@ -23,7 +23,7 @@
             <a href="{{ URL::route("subscribers") }}" {{ Helper::isRoute("subscribers") }} data-tab="subscribers">Лента</a>
             <a href="{{ URL::route("profile") }}" {{ Helper::isRoute("profile") }}>Профиль</a>
         @if(!Auth::user()->brand)
-            <a href="{{ URL::route("monetization") }}" {{ Helper::isRoute("monetization") }}>Монетизация</a>
+            {{--<a href="{{ URL::route("monetization") }}" {{ Helper::isRoute("monetization") }}>Монетизация</a>--}}
         @endif
             <!-- <a href="#" data-tab="notifications">Настройка уведомлений</a> -->
             <!-- <a href="#" data-tab="adv">Реклама</a> -->
