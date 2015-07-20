@@ -10,7 +10,6 @@ RewriteRule ^(spisok-bloggerov|fashion|lifestyle|beauty)$ /about [R=302,L]
 RewriteCond %{REQUEST_URI} !public/
 RewriteRule (.*) /public/$1 [L]
 
-https://basecamp.com/1763145/projects/6824300/todos/189948003
 AuthType Basic
 AuthName "Access restricted"
 AuthUserFile  /var/www/rikardo/.htpasswd
