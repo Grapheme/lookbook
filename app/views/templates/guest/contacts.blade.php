@@ -27,7 +27,7 @@
                             {{ Form::open(array('url'=>URL::route('contacts-send-question'),'class'=>'js-contact-form')) }}
                                 <table class="us__table">
                                     <tr>
-                                        <td>Представтесь</td>
+                                        <td>Представьтесь</td>
                                         <td>
                                             {{ Form::text('name') }}
                                         </td>
@@ -67,7 +67,7 @@
                                     </tr>
                                 </table>
                             {{ Form::close() }}
-                            <div class="us__success js-contact-success">Ваше сообщение успешно отправленно!</div>
+                            <div class="us__success js-contact-success">Ваше сообщение успешно отправлено!</div>
                         </div>
                     </div>
                     <div class="reg-content__right right-links">
