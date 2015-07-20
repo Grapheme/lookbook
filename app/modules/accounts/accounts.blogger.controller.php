@@ -410,6 +410,8 @@ class AccountsBloggerController extends BaseController {
                 $interesting_bloggers = array();
                 return View::make(Helper::layout('blogger-profile'), compact('user', 'interesting_bloggers', 'total_views_count'));
             endif;
+        else:
+            App::abort(404);
         endif;
     }
 

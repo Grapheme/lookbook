@@ -81,7 +81,7 @@
                                 <?php $links = explode(',',$user->links);?>
                                 <ul class="block__links">
                                 @foreach($links as $link)
-                                    <li><a href="{{ parse_url($link, PHP_URL_SCHEME)=='' ? 'http://'.$link : $link }} }}" class="us-link">{{ str_limit($link, $limit = 25, $end = ' ...') }}</a></li>
+                                    <li><a href="{{ parse_url(trim($link), PHP_URL_SCHEME)=='' ? 'http://'.trim($link) : trim($link) }}" class="us-link">{{ str_limit(trim($link), $limit = 25, $end = ' ...') }}</a></li>
                                 @endforeach
                                 </ul>
                             </div>
