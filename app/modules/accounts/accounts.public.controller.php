@@ -119,7 +119,8 @@ class AccountsPublicController extends BaseController {
                 'message' => 'required'));
             if ($validator->passes()):
                 $address = array(
-                    'e8bf00b49e1915193b17b05a3618e142' => array('support@look-book.ru', 'andreevaelena@look-book.ru'),
+                    #'e8bf00b49e1915193b17b05a3618e142' => array('support@look-book.ru', 'andreevaelena@look-book.ru'),
+                    'e8bf00b49e1915193b17b05a3618e142' => array('vkharseev@gmail.com', 'vk@grapheme.ru'),
                     '2ccd5aba1d18ed8bee786d07932f1654' => array('advertisement@look-book.ru', 'andreevaelena@look-book.ru'),
                     'ff85aee93c947bdd5bd6258927d940d4' => array('info@look-book.ru', 'andreevaelena@look-book.ru'),
                     '582c0147cd6c7f01b1fb65eff50dcb94' => array('ipatovavera@look-book.ru', 'andreevaelena@look-book.ru')
