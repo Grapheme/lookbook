@@ -13,18 +13,24 @@ class AccountsPublicController extends BaseController {
             'uses' => $class . '@contactsSendQuestion'));
     }
 
-    public static function returnShortCodes() {}
+    public static function returnShortCodes() {
+    }
 
-    public static function returnActions() {}
+    public static function returnActions() {
+    }
 
-    public static function returnInfo() {}
+    public static function returnInfo() {
+    }
 
-    public static function returnMenu() {}
+    public static function returnMenu() {
+    }
 
     /****************************************************************************/
-    public function __construct() {}
+    public function __construct() {
+    }
+
     /****************************************************************************/
-    public static function getTopBloggers(){
+    public static function getTopBloggers() {
 
         $users_top_posts = PostViews::select(DB::raw('posts.user_id as post_user_id,COUNT(posts_views.post_id) as users_views'))
             ->join('posts', 'posts_views.post_id', '=', 'posts.id')
@@ -49,7 +55,7 @@ class AccountsPublicController extends BaseController {
         return array('top_bloggers' => $top_bloggers, 'users_top_posts' => $users_top_posts);
     }
 
-    public static function getTopBrands(){
+    public static function getTopBrands() {
 
         $users_top_posts = PostViews::select(DB::raw('posts.user_id as post_user_id,COUNT(posts_views.post_id) as users_views'))
             ->join('posts', 'posts_views.post_id', '=', 'posts.id')
@@ -74,13 +80,13 @@ class AccountsPublicController extends BaseController {
         return array('top_bloggers' => $top_bloggers, 'users_top_posts' => $users_top_posts);
     }
 
-    public static function getPlaceRating($user_id){
+    public static function getPlaceRating($user_id) {
 
         $rating_place = 0;
         $rating_list = BloggerSubscribe::select(DB::raw('blogger_id as subscribe_user_id, COUNT(blogger_id) as subscribes'))->groupBy('blogger_id')->orderBy('subscribes', 'DESC')->get();
-        if($rating = self::calculateRating($rating_list)):
-            foreach($rating as $place => $user_rating):
-                if($user_rating['user_id'] == $user_id):
+        if ($rating = self::calculateRating($rating_list)):
+            foreach ($rating as $place => $user_rating):
+                if ($user_rating['user_id'] == $user_id):
                     $rating_place = $place;
                     break;
                 endif;
@@ -88,10 +94,11 @@ class AccountsPublicController extends BaseController {
         endif;
         return $rating_place;
     }
-    /****************************************************************************/
-    private static function calculateRating($rating_list){
 
-        if(count($rating_list)):
+    /****************************************************************************/
+    private static function calculateRating($rating_list) {
+
+        if (count($rating_list)):
             foreach ($rating_list as $index => $user_rating):
                 $rating[$index + 1]['user_id'] = $user_rating->subscribe_user_id;
                 $rating[$index + 1]['subscribes'] = $user_rating->subscribes;
@@ -102,6 +109,7 @@ class AccountsPublicController extends BaseController {
             return array();
         endif;
     }
+
     /****************************************************************************/
     public function contactsSendQuestion() {
 
@@ -118,10 +126,10 @@ class AccountsPublicController extends BaseController {
                 );
                 $theme = md5(Input::get('theme'));
                 $sending = array(Config::get('mail.feedback.address'));
-                if(isset($address[$theme])):
+                if (isset($address[$theme])):
                     $sending = $address[$theme];
                 endif;
-                foreach($sending as $to_email):
+                foreach ($sending as $to_email):
                     Mail::send('emails.feedback', array('post' => Input::all()), function ($message) use ($to_email) {
                         $message->from(Config::get('mail.from.address'), Config::get('mail.from.name'));
                         $message->to($to_email)->subject(Input::get('theme'));
