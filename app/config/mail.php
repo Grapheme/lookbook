@@ -10,8 +10,8 @@ return array(
     'host' => 'in.mailjet.com',
     'port' => 587,
     'from' => array(
-        'address' => 'support@look-book.ru',
-        #'address' => 'support@grapheme.ru',
+        #'address' => 'support@look-book.ru',
+        'address' => 'support@grapheme.ru',
         'name' => 'LOOKBOOK'
     ),
     'username' => '0d8dd8623bd38b41c43683c41c0558eb',
