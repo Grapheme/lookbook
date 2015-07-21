@@ -23,7 +23,7 @@ endif;
         @include(Helper::layout('assets.avatar'),array('user'=>$top_post['user'],'no_avatar'=>TRUE))
     </div>
     <div class="text__views">
-        <i class="svg-icon icon-eye"></i>{{ count($top_post['views']) }}
+        <i class="svg-icon icon-eye"></i>{{ count($top_post['views']) + @$top_post['guest_views'] }}
     </div>
 </div>
 <div class="clearfix"></div>

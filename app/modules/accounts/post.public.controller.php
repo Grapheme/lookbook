@@ -272,6 +272,8 @@ class PostPublicController extends BaseController {
                     return TRUE;
                 endif;
             endif;
+        else:
+            Post::where('id', $post->id)->update(array('guest_views' => $post->guest_views + 1));
         endif;
         return FALSE;
     }
