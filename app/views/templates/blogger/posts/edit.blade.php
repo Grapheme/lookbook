@@ -35,7 +35,7 @@
                             <div class="form__top">
                                 <div class="clearfix">
                                     <div class="top__select-block form__input-block">
-                                        <div class="form__input-title">Выберите категорию <a href="#" class="sub-link">Подробнее</a></div>
+                                        <div class="form__input-title">Выберите категорию <a href="{{ pageurl('pomosch-na-kakie-temy-stoit-vesti-blog-na-lookbook') }}" class="sub-link">Подробнее</a></div>
                                         {{ Form::select('category_id',$categories,$post->category_id,array('autocomplete'=>'off', 'class'=>'us-select js-styled-select')) }}
                                     </div>
                                     <div style="display: none;" class="top__select-block form__input-block">
