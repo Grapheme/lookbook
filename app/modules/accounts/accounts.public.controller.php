@@ -110,10 +110,23 @@ class AccountsPublicController extends BaseController {
             $validator = Validator::make(Input::all(), array('name' => 'required', 'email' => 'required|email',
                 'message' => 'required'));
             if ($validator->passes()):
-                Mail::send('emails.feedback', array('post' => Input::all()), function ($message) {
-                    $message->from(Config::get('mail.from.address'), Config::get('mail.from.name'));
-                    $message->to(Config::get('mail.feedback.address'))->subject('LookBook - Обратная связь');
-                });
+                $address = array(
+                    'e8bf00b49e1915193b17b05a3618e142' => array('support@look-book.ru', 'andreevaelena@look-book.ru'),
+                    '2ccd5aba1d18ed8bee786d07932f1654' => array('advertisement@look-book.ru', 'andreevaelena@look-book.ru'),
+                    'ff85aee93c947bdd5bd6258927d940d4' => array('info@look-book.ru', 'andreevaelena@look-book.ru'),
+                    '582c0147cd6c7f01b1fb65eff50dcb94' => array('ipatovavera@look-book.ru', 'andreevaelena@look-book.ru')
+                );
+                $theme = md5(Input::get('theme'));
+                $sending = array(Config::get('mail.feedback.address'));
+                if(isset($address[$theme])):
+                    $sending = $address[$theme];
+                endif;
+                foreach($sending as $to_email):
+                    Mail::send('emails.feedback', array('post' => Input::all()), function ($message) use ($to_email) {
+                        $message->from(Config::get('mail.from.address'), Config::get('mail.from.name'));
+                        $message->to($to_email)->subject(Input::get('theme'));
+                    });
+                endforeach;
                 $json_request['responseText'] = Lang::get('interface.MAIL.success_send');
                 $json_request['status'] = TRUE;
             else:
