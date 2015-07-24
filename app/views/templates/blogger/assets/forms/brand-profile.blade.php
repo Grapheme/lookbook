@@ -20,7 +20,7 @@
         </td>
     </tr>
     <tr>
-        <td class="form-table__name"><span>Мои блоги на сторонних ресурсах</span></td>
+        <td class="form-table__name"><span>Мои блоги на сторонних ресурсах<br><i>(через запятую)</i></span></td>
         <td class="form-table__value js-form-value">
             <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
             <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
