@@ -5,7 +5,7 @@
             @foreach($bloggers_find as $blogger)
                 <li class="list__item">
                     @include(Helper::layout('assets.avatar'),array('user'=>$blogger))
-                    <span class="text__followers">{{ count($bloggers_find['posts']) }}</span>
+                    <span class="text__followers">{{ count($bloggers_find->posts) }}</span>
                 </li>
             @endforeach
         </ul>
