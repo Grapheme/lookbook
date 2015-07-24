@@ -401,7 +401,7 @@ class AccountsBloggerController extends BaseController {
             $total_views_count = 0;
             foreach (Post::where('user_id', $user->id)->where('publication', 1)->with('views')->get() as $posts):
                 if (count($posts->views)):
-                    $total_views_count += count($posts->views);
+                    $total_views_count += count($posts->views) + $posts->guest_views;
                 endif;
             endforeach;
             if ($user->brand):
