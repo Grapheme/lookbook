@@ -92,7 +92,7 @@ class SearchPublicController extends BaseController {
 
     public static function resultBuildExcerpts($searched, $search_string){
 
-        if (count($searched)):
+        if (count($searched) && !empty($searched) && (is_object($searched) or is_array($searched))):
             $docs = array();
             foreach ($searched as $search_model):
                 $line = Helper::multiSpace(strip_tags($search_model->content));
