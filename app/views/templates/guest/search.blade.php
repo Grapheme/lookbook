@@ -66,7 +66,7 @@ endif;
                         <div class="clearfix"></div>
                     </div>
                     <div class="reg-content__right">
-                        @include(Helper::layout('blocks.search_blogs'),array('categories' => $categories,'bloggers_find' => $bloggers))
+                        @include(Helper::layout('blocks.search_blogs'),array('categories' => $categories,'bloggers_find' => $bloggers_find))
                     </div>
                     <div class="clearfix"></div>
                 </div>
