@@ -27,14 +27,20 @@ endif;
     @endif
         <div class="item__content">
             <div class="content__title">
-                <a href="{{ URL::route('user.profile.show',$blog->id.'-'.BaseController::stringTranslite($blog->name)) }}">{{ $blog->name }}</a>
+                @if($blog->blogname == "")
+                    <a href="{{ URL::route('user.posts.show',$blog->id.'-'.BaseController::stringTranslite($blog->name)) }}">{{ $blog->name }}</a>
+                @else
+                    <a href="{{ URL::route('user.posts.show',$blog->id.'-'.BaseController::stringTranslite($blog->name)) }}">{{ $blog->blogname }}</a>
+                @endif
             </div>
             <div class="content__followers">
                 <b>{{ $blog->me_signed->count() }}</b> {{ Lang::choice('подписчик|подписчика|подписчиков',$blog->me_signed->count()) }}
             </div>
-            <div class="content__quote">
-                {{ $blog->blogname }}
-            </div>
+            @if($blog->blogname != "")
+                <div class="content__quote">
+                    {{ $blog->name }}
+                </div>
+            @endif
             <div class="content__desc">
                 {{ str_limit(strip_tags($blog->about), $limit = 300, $end = ' ...') }}
             </div>

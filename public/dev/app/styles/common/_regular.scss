@@ -68,6 +68,11 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     border-bottom: 1px solid $borderColor;
+    border-top: 1px solid $borderColor;
+
+    &:first-child, &:first-of-type {
+        border-top: none;
+    }
 
     &.big-title {
         padding: 43px 15px 43px 5px;
@@ -177,6 +182,8 @@
             width: 60px;
             height: 60px;
             float: left;
+            background-size: cover;
+            background-position: center center;
 
             img {
                 max-width: 100%;
@@ -282,6 +289,16 @@
     }
 }
 
+.req-content__half {
+    float: left;
+    width: 50%;
+    border-top: 1px solid $borderColor;
+
+    .half__content {
+        padding: $dashTopPad $dashLeftPad $dashTopPad $dashLeftPad;
+    }
+}
+
 .posts-list {
     font-size: 0;
     padding: 0 0 50px;
@@ -314,9 +331,10 @@
         }
 
         .post-photo {
+            display: block;
             height: 350px;
-            background-position: cover;
-            background-size: center center;
+            background-position: center center;
+            background-size: cover;
         }
     }
 }
@@ -462,4 +480,8 @@
 
 .border-bottom-none {
     border-bottom: none !important;
+}
+
+.border-top {
+    border-top: 1px solid $borderColor !important;
 }

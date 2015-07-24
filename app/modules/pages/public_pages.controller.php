@@ -262,8 +262,10 @@ class PublicPagesController extends BaseController {
                 }
             }
         }
-        if(Auth::check() && $page->start_page == 1):
-            return Redirect::route('dashboard');
+        if(Config::get('lookbook.main_enabled') === FALSE):
+            if(Auth::check() && $page->start_page == 1):
+                return Redirect::route('dashboard');
+            endif;
         endif;
         return View::make($template, compact('page'));
 	}

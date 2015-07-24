@@ -132,6 +132,14 @@ jQuery.extend(jQuery.validator.messages, {
     min: jQuery.validator.format("Пожалуйста, введите число, большее или равное {0}."),
     extension: jQuery.validator.format("Вы можете загрузить изображение только со следующими расширениями: jpeg, jpg, png, gif.")
 });
+LookBook.SimpleSlide = function() {
+    if(!$('.js-slide-item').length) return;
+    $('.js-slide-link').on('click', function(){
+        $(this).parents('.js-slide-parent').find('.js-slide-item').slideDown();
+        $(this).parent().slideUp();
+        return false;
+    });
+}
 LookBook.UiButton = function() {
     if(!$('.js-set-check').length) return;
     var parent = $('.js-set-check');
@@ -169,7 +177,11 @@ LookBook.Gallery = function() {
         arrows: 'always',
         click: false,
         loop: true,
-        fit: 'cover'
+        width: '100%',
+        height: '100%',
+        minHeight: '300px',
+        maxHeight: '500px',
+        fit: 'contain'
     };
     var settings_full = {
         nav: false,
@@ -227,9 +239,34 @@ LookBook.ActionButton = function() {
         return false;
     });
 }
+LookBook.CommentForm = function() {
+    var parent = $('.js-comment-form');
+    if(!parent.length) return;
+    var textarea = parent.find('textarea');
+    textarea.on('keydown', function(e){
+        if(e.keyCode == 13 && !e.shiftKey) {
+            parent.trigger('submit');
+            return false;
+        }
+    });
+    parent.on('submit', function(e){
+        e.preventDefault();
+        if(textarea.val().trim().length < 1) {
+            return false;
+        } else {
+            Help.ajaxSubmit(parent, {
+                success: function(data){
+                    $('.js-comments').prepend(data.html);
+                    textarea.val('').removeAttr('style');
+                    Help.avaGenerator();
+                }
+            });
+        }
+    });
+}
 LookBook.Dashboard = function() {
     var postDelete = function(form) {
-        var post_cont = form.parents('.js-post'),
+        var post_cont = form.parents('.js-post').first(),
             options = { 
             beforeSubmit: function(){
                 post_cont.addClass('opacity05');
@@ -239,13 +276,13 @@ LookBook.Dashboard = function() {
                 if(data.status) {
                     post_cont.slideUp();
                 } else {
-                    console.log(data);
+                    //console.log(data);
                 }
             },
             error: function(data) {
                 post_cont.removeClass('opacity05');
                 $(form).find('[type="submit"]').removeAttr('disabled');
-                console.log(data);
+                //console.log(data);
             }
         };
         form.ajaxSubmit(options);
@@ -260,7 +297,7 @@ LookBook.Dashboard = function() {
                     .attr('disabled', 'disabled');
             }, 
             success: function(data){
-                console.log(posts_cont);
+                //console.log(posts_cont);
                 posts_cont.append(data.html);
                 if(data.hide_button) {
                     form.hide();
@@ -268,6 +305,9 @@ LookBook.Dashboard = function() {
                 $('#js-input-from').val(data.from);
                 form.find('[type="submit"]').removeClass('loading')
                     .removeAttr('disabled');
+                if($('.js-list-slide').not('.done').length) {
+                    LookBook.ListSlider();
+                }
             },
             error: function(data) {
                 response_cont.show().text('Ошибка на сервере, попробуйте позже');
@@ -647,42 +687,42 @@ LookBook.TopCollage = function() {
     if($('.js-collage li').length > 3) {
         var options = [
             {
-                x: [0, 50],
-                y: [0, 25]
+                x: [0, 60],
+                y: [0, 35]
             },
             {
-                x: [-25, 25],
-                y: [0, 25]
+                x: [-35, 35],
+                y: [0, 35]
             },
             {
-                x: [0, -25],
-                y: [0, 25]
+                x: [0, -35],
+                y: [0, 35]
             },
             {
-                x: [0, 50],
-                y: [-25, 0]
+                x: [0, 60],
+                y: [-35, 0]
             },
             {
-                x: [-25, 25],
-                y: [-25, 0]
+                x: [-35, 35],
+                y: [-35, 0]
             },
             {
-                x: [0, -25],
-                y: [-25, 0]
+                x: [0, -35],
+                y: [-35, 0]
             }
         ];
     } else {
         var options = [
             {
-                x: [0, 50],
+                x: [0, 60],
                 y: [-5, 5]
             },
             {
-                x: [-25, 25],
+                x: [-35, 35],
                 y: [-5, 5]
             },
             {
-                x: [0, -25],
+                x: [0, -35],
                 y: [-5, 5]
             }
         ];
@@ -719,6 +759,7 @@ LookBook.TopCollage = function() {
 LookBook.ListSlider = function() {
     if(!$('.js-list-slider').length) return;
     $('.js-list-slider').each(function(){
+        if($(this).hasClass('done')) return;
         var parent = $(this),
             item = parent.find('.js-list-slide'),
             dots_parent = parent.find('.js-list-dots'),
@@ -774,6 +815,7 @@ LookBook.ListSlider = function() {
             }
             setEvents();
             autoPlay(0);
+            parent.addClass('done');
         }
         init();
     });
@@ -802,8 +844,17 @@ LookBook.Like = function() {
     }
     init();
 }
-
-$(function(){
+LookBook.Mask = function() {
+    if(!$('[data-mask]').length) return;
+    $('[data-mask]').each(function(){
+        var settings = {};
+        if($(this).attr('data-placeholder')) {
+            settings.placeholder = $(this).attr('data-placeholder');
+        }
+        $(this).mask($(this).attr('data-mask'), settings);
+    });
+}
+LookBook.init = function() {
     Help.avaGenerator();
     Help.typicalSubmit();
     LookBook.Dashboard();
@@ -813,14 +864,18 @@ $(function(){
     LookBook.TopCollage();
     LookBook.DashForm();
     LookBook.ContactForm();
+    LookBook.CommentForm();
     LookBook.Gallery();
     LookBook.Search();
     LookBook.FitText();
     LookBook.Auth();
-    LookBook.Like();
     LookBook.ActionButton();
     LookBook.UiButton();
+    LookBook.SimpleSlide();
+    LookBook.Mask();
     $('.js-autosize').autosize();
     $('.js-styled-select').selectmenu();
     $('.js-styled-check').button();
-});
+}
+
+$(LookBook.init);

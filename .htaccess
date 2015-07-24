@@ -2,20 +2,15 @@ AddDefaultCharset utf-8
 Options +FollowSymLinks
 Options -Indexes
 
-<IfModule mod_rewrite.c>
+RewriteEngine on
 
-    RewriteEngine on
+## https://basecamp.com/1763145/projects/6824300/todos/189350846
+RewriteRule ^(spisok-bloggerov|fashion|lifestyle|beauty)$ /about [R=302,L]
 
-	# project.dev.grapheme.ru
-    #RewriteCond %{DOCUMENT_ROOT}/public -d
-	RewriteCond %{HTTP_HOST} !^dev.grapheme.ru$
-	RewriteCond %{HTTP_HOST} !^dev.grapheme$
-	RewriteRule (.*) /public/$1 [L]
+RewriteCond %{REQUEST_URI} !public/
+RewriteRule (.*) /public/$1 [L]
 
-	# dev.grapheme.ru/project/
-    #RewriteRule (.*) ./public/$1 [L]
-
-</IfModule>
-
-Satisfy Any
-Allow from all
+#AuthType Basic
+#AuthName "Access restricted"
+#AuthUserFile  /var/www/rikardo/.htpasswd
+#require valid-user

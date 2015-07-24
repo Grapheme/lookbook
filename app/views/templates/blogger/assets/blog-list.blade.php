@@ -10,6 +10,12 @@
         </ul>
         <a href="{{ URL::route('blogger-blog-list') }}" class="right-content__all-link">All blogs</a>
     @else
-        Вы еще не добавили ни один блог в свой блог-лист.<br>Читайте <a href="javascript:void(0);">TOP POST</a> и выбирайте любимые.
+        Вы еще не добавили ни один блог в свой блог лист.
     @endif
+</div>
+
+<div class="right-title">ПРАВИЛА ВЕДЕНИЯ БЛОГА</div>
+<div class="right-content">
+    <p>LOOKBOOK&nbsp;&mdash; первая в&nbsp;России площадка для ведения <nobr>фешн-блогов</nobr>. Настоятельно рекомендуем ознакомиться с&nbsp;правилами ведения блога на&nbsp;Lookbook во&nbsp;избежание блокировки вашего аккаунта модератором.</p>
+    <a href="{{ URL::route('page', 'rules') }}" class="right-content__all-link">ПОДРОБНЕЕ</a>
 </div>

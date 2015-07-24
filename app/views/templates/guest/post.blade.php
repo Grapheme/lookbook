@@ -4,8 +4,24 @@
  * AVAILABLE_ONLY_IN_ADVANCED_MODE
  */
 ?>
+
+@section('title'){{ $post->title }}@stop
+@section('description')@stop
+@section('keywords')@stop
+
 @extends(Helper::layout())
 @section('style')
+    <meta property="og:title" content="{{ $post->title }}" />
+    <meta property="og:description" content="{{ str_limit(strip_tags($post->content), $limit = 500, $end = ' ...') }}" />
+    <?php
+        $hasImage = FALSE;
+        if(!empty($post->photo) && File::exists(Config::get('site.galleries_photo_dir').'/'.$post->photo->name)):
+            $hasImage = TRUE;
+        endif;
+    ?>
+    @if($hasImage)
+        <meta property="og:image" content="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$post->photo->name) }}" />
+    @endif
 @stop
 @section('page_class')
 @stop
@@ -27,12 +43,6 @@
             <div class="grid_12 reg-content">
                 <div class="reg-content__left">
                     <ul class="dashboard-list one-post js-posts">
-                    <?php
-                        $hasImage = FALSE;
-                        if(!empty($post->photo) && File::exists(Config::get('site.galleries_photo_dir').'/'.$post->photo->name)):
-                            $hasImage = TRUE;
-                        endif;
-                    ?>
                         <li class="dashboard-item js-post">
                             <div class="left-block">
                                 @include(Helper::layout('assets.avatar'),array('user'=>$post->user))
@@ -55,34 +65,15 @@
                                         <div class="post-info__gallery js-gallery">
                                         @foreach($post->gallery->photos as $photo)
                                             @if(!empty($photo->name) && File::exists(Config::get('site.galleries_photo_dir').'/'.$photo->name))
-                                            <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$photo->name) }}" alt="{{ $post->title }}" data-caption="Описание">
+                                            <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$photo->name) }}" alt="{{ $post->title }}" data-caption="{{ $photo->title }}">
                                             @endif
                                         @endforeach
                                         </div>
                                     @endif
                                     </div>
                                 </div>
-                                <div class="post-actions">
-                                    <span class="actions__title">Поделиться</span>
-                                    <span class="actions__btns">
-                                        <a href="#" class="white-btn action-soc">
-                                            <i class="svg-icon icon-facebook"></i>Facebook
-                                        </a>
-                                        <!-- <a href="#" class="white-btn action-soc">
-                                            <i class="svg-icon icon-instagram"></i>Instagram
-                                        </a> -->
-                                        <a href="#" class="white-btn action-soc">
-                                            <i class="svg-icon icon-vk"></i>Вконтакте
-                                        </a>
-                                        <a href="#" class="white-btn action-soc">
-                                            <i class="svg-icon icon-ok"></i>Одноклассники
-                                        </a>
-                                    </span>
-                                </div>
-                                <div class="post-comments">
-                                    <div class="comments__title">Комментировать</div>
-                                    <div class="comments__body"></div>
-                                </div>
+                                @include(Helper::layout('assets.post-share'), array('post' => $post))
+                                @include(Helper::layout('assets.post-comments'), array('comments' => $post->comments))
                             </div>
                         </li>
                     </ul>
@@ -102,7 +93,7 @@
             <div class="overlay__gallery js-gallery-full">
             @foreach($post->gallery->photos as $photo)
                 @if(!empty($photo->name) && File::exists(Config::get('site.galleries_photo_dir').'/'.$photo->name))
-                <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$photo->name) }}" alt="{{ $post->title }}" data-caption="Описание">
+                <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$photo->name) }}" alt="{{ $post->title }}" data-caption="{{ $photo->title }}">
                 @endif
             @endforeach
             </div>

@@ -8,6 +8,7 @@
 		<p>
             Сообщение от: &lt;{{ $post['name'] }}&gt;
             <br>{{ $post['email'] }}
+            <br>Тема: {{ $post['theme'] }}
             <hr/>
 			{{ Helper::nl2br($post['message']) }}
             <hr/>

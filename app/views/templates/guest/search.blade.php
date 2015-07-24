@@ -3,10 +3,18 @@
  * TITLE: Результаты поиска
  * AVAILABLE_ONLY_IN_ADVANCED_MODE
  */
+$posts = array();
+$posts_total_count = 0;
 $categories = array();
 foreach (Dic::where('slug', 'categories')->first()->values as $category):
     $categories[$category->id] = array('slug' => $category->slug, 'title' => $category->name);
 endforeach;
+if(Session::has('search_text')):
+    $posts_total = SearchPublicController::getResult(Session::get('search_text'));
+    $posts_total_count = count($posts_total);
+    $posts = SearchPublicController::getResult(Session::get('search_text'), Config::get('lookbook.posts_limit'));
+    $excerpts = SearchPublicController::resultBuildExcerpts($posts, Session::get('search_text'));
+endif;
 ?>
 @extends(Helper::layout())
 @section('page_class')
@@ -38,13 +46,21 @@ endforeach;
             <div class="grid_12 reg-content border-none">
                 <div class="dashboard-tab">
                     <div class="reg-content__left">
+                    @if(empty($posts))
                         <div class="dashboard-empty">
                             <div class="dashboard-empty__desc">Ничего не найдено</div>
                         </div>
-                        <div class="left-title search-title">Посты <b>{{ Post::where('publication', 1)->count() }}</b></div>
+                    @else
+                        <div class="left-title search-title">
+                            Найдено <b>{{ $posts_total_count }}</b> {{ Lang::choice('пост|поста|постов',$posts_total_count) }}
+                        </div>
                         <ul class="dashboard-list list-search js-posts">
-
+                            @include(Helper::layout('blocks.posts-search'),compact('posts', 'excerpts'))
                         </ul>
+                        @if($posts_total_count > count($posts))
+                            @include(Helper::layout('assets.more_post'),array('post_limit'=>Config::get('lookbook.posts_limit'),'route_name'=>'post.public.more.search'))
+                        @endif
+                    @endif
                         <div class="clearfix"></div>
                     </div>
                     <div class="reg-content__right">

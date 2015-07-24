@@ -27,16 +27,16 @@ endforeach;
             <li class="list__item post-card">
                 <div class="item__cont">
                     @if($hasImage)
-                        <div class="post-photo" style="background-image: url({{ asset(Config::get('site.galleries_photo_public_dir').'/'.$post_ext->photo->name) }});" alt="{{ $post_ext->title }}">
+                    <a class="post-photo" style="background-image: url({{ asset(Config::get('site.galleries_photo_public_dir').'/'.$post_ext->photo->name) }});" alt="{{ $post_ext->title }}" href="{{ URL::route('post.public.show',array($post_ext->category_id.'-'.BaseController::stringTranslite($categories[$post_ext->category_id]['title']),$post_ext->id.'-'.BaseController::stringTranslite($post_ext->title))) }}">
                     @else
-                        <div class="post-photo">
+                    <a class="post-photo" href="{{ URL::route('post.public.show',array($post_ext->category_id.'-'.BaseController::stringTranslite($categories[$post_ext->category_id]['title']),$post_ext->id.'-'.BaseController::stringTranslite($post_ext->title))) }}">
                     @endif
                     @if(isset($categories[$post->category_id]['title']))
-                        <div class="post-photo__alt">
+                        <span class="post-photo__alt">
                             {{ $categories[$post->category_id]['title'] }}
-                        </div>
+                        </span>
                     @endif
-                    </div>
+                    </a>
                     <div class="item__date">{{ (new myDateTime())->setDateString($post_ext->publish_at.' 00:00:00')->custom_format('M d, Y') }}</div>
                     <div class="item__title">
                         <a href="{{ URL::route('post.public.show',array($post_ext->category_id.'-'.BaseController::stringTranslite($categories[$post_ext->category_id]['title']),$post_ext->id.'-'.BaseController::stringTranslite($post_ext->title))) }}">

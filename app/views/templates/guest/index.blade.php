@@ -9,15 +9,18 @@ endif;
 ?>
 @extends(Helper::layout())
 @section('style')
+@if(Config::get('lookbook.main_enabled') === FALSE)
     <style>
         .header, .footer {
             display: none;
         }
     </style>
+@endif
 @stop
 @section('page_class')
 @stop
 @section('content')
+@if(Config::get('lookbook.main_enabled') === FALSE)
 <div class="main-page">
     <div class="page__content">
         <a href="{{ URL::to('/about') }}" class="content__logo"></a>
@@ -28,7 +31,8 @@ endif;
         </div>
     </div>
 </div>
-@if(FALSE)
+@endif
+@if(Config::get('lookbook.main_enabled'))
 <div class="wrapper">
     <div class="container_12">
     @if(count($promoted_posts))
@@ -52,6 +56,8 @@ endif;
                         @include(Helper::layout('blocks.promo_posts'),array('categories'=>$categories))
                         @include(Helper::layout('blocks.promo_sliders'),array('categories'=>$categories))
                         @include(Helper::layout('blocks.posts'),compact('posts','categories','post_access'))
+                        @include(Helper::layout('blocks.posts-advertising'),array('posts'=>$advertising_posts,'categories'=>$categories,'post_access'=>$post_access))
+                        @include(Helper::layout('blocks.posts-promo'),array('posts'=>$promo_posts))
                     </ul>
                 @if($posts_total_count > count($posts))
                     @include(Helper::layout('assets.more_post'),array('category_id'=>NULL,'tag'=>Input::get('tag'),'post_limit'=>$post_limit,'category_title'=>''))

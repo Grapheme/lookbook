@@ -11,6 +11,9 @@ $promo_sliders = array();
                 <a href="javascript:void(0);" style="background-image: url({{ Config::get('site.theme_path') }}/images/tmp/promo_big.jpg);" class="js-list-slide items__slide"></a>
                 <a href="javascript:void(0);" style="background-image: url({{ Config::get('site.theme_path') }}/images/tmp/promo_big.jpg);" class="js-list-slide items__slide"></a>
                 <a href="javascript:void(0);" style="background-image: url({{ Config::get('site.theme_path') }}/images/tmp/promo_big.jpg);" class="js-list-slide items__slide"></a>
+                <a href="javascript:void(0);" class="js-list-slide items__slide">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/XTiGmQOkQMs" frameborder="0" allowfullscreen></iframe>
+                </a>
             </div>
             <div class="slider__nav js-list-dots">
             </div>

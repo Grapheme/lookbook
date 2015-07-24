@@ -1,0 +1,171 @@
+.moder-table {
+	font-size: 13px;
+	margin: $dashTopPad 0;
+	width: 100%;
+
+	th {
+		padding: 10px;
+		border-bottom: 1px solid $borderColor;
+		text-align: left;
+	}
+
+	td {
+		padding: 10px;
+		border: none;
+		border-bottom: 1px solid $borderColor;
+		vertical-align: top;
+	}
+
+	tr {
+		&:last-child {
+			td {
+				border-bottom: none !important;
+			}
+		}
+	}
+
+	.table__actions {
+		width: 350px;
+		vertical-align: middle;
+
+		.actions__btn {
+			margin-top: 20px;
+		}
+	}
+
+	.table__comment-owners {
+		width: 350px;
+		vertical-align: top;
+	}
+
+	.table__btns {
+		min-width: 220px;
+	}
+
+	.table__number {
+		text-align: center;
+	}
+
+	.table__user-info {
+		max-width: 250px;
+	}
+
+	.table__delete {
+		vertical-align: middle;
+	}
+
+	.table__promo {
+		.promo__image {
+			.image__link {
+				display: inline-block;
+				height: 98px;
+				width: 170px;
+				float: left;
+				background-size: cover;
+				background-position: center center;
+			}
+		}
+
+		.promo__info {
+			margin-left: 180px;
+
+			.info__date {
+				margin-top: 10px;
+			}
+		}
+	}
+
+	.comments__item {
+		border-top: none !important;
+
+		.left-block {
+			float: left;
+		}
+
+		.right-block {
+			margin-left: 80px;
+		}
+	}
+}
+
+.promo-btn {
+	padding: $dashTopPad 0;
+}
+
+.pagination {
+	margin: 0;
+	padding: 0 $dashLeftPad $dashTopPad;
+	list-style: none;
+	text-align: center;
+
+	li {
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0 5px;
+		font-size: 18px;
+
+		a {
+			color: inherit !important;
+			border: none !important;
+
+			&:hover {
+				color: $blue !important;
+			}
+		}
+
+		&.disabled {
+			color: #ccc;
+		}
+
+		&.active {
+			color: $blue;
+		}
+	}
+}
+
+.disabled-overlay {
+	position: fixed;
+	z-index: 999;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+#auto-save {
+	position: absolute;
+	bottom: 60px;
+	background: transparent;
+	border: none;
+	font-size: 14px;
+	outline: none;
+}
+
+.monetization {
+	ul {
+		padding: 0 0 0 20px;
+		margin: 0;
+	}
+}
+
+.ui-datepicker {
+	border-radius: 0 !important;
+
+	.ui-widget-header {
+		border-radius: 0 !important;		
+	}
+}
+
+.ui-datepicker-prev, .ui-datepicker-next {
+	@extend .svg-icon;
+	line-height: 31px;
+	text-align: center;
+}
+
+.ui-datepicker-next {
+	@extend .icon-arrow-right;
+}
+
+.ui-datepicker-prev {
+	@extend .icon-arrow-left;
+}

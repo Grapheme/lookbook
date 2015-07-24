@@ -7,7 +7,7 @@ $post_limit = Config::get('lookbook.posts_limit');
 $post_access = TRUE;
 $publication = 'all';
 $posts_total_count = Post::where('user_id',Auth::user()->id)->count();
-$recommended_blogs = $blog_list = $categories = array();
+$blog_list = $categories = array();
 if ($blogsIDs = BloggerSubscribe::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->take(5)->lists('blogger_id')):
     $blog_list = Accounts::where('group_id', 4)->where('active', 1)->whereIn('id', $blogsIDs)->get();
 endif;
@@ -46,7 +46,7 @@ endforeach;
                     @endif
                     </div>
                     <div class="reg-content__right">
-                        @include(Helper::acclayout('assets.recommended-list'),compact('recommended_blogs'))
+                        @include(Helper::acclayout('assets.recommended-list'))
                         @include(Helper::acclayout('assets.blog-list'),compact('blog_list'))
                     </div>
                     <div class="clearfix"></div>

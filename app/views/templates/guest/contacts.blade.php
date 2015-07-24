@@ -27,7 +27,7 @@
                             {{ Form::open(array('url'=>URL::route('contacts-send-question'),'class'=>'js-contact-form')) }}
                                 <table class="us__table">
                                     <tr>
-                                        <td>Представтесь</td>
+                                        <td>Представьтесь</td>
                                         <td>
                                             {{ Form::text('name') }}
                                         </td>
@@ -36,6 +36,17 @@
                                         <td>Электронная почта</td>
                                         <td>
                                             {{ Form::email('email') }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Тема</td>
+                                        <td>
+                                            <select name="theme" class="us-select js-styled-select">
+                                                <option value="Служба технической поддержки">Служба технической поддержки</option>
+                                                <option value="Для прессы">Для прессы</option>
+                                                <option value="Реклама на сайте">Реклама на сайте</option>
+                                                <option value="Другое">Другое</option>
+                                            </select>
                                         </td>
                                     </tr>
                                     <tr>
@@ -56,7 +67,7 @@
                                     </tr>
                                 </table>
                             {{ Form::close() }}
-                            <div class="us__success js-contact-success">Ваше сообщение успешно отправленно!</div>
+                            <div class="us__success js-contact-success">Ваше сообщение успешно отправлено!</div>
                         </div>
                     </div>
                     <div class="reg-content__right right-links">

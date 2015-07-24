@@ -9,7 +9,7 @@ endif;
         <i class="svg-icon icon-edit"></i>Редактировать
     </a>
     @if($post['publication'])
-    <a href="javascript:void(0);" class="white-btn action-comment">
+    <a href="{{ URL::route('post.public.show',array($post['category_id'].'-'.BaseController::stringTranslite($categories[$post['category_id']]['title']),$post['id'].'-'.BaseController::stringTranslite($post['title']))) }}#comments" class="white-btn action-comment">
         <i class="svg-icon icon-comments"></i>Комментировать
     </a>
     @endif

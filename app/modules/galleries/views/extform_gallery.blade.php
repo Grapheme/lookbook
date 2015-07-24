@@ -1,8 +1,6 @@
 
     <!-- Don't forget add to parent page to scripts section JS code for correct functionality, some like this: -->
     <!-- loadScript("/js/modules/gallery.js"); -->
-
-
 	<div class="egg-dropzone dropzone" data-name="{{ $name }}"<? if (isset($params) && is_array($params) && count($params)) { foreach($params as $key => $value) { echo ' data-' . $key . '="' . $value . '"'; } } ?>></div>
     <div class="superbox_" style="margin-top:10px;">
 

@@ -12,5 +12,5 @@ return array(
     'user_group'        => 'www-data',
     'user_name'         => 'www-data',
     'set_log'           => TRUE,
-    'directories'       => array('/public/uploads','/app/storage')
+    'directories'       => array('public/uploads','app/storage')
 );

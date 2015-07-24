@@ -14,22 +14,29 @@ if ($users_top_posts):
     endforeach;
 endif;
 $hasImage = FALSE;
-if(!empty($user->thumbnail) && File::exists(public_path($user->thumbnail))):
+if(!empty($user->photo) && File::exists(public_path($user->photo))):
     $hasImage = TRUE;
 endif;
 ?>
 <div class="user-header user-page-header">
     <div data-empty-name="{{ $user->name }}" class="header__photo{{ !$hasImage ? ' ava-empty ' : ' ' }}js-ava-cont">
     @if($hasImage)
-        <img src="{{ asset($user->thumbnail) }}">
+        <img src="{{ asset($user->photo) }}">
     @endif
         <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
     </div>
     <div class="header__info">
-        <div class="info__name js-fit-parent">
-            <h1 class="js-fit-text">{{ $user->name }}</h1>
-        </div>
-        <div class="info__quote">{{ $user->blogname }}</div>
+        @if($user->blogname != "")
+            <div class="info__name js-fit-parent">
+                <h1 class="js-fit-text">{{ $user->blogname }}</h1>
+            </div>
+            <div class="info__quote">{{ $user->name }}</div>
+        @else
+            <div class="info__name js-fit-parent">
+                <h1 class="js-fit-text">{{ $user->name }}</h1>
+            </div>
+            <div class="info__quote"></div>
+        @endif
         <div class="info__nav">
             @if(Route::currentRouteName() == 'user.profile.show')
             <a href="{{ URL::route('user.posts.show', $user->id.'-'.BaseController::stringTranslite($user->name)) }}" class="white-black-btn">Все посты блогера</a>
@@ -46,6 +53,7 @@ endif;
             {{ Form::close() }}
                 @endif
             @endif
+            {{--<a href="#" class="white-black-btn">Монетизация</a>--}}
         </div>
     </div>
     <div class="clearfix"></div>
