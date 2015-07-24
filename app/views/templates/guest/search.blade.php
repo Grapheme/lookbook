@@ -3,7 +3,7 @@
  * TITLE: Результаты поиска
  * AVAILABLE_ONLY_IN_ADVANCED_MODE
  */
-$posts = array();
+$posts = $bloggers_find = array();
 $posts_total_count = 0;
 $categories = array();
 foreach (Dic::where('slug', 'categories')->first()->values as $category):
@@ -15,7 +15,7 @@ if(Session::has('search_text')):
     $posts = SearchPublicController::getPostResult(Session::get('search_text'), Config::get('lookbook.posts_limit'));
     $excerpts = SearchPublicController::resultBuildExcerpts($posts, Session::get('search_text'));
 
-    $bloggers = SearchPublicController::getBloggerResult(Session::get('search_text'), Config::get('lookbook.posts_limit'));
+    $bloggers_find = SearchPublicController::getBloggerResult(Session::get('search_text'), Config::get('lookbook.posts_limit'));
 endif;
 ?>
 @extends(Helper::layout())
