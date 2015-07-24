@@ -763,9 +763,12 @@ LookBook.ListSlider = function() {
         var parent = $(this),
             item = parent.find('.js-list-slide'),
             dots_parent = parent.find('.js-list-dots'),
-            classes = ['to-left', 'to-right', 'out-left', 'out-right'];
-        var show = function(id) {
+            classes = ['to-left', 'to-right', 'out-left', 'out-right'],
+            timeout,
+            activeEq;
+        var show = function(id, click) {
             var this_item = item.eq(id);
+            activeEq = id;
             parent.find('.js-list-dot').eq(id).addClass('active')
                 .siblings().removeClass('active');
             item.removeClass(classes.join(' '));
@@ -773,18 +776,31 @@ LookBook.ListSlider = function() {
                 .prevAll().addClass('out-left');
             this_item.next().addClass('to-right')
                 .nextAll().addClass('out-right');
+            if(click) {
+                clearTimeout(timeout);
+                autoPlay(activeEq);
+            }
         }
         var setEvents = function() {
             item.on('click', function(){
                 if($(this).hasClass('to-right') || $(this).hasClass('to-left')) {
-                    show($(this).index());
+                    show($(this).index(), true);
                     return false;
                 }
             });
             parent.find('.js-list-dot').on('click', function(){
-                show($(this).index());
+                show($(this).index(), true);
                 return false;
             });
+        }
+        var autoPlay = function(eq) {
+            if(eq == item.length) {
+                eq = 0;
+            }
+            show(eq);
+            timeout = setTimeout(function(){
+                autoPlay(eq+1);
+            }, 3000);
         }
         var init = function() {
             if(item.length > 1) {
@@ -797,8 +813,8 @@ LookBook.ListSlider = function() {
             } else {
                 dots_parent.remove();
             }
-            show(0);
             setEvents();
+            autoPlay(0);
             parent.addClass('done');
         }
         init();
