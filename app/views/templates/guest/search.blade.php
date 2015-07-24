@@ -10,10 +10,15 @@ foreach (Dic::where('slug', 'categories')->first()->values as $category):
     $categories[$category->id] = array('slug' => $category->slug, 'title' => $category->name);
 endforeach;
 if(Session::has('search_text')):
-    $posts_total = SearchPublicController::getResult(Session::get('search_text'));
+    $posts_total = SearchPublicController::getPostResult(Session::get('search_text'));
     $posts_total_count = count($posts_total);
-    $posts = SearchPublicController::getResult(Session::get('search_text'), Config::get('lookbook.posts_limit'));
+    $posts = SearchPublicController::getPostResult(Session::get('search_text'), Config::get('lookbook.posts_limit'));
     $excerpts = SearchPublicController::resultBuildExcerpts($posts, Session::get('search_text'));
+
+    $bloggers = SearchPublicController::getBloggerResult(Session::get('search_text'), Config::get('lookbook.posts_limit'));
+
+    Helper::ta($bloggers);
+
 endif;
 ?>
 @extends(Helper::layout())
@@ -64,9 +69,7 @@ endif;
                         <div class="clearfix"></div>
                     </div>
                     <div class="reg-content__right">
-                        @include(Helper::layout('blocks.top_posts'),compact('categories'))
-                        @include(Helper::layout('blocks.top_bloggers'),compact('categories'))
-                        @include(Helper::layout('blocks.top_brands'),compact('categories'))
+                        @include(Helper::layout('blocks.search_blogs'),compact('categories'))
                     </div>
                     <div class="clearfix"></div>
                 </div>
