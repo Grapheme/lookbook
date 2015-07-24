@@ -16,9 +16,6 @@ if(Session::has('search_text')):
     $excerpts = SearchPublicController::resultBuildExcerpts($posts, Session::get('search_text'));
 
     $bloggers = SearchPublicController::getBloggerResult(Session::get('search_text'), Config::get('lookbook.posts_limit'));
-
-    Helper::ta($bloggers);
-
 endif;
 ?>
 @extends(Helper::layout())
@@ -69,7 +66,7 @@ endif;
                         <div class="clearfix"></div>
                     </div>
                     <div class="reg-content__right">
-                        @include(Helper::layout('blocks.search_blogs'),compact('categories'))
+                        @include(Helper::layout('blocks.search_blogs'),array('categories' => $categories,'bloggers_find' => $bloggers))
                     </div>
                     <div class="clearfix"></div>
                 </div>

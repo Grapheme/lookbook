@@ -1,19 +1,13 @@
-<?php
-if ($result = AccountsPublicController::getTopBloggers()):
-    extract($result);
-endif;
-?>
-@if(count($top_bloggers))
-    <div class="right-title">Top BLOGGERS</div>
+@if(count($bloggers_find))
+    <div class="right-title">BLOGGERS ({{ count($bloggers_find) }})</div>
     <div class="right-content">
         <ul class="right-content__list top-bloggers">
-            @foreach($top_bloggers as $top_blogger)
+            @foreach($bloggers_find as $blogger)
                 <li class="list__item">
-                    @include(Helper::layout('assets.avatar'),array('user'=>$top_blogger))
-                    <span class="text__followers">{{ isset($users_top_posts[$top_blogger->id]) ? $users_top_posts[$top_blogger->id] : '' }}</span>
+                    @include(Helper::layout('assets.avatar'),array('user'=>$blogger))
+                    <span class="text__followers">{{ count($bloggers_find['posts']) }}</span>
                 </li>
             @endforeach
         </ul>
-        <a href="{{ pageurl('total-blogger-list') }}" class="right-content__all-link">All blogs</a>
     </div>
 @endif
