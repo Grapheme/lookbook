@@ -50,9 +50,9 @@ class SearchPublicController extends BaseController {
                 $post_from = Input::get('from');
                 $post_limit = Input::get('limit');
 
-                $posts_total = SearchPublicController::getResult(Input::get('search'));
+                $posts_total = SearchPublicController::getPostResult(Input::get('search'));
                 $posts_total_count = count($posts_total);
-                $posts = SearchPublicController::getResult(Input::get('search'), $post_limit, $post_from);
+                $posts = SearchPublicController::getPostResult(Input::get('search'), $post_limit, $post_from);
                 $excerpts = SearchPublicController::resultBuildExcerpts($posts, Input::get('search'));
                 if (count($posts)):
                     $json_request['html'] = View::make(Helper::layout('blocks.posts-search'), compact('posts', 'excerpts'))->render();
@@ -68,7 +68,7 @@ class SearchPublicController extends BaseController {
     }
 
     /****************************************************************************/
-    public static function getResult($search_text, $limit = 2147483647, $offset = 0){
+    public static function getPostResult($search_text, $limit = 2147483647, $offset = 0){
 
         return SphinxSearch::search($search_text, 'postsIndexLookBook')
             ->setFieldWeights(array('content' => 10, 'title' => 5))
@@ -76,6 +76,17 @@ class SearchPublicController extends BaseController {
             ->SetSortMode(\Sphinx\SphinxClient::SPH_SORT_RELEVANCE, "@weight DESC")
             ->limit($limit, $offset)
             ->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')
+            ->get();
+    }
+
+    public static function getBloggerResult($search_text, $limit = 2147483647, $offset = 0){
+
+        return SphinxSearch::search($search_text, 'bloggerIndexLookBook')
+            ->setFieldWeights(array('content' => 10, 'title' => 5))
+            ->setMatchMode(\Sphinx\SphinxClient::SPH_MATCH_EXTENDED)
+            ->SetSortMode(\Sphinx\SphinxClient::SPH_SORT_RELEVANCE, "@weight DESC")
+            ->limit($limit, $offset)
+            ->with('posts')
             ->get();
     }
 
