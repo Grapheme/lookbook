@@ -4,6 +4,7 @@
         <th class="table__number">№</th>
         <th>Название</th>
         <th>Опубликован</th>
+        <th>Последнее обновление</th>
         <th></th>
         <th></th>
     </thead>
@@ -28,6 +29,7 @@
                     {{ $categories[$post->category_id] }}
                 </div>
             </td>
+            <td>{{ (new myDateTime())->setDateString($post->publish_at)->format('d.m.Y') }}</td>
             <td>{{ $post->updated_at->format('d.m.Y H:i') }}</td>
             <td class="table__actions js-slide-parent">
                 <div class="js-slide-item hidden">
