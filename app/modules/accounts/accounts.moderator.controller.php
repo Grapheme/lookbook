@@ -132,6 +132,9 @@ class AccountsModeratorController extends BaseController {
                 $post->promoted_photo_id = AdminUploadsController::getUploadedImageFile('photo');
             endif;
             $post->save();
+            $json_request['status'] = TRUE;
+            $json_request['responseText'] = Lang::get('interface.DEFAULT.success_save');
+            return Response::json($json_request,200);
             return Redirect::back()->with('message',Lang::get('interface.DEFAULT.success_save'));
         endif;
         return Redirect::back()->with('message',Lang::get('interface.DEFAULT.fail'));
