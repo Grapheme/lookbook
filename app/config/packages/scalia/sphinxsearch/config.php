@@ -6,5 +6,6 @@ return array(
     'timeout' => 30,
     'indexes' => array(
         'postsIndexLookBook' => array('table' => 'posts', 'column' => 'id', 'modelname' => 'Post'),
+        'bloggerIndexLookBook' => array('table' => 'users', 'column' => 'id', 'modelname' => 'Accounts'),
     )
 );
