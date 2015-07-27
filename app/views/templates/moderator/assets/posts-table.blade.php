@@ -39,7 +39,7 @@
                     {{ Form::checkbox('in_section') }} Опубликовать в разделе <br>
                     {{ Form::checkbox('in_promoted') }} Продвигаемый пост <br>
                     {{ Form::checkbox('in_advertising') }} Рекламный пост <br><br>
-                    Изображение поста: <br>
+                    Изображение продвигаемого поста: <br>
                     {{ Form::file('photo') }}
                     {{ Form::button('Сохранить',array('class'=>'white-btn actions__btn','type'=>'submit')) }}
                     {{ Form::close() }}
