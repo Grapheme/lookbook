@@ -10,7 +10,7 @@
 	<meta name="description" content="{{{(isset($page_description))?$page_description:''}}}">
 	<meta name="keywords" content="{{{(isset($page_keywords))?$page_keywords:''}}}">
 	<meta name="author" content="{{{(isset($page_author))?$page_author:''}}}">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
 @if(Config::get('app.use_css_local'))
 	{{ HTML::style('private/css/bootstrap.min.css') }}
 @else
