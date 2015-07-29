@@ -22,6 +22,7 @@ class PostPublicController extends BaseController {
                 'uses' => $class . '@sendComment'));
             Route::delete('post/delete-comment/{comment_id}', array('before' => 'csrf', 'as' => 'post.public.comment.destroy',
                 'uses' => $class . '@destroyComment'));
+            Route::post('post/set-like', array('as' => 'post.public.set.like', 'uses' => $class . '@setLike'));
         endif;
     }
 
@@ -135,6 +136,24 @@ class PostPublicController extends BaseController {
             if (Auth::user()->group_id == 3):
                 PostComments::where('id', $comment_id)->delete();
                 $json_request['status'] = TRUE;
+            endif;
+        else:
+            return Redirect::back();
+        endif;
+        return Response::json($json_request, 200);
+    }
+    /****************************************************************************/
+    public function setLike(){
+
+        $json_request = array('status' => FALSE, 'count' => 0);
+        if (Request::ajax()):
+            $validator = Validator::make(Input::all(), array('id' => 'required|numeric'));
+            if ($validator->passes()):
+                if ($post = Post::where('id', Input::get('id'))->first()):
+                    self::incrementLikePost($post);
+                    $json_request['status'] = TRUE;
+                    $json_request['count'] = Post::where('id', Input::get('id'))->first()->likes()->count();
+                endif;
             endif;
         else:
             return Redirect::back();
@@ -274,6 +293,19 @@ class PostPublicController extends BaseController {
             endif;
         else:
             Post::where('id', $post->id)->update(array('guest_views' => $post->guest_views + 1));
+        endif;
+        return FALSE;
+    }
+
+    private function incrementLikePost($post) {
+
+        if (Auth::check()):
+            if (in_array(Auth::user()->group_id, array(3, 4)) !== FALSE && Auth::user()->id != $post->user_id):
+                if (PostLikes::where('post_id', $post->id)->where('user_id', Auth::user()->id)->exists() === FALSE):
+                    PostLikes::create(array('post_id' => $post->id, 'user_id' => Auth::user()->id));
+                    return TRUE;
+                endif;
+            endif;
         endif;
         return FALSE;
     }
