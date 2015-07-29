@@ -32,9 +32,23 @@ endif;
         <span class="statisctics-item">
             <i class="svg-icon icon-eye"></i>{{ count(@$post['views']) + @$post['guest_views'] }}
         </span>
-        <a href="#" class="statisctics-item js-like" data-post-id="{{ $post['id'] }}" data-action="json/like.json">
+        @if(Auth::check() && $post['user_id'] != Auth::user()->id)
+        <?php
+            $class = '';
+            foreach($post['likes'] as $likes):
+                if($likes['user_id'] == Auth::user()->id):
+                    $class = ' liked';
+                endif;
+            endforeach;
+        ?>
+        <a href="#" class="statisctics-item js-like{{ $class }}" data-post-id="{{ $post['id'] }}" data-action="{{ URL::route('post.public.set.like' ) }}">
             <i class="svg-icon icon-like"></i><span><span class="js-like-count">{{ count(@$post['likes']) }}</span></span>
         </a>
+        @else
+        <a href="javascript:void(0);" class="statisctics-item">
+            <i class="svg-icon icon-like"></i><span><span class="js-like-count">{{ count(@$post['likes']) }}</span></span>
+        </a>
+        @endif
         <span class="statisctics-item">
             <i class="svg-icon icon-comments"></i>{{ count(@$post['comments']) }}
         </span>
