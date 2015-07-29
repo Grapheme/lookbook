@@ -12,20 +12,20 @@ if (count($top_posts_ids_all)):
             $countPostsIDs++;
         endif;
     endforeach;
-    foreach(Post::whereIn('id', array_keys($top_posts_ids))->where('user_id', $user_id)->where('publication', 1)->with('user', 'views', 'photo')->get() as $post):
+    foreach (Post::whereIn('id', array_keys($top_posts_ids))->where('user_id', $user_id)->where('publication', 1)->with('user', 'views', 'photo')->get() as $post):
         $top_posts[$post->id] = $post;
     endforeach;
     $tmp_posts = $top_posts;
     $top_posts = array();
-    foreach($top_posts_ids as $index => $top_post):
-        if(isset($tmp_posts[$index])):
+    foreach ($top_posts_ids as $index => $top_post):
+        if (isset($tmp_posts[$index])):
             $top_posts[$index] = $tmp_posts[$index];
         endif;
     endforeach;
 endif;
 $categories = array();
-foreach(Dic::where('slug','categories')->first()->values as $category):
-    $categories[$category->id] = array('slug'=>$category->slug,'title'=>$category->name);
+foreach (Dic::where('slug', 'categories')->first()->values as $category):
+    $categories[$category->id] = array('slug' => $category->slug, 'title' => $category->name);
 endforeach;
 ?>
 @if(count($top_posts))
@@ -34,9 +34,9 @@ endforeach;
         <ul class="right-content__list list-big">
             @foreach($top_posts as $top_post)
                 @if(count($top_post->views))
-                <li class="list__item">
-                    @include(Helper::layout('assets.top_post'),array('top_post'=>$top_post,'categories'=>$categories))
-                </li>
+                    <li class="list__item">
+                        @include(Helper::layout('assets.top_post'),array('top_post'=>$top_post,'categories'=>$categories))
+                    </li>
                 @endif
             @endforeach
         </ul>
