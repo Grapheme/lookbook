@@ -826,18 +826,23 @@ LookBook.DatePicker = function() {
 LookBook.Like = function() {
     var sendLike = function(elem) {
         var action = elem.attr('data-action');
+        elem.addClass('liked');
         $.ajax({
             url: action,
             type: 'post',
+            data: 'id=' + elem.attr('data-post-id'),
             dataType: 'json'
         }).done(function(data){
-            console.log(data);
+            if(data.status) {
+                elem.find('.js-like-count').text(data.count);
+            }
         }).fail(function(data){
             console.log(data);
         });
     }
     var init = function() {
         $(document).on('click', '.js-like', function(){
+            if($(this).hasClass('liked')) return false;
             sendLike($(this));
             return false;
         });
@@ -873,6 +878,7 @@ LookBook.init = function() {
     LookBook.UiButton();
     LookBook.SimpleSlide();
     LookBook.Mask();
+    LookBook.Like();
     $('.js-autosize').autosize();
     $('.js-styled-select').selectmenu();
     $('.js-styled-check').button();

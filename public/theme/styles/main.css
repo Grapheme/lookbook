@@ -699,11 +699,26 @@ th {
 }
 
 .icon-like:before {
-  content: "\e607";
+  content: "\e610";
+}
+
+.liked {
+  cursor: default;
+}
+.liked .icon-like:before {
+  content: "\e611";
 }
 
 .icon-liked:before {
-  content: "\e60d";
+  content: "\e611";
+}
+
+.icon-liked:before,
+.icon-like:before {
+  position: relative;
+  top: -.2em;
+  font-size: 25px;
+  margin: 0 3px 0 5px;
 }
 
 .icon-facebook:before, .b-share .b-share__link.b-share-btn__facebook .b-share-icon:before {
