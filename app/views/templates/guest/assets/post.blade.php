@@ -3,19 +3,21 @@ if (is_object($post)):
     $post = $post->toArray();
 endif;
 $hasImage = FALSE;
-if(!empty($post['photo']) && File::exists(Config::get('site.galleries_photo_dir').'/'.$post['photo']['name'])):
+if (!empty($post['photo']) && File::exists(Config::get('site.galleries_photo_dir') . '/' . $post['photo']['name'])):
     $hasImage = TRUE;
 endif;
 ?>
-<a href="{{ URL::route('post.public.show',array($post['category_id'].'-'.BaseController::stringTranslite($categories[$post['category_id']]['title']),$post['id'].'-'.BaseController::stringTranslite($post['title']))) }}" class="post-photo">
-@if($hasImage)
-    <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$post['photo']['name']) }}" alt="{{ $post['title'] }}">
-@endif
-@if(isset($categories[$post['category_id']]['title']))
-    <span class="post-photo__alt">
+<a href="{{ URL::route('post.public.show',array($post['category_id'].'-'.BaseController::stringTranslite($categories[$post['category_id']]['title']),$post['id'].'-'.BaseController::stringTranslite($post['title']))) }}"
+   class="post-photo">
+    @if($hasImage)
+        <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$post['photo']['name']) }}"
+             alt="{{ $post['title'] }}">
+    @endif
+    @if(isset($categories[$post['category_id']]['title']))
+        <span class="post-photo__alt">
         {{ $categories[$post['category_id']]['title'] }}
     </span>
-@endif
+    @endif
 </a>
 <div class="post-info">
     <div class="post-info__title">
@@ -27,29 +29,32 @@ endif;
 </div>
 <div class="post-footer">
     @if($post['publication'])
-    <span class="post-footer__date">{{ (new myDateTime())->setDateString($post['publish_at'].' 00:00:00')->custom_format('M d, Y') }}</span>
-    <span class="post-footer__statisctics">
+        <span class="post-footer__date">{{ (new myDateTime())->setDateString($post['publish_at'].' 00:00:00')->custom_format('M d, Y') }}</span>
+        <span class="post-footer__statisctics">
         <span class="statisctics-item">
             <i class="svg-icon icon-eye"></i>{{ count(@$post['views']) + @$post['guest_views'] }}
         </span>
-        @if(Auth::check() && $post['user_id'] != Auth::user()->id)
-        <?php
-            $class = '';
-            foreach($post['likes'] as $likes):
-                if($likes['user_id'] == Auth::user()->id):
-                    $class = ' liked';
-                endif;
-            endforeach;
-        ?>
-        <a href="#" class="statisctics-item js-like{{ $class }}" data-post-id="{{ $post['id'] }}" data-action="{{ URL::route('post.public.set.like' ) }}">
-            <i class="svg-icon icon-like"></i><span><span class="js-like-count">{{ count(@$post['likes']) }}</span></span>
-        </a>
-        @else
-        <a href="javascript:void(0);" class="statisctics-item">
-            <i class="svg-icon icon-like"></i><span><span class="js-like-count">{{ count(@$post['likes']) }}</span></span>
-        </a>
-        @endif
-        <span class="statisctics-item">
+            @if(Auth::check() && $post['user_id'] != Auth::user()->id)
+                <?php
+                $class = '';
+                foreach ($post['likes'] as $likes):
+                    if ($likes['user_id'] == Auth::user()->id):
+                        $class = ' liked';
+                    endif;
+                endforeach;
+                ?>
+                <a href="#" class="statisctics-item js-like{{ $class }}" data-post-id="{{ $post['id'] }}"
+                   data-action="{{ URL::route('post.public.set.like' ) }}">
+                    <i class="svg-icon icon-like"></i><span><span
+                                class="js-like-count">{{ count(@$post['likes']) }}</span></span>
+                </a>
+            @else
+                <a href="javascript:void(0);" class="statisctics-item">
+                    <i class="svg-icon icon-like"></i><span><span
+                                class="js-like-count">{{ count(@$post['likes']) }}</span></span>
+                </a>
+            @endif
+            <span class="statisctics-item">
             <i class="svg-icon icon-comments"></i>{{ count(@$post['comments']) }}
         </span>
     </span>
