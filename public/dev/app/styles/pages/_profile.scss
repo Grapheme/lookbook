@@ -346,6 +346,13 @@
 }
 
 .ava-change {
+    &.ava-background {
+        .ava-image {
+            width: 200px;
+            height: 87px;
+        }
+    }
+
     .ava-image {
         position: relative;
         display: inline-block;
@@ -652,6 +659,15 @@
             position: absolute;
             bottom: 25px;
             right: 25px;
+        }
+    }
+
+    &.ava-background {
+        .overlay__preview {
+            &.preview-huge {
+                width: 300px;
+                height: 132px;
+            }
         }
     }
 }
