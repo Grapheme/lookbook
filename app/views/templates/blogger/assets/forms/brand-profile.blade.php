@@ -1,6 +1,7 @@
 {{ Form::model($profile,array('route'=>'profile.update','method'=>'put','id'=>'dashboard-main', 'class'=>'js-dashboard-form','files'=>TRUE)) }}
     {{ Form::hidden('birth','') }}
     {{ Form::hidden('sex', 0) }}
+    {{ Form::hidden('picture') }}
 <div class="left-title">Основное</div>
 <table class="dashboard__form-table">
     <tr>
@@ -73,13 +74,13 @@
             {{ Form::text('blogname',Input::old('blogname'),array('class'=>'dashboard-input')) }}
         </td>
     </tr>
-    <tr>
+    <!--<tr>
         <td class="form-table__name"><span>Имеджевая картинка для блога</span></td>
         <td class="form-table__value form-table__file js-form-file">
             <a href="#" class="input-file-value"><span>Выбрать</span></a>
             {{ Form::file('picture',array('class'=>'dashboard-input-file')) }}
         </td>
-    </tr>
+    </tr>-->
     <tr>
         <td class="form-table__name"><span>Текст о себе или о блоге</span></td>
         <td class="form-table__value form-table__texarea-cont">
