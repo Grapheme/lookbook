@@ -34,6 +34,13 @@ return array(
     'galleries_cache_allowed_sizes' => [
         '200x200'
     ],
+
+    'seo' => [
+        'default_title'       => 'LookBook',
+        'default_description' => '',
+        'default_keywords'    => '',
+    ],
+
     'dics' => [
         'preload_cache_lifetime' => 60*24, ## время жизни кеша страниц, в минутах
     ],

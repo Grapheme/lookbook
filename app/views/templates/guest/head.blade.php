@@ -57,7 +57,7 @@ if (isset($page->seos) && is_object($page->seos) && isset($page->seos[Config::ge
 @section('keywords'){{{ $page_keywords }}}@stop
 @section('h1'){{{ $page_h1 }}}@stop
 <meta charset="utf-8">
-<title>@yield('title')</title>
+<title>{{ @$page_title }}</title>
 <meta name="description" content="@yield('description')">
 <meta name="keywords" content="@yield('keywords')">
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui"> -->
