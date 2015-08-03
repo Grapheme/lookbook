@@ -29,6 +29,10 @@ class AccountsBloggerController extends BaseController {
                 Route::delete('unsubscribe', array('before' => 'csrf', 'as' => 'user.profile.subscribe.destroy', 'uses' => $class . '@profileUnSubscribe'));
             });
         endif;
+        if (Auth::check() && Auth::user()->group_id == 4 && Auth::user()->brand):
+            Route::post('profile/blogimage/upload', array('before' => 'csrf', 'as' => 'profile.blogimage.upload', 'uses' => $class . '@profileBlogimageUpdate'));
+            Route::delete('profile/blogimage/delete', array('before' => 'csrf', 'as' => 'profile.blogimage.delete', 'uses' => $class . '@profileBlogimageDelete'));
+        endif;
         Route::get('profile/{user_url}', array('as' => 'user.profile.show', 'uses' => $class . '@guestProfileShow'));
         Route::get('profile/{user_url}/posts', array('as' => 'user.posts.show', 'uses' => $class . '@guestProfilePostsShow'));
         if (Auth::check() && Auth::user()->group_id == 3):
@@ -215,6 +219,45 @@ class AccountsBloggerController extends BaseController {
             endif;
             $user->photo = '';
             $user->thumbnail = '';
+            $user->save();
+            $user->touch();
+            $json_request['status'] = TRUE;
+        else:
+            return Redirect::back();
+        endif;
+        return Response::json($json_request, 200);
+    }
+
+    /****************************************************************************/
+    public function profileBlogimageUpdate() {
+
+        $json_request = array('status' => FALSE, 'responseText' => '', 'image' => '', 'redirect' => FALSE);
+        if (Request::ajax()):
+            if ($uploaded = AdminUploadsController::createImageInBase64String('photo')):
+                $user = Auth::user();
+                $user->blogpicture = @$uploaded['main'];
+                $user->save();
+                $user->touch();
+                $json_request['image'] = asset($user->blogpicture);
+                $json_request['status'] = TRUE;
+            else:
+                $json_request['responseText'] = Lang::get('interface.DEFAULT.fail');
+            endif;
+        else:
+            return Redirect::back();
+        endif;
+        return Response::json($json_request, 200);
+    }
+
+    public function profileBlogimageDelete() {
+
+        $json_request = array('status' => FALSE, 'responseText' => '', 'redirect' => FALSE);
+        if (Request::ajax()):
+            $user = Auth::user();
+            if (File::exists(public_path($user->blogpicture))):
+                File::delete(public_path($user->blogpicture));
+            endif;
+            $user->blogpicture = '';
             $user->save();
             $user->touch();
             $json_request['status'] = TRUE;
