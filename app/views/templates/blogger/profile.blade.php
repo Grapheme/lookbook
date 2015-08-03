@@ -37,7 +37,7 @@
                         ?>
                             <div data-empty-name="{{ $profile->name }} {{ $profile->surname }}" class="ava-change{{ !$hasImage ? ' ava-empty ' : ' ' }}js-ava-cont">
                                 <div class="ava-image">
-                                    {{ Form::open(array('route'=>'profile.avatar.upload','method'=>'post','id'=>'ava-change','class'=>'ava-image__cont')) }}
+                                    {{ Form::open(array('route'=>'profile.avatar.upload','method'=>'post','class'=>'ava-image__cont js-ava-change-form', 'data-ratio'=>'1', 'data-minHeight'=>'50', 'data-minWidth'=>'50', 'data-type'=>'ava')) }}
                                         <a href="javascript:void(0);" class="ava-change js-submit">Изменить</a>
                                         {{ Form::file('photo',array('class'=>'js-ava-input')) }}
                                     {{ Form::close() }}
@@ -49,19 +49,50 @@
                                     <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
                                 </div>
                                 <div class="ava-links">
-                                    {{ Form::open(array('route'=>'profile.avatar.delete','method'=>'delete','id'=>'ava-delete','class'=>'ava-delete-form')) }}
+                                    {{ Form::open(array('route'=>'profile.avatar.delete','method'=>'delete','class'=>'js-ava-delete ava-delete-form')) }}
                                         <a href="javascript:void(0);" class="ava-delete js-submit"><i class="icon-cross37 svg-icon"></i></a>
                                     {{ Form::close() }}
-                                    {{ Form::open(array('route'=>'profile.avatar.upload','method'=>'post','id'=>'ava-upload','class'=>'ava-upload-form')) }}
+                                    {{ Form::open(array('route'=>'profile.avatar.upload','method'=>'post', 'class'=>'ava-upload-form js-ava-upload-form', 'data-ratio'=>'1', 'data-minHeight'=>'50', 'data-minWidth'=>'50', 'data-type'=>'ava')) }}
                                         <a href="javascript:void(0);" class="ava-upload js-submit"><span>Загрузить аватарку</span>
                                             {{ Form::file('photo',array('class'=>'js-ava-input')) }}
                                         </a>
                                     {{ Form::close() }}
-                                    <div id="ava-error-cont" class="ava-error"></div>
-                                    <div id="ava-error-server" class="ava-error"></div>
+                                    <div class="js-ava-error-cont ava-error"></div>
+                                    <div class="js-ava-error-server ava-error"></div>
                                 </div>
                             </div>
                         </div>
+                        @if(Auth::user()->brand)
+                        <div class="right-title">Фоновое изображение</div>
+                        <div class="right-content">
+                            <div data-empty-name="" class="ava-background ava-change{{ !$hasImage ? ' ava-empty ' : ' ' }}js-ava-cont">
+                                <div class="ava-image">
+                                    {{ Form::open(array('route'=>'profile.avatar.upload','method'=>'post','class'=>'ava-image__cont js-ava-change-form', 'data-ratio'=>'2.28', 'data-minHeight'=>'300', 'data-minWidth'=>'500', 'data-type'=>'background')) }}
+                                        <a href="javascript:void(0);" class="ava-change js-submit">Изменить</a>
+                                        {{ Form::file('photo',array('class'=>'js-ava-input')) }}
+                                    {{ Form::close() }}
+                                    <div class="js-ava-img-cont">
+                                    @if($hasImage)
+                                        <img src="{{ asset($profile->photo) }}">
+                                    @endif
+                                    </div>
+                                    <div class="ava-image__empty"><span class="js-empty-chars"></span></div>
+                                </div>
+                                <div class="ava-links">
+                                    {{ Form::open(array('route'=>'profile.avatar.delete','method'=>'delete','class'=>'js-ava-delete ava-delete-form')) }}
+                                        <a href="javascript:void(0);" class="ava-delete js-submit"><i class="icon-cross37 svg-icon"></i></a>
+                                    {{ Form::close() }}
+                                    {{ Form::open(array('route'=>'profile.avatar.upload','method'=>'post','class'=>'ava-upload-form js-ava-upload-form', 'data-ratio'=>'2.28', 'data-minHeight'=>'300', 'data-minWidth'=>'500', 'data-type'=>'background')) }}
+                                        <a href="javascript:void(0);" class="ava-upload js-submit"><span>Загрузить изображение</span>
+                                            {{ Form::file('photo',array('class'=>'js-ava-input')) }}
+                                        </a>
+                                    {{ Form::close() }}
+                                    <div class="js-ava-error-cont ava-error"></div>
+                                    <div class="js-ava-error-server ava-error"></div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                         @include(Helper::acclayout('assets.statistic'))
                     </div>
                     <div class="clearfix"></div>
@@ -70,14 +101,30 @@
             <div class="clearfix"></div>
         </div>
     </div>
-    <div class="ava-overlay js-ava-overlay">
+    <div class="ava-overlay js-ava-overlay" data-type="ava">
         <div class="overlay__background"></div>
         <div class="overlay__content">
             <div class="left-title">Выберите область изображения<a href="#" class="overlay__close js-ava-overlay-close">✕</a></div>
             <div class="overlay__image js-crop-ava"></div>
             <div class="overlay__preview preview-huge js-crop-preview"></div>
             <div class="overlay__btns">
-                {{ Form::open(array('route'=>'profile.avatar.upload','method'=>'post','id'=>'ava-crop-upload')) }}
+                {{ Form::open(array('route'=>'profile.avatar.upload','method'=>'post','class'=>'js-ava-crop-upload')) }}
+                <input name="photo" type="hidden">
+                <div class="btns__error js-response-text"></div>
+                <a href="#" class="us-btn gray-btn js-ava-overlay-close">Отменить</a>
+                <button type="submit" class="us-btn blue-hover">Сохранить</button>
+                {{ Form::close() }}
+            </div>
+        </div>
+    </div>
+    <div class="ava-overlay ava-background js-ava-overlay" data-type="background">
+        <div class="overlay__background"></div>
+        <div class="overlay__content">
+            <div class="left-title">Выберите область изображения<a href="#" class="overlay__close js-ava-overlay-close">✕</a></div>
+            <div class="overlay__image js-crop-ava"></div>
+            <div class="overlay__preview preview-huge js-crop-preview"></div>
+            <div class="overlay__btns">
+                {{ Form::open(array('route'=>'profile.avatar.upload','method'=>'post','class'=>'js-ava-crop-upload')) }}
                 <input name="photo" type="hidden">
                 <div class="btns__error js-response-text"></div>
                 <a href="#" class="us-btn gray-btn js-ava-overlay-close">Отменить</a>

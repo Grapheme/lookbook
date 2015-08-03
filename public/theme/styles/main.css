@@ -3328,6 +3328,10 @@ h1 {
   background: #fff !important;
 }
 
+.ava-change.ava-background .ava-image {
+  width: 200px;
+  height: 87px;
+}
 .ava-change .ava-image {
   position: relative;
   display: inline-block;
@@ -3593,6 +3597,10 @@ h1 {
   position: absolute;
   bottom: 25px;
   right: 25px;
+}
+.ava-overlay.ava-background .overlay__preview.preview-huge {
+  width: 300px;
+  height: 132px;
 }
 
 .new-post-form, .contact-us {

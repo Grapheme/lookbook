@@ -64,21 +64,26 @@ Help.ajaxSubmit = function(form, callbacks) {
     };
     $(form).ajaxSubmit(options);
 }
-Help.avaCrop = function() {
-    var crop_cont = $('.js-crop-ava > img');
+Help.avaCrop = function(form) {
+    var minWidth = $(form).attr('data-minWidth'),
+        minHeight = $(form).attr('data-minHeight'),
+        ratio = $(form).attr('data-ratio'),
+        crop_cont = $('.js-ava-overlay[data-type="' + $(form).attr('data-type') + '"] .js-crop-ava > img');
     $('.js-crop-ava > img').cropper({
-        aspectRatio: 1,
-        minCropBoxWidth: 50,
-        minCropBoxHeight: 50,
+        aspectRatio: ratio,
+        minCropBoxWidth: minWidth,
+        minCropBoxHeight: minHeight,
         preview: $('.js-crop-preview'),
         crop: function(data) {
         }
     });
 }
 Help.uploadPhoto = function(input) {
+    var form = input.parents('form');
+    var formType = form.attr('data-type');
     file = input[0].files[0];
     fr = new FileReader();
-    $('#ava-error-cont').html('').hide();
+    form.find('.js-ava-error-cont').html('').hide();
     fr.onload = function(e) {
         $('.js-image-test').remove();
         var image_str = '<img src="' + e.target.result + '">';
@@ -87,14 +92,14 @@ Help.uploadPhoto = function(input) {
         var img_width = $('.js-image-test').width();
         var img_height = $('.js-image-test').height();
         $('.js-crop-ava').html(image_str);
-        $('.js-ava-overlay').show();
-        Help.avaCrop();
+        $('.js-ava-overlay[data-type="' + formType + '"]').show();
+        Help.avaCrop(form);
         input.val('');
     }
     fr.readAsDataURL(file);
 }
 Help.avaSubmit = function(form, callback) {
-    var response_cont = $('#ava-error-server'),
+    var response_cont = $(form).find('.js-ava-error-server'),
         options = { 
             beforeSubmit: function(){
                 response_cont.hide();
@@ -382,7 +387,7 @@ LookBook.DashForm = function() {
         });
     }
     var avaUpload = function(form) {
-        Help.uploadPhoto(form.find('input[type="file"]'));
+        Help.uploadPhoto($(form).find('input[type="file"]'));
     }
     var init = function() {
         checkInputs();
@@ -447,66 +452,74 @@ LookBook.DashForm = function() {
                 return false;
             }
         });
-        var avaIds = ['#ava-upload', '#ava-change'];
+        var avaIds = ['.js-ava-upload-form', '.js-ava-change-form'];
         $.each(avaIds, function(index, value){
             $(value).find('input[type="file"]').on('change', function(){
-                $('#ava-error-server').html('');
-                $(this).parents(value).trigger('submit');
+                var thisForm = $(this).parents(value);
+                thisForm.find('.js-ava-error-server').html('');
+                thisForm.trigger('submit');
             });
         });
-        $('#ava-delete').find('.js-submit').on('click', function(){
-            $('#ava-error-server').html('');
-            $(this).parents('#ava-delete').trigger('submit');
+        $('.js-ava-delete').find('.js-submit').on('click', function(){
+            var form = $(this).parents('.js-ava-delete');
+            form.find('.js-ava-error-server').html('');
+            form.trigger('submit');
         });
-        $('#ava-change').validate({
-            rules: {
-                photo: {
-                    required: true,
-                    extension: "jpg|jpeg|png|gif"
+        $('.js-ava-change-form').each(function(){
+            $(this).validate({
+                rules: {
+                    photo: {
+                        required: true,
+                        extension: "jpg|jpeg|png|gif"
+                    }
+                },
+                errorElement : 'div',
+                errorLabelContainer: '.js-ava-error-cont',
+                submitHandler: function(form) {
+                    avaUpload(form);
+                    // Help.avaSubmit(form, function(data){
+                    //     $('.js-ava-cont').removeClass('ava-empty');
+                    //     $('.js-ava-img-cont').html('<img src="' + data.image + '" alt="">');
+                    // });
+                    return false;
                 }
-            },
-            errorElement : 'div',
-            errorLabelContainer: '#ava-error-cont',
-            submitHandler: function(form) {
-                avaUpload($('#ava-change'));
-                // Help.avaSubmit(form, function(data){
-                //     $('.js-ava-cont').removeClass('ava-empty');
-                //     $('.js-ava-img-cont').html('<img src="' + data.image + '" alt="">');
-                // });
-                return false;
-            }
+            });
         });
-        $('#ava-upload').validate({
-            rules: {
-                photo: {
-                    required: true,
-                    extension: "jpg|jpeg|png|gif"
+        $('.js-ava-upload-form').each(function(){
+            $(this).validate({
+                rules: {
+                    photo: {
+                        required: true,
+                        extension: "jpg|jpeg|png|gif"
+                    }
+                },
+                errorElement : 'div',
+                errorLabelContainer: '.js-ava-error-cont',
+                submitHandler: function(form) {
+                    avaUpload(form);
+                    // Help.avaSubmit(form, function(data){
+                    //     $('.js-ava-cont').removeClass('ava-empty');
+                    //     $('.js-ava-img-cont').html('<img src="' + data.image + '" alt="">');
+                    // });
+                    return false;
                 }
-            },
-            errorElement : 'div',
-            errorLabelContainer: '#ava-error-cont',
-            submitHandler: function(form) {
-                avaUpload($('#ava-upload'));
-                // Help.avaSubmit(form, function(data){
-                //     $('.js-ava-cont').removeClass('ava-empty');
-                //     $('.js-ava-img-cont').html('<img src="' + data.image + '" alt="">');
-                // });
-                return false;
-            }
+            });
         });
-        $('#ava-delete').validate({
-            rules: {},
-            errorElement : 'div',
-            errorLabelContainer: '#ava-error-cont',
-            submitHandler: function(form) {
-                Help.avaSubmit(form, function(data){
-                    $('.js-ava-cont').addClass('ava-empty');
-                    $('.js-ava-img-cont').html('');
-                });
-                return false;
-            }
+        $('.js-ava-delete').each(function(){
+            $(this).validate({
+                rules: {},
+                errorElement : 'div',
+                errorLabelContainer: '.js-ava-error-cont',
+                submitHandler: function(form) {
+                    Help.avaSubmit(form, function(data){
+                        $('.js-ava-cont').addClass('ava-empty');
+                        $('.js-ava-img-cont').html('');
+                    });
+                    return false;
+                }
+            });
         });
-        $('#ava-crop-upload').on('submit', function(e){
+        $('.js-ava-crop-upload').on('submit', function(e){
             e.preventDefault();
             var form = $(this);
             var this_image = $('.js-crop-ava > img').cropper('getCroppedCanvas').toDataURL();
