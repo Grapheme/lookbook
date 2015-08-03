@@ -292,7 +292,26 @@ class PostPublicController extends BaseController {
                 endif;
             endif;
         else:
-            Post::where('id', $post->id)->update(array('guest_views' => $post->guest_views + 1));
+            if(Session::has('posts_views')):
+                $post_ids = array();
+                $posts_ids_string = Session::get('posts_views');
+                if(!empty($posts_ids_string)):
+                    $post_ids = explode(',',$posts_ids_string);
+                endif;
+                if(!empty($post_ids) && in_array($post->id, $post_ids)):
+                    return FALSE;
+                else:
+                    $post_ids[] = $post->id;
+                    $posts_ids_string = implode(',', $post_ids);
+                    Session::set('posts_views', $posts_ids_string);
+                    Post::where('id', $post->id)->update(array('guest_views' => $post->guest_views + 1));
+                endif;
+            else:
+                $post_ids = array($post->id);
+                $posts_ids_string = implode(',', $post_ids);
+                Session::set('posts_views', $posts_ids_string);
+                Post::where('id', $post->id)->update(array('guest_views' => $post->guest_views + 1));
+            endif;
         endif;
         return FALSE;
     }
