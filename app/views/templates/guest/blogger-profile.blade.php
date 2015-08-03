@@ -77,7 +77,7 @@
                             </div>
                             @if(!empty($user->links))
                             <div class="content__us-block">
-                                <div class="content__us-text">Мои блоги на сторонних ресурсах<br><i>(через запятую)</i></div>
+                                <div class="content__us-text">Мои блоги на сторонних ресурсах</div>
                                 <?php $links = explode(',',$user->links);?>
                                 <ul class="block__links">
                                 @foreach($links as $link)
