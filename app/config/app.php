@@ -17,7 +17,7 @@ return array(
 
 	'debug' => true,
 	'url' => 'http://look-book.ru/',
-	'timezone' => 'UTC',
+	'timezone' => 'Europe/Moscow',
 
     'locales' => array(
         'ru' => 'Русский',
