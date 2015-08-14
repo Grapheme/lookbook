@@ -4,8 +4,9 @@
  */
 ?>
 <?php
+$categories = array();
 foreach (Dic::where('slug', 'categories')->first()->values as $category):
-    $page_data['categories'][$category->id] = array('slug' => $category->slug, 'title' => $category->name);
+    $categories[$category->id] = array('slug' => $category->slug, 'title' => $category->name);
 endforeach;
 $post_access = FALSE;
 $post_limit = Config::get('lookbook.posts_limit');
