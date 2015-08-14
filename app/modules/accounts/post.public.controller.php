@@ -199,16 +199,16 @@ class PostPublicController extends BaseController {
                 $post_access = FALSE;
                 $posts = $advertising_posts = $promo_posts = array();
                 if (!$user_id):
-                    $advertising_post_from  = round($post_from / $post_limit, 0);
+                    $advertising_post_from  = round($post_from / $post_limit, 0) * 2;
                     if (!$category_id):
                         $posts_total_count = Post::where('publication', 1)->where('in_advertising', 0)->where('in_index', 1)->count();
                         $posts = Post::where('publication', 1)->where('in_advertising', 0)->where('in_index', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($post_from)->take($post_limit)->get();
-                        $advertising_posts = Post::where('publication', 1)->where('in_advertising', 1)->where('in_index', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($advertising_post_from)->take(1)->get();
+                        $advertising_posts = Post::where('publication', 1)->where('in_advertising', 1)->where('in_index', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($advertising_post_from)->take(2)->get();
                         $promo_posts = PostPromo::where('position', $advertising_post_from)->where('in_index', 1)->orderBy('order')->with('photo')->get();
                     else:
                         $posts_total_count = Post::where('category_id', $category_id)->where('publication', 1)->where('in_section', 1)->count();
                         $posts = Post::where('category_id', $category_id)->where('publication', 1)->where('in_section', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($post_from)->take($post_limit)->get();
-                        $advertising_posts = Post::where('category_id', $category_id)->where('publication', 1)->where('in_advertising', 1)->where('in_section', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($advertising_post_from)->take(1)->get();
+                        $advertising_posts = Post::where('category_id', $category_id)->where('publication', 1)->where('in_advertising', 1)->where('in_section', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($advertising_post_from)->take(2)->get();
                         $promo_posts = PostPromo::where('position', $advertising_post_from)->where('in_section', 1)->orderBy('order')->with('photo')->get();
                     endif;
                 else:
@@ -224,13 +224,21 @@ class PostPublicController extends BaseController {
                     endif;
                 endif;
                 if (count($posts)):
-                    $json_request['html'] = View::make(Helper::layout('blocks.posts'), compact('posts'))->render();
-                    if(count($advertising_posts)):
-                        $json_request['html'] .= View::make(Helper::layout('blocks.posts-advertising'), array('posts'=>$advertising_posts))->render();
-                    endif;
-                    if(count($promo_posts)):
-                        $json_request['html'] .= View::make(Helper::layout('blocks.posts-promo'), array('posts'=>$promo_posts))->render();
-                    endif;
+                    $posts_view = array();
+                    foreach($posts as $index => $post):
+                        if($index == 1 && isset($advertising_posts[0])):
+                            $posts_view[] = View::make(Helper::layout('blocks.posts-advertising'), array('posts' => array($advertising_posts[0])))->render();
+                        elseif($index == 3 && isset($promo_posts[0])):
+                            $posts_view[] = View::make(Helper::layout('blocks.posts-promo'), array('posts' => array($promo_posts[0])))->render();
+                        elseif($index == 5 && isset($advertising_posts[1])):
+                            $posts_view[] = View::make(Helper::layout('blocks.posts-advertising'), array('posts' => array($advertising_posts[1])))->render();
+                        elseif($index == 7 && isset($promo_posts[1])):
+                            $posts_view[] = View::make(Helper::layout('blocks.posts-promo'), array('posts' => array($promo_posts[1])))->render();
+                        else:
+                            $posts_view[] = View::make(Helper::layout('blocks.posts'), array('posts' => array($post)))->render();
+                        endif;
+                    endforeach;
+                    $json_request['html'] = $posts_view;
                     $json_request['status'] = TRUE;
                     $json_request['from'] = $post_from + $post_limit;
                     $json_request['hide_button'] = $posts_total_count > ($post_from + $post_limit) ? FALSE : TRUE;
@@ -255,7 +263,7 @@ class PostPublicController extends BaseController {
                 if ($blogsIDs = BloggerSubscribe::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->lists('blogger_id')):
                     $posts_total_count = Post::whereIn('user_id', $blogsIDs)->where('in_advertising', 0)->count();
                     $posts = Post::whereIn('user_id', $blogsIDs)->where('in_advertising', 0)->where('publication', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($post_from)->take($post_limit)->get();
-                    $advertising_post_from  = round($post_from / $post_limit, 0);
+                    $advertising_post_from  = round($post_from / $post_limit, 0) * 2;
                     $advertising_posts = Post::where('publication', 1)->where('in_advertising', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($advertising_post_from)->take(1)->get();
                     $promo_posts = PostPromo::where('position', $advertising_post_from)->where('in_line', 1)->orderBy('order')->with('photo')->get();
                 endif;
@@ -264,13 +272,20 @@ class PostPublicController extends BaseController {
                     foreach (Dic::where('slug', 'categories')->first()->values as $category):
                         $categories[$category->id] = array('slug' => $category->slug, 'title' => $category->name);
                     endforeach;
-                    $json_request['html'] = View::make(Helper::layout('blocks.posts'), compact('posts', 'categories'))->render();
-                    if(count($advertising_posts)):
-                        $json_request['html'] .= View::make(Helper::layout('blocks.posts-advertising'), array('posts'=>$advertising_posts))->render();
-                    endif;
-                    if(count($promo_posts)):
-                        $json_request['html'] .= View::make(Helper::layout('blocks.posts-promo'), array('posts'=>$promo_posts))->render();
-                    endif;
+                    foreach($posts as $index => $post):
+                        if($index == 1 && isset($advertising_posts[0])):
+                            $posts_view[] = View::make(Helper::layout('blocks.posts-advertising'), array('posts' => array($advertising_posts[0])))->render();
+                        elseif($index == 3 && isset($promo_posts[0])):
+                            $posts_view[] = View::make(Helper::layout('blocks.posts-promo'), array('posts' => array($promo_posts[0])))->render();
+                        elseif($index == 5 && isset($advertising_posts[1])):
+                            $posts_view[] = View::make(Helper::layout('blocks.posts-advertising'), array('posts' => array($advertising_posts[1])))->render();
+                        elseif($index == 7 && isset($promo_posts[1])):
+                            $posts_view[] = View::make(Helper::layout('blocks.posts-promo'), array('posts' => array($promo_posts[1])))->render();
+                        else:
+                            $posts_view[] = View::make(Helper::layout('blocks.posts'), array('posts' => array($post)))->render();
+                        endif;
+                    endforeach;
+                    $json_request['html'] = $posts_view;
                     $json_request['status'] = TRUE;
                     $json_request['from'] = $post_from + $post_limit;
                     $json_request['hide_button'] = $posts_total_count > ($post_from + $post_limit) ? FALSE : TRUE;
