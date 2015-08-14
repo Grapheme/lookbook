@@ -13,7 +13,7 @@ class AccountsBloggerController extends BaseController {
         $class = __CLASS__;
         if (Auth::check() && Auth::user()->group_id == 4):
             Route::group(array('before' => 'auth.status.blogger', 'prefix' => self::$name), function () use ($class) {
-                Route::get('subscribers', array('as' => 'subscribers', 'uses' => $class . '@subscribers'));
+                Route::get('posts', array('as' => 'my-posts', 'uses' => $class . '@myPosts'));
                 Route::get('blog-list', array('as' => 'blogger-blog-list', 'uses' => $class . '@blogList'));
                 Route::get('recommended-blogs-list', array('as' => 'recommended-blogs-list', 'uses' => $class . '@recommendedBlogList'));
 
@@ -347,26 +347,14 @@ class AccountsBloggerController extends BaseController {
     }
 
     /**************************************************************************/
-    public function subscribers() {
+    public function myPosts() {
 
         $page_data = array(
-            'page_title' => Lang::get('seo.BLOGGER.title'), 'page_description' => Lang::get('seo.BLOGGER.description'),
-            'page_keywords' => Lang::get('seo.BLOGGER.keywords'),
-            'posts' => array(), 'posts_advertising' => array(), 'blog_list' => array(), 'categories' => array(), 'promo_posts' => array(),
-            'posts_total_count' => 0, 'post_limit' => Config::get('lookbook.posts_limit')
+            'page_title' => Lang::get('seo.BLOGGER.title'),
+            'page_description' => Lang::get('seo.BLOGGER.description'),
+            'page_keywords' => Lang::get('seo.BLOGGER.keywords')
         );
-        foreach (Dic::where('slug', 'categories')->first()->values as $category):
-            $page_data['categories'][$category->id] = array('slug' => $category->slug, 'title' => $category->name);
-        endforeach;
-        $post_access = FALSE;
-        if ($blogsIDs = BloggerSubscribe::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->lists('blogger_id')):
-            $page_data['blog_list'] = Accounts::where('group_id', 4)->where('active', 1)->whereIn('id', $blogsIDs)->take(5)->get();
-            $page_data['posts_total_count'] = Post::whereIn('user_id', $blogsIDs)->where('in_advertising', 0)->count();
-            $page_data['posts'] = Post::whereIn('user_id', $blogsIDs)->where('in_advertising', 0)->where('publication', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->take($page_data['post_limit'])->get();
-            $page_data['posts_advertising'] = Post::whereIn('user_id', $blogsIDs)->where('in_advertising', 1)->where('publication', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->take(1)->get();
-            $page_data['promo_posts'] = PostPromo::where('position', 0)->where('in_line', 1)->orderBy('order')->with('photo')->get();
-        endif;
-        return View::make(Helper::acclayout('subscribes-bloggs'), $page_data);
+        return View::make(Helper::acclayout('my-posts'), $page_data);
     }
 
     public function blogList() {

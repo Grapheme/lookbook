@@ -2,19 +2,20 @@
 /**
  * TEMPLATE_IS_NOT_SETTABLE
  */
-
-$post_limit = Config::get('lookbook.posts_limit');
-$post_access = TRUE;
-$publication = 'all';
-$posts_total_count = Post::where('user_id',Auth::user()->id)->count();
-$blog_list = $categories = array();
-if ($blogsIDs = BloggerSubscribe::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->take(5)->lists('blogger_id')):
-    $blog_list = Accounts::where('group_id', 4)->where('active', 1)->whereIn('id', $blogsIDs)->get();
-endif;
-$posts = Post::where('user_id',Auth::user()->id)->orderBy('publication','ASC')->orderBy('publish_at','DESC')->orderBy('id','DESC')->with('user','photo','tags_ids','views','likes','comments')->take($post_limit)->get();
-foreach(Dic::where('slug','categories')->first()->values as $category):
-    $categories[$category->id] = array('slug'=>$category->slug,'title'=>$category->name);
+?>
+<?php
+foreach (Dic::where('slug', 'categories')->first()->values as $category):
+    $page_data['categories'][$category->id] = array('slug' => $category->slug, 'title' => $category->name);
 endforeach;
+$post_access = FALSE;
+$post_limit = Config::get('lookbook.posts_limit');
+if ($blogsIDs = BloggerSubscribe::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->lists('blogger_id')):
+    $blog_list = Accounts::where('group_id', 4)->where('active', 1)->whereIn('id', $blogsIDs)->take(5)->get();
+    $posts_total_count = Post::whereIn('user_id', $blogsIDs)->where('in_advertising', 0)->count();
+    $posts = Post::whereIn('user_id', $blogsIDs)->where('in_advertising', 0)->where('publication', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->take($post_limit)->get();
+    $posts_advertising = Post::whereIn('user_id', $blogsIDs)->where('in_advertising', 1)->where('publication', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->take(1)->get();
+    $promo_posts = PostPromo::where('position', 0)->where('in_line', 1)->orderBy('order')->with('photo')->get();
+endif;
 ?>
 @extends(Helper::acclayout())
 @section('style')
@@ -31,19 +32,22 @@ endforeach;
             <div class="grid_12 reg-content">
                 <div class="dashboard-tab">
                     <div class="reg-content__left">
-                    @if($posts->count())
-                        <div class="dashboard-btn">
-                            <a href="{{ URL::route('posts.create') }}" class="white-black-btn">Создать новый пост</a>
-                        </div>
-                        <ul class="dashboard-list js-posts">
-                            @include(Helper::layout('blocks.posts'),compact('posts','categories','post_access'))
-                        </ul>
-                        @if($posts_total_count > count($posts))
-                            @include(Helper::layout('assets.more_post'),array('user'=>Auth::user()->id,'post_limit'=>$post_limit,'publication'=>$publication))
+                        @if(count($posts))
+                            <ul class="dashboard-list js-posts">
+                                @include(Helper::layout('blocks.posts'),compact('posts','categories'))
+                                @include(Helper::layout('blocks.posts-advertising'), array('posts'=>$posts_advertising,'categories'=>$categories))
+                                @include(Helper::layout('blocks.posts-promo'),array('posts'=>$promo_posts))
+                            </ul>
+                            @if($posts_total_count > count($posts))
+                                @include(Helper::layout('assets.more_post'),array('user'=>Auth::user()->id,'post_limit'=>$post_limit,'route_name'=>'post.public.more.subscribes'))
+                            @endif
+                        @else
+                            <div class="dashboard-empty">
+                                <div class="dashboard-empty__desc">
+                                    Блог лист пуст.
+                                </div>
+                            </div>
                         @endif
-                    @else
-                            @include(Helper::acclayout('assets.post_empty'))
-                    @endif
                     </div>
                     <div class="reg-content__right">
                         @include(Helper::acclayout('assets.recommended-list'))

@@ -19,8 +19,8 @@
             <h1 class="js-fit-text">{{ Auth::user()->name }}</h1>
         </div>
         <div class="info__auth-nav">
-            <a href="{{ URL::route("dashboard") }}" {{ Helper::isRoute("dashboard") }} data-tab="dashboard">Мои посты</a>
-            <a href="{{ URL::route("subscribers") }}" {{ Helper::isRoute("subscribers") }} data-tab="subscribers">Лента</a>
+            <a href="{{ URL::route("dashboard") }}" {{ Helper::isRoute("dashboard") }} data-tab="subscribers">Лента</a>
+            <a href="{{ URL::route("my-posts") }}" {{ Helper::isRoute("my-posts") }} data-tab="dashboard">Мои посты</a>
             <a href="{{ URL::route("profile") }}" {{ Helper::isRoute("profile") }}>Профиль</a>
         @if(!Auth::user()->brand)
             {{--<a href="{{ URL::route("monetization") }}" {{ Helper::isRoute("monetization") }}>Монетизация</a>--}}
