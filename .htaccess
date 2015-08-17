@@ -5,7 +5,7 @@ Options -Indexes
 RewriteEngine on
 
 ## https://basecamp.com/1763145/projects/6824300/todos/189350846
-RewriteRule ^(spisok-bloggerov|fashion|lifestyle|beauty)$ /about [R=302,L]
+RewriteRule ^(spisok-bloggerov|spisok-brendov|fashion|lifestyle|beauty)$ /about [R=302,L]
 
 RewriteCond %{REQUEST_URI} !public/
 RewriteRule (.*) /public/$1 [L]
