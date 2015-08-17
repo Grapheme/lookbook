@@ -94,8 +94,10 @@ class AccountsPublicController extends BaseController {
             $users = Accounts::whereIn('id', array_keys($users_top_posts))->with('me_signed')->get();
             foreach($users_top_posts as $user_id => $post_views):
                 foreach($users as $user):
-                    $users_top_posts[$user_id] = $user->toArray();
-                    $users_top_posts[$user_id]['views'] = $post_views;
+                    if($user->id == $user_id):
+                        $users_top_posts[$user_id] = $user->toArray();
+                        $users_top_posts[$user_id]['views'] = $post_views;
+                    endif;
                 endforeach;
             endforeach;
         endif;
