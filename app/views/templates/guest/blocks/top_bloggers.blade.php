@@ -1,7 +1,5 @@
 <?php
-if ($result = AccountsPublicController::getTopBloggers()):
-    extract($result);
-endif;
+$top_bloggers = AccountsPublicController::getTopBloggers();
 ?>
 @if(count($top_bloggers))
     <div class="right-title">Top BLOGGERS</div>
@@ -10,7 +8,7 @@ endif;
             @foreach($top_bloggers as $top_blogger)
                 <li class="list__item">
                     @include(Helper::layout('assets.avatar'),array('user'=>$top_blogger))
-                    <span class="text__followers">{{ isset($users_top_posts[$top_blogger->id]) ? $users_top_posts[$top_blogger->id] : '' }}</span>
+                    <span class="text__followers">{{ $top_blogger['views'] }}</span>
                 </li>
             @endforeach
         </ul>

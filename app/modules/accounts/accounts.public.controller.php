@@ -30,54 +30,76 @@ class AccountsPublicController extends BaseController {
     }
 
     /****************************************************************************/
-    public static function getTopBloggers() {
+    public static function getTopPosts($category_id = NULL){
 
-        $users_top_posts = PostViews::select(DB::raw('posts.user_id as post_user_id,COUNT(posts_views.post_id) as users_views'))
-            ->join('posts', 'posts_views.post_id', '=', 'posts.id')
-            ->groupBy('posts.user_id')->orderBy('users_views', 'DESC')
-            ->lists('users_views', 'post_user_id');
-        $top_bloggers = array();
-        if ($users_top_posts):
-            $top_bloggers_ids = array();
-            foreach (Accounts::whereIn('id', array_keys($users_top_posts))->where('active', 1)->where('brand', 0)->take(Config::get('lookbook.count_top_bloggers'))->with('me_signed')->get() as $blogger):
-                $top_bloggers[$blogger->id] = $blogger;
-                $top_bloggers_ids[] = $blogger->id;
-            endforeach;
-            $users_top_posts_temp = $users_top_posts;
-            $users_top_posts = array();
-            foreach ($users_top_posts_temp as $user_id => $users_views):
-                if (in_array($user_id, $top_bloggers_ids)):
-                    $users_top_posts[$user_id] = $users_views;
-                endif;
-            endforeach;
-            array_multisort($top_bloggers, SORT_DESC, array_keys($users_top_posts));
+        $top_posts_raw = DB::table('posts')
+            ->select(DB::raw('posts.id, posts.user_id, (posts.guest_views+count(posts_views.id)) as total_summ'))
+            ->join('posts_views', 'posts.id', '=', 'posts_views.post_id')
+            ->groupBy('posts.id')
+            ->where('posts.publication', 1)
+            ->orderBy('total_summ', 'DESC')
+            ->take(Config::get('lookbook.count_top_posts'));
+        if(!is_null($category_id)):
+            $top_posts_raw = $top_posts_raw->where('posts.category_id', $category_id);
         endif;
-        return array('top_bloggers' => $top_bloggers, 'users_top_posts' => $users_top_posts);
+        $top_posts_raw = $top_posts_raw->get();
+        $top_posts = array();
+        if($top_posts_raw):
+            $views = array();
+            foreach($top_posts_raw as $top_post):
+                $posts_ids[] = $top_post->id;
+                $views[$top_post->id] = $top_post->total_summ;
+            endforeach;
+            foreach(Post::whereIn('id', $posts_ids)->with('user','photo')->get() as $post):
+                $post->content = '';
+                $post->user->about = '';
+                $top_posts[$post->id] = $post->toArray();
+            endforeach;
+            $tmp = $top_posts;
+            $top_posts = array();
+            foreach($posts_ids as $post_id):
+                foreach($tmp as $top_post_id => $post):
+                    if($top_post_id == $post_id):
+                        $top_posts[$post_id] = $post;
+                        $top_posts[$post_id]['views'] = $views[$post_id];
+                    endif;
+                endforeach;
+            endforeach;
+        endif;
+        return $top_posts;
     }
 
-    public static function getTopBrands() {
+    public static function getTopBloggers($brand = 0, $category_id = NULL) {
 
-        $users_top_posts = PostViews::select(DB::raw('posts.user_id as post_user_id,COUNT(posts_views.post_id) as users_views'))
-            ->join('posts', 'posts_views.post_id', '=', 'posts.id')
-            ->groupBy('posts.user_id')->orderBy('users_views', 'DESC')
-            ->lists('users_views', 'post_user_id');
+        $top_posts_raw = DB::table('posts')
+            ->select(DB::raw('posts.user_id as user_id, (posts.guest_views+count(posts_views.id)) as users_views'))
+            ->join('posts_views', 'posts.id', '=', 'posts_views.post_id')
+            ->join('users', 'posts.user_id', '=', 'users.id')
+            ->groupBy('posts.user_id')
+            ->where('posts.publication', 1)
+            ->where('users.brand', $brand)
+            ->where('users.active', 1)
+            ->orderBy('users_views', 'DESC')
+            ->take(Config::get('lookbook.count_top_bloggers'));
+        if(!is_null($category_id)):
+            $top_posts_raw = $top_posts_raw->where('posts.category_id', $category_id);
+        endif;
+            $top_posts_raw = $top_posts_raw->get();
+        $users_top_posts = array();
+        foreach($top_posts_raw as $top_post):
+            $users_top_posts[$top_post->user_id] = $top_post->users_views;
+        endforeach;
         $top_bloggers = array();
         if ($users_top_posts):
-            $top_bloggers_ids = array();
-            foreach (Accounts::whereIn('id', array_keys($users_top_posts))->where('active', 1)->where('brand', 1)->take(Config::get('lookbook.count_top_bloggers'))->with('me_signed')->get() as $blogger):
-                $top_bloggers[$blogger->id] = $blogger;
-                $top_bloggers_ids[] = $blogger->id;
+            $users = Accounts::whereIn('id', array_keys($users_top_posts))->with('me_signed')->get();
+            foreach($users_top_posts as $user_id => $post_views):
+                foreach($users as $user):
+                    $users_top_posts[$user_id] = $user->toArray();
+                    $users_top_posts[$user_id]['views'] = $post_views;
+                endforeach;
             endforeach;
-            $users_top_posts_temp = $users_top_posts;
-            $users_top_posts = array();
-            foreach ($users_top_posts_temp as $user_id => $users_views):
-                if (in_array($user_id, $top_bloggers_ids)):
-                    $users_top_posts[$user_id] = $users_views;
-                endif;
-            endforeach;
-            array_multisort($top_bloggers, SORT_DESC, array_keys($users_top_posts));
         endif;
-        return array('top_bloggers' => $top_bloggers, 'users_top_posts' => $users_top_posts);
+        return $users_top_posts;
     }
 
     public static function getPlaceRating($user_id) {

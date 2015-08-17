@@ -7,9 +7,7 @@ $categories = array();
 foreach (Dic::where('slug', 'categories')->first()->values as $category):
     $categories[$category->id] = array('slug' => $category->slug, 'title' => $category->name);
 endforeach;
-if ($result = AccountsPublicController::getTopBloggers()):
-    extract($result);
-endif;
+$top_bloggers = AccountsPublicController::getTopBloggers();
 $blogs_limit = Config::get('lookbook.blogs_limit');
 $blogs_total_count = Accounts::where('group_id', 4)->where('active', 1)->where('brand', 0)->count();
 $blogs = Accounts::where('group_id', 4)->where('active', 1)->where('brand', 0)->with('me_signed')->take($blogs_limit)->get();
@@ -37,8 +35,7 @@ $blogs = Accounts::where('group_id', 4)->where('active', 1)->where('brand', 0)->
                         <ul class="blog-list">
                         @foreach($top_bloggers as $blog)
                             <li class="list__item">
-                                @include(Helper::layout('assets.avatar'),array('user'=>$blog,'showName'=>FALSE))
-                                <!-- <div class="item__best-blogger"></div> -->
+                                @include(Helper::layout('assets.avatar'),array('user'=>$blog, 'showName'=>FALSE))
                                 <div class="item__content">
                                     <div class="content__title">
                                         <a href="{{ URL::route('user.posts.show',$blog->id.'-'.BaseController::stringTranslite($blog->name)) }}">{{ $blog->name }}</a>
