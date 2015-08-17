@@ -4,7 +4,7 @@
  */
 ?>
 <?php
-$categories = $posts = array();
+$categories = $posts = $blog_list = array();
 foreach (Dic::where('slug', 'categories')->first()->values as $category):
     $categories[$category->id] = array('slug' => $category->slug, 'title' => $category->name);
 endforeach;
