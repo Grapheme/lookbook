@@ -7,7 +7,7 @@ $categories = array();
 foreach (Dic::where('slug', 'categories')->first()->values as $category):
 $categories[$category->id] = array('slug' => $category->slug, 'title' => $category->name);
 endforeach;
-if ($result = AccountsPublicController::getTopBrands()):
+if ($result = AccountsPublicController::getTopBloggers(1)):
 extract($result);
 endif;
 $blogs_limit = Config::get('lookbook.blogs_limit');
