@@ -12,15 +12,21 @@
     </thead>
     <tbody>
     @foreach($accounts as $index => $account)
+        <?php
+        $nickname = $account->id.'-'.BaseController::stringTranslite($account->name);
+        if(!empty($account->nickname)):
+            $nickname = $account->nickname;
+        endif;
+        ?>
         <tr>
             <td class="table__number">{{ $index+1 }}</td>
             <td class="table__user-info">
-                <a target="_blank" href="{{ URL::route('user.profile.show',$account->id.'-'.BaseController::stringTranslite($account->name)) }}">{{ $account->name }}</a><br>{{ $account->email }}
+                <a target="_blank" href="{{ URL::route('user.profile.show', $nickname) }}">{{ $account->name }}</a><br>{{ $account->email }}
             </td>
             <td>{{ $account->location }}</td>
             <td>
                 @if(!empty($account->monetization))
-                    <a target="_blank" href="{{ URL::route('user.monetization.show',$account->id.'-'.BaseController::stringTranslite($account->name)) }}">Смотреть</a>
+                    <a target="_blank" href="{{ URL::route('user.monetization.show', $nickname) }}">Смотреть</a>
                 @endif
             </td>
             <td>{{ $account->updated_at->format('d.m.Y H:i') }}</td>

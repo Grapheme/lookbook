@@ -58,7 +58,13 @@
                         </div>
                         <div class="right-content bottom-border">
                             <div class="right-btn-cont">
-                                <a href="{{ URL::route('user.posts.show', $user->id.'-'.BaseController::stringTranslite($user->name)) }}" class="white-black-btn">Все посты бренда</a>
+                            <?php
+                                $nickname = $user->id.'-'.BaseController::stringTranslite($user->name);
+                                if(!empty($user->nickname)):
+                                    $nickname = $user->nickname;
+                                endif;
+                            ?>
+                                <a href="{{ URL::route('user.posts.show', $nickname) }}" class="white-black-btn">Все посты бренда</a>
                             </div>
                         @if(Auth::check() && Auth::user()->group_id == 4 && Auth::user()->id != $user->id)
                             @if(BloggerSubscribe::where('user_id',Auth::user()->id)->where('blogger_id',$user->id)->exists())

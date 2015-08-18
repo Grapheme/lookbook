@@ -21,6 +21,10 @@ if ($users_top_posts):
         $top_ids[] = $top_user->id;
     endforeach;
 endif;
+$nickname = $user->id.'-'.BaseController::stringTranslite($user->name);
+if(!empty($user->nickname)):
+    $nickname = $user->nickname;
+endif;
 ?>
 @if(Route::currentRouteName() == 'user.profile.show')
 <div style="{{ $hasBlogImage ? "background-image: url(".asset($user->blogpicture).")" : '' }}"
@@ -59,7 +63,7 @@ endif;
                 <div class="info__quote"></div>
             @endif
             <div class="info__nav">
-                <a href="{{ URL::route('user.profile.show', $user->id.'-'.BaseController::stringTranslite($user->name)) }}" class="white-black-btn">Подробнее</a>
+                <a href="{{ URL::route('user.profile.show', $nickname) }}" class="white-black-btn">Подробнее</a>
                 @if(Auth::check() && Auth::user()->group_id == 4 && Auth::user()->id != $user->id)
                     @if(BloggerSubscribe::where('user_id',Auth::user()->id)->where('blogger_id',$user->id)->exists())
                         {{ Form::button('Добавлено в мой блог лист',array('class'=>'white-black-btn','disabled'=>'disabled')) }}
