@@ -276,6 +276,7 @@ class AccountsBloggerController extends BaseController {
 
         try {
             $user = Auth::user();
+            $user->email = $post['email'];
             $user->name = $post['name'];
             $user->surname = '';
 
