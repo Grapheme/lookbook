@@ -433,7 +433,11 @@ class AccountsBloggerController extends BaseController {
     /****************************************************************************/
     public function guestProfileShow($user_url) {
 
-        if ($user = Accounts::where('id', (int)$user_url)->where('active', TRUE)->first()):
+        $user_id = (int) $user_url;
+        if($user_id == 0):
+            $user_id = User::where('nickname', $user_url)->where('active', TRUE)->pluck('id');
+        endif;
+        if ($user = Accounts::where('id', $user_id)->where('active', TRUE)->first()):
             $total_views_count = 0;
             foreach (Post::where('user_id', $user->id)->where('publication', 1)->with('views')->get() as $posts):
                 if (count($posts->views)):
