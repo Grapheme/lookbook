@@ -9,8 +9,12 @@ endif;
 if(!isset($showName)):
     $showName = TRUE;
 endif;
+$nickname = $user['id'].'-'.BaseController::stringTranslite($user['name']);
+if(!empty($user['nickname'])):
+    $nickname = $user['nickname'];
+endif;
 ?>
-<a class="avatar-link" href="{{ URL::route('user.posts.show',$user['id'].'-'.BaseController::stringTranslite($user['name'])) }}">
+<a class="avatar-link" href="{{ URL::route('user.posts.show',  $nickname) }}">
     @if(isset($no_avatar) && $no_avatar === TRUE)
         {{ $user['name'] }}
     @else
