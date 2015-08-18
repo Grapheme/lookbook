@@ -127,6 +127,10 @@ class AccountsBloggerController extends BaseController {
                 $json_request['responseText'] = Lang::get('interface.DEFAULT.email_exist');
                 return Response::json($json_request, 200);
             endif;
+            if (Auth::user()->nickname != Input::get('nickname') && User::where('nickname', Input::get('nickname'))->exists()):
+                $json_request['responseText'] = 'Такой никнейм занят други пользователем.';
+                return Response::json($json_request, 200);
+            endif;
             if ($validator->passes()):
                 if (self::accountUpdate(Input::all())):
                     $json_request['responseText'] = Lang::get('interface.DEFAULT.success_save');
@@ -283,6 +287,7 @@ class AccountsBloggerController extends BaseController {
             $user->inspiration = $post['inspiration'];
             $user->phone = $post['phone'];
             $user->blogname = $post['blogname'];
+            $user->nickname = BaseController::stringTranslite($post['nickname']);
             if ($user->brand):
                 if ($image_path = AdminUploadsController::getUploadedFile('picture')):
                     if (!empty($user->blogpicture) && File::exists(public_path($user->blogpicture))):
@@ -448,7 +453,11 @@ class AccountsBloggerController extends BaseController {
 
     public function guestProfilePostsShow($user_url) {
 
-        if ($user = Accounts::where('id', (int)$user_url)->where('active', TRUE)->first()):
+        $user_id = (int) $user_url;
+        if($user_id == 0):
+            $user_id = User::where('nickname', $user_url)->where('active', TRUE)->pluck('id');
+        endif;
+        if ($user = Accounts::where('id', $user_id)->where('active', TRUE)->first()):
             $post_limit = Config::get('lookbook.posts_limit');
             $posts_total_count = Post::where('user_id', $user->id)->where('publication', 1)->count();
             $posts = Post::where('user_id', $user->id)->where('publication', 1)->orderBy('publication', 'ASC')->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->take($post_limit)->get();
@@ -457,6 +466,8 @@ class AccountsBloggerController extends BaseController {
             else:
                 return View::make(Helper::layout('blogger-profile-posts'), compact('user', 'posts', 'posts_total_count'));
             endif;
+        else:
+            App::abort(404);
         endif;
     }
 

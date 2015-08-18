@@ -86,6 +86,14 @@
         </td>
     </tr>
     <tr>
+        <td class="form-table__name"><span>Ссылка на блог</span></td>
+        <td class="form-table__value js-form-value">
+            <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
+            <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
+            {{ Form::text('nickname',Input::old('nickname'),array('class'=>'dashboard-input')) }}
+        </td>
+    </tr>
+    <tr>
         <td class="form-table__name"><span>Текст о себе или о блоге</span></td>
         <td class="form-table__value form-table__texarea-cont">
             {{ Form::textarea('about',Input::old('about'),array('class'=>'redactor dashboard-textarea js-autosize')) }}
