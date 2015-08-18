@@ -17,6 +17,10 @@ $hasImage = FALSE;
 if(!empty($user->photo) && File::exists(public_path($user->photo))):
     $hasImage = TRUE;
 endif;
+$nickname = $user->id.'-'.BaseController::stringTranslite($user->name);
+if(!empty($user->nickname)):
+    $nickname = $user->nickname;
+endif;
 ?>
 <div class="user-header user-page-header">
     <div data-empty-name="{{ $user->name }}" class="header__photo{{ !$hasImage ? ' ava-empty ' : ' ' }}js-ava-cont">
@@ -39,9 +43,9 @@ endif;
         @endif
         <div class="info__nav">
             @if(Route::currentRouteName() == 'user.profile.show')
-            <a href="{{ URL::route('user.posts.show', $user->id.'-'.BaseController::stringTranslite($user->name)) }}" class="white-black-btn">Все посты блогера</a>
+            <a href="{{ URL::route('user.posts.show', $nickname) }}" class="white-black-btn">Все посты блогера</a>
             @else
-                <a href="{{ URL::route('user.profile.show', $user->id.'-'.BaseController::stringTranslite($user->name)) }}" class="white-black-btn">Подробнее</a>
+                <a href="{{ URL::route('user.profile.show', $nickname) }}" class="white-black-btn">Подробнее</a>
             @endif
             @if(Auth::check() && Auth::user()->group_id == 4 && Auth::user()->id != $user->id)
                 @if(BloggerSubscribe::where('user_id',Auth::user()->id)->where('blogger_id',$user->id)->exists())

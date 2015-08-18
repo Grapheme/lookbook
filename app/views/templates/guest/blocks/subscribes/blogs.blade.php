@@ -25,12 +25,18 @@ endif;
             <!-- <div class="item__best-blogger"></div> -->
         @endif
     @endif
+    <?php
+        $nickname = $blog->id.'-'.BaseController::stringTranslite($blog->name);
+        if(!empty($blog->nickname)):
+            $nickname = $blog->nickname;
+        endif;
+    ?>
         <div class="item__content">
             <div class="content__title">
                 @if($blog->blogname == "")
-                    <a href="{{ URL::route('user.posts.show',$blog->id.'-'.BaseController::stringTranslite($blog->name)) }}">{{ $blog->name }}</a>
+                    <a href="{{ URL::route('user.posts.show', $nickname) }}">{{ $blog->name }}</a>
                 @else
-                    <a href="{{ URL::route('user.posts.show',$blog->id.'-'.BaseController::stringTranslite($blog->name)) }}">{{ $blog->blogname }}</a>
+                    <a href="{{ URL::route('user.posts.show', $nickname) }}">{{ $blog->blogname }}</a>
                 @endif
             </div>
             <div class="content__followers">

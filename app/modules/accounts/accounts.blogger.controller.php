@@ -480,7 +480,11 @@ class AccountsBloggerController extends BaseController {
         if (Auth::user()->group_id != 3):
             App::abort(404);
         endif;
-        if ($user = Accounts::where('id', (int)$user_url)->where('brand', 0)->where('active', TRUE)->first()):
+        $user_id = (int) $user_url;
+        if($user_id == 0):
+            $user_id = User::where('nickname', $user_url)->where('active', TRUE)->pluck('id');
+        endif;
+        if ($user = Accounts::where('id', $user_id)->where('brand', 0)->where('active', TRUE)->first()):
             $page_data = array(
                 'page_title' => Lang::get('seo.BLOGGER.title'),
                 'page_description' => Lang::get('seo.BLOGGER.description'),
@@ -495,11 +499,6 @@ class AccountsBloggerController extends BaseController {
             foreach (BloggerThrust::where('user_id', $user->id)->get() as $thrust):
                 $page_data['monetization']['thrust'][] = $thrust->thrust_id;
             endforeach;
-
-            #Helper::ta($page_data['monetization']['main']);
-            #Helper::ta($page_data['monetization']['cooperation']);
-            #Helper::tad($page_data['monetization']['thrust']);
-
             return View::make(Helper::layout('blogger-monetization'), $page_data);
         endif;
     }

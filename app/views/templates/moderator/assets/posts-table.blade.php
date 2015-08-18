@@ -10,6 +10,12 @@
     </thead>
     <tbody>
     @foreach($posts as $index => $post)
+        <?php
+            $nickname = $post->user->id.'-'.BaseController::stringTranslite($post->user->name);
+            if(!empty($post->user->nickname)):
+                $nickname = $post->user->nickname;
+            endif;
+        ?>
         <tr class="js-post">
             <td class="table__number">{{ $index+1 }}</td>
             <td>
@@ -20,7 +26,7 @@
                 <br>
                 <br>
                 <a target="_blank"
-                   href="{{ URL::route('user.profile.show',$post->user->id.'-'.BaseController::stringTranslite($post->user->name)) }}">
+                   href="{{ URL::route('user.profile.show', $nickname) }}">
                     {{ $post->user->name }}
                 </a>
                 <br>

@@ -10,6 +10,12 @@
     </thead>
     <tbody>
     @foreach($comments as $index => $comment)
+    <?php
+        $nickname = $comment->user->id.'-'.BaseController::stringTranslite($comment->user->name);
+        if(!empty($comment->user->nickname)):
+            $nickname = $comment->user->nickname;
+        endif;
+    ?>
         <tr class="js-post">
             <td class="table__number">1</td>
             <td>
@@ -20,7 +26,7 @@
                     <div class="right-block">
                         <div class="right-block__pad">
                             <div class="comment-date">
-                                <a href="{{ URL::route('user.posts.show',$comment->user->id.'-'.BaseController::stringTranslite($comment->user->name)) }}">{{ $comment->user->name }}</a>
+                                <a href="{{ URL::route('user.posts.show', $nickname) }}">{{ $comment->user->name }}</a>
                                 | {{ $comment->created_at->diffForHumans() }}
                             </div>
                             <div class="comment-text">{{{ $comment->content }}}</div>
@@ -36,8 +42,14 @@
                 </a>
                 <br>
                 <br>
+            <?php
+                $nickname = $comment->post->user->id.'-'.BaseController::stringTranslite($comment->post->user->name);
+                if(!empty($comment->post->user->nickname)):
+                    $nickname = $comment->post->user->nickname;
+                endif;
+            ?>
                 <a target="_blank"
-                   href="{{ URL::route('user.posts.show',$comment->post->user->id.'-'.BaseController::stringTranslite($comment->post->user->name)) }}">
+                   href="{{ URL::route('user.posts.show', $nickname) }}">
                     {{ $comment->post->user->name }}
                 </a>
                 <br>

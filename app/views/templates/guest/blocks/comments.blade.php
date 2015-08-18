@@ -1,4 +1,10 @@
 @foreach($comments as $comment)
+<?php
+    $nickname = $comment->user['id'].'-'.BaseController::stringTranslite($comment->user['name']);
+    if(!empty($comment->user['nickname'])):
+        $nickname = $comment->user['nickname'];
+    endif;
+?>
     <li class="dashboard-item comments__item js-post">
         <div class="left-block">
             @include(Helper::layout('assets.avatar'),array('user'=>$comment->user, 'showName' => FALSE))
@@ -6,7 +12,7 @@
         <div class="right-block">
             <div class="right-block__pad">
                 <div class="comment-date">
-                    <a href="{{ URL::route('user.posts.show',$comment->user['id'].'-'.BaseController::stringTranslite($comment->user['name'])) }}">{{ $comment->user['name'] }}</a> | {{ $comment->created_at->diffForHumans() }}
+                    <a href="{{ URL::route('user.posts.show', $nickname) }}">{{ $comment->user['name'] }}</a> | {{ $comment->created_at->diffForHumans() }}
                 </div>
                 <div class="comment-text">{{ $comment->content }}</div>
             </div>

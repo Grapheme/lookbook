@@ -187,7 +187,6 @@ class PostBloggerController extends BaseController {
                     Post::where('id',$post_id)->first()->tags()->sync(Input::get('tags'));
                 endif;
                 $json_request['responseText'] = Lang::get('interface.DEFAULT.success_save');
-                #$json_request['redirect'] = URL::route('posts.show',$post_id.'-'.BaseController::stringTranslite(Input::get('title')));
                 $json_request['redirect'] = URL::route('dashboard');
                 $json_request['status'] = TRUE;
             else:
