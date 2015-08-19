@@ -63,7 +63,7 @@
         <td class="form-table__value js-form-value">
             <a href="#" class="input-add-value js-add-value"><span>Добавить</span></a>
             <a href="#" class="input-change-value js-change-value"><span>изменить</span></a>
-            {{ Form::text('email',Input::old('email'),array('class'=>'dashboard-input')) }}
+            {{ Form::text('contact_email',Input::old('contact_email'),array('class'=>'dashboard-input')) }}
         </td>
     </tr>
     <tr>

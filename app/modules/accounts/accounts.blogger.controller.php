@@ -122,11 +122,7 @@ class AccountsBloggerController extends BaseController {
 
         $json_request = array('status' => FALSE, 'responseText' => '', 'redirect' => FALSE);
         if (Request::ajax()):
-            $validator = Validator::make(Input::all(), array('name' => 'required', 'email' => 'required|email'));
-            if (Auth::user()->email != Input::get('email') && User::where('email', Input::get('email'))->exists()):
-                $json_request['responseText'] = Lang::get('interface.DEFAULT.email_exist');
-                return Response::json($json_request, 200);
-            endif;
+            $validator = Validator::make(Input::all(), array('name' => 'required'));
             if (Auth::user()->nickname != Input::get('nickname') && User::where('nickname', Input::get('nickname'))->exists()):
                 $json_request['responseText'] = 'Такой никнейм занят други пользователем.';
                 return Response::json($json_request, 200);
@@ -276,10 +272,10 @@ class AccountsBloggerController extends BaseController {
 
         try {
             $user = Auth::user();
-            $user->email = $post['email'];
             $user->name = $post['name'];
             $user->surname = '';
 
+            $user->contact_email = $post['contact_email'];
             $user->birth = $post['birth'];
             $user->location = $post['location'];
             $user->links = $post['links'];
