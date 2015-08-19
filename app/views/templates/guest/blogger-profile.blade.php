@@ -69,12 +69,14 @@
                         @endif
                         <div class="right-content bottom-border">
                             <div class="content__us-title">Для связи со мной</div>
+                            @if(!empty($user->contact_email))
                             <div class="content__us-block">
                                 <div class="content__us-text">Электронная почта</div>
                                 <ul class="block__links">
-                                    <li><a href="mailto:{{ $user->email }}" class="us-link">{{ $user->email }}</a></li>
+                                    <li><a href="mailto:{{ $user->contact_email }}" class="us-link">{{ $user->contact_email }}</a></li>
                                 </ul>
                             </div>
+                            @endif
                             @if(!empty($user->links))
                             <div class="content__us-block">
                                 <div class="content__us-text">Мои блоги на сторонних ресурсах</div>
