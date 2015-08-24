@@ -531,7 +531,7 @@ LookBook.DashForm = function() {
             form.find('input[name="photo"]').val(this_image);
             Help.ajaxSubmit(form, {
                 success: function(data) {
-                    console.log(form);
+                    console.log($(form).attr('data=type'));
                     if($(form).attr('data-type') != 'background') {
                         $('.js-ava-cont').each(function(){
                             $(this).removeClass('ava-empty');
