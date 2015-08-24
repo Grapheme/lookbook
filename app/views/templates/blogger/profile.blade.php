@@ -134,8 +134,7 @@
         <div class="ava-overlay ava-background js-ava-overlay" data-type="background">
             <div class="overlay__background"></div>
             <div class="overlay__content">
-                <div class="left-title">Выберите область изображения<a href="#"
-                                                                       class="overlay__close js-ava-overlay-close">✕</a>
+                <div class="left-title">Выберите область изображения<a href="#" class="overlay__close js-ava-overlay-close">✕</a>
                 </div>
                 <div class="overlay__image js-crop-ava"></div>
                 <div class="overlay__preview preview-huge js-crop-preview"></div>

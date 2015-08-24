@@ -533,18 +533,23 @@ LookBook.DashForm = function() {
                 success: function(data) {
                     console.log($(form).attr('data=type'));
                     if($(form).attr('data-type') != 'background') {
-                        $('.js-ava-cont').each(function(){
-                            $(this).removeClass('ava-empty');
-                            var img_cont = $(this).find('.js-ava-img-cont');
-                            var img_str = '<img alt="" src="' + data.image + '">';
-                            if(img_cont.length) {
-                                img_cont.html(img_str);
-                            } else {
-                                $(this).find('img').remove();
-                                $(this).append(img_str);
-                            }
-                        });
+                        var mainCont = $('.js-ava-cont');
+                        var innerCont = '.js-ava-img-cont';
+                    } else {
+                        var mainCont = $('.js-background');
+                        var innerCont = '.js-background-cont';
                     }
+                    mainCont.each(function(){
+                        $(this).removeClass('ava-empty');
+                        var img_cont = $(this).find(innerCont);
+                        var img_str = '<img alt="" src="' + data.image + '">';
+                        if(img_cont.length) {
+                            img_cont.html(img_str);
+                        } else {
+                            $(this).find('img').remove();
+                            $(this).append(img_str);
+                        }
+                    });
                     $('.js-ava-overlay').hide();
                 }
             });
