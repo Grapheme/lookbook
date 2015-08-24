@@ -512,8 +512,13 @@ LookBook.DashForm = function() {
                 errorLabelContainer: '.js-ava-error-cont',
                 submitHandler: function(form) {
                     Help.avaSubmit(form, function(data){
-                        $('.js-ava-cont').addClass('ava-empty');
-                        $('.js-ava-img-cont').html('');
+                        if($(form).attr('data-type') == 'background') {
+                            $('.js-background').addClass('ava-empty');
+                            $('.js-background-cont').html('');
+                        } else {
+                            $('.js-ava-cont').addClass('ava-empty');
+                            $('.js-ava-img-cont').html('');
+                        }
                     });
                     return false;
                 }
@@ -526,9 +531,17 @@ LookBook.DashForm = function() {
             form.find('input[name="photo"]').val(this_image);
             Help.ajaxSubmit(form, {
                 success: function(data) {
-                    $('.js-ava-cont').each(function(){
+                    console.log($(form).attr('data=type'));
+                    if($(form).attr('data-type') != 'background') {
+                        var mainCont = $('.js-ava-cont');
+                        var innerCont = '.js-ava-img-cont';
+                    } else {
+                        var mainCont = $('.js-background');
+                        var innerCont = '.js-background-cont';
+                    }
+                    mainCont.each(function(){
                         $(this).removeClass('ava-empty');
-                        var img_cont = $(this).find('.js-ava-img-cont');
+                        var img_cont = $(this).find(innerCont);
                         var img_str = '<img alt="" src="' + data.image + '">';
                         if(img_cont.length) {
                             img_cont.html(img_str);
