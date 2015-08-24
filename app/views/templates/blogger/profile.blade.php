@@ -140,7 +140,7 @@
                 <div class="overlay__image js-crop-ava"></div>
                 <div class="overlay__preview preview-huge js-crop-preview"></div>
                 <div class="overlay__btns">
-                    {{ Form::open(array('route'=>'profile.blogimage.upload','method'=>'post','class'=>'js-ava-crop-upload')) }}
+                    {{ Form::open(array('route'=>'profile.blogimage.upload','method'=>'post','class'=>'js-ava-crop-upload', 'data-type'=>'background')) }}
                     <input name="photo" type="hidden">
 
                     <div class="btns__error js-response-text"></div>
