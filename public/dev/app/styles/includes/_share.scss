@@ -78,6 +78,48 @@
 	}
 }
 
+.chosen-container-multi .chosen-choices {
+	font-family: "Lato";
+	background-image: none;
+	border: 1px solid #ccc;
+	padding: 0 15px;
+
+	li.search-choice {
+		padding: 8px 25px 8px 10px;
+
+		.search-choice-close {
+			top: 8px;
+		}
+	}
+
+	li.search-field input[type=text] {
+		height: 36px;
+	}
+}
+
+.chosen-container .chosen-results li {
+	font-family: "Lato";
+	font-size: 16px;
+	line-height: 30px;
+	padding: 5px 15px;
+}
+
+.chosen-container .chosen-drop {
+	box-shadow: none;
+}
+
+.chosen-container .chosen-results li.highlighted {
+	background-color: #ccc;
+	background-image: none;
+	color: #212121;
+}
+
+.chosen-container-active .chosen-choices {
+	font-family: "Lato";
+	border: 1px solid #ccc;
+	box-shadow: none;
+}
+
 .actions__btns .b-share {
 	padding: 0 !important;
 }
