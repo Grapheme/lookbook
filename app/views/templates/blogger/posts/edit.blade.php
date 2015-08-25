@@ -38,7 +38,7 @@
                                         <div class="form__input-title">Выберите категорию <a href="{{ pageurl('pomosch-na-kakie-temy-stoit-vesti-blog-na-lookbook') }}" target="_blank" class="sub-link">Подробнее</a></div>
                                         {{ Form::select('category_id',$categories,$post->category_id,array('autocomplete'=>'off', 'class'=>'us-select js-styled-select js-cat-select')) }}
                                     </div>
-                                    <div class="top__select-block form__input-block">
+                                    <div style="display: none;" class="top__select-block form__input-block">
                                         <div class="form__input-title">Теги</div>
                                         <select data-placeholder="Выберите теги" class="us-mselect js-cat-tags" name="tags[]" autocomplete="off" multiple>
                                     @foreach($tags as $category_id => $categories_tags)
