@@ -72,6 +72,12 @@
 	}
 }
 
+.firefox-style .b-share .b-share__link {
+	&:before {
+		display: none;
+	}
+}
+
 .actions__btns .b-share {
 	padding: 0 !important;
 }
