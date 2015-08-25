@@ -900,6 +900,23 @@ LookBook.Firefox = function() {
         $('.yashare-auto-init').addClass('firefox-style');
     }
 }
+LookBook.Categories = function() {
+    var catSelect = $('.js-cat-select')
+    if(!catSelect.length) return;
+    var setTags = function(id) {
+        $('.js-cat-tags option').each(function(){
+            id == $(this).attr('data-category') ? $(this).show() : $(this).hide();
+        });
+    }
+    catSelect.on('selectmenuchange', function(){
+        setTags($(this).val());
+    });
+    setTags(catSelect.val());
+    $('.js-cat-tags').chosen({
+        width: '100%',
+        no_results_text: 'Ничего не найдено'
+    });
+}
 LookBook.init = function() {
     Help.avaGenerator();
     Help.typicalSubmit();
@@ -921,6 +938,7 @@ LookBook.init = function() {
     LookBook.Mask();
     LookBook.Like();
     LookBook.Firefox();
+    LookBook.Categories();
     $('.js-autosize').autosize();
     $('.js-styled-select').selectmenu();
     $('.js-styled-check').button();

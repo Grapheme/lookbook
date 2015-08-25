@@ -280,8 +280,4 @@ var offLive = function() {
   }
 }
 
-if(Live) {
-  onLive();
-} else {
-  offLive();
-}
+Live ? onLive() : offLive();

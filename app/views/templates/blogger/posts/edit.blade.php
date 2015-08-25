@@ -36,11 +36,11 @@
                                 <div class="clearfix">
                                     <div class="top__select-block form__input-block">
                                         <div class="form__input-title">Выберите категорию <a href="{{ pageurl('pomosch-na-kakie-temy-stoit-vesti-blog-na-lookbook') }}" target="_blank" class="sub-link">Подробнее</a></div>
-                                        {{ Form::select('category_id',$categories,$post->category_id,array('autocomplete'=>'off', 'class'=>'us-select js-styled-select')) }}
+                                        {{ Form::select('category_id',$categories,$post->category_id,array('autocomplete'=>'off', 'class'=>'us-select js-styled-select js-cat-select')) }}
                                     </div>
-                                    <div style="display: none;" class="top__select-block form__input-block">
+                                    <div class="top__select-block form__input-block">
                                         <div class="form__input-title">Теги</div>
-                                        <select class="us-mselect" name="tags[]" autocomplete="off" multiple>
+                                        <select data-placeholder="Выберите теги" class="us-mselect js-cat-tags" name="tags[]" autocomplete="off" multiple>
                                     @foreach($tags as $category_id => $categories_tags)
                                         @foreach($categories_tags['category_tags'] as $tag_id => $tag_title)
                                             <option {{ $post->category_id == $category_id ? '' : 'style="display: none;"' }} {{ !empty( $post->tags) && $post->category_id == $category_id && array_key_exists($tag_id,$post->tags) ? 'selected="selected"' : '' }} data-category="{{ $category_id }}" value="{{ $tag_id }}">{{ $tag_title }}</option>
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="form__input-block">
                                     <div class="form__input-title">Название</div>
-                                    {{ Form::text('title',NULL,array('class' => 'us-input', 'placeholder' => 'Новый пост')) }}
+                                    {{ Form::text('title',NULL,array('class' => 'us-input', 'placeholder' => '')) }}
                                 </div>
                             </div>
                             <div class="form__input-block">
