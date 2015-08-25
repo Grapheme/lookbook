@@ -1,6 +1,49 @@
 .posts-slider-cont {
     position: relative;
     overflow: hidden;
+
+    &.slider-metro {
+        .posts-slider {
+            .slider__item {
+                margin-top: 5px;
+
+                .item__cont {
+                    display: block;
+                    max-width: 100%;
+                    width: auto;
+                    margin: 0 2.5px;
+
+                    .post-card {
+                        opacity: 0;
+                        transition: opacity .3s ease;
+                    }
+
+                    &:hover {
+                        .post-card {
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                &:nth-child(4n+1) {
+                    width: 40%;
+
+                    .item__cont {
+                        height: 715px;
+                    }
+                }
+
+                &:nth-child(4n+2),
+                &:nth-child(4n+3) {
+                    width: 30%;
+                }
+
+                &:nth-child(4n+4) {
+                    width: 60%;
+                }
+            }
+        }
+    }
 }
 
 .posts-slider {

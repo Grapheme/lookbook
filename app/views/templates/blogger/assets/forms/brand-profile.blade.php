@@ -97,9 +97,10 @@
     </tr>
 </table>
 {{ Form::close() }}
-<!-- <form action="json/test.json">
+@if(0)
+<form action="/json/tags.json" class="js-tags-form">
     <div class="left-title">Теги</div>
-    <table class="dashboard__form-table form-tags">
+    <table class="dashboard__form-table form-tags js-tags-cont">
         <tr class="tags__item js-tags-item">
             <td class="form-table__name">
                 <input class="name__input" type="file" name="tag_photos[]"></input>
@@ -110,14 +111,16 @@
             </td>
             <td class="form-table__value">
                 <input name="tags[]" class="dashboard-input" value="Fashion" placeholder="Имя тега">
-                <a href="#" data-action="json/test.json" data-tag-id="2" class="value__delete js-tag-delete"></a>
+                <a href="#" data-action="/json/test.json" data-tag-id="2" class="value__delete js-tag-delete"></a>
             </td>
         </tr>
+    </table>
+    <table class="dashboard__form-table">
         <tr class="tags__item js-tags-item js-tag-sample" style="display: none;">
             <td class="form-table__name">
-                <input class="name__input" type="file" name="tag_photos[]"></input>
+                <input class="name__input js-tags-input" type="file" name="tag_photos[]"></input>
                 <div class="name__hover">
-                    <span>Загрузить<br>изображение</span>
+                    <span class="js-tags-filename">Загрузить<br>изображение</span>
                 </div>
             </td>
             <td class="form-table__value">
@@ -125,7 +128,7 @@
                 <a href="#" data-action="json/test.json" class="value__delete js-tag-delete"></a>
             </td>
         </tr>
-        <tr class="tags__add js-add-tag-cont">
+        <tr class="tags__add">
             <td class="form-table__name" colspan="2">
                 <a href="#" class="us-link js-add-tag">Добавить</a>
             </td>
@@ -138,4 +141,5 @@
             </td>
         </tr>
     </table>
-</form> -->
+</form>
+@endif
