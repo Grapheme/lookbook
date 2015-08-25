@@ -233,7 +233,7 @@ class AccountsBloggerController extends BaseController {
 
         $json_request = array('status' => FALSE, 'responseText' => '', 'image' => '', 'redirect' => FALSE);
         if (Request::ajax()):
-            if ($uploaded = AdminUploadsController::createImageInBase64String('photo')):
+            if ($uploaded = AdminUploadsController::createImageInBase64String('photo', FALSE)):
                 $user = Auth::user();
                 $user->blogpicture = @$uploaded['main'];
                 $user->save();
@@ -285,16 +285,6 @@ class AccountsBloggerController extends BaseController {
             $user->phone = $post['phone'];
             $user->blogname = $post['blogname'];
             $user->nickname = BaseController::stringTranslite($post['nickname']);
-            if ($user->brand):
-                if ($image_path = AdminUploadsController::getUploadedFile('picture')):
-                    if (!empty($user->blogpicture) && File::exists(public_path($user->blogpicture))):
-                        File::delete(public_path($user->blogpicture));
-                    endif;
-                    $user->blogpicture = $image_path;
-                endif;
-            else:
-                $user->blogpicture = '';
-            endif;
             $user->about = $post['about'];
             $user->save();
             $user->touch();
