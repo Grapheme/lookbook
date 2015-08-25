@@ -901,18 +901,21 @@ LookBook.Firefox = function() {
     }
 }
 LookBook.Categories = function() {
-    var catSelect = $('.js-cat-select')
+    var catSelect = $('.js-cat-select');
+    var tagSelect = $('.js-cat-tags');
     if(!catSelect.length) return;
     var setTags = function(id) {
-        $('.js-cat-tags option').each(function(){
+        tagSelect.find('option').each(function(){
+            $(this)[0].selected = false;
             id == $(this).attr('data-category') ? $(this).show() : $(this).hide();
         });
     }
     catSelect.on('selectmenuchange', function(){
         setTags($(this).val());
+        tagSelect.trigger("chosen:updated");
     });
     setTags(catSelect.val());
-    $('.js-cat-tags').chosen({
+    tagSelect.chosen({
         width: '100%',
         no_results_text: 'Ничего не найдено'
     });
