@@ -362,6 +362,15 @@ LookBook.DashForm = function() {
     var formParent = $('.js-dashboard-form');
     if(!formParent.length) return;
     var value_block = $('.js-form-value');
+    var tags = function() {
+        var tagSample = $('.js-tag-sample').html();
+        $('.js-tag-sample').remove();
+        $('.js-add-tag').on('click', function(){
+            $('.js-add-tag-cont').before('<tr class="tags__item js-tags-item">' + tagSample + '</tr>');
+            return false;
+        });
+        $('.js-tag-delete')
+    }
     var focusClick = function(elem) {
         var parent = elem.parents('.js-form-value');
         parent.find('input').trigger('focus');
@@ -390,6 +399,7 @@ LookBook.DashForm = function() {
         Help.uploadPhoto($(form).find('input[type="file"]'));
     }
     var init = function() {
+        tags();
         checkInputs();
         $(document).on('click', '.js-add-value', function(){
             focusClick($(this));
@@ -885,6 +895,11 @@ LookBook.Mask = function() {
         $(this).mask($(this).attr('data-mask'), settings);
     });
 }
+LookBook.Firefox = function() {
+    if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+        $('.yashare-auto-init').addClass('firefox-style');
+    }
+}
 LookBook.init = function() {
     Help.avaGenerator();
     Help.typicalSubmit();
@@ -905,6 +920,7 @@ LookBook.init = function() {
     LookBook.SimpleSlide();
     LookBook.Mask();
     LookBook.Like();
+    LookBook.Firefox();
     $('.js-autosize').autosize();
     $('.js-styled-select').selectmenu();
     $('.js-styled-check').button();
