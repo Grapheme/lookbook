@@ -21,13 +21,7 @@ _ide_helper.php
 /app/storage/views/*
 /app/storage/*.dat
 
-/public/uploads/files/*
-/public/uploads/galleries/*
-/public/uploads/galleries/thumbs/*
-/public/uploads/thumbnail/*
-
-/public/uploads/users/*
-/public/uploads/users/thumbnail/*
+/public/uploads/*
 
 /public/static/psd
 /usersfiles
