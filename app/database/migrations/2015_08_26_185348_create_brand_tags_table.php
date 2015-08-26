@@ -17,5 +17,4 @@ class CreateBrandTagsTable extends Migration {
 	public function down(){
 		Schema::drop('brand_tags');
 	}
-
 }
