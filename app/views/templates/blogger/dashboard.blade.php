@@ -14,19 +14,35 @@ if ($blogsIDs = BloggerSubscribe::where('user_id', Auth::user()->id)->orderBy('u
     $blog_list = Accounts::where('group_id', 4)->where('active', 1)->whereIn('id', $blogsIDs)->take(5)->get();
     $posts_total_count = Post::whereIn('user_id', $blogsIDs)->where('in_advertising', 0)->count();
     $posts = Post::whereIn('user_id', $blogsIDs)->where('in_advertising', 0)->where('publication', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->take($post_limit)->get();
-    $posts_advertising = Post::where('in_advertising', 1)->where('publication', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->take(2)->get();
+    $posts_advertising = Post::where('in_advertising', 1)->where('publication', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->take(6)->get();
     $promo_posts = PostPromo::where('position', 0)->where('in_line', 1)->orderBy('order')->with('photo')->get();
     $current_posts_count = count($posts);
     $posts_view = array();
     foreach($posts as $index => $post):
         if($index == 1 && isset($posts_advertising[0])):
             $posts_view[] = View::make(Helper::layout('blocks.posts-advertising'), array('posts' => array($posts_advertising[0])))->render();
-        elseif($index == 3 && isset($promo_posts[0])):
-            $posts_view[] = View::make(Helper::layout('blocks.posts-promo'), array('posts' => array($promo_posts[0])))->render();
+        elseif($index == 3 && count($promo_posts)):
+            $posts_list = array();
+            for($i = 0; $i < 3; $i++):
+                if(isset($promo_posts[$i])):
+                    $posts_list[] = $promo_posts[$i];
+                endif;
+            endfor;
+            if(count($posts_list)):
+                $posts_view[] = View::make(Helper::layout('blocks.posts-promo'), array('posts' => $posts_list))->render();
+            endif;
         elseif($index == 5 && isset($posts_advertising[1])):
             $posts_view[] = View::make(Helper::layout('blocks.posts-advertising'), array('posts' => array($posts_advertising[1])))->render();
-        elseif($index == 7 && isset($promo_posts[1])):
-            $posts_view[] = View::make(Helper::layout('blocks.posts-promo'), array('posts' => array($promo_posts[1])))->render();
+        elseif($index == 7 && count($promo_posts)):
+            $posts_list = array();
+            for($i = 3; $i < 6; $i++):
+                if(isset($promo_posts[$i])):
+                    $posts_list[] = $promo_posts[$i];
+                endif;
+            endfor;
+            if(count($posts_list)):
+                $posts_view[] = View::make(Helper::layout('blocks.posts-promo'), array('posts' => $posts_list))->render();
+            endif;
         else:
             $posts_view[] = View::make(Helper::layout('blocks.posts'), array('posts' => array($post)))->render();
         endif;
