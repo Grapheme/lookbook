@@ -197,7 +197,8 @@ class PostPublicController extends BaseController {
                 $post_limit = Input::get('limit');
                 $post_publication = Input::get('publication') == 'all' ? array(0, 1) : array(1);
                 $post_access = FALSE;
-                $posts = $advertising_posts = $promo_posts = array();
+                $posts = $advertising_posts = array();
+                $promo_posts_14 = $promo_posts_18 = array();
                 if (!$user_id):
                     $advertising_post_from  = round($post_from / $post_limit, 0) * 2;
                     $promo_post_position = round($post_from / $post_limit, 0);
@@ -205,12 +206,18 @@ class PostPublicController extends BaseController {
                         $posts_total_count = Post::where('publication', 1)->where('in_advertising', 0)->where('in_index', 1)->count();
                         $posts = Post::where('publication', 1)->where('in_advertising', 0)->where('in_index', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($post_from)->take($post_limit)->get();
                         $advertising_posts = Post::where('publication', 1)->where('in_advertising', 1)->where('in_index', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($advertising_post_from)->take(2)->get();
-                        $promo_posts = PostPromo::where('position', $promo_post_position)->where('in_index', 1)->orderBy('order')->take(6)->with('photo')->get();
+                        if($post_from == 10):
+                            $promo_posts_14 = PostPromo::where('position', 14)->where('in_index', 1)->orderBy('order')->with('photo')->get();
+                            $promo_posts_18 = PostPromo::where('position', 18)->where('in_index', 1)->orderBy('order')->with('photo')->get();
+                        endif;
                     else:
                         $posts_total_count = Post::where('category_id', $category_id)->where('publication', 1)->where('in_section', 1)->count();
                         $posts = Post::where('category_id', $category_id)->where('publication', 1)->where('in_section', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($post_from)->take($post_limit)->get();
                         $advertising_posts = Post::where('category_id', $category_id)->where('publication', 1)->where('in_advertising', 1)->where('in_section', 1)->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($advertising_post_from)->take(2)->get();
-                        $promo_posts = PostPromo::where('position', $promo_post_position)->where('in_section', 1)->orderBy('order')->take(6)->with('photo')->get();
+                        if($post_from == 10):
+                            $promo_posts_14 = PostPromo::where('position', 14)->where('in_section', 1)->orderBy('order')->with('photo')->get();
+                            $promo_posts_18 = PostPromo::where('position', 18)->where('in_section', 1)->orderBy('order')->with('photo')->get();
+                        endif;
                     endif;
                 else:
                     if (Auth::check() && Input::get('publication') == 'all'):
@@ -229,28 +236,12 @@ class PostPublicController extends BaseController {
                     foreach($posts as $index => $post):
                         if($index == 1 && isset($advertising_posts[0])):
                             $posts_view[] = View::make(Helper::layout('blocks.posts-advertising'), array('posts' => array($advertising_posts[0])))->render();
-                        elseif($index == 3 && count($promo_posts)):
-                            $posts_list = array();
-                            for($i = 0; $i < 3; $i++):
-                                if(isset($promo_posts[$i])):
-                                    $posts_list[] = $promo_posts[$i];
-                                endif;
-                            endfor;
-                            if(count($posts_list)):
-                                $posts_view[] = View::make(Helper::layout('blocks.posts-promo'), array('posts' => $posts_list))->render();
-                            endif;
+                        elseif($index == 3 && count($promo_posts_14)):
+                            $posts_view[] = View::make(Helper::layout('blocks.posts-promo'), array('posts' => $promo_posts_14))->render();
                         elseif($index == 5 && isset($advertising_posts[1])):
                             $posts_view[] = View::make(Helper::layout('blocks.posts-advertising'), array('posts' => array($advertising_posts[1])))->render();
-                        elseif($index == 7 && count($promo_posts)):
-                            $posts_list = array();
-                            for($i = 3; $i < 6; $i++):
-                                if(isset($promo_posts[$i])):
-                                    $posts_list[] = $promo_posts[$i];
-                                endif;
-                            endfor;
-                            if(count($posts_list)):
-                                $posts_view[] = View::make(Helper::layout('blocks.posts-promo'), array('posts' => $posts_list))->render();
-                            endif;
+                        elseif($index == 7 && count($promo_posts_18)):
+                            $posts_view[] = View::make(Helper::layout('blocks.posts-promo'), array('posts' => $promo_posts_18))->render();
                         else:
                             $posts_view[] = View::make(Helper::layout('blocks.posts'), array('posts' => array($post)))->render();
                         endif;
@@ -274,16 +265,19 @@ class PostPublicController extends BaseController {
             $validator = Validator::make(Input::all(), array('publication' => 'required', 'limit' => 'required',
                 'from' => 'required', 'category' => '', 'tag' => '', 'user' => ''));
             if ($validator->passes()):
-                $posts = array();
                 $post_from = Input::get('from');
                 $post_limit = Input::get('limit');
+                $posts = $advertising_posts = array();
+                $promo_posts_14 = $promo_posts_18 = array();
                 if ($blogsIDs = BloggerSubscribe::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->lists('blogger_id')):
                     $posts_total_count = Post::whereIn('user_id', $blogsIDs)->where('publication', 1)->where('in_advertising', 0)->count();
                     $posts = Post::whereIn('user_id', $blogsIDs)->where('in_advertising', 0)->where('publication', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($post_from)->take($post_limit)->get();
                     $advertising_post_from  = round($post_from / $post_limit, 0) * 2;
                     $advertising_posts = Post::where('publication', 1)->where('in_advertising', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($advertising_post_from)->take(1)->get();
-                    $promo_post_position = round($post_from / $post_limit, 0);
-                    $promo_posts = PostPromo::where('position', $promo_post_position)->where('in_line', 1)->orderBy('order')->take(6)->with('photo')->get();
+                    if($post_from == 10):
+                        $promo_posts_14 = PostPromo::where('position', 14)->where('in_line', 1)->orderBy('order')->with('photo')->get();
+                        $promo_posts_18 = PostPromo::where('position', 18)->where('in_line', 1)->orderBy('order')->with('photo')->get();
+                    endif;
                 endif;
                 if (count($posts)):
                     $categories = array();
@@ -293,28 +287,12 @@ class PostPublicController extends BaseController {
                     foreach($posts as $index => $post):
                         if($index == 1 && isset($advertising_posts[0])):
                             $posts_view[] = View::make(Helper::layout('blocks.posts-advertising'), array('posts' => array($advertising_posts[0])))->render();
-                        elseif($index == 3 && count($promo_posts)):
-                            $posts_list = array();
-                            for($i = 0; $i < 3; $i++):
-                                if(isset($promo_posts[$i])):
-                                    $posts_list[] = $promo_posts[$i];
-                                endif;
-                            endfor;
-                            if(count($posts_list)):
-                                $posts_view[] = View::make(Helper::layout('blocks.posts-promo'), array('posts' => $posts_list))->render();
-                            endif;
+                        elseif($index == 3 && count($promo_posts_14)):
+                            $posts_view[] = View::make(Helper::layout('blocks.posts-promo'), array('posts' => $promo_posts_14))->render();
                         elseif($index == 5 && isset($advertising_posts[1])):
                             $posts_view[] = View::make(Helper::layout('blocks.posts-advertising'), array('posts' => array($advertising_posts[1])))->render();
-                        elseif($index == 7 && count($promo_posts)):
-                            $posts_list = array();
-                            for($i = 3; $i < 6; $i++):
-                                if(isset($promo_posts[$i])):
-                                    $posts_list[] = $promo_posts[$i];
-                                endif;
-                            endfor;
-                            if(count($posts_list)):
-                                $posts_view[] = View::make(Helper::layout('blocks.posts-promo'), array('posts' => $posts_list))->render();
-                            endif;
+                        elseif($index == 7 && count($promo_posts_18)):
+                            $posts_view[] = View::make(Helper::layout('blocks.posts-promo'), array('posts' => $promo_posts_18))->render();
                         else:
                             $posts_view[] = View::make(Helper::layout('blocks.posts'), array('posts' => array($post)))->render();
                         endif;
