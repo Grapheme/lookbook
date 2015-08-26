@@ -33,7 +33,7 @@ class AccountsBloggerController extends BaseController {
             Route::post('profile/blogimage/upload', array('before' => 'csrf', 'as' => 'profile.blogimage.upload', 'uses' => $class . '@profileBlogimageUpdate'));
             Route::delete('profile/blogimage/delete', array('before' => 'csrf', 'as' => 'profile.blogimage.delete', 'uses' => $class . '@profileBlogimageDelete'));
             Route::put('profile/tags', array('before' => 'csrf', 'as' => 'brand.tags.update', 'uses' => $class . '@profileTagsUpdate'));
-            Route::delete('profile/tags/delete', array('before' => 'csrf', 'as' => 'brand.tags.delete', 'uses' => $class . '@profileTagsDelete'));
+            Route::delete('profile/tags/delete', array('as' => 'brand.tags.delete', 'uses' => $class . '@profileTagsDelete'));
         endif;
         Route::get('profile/{user_url}', array('as' => 'user.profile.show', 'uses' => $class . '@guestProfileShow'));
         Route::get('profile/{user_url}/posts', array('as' => 'user.posts.show', 'uses' => $class . '@guestProfilePostsShow'));
@@ -110,6 +110,7 @@ class AccountsBloggerController extends BaseController {
             'page_description' => Lang::get('seo.BLOGGER.description'),
             'page_keywords' => Lang::get('seo.BLOGGER.keywords'),
             'profile' => Accounts::where('id', Auth::user()->id)->first(),
+            'tags' => BrandTags::where('user_id', Auth::user()->id)->with('photo')->get()
         );
         if (Auth::user()->first_login):
             $user = Auth::user();
@@ -269,12 +270,57 @@ class AccountsBloggerController extends BaseController {
         return Response::json($json_request, 200);
     }
 
-    public function profileTagsUpdate(){
+    public function profileTagsUpdate() {
 
+        $json_request = array('status' => FALSE, 'responseText' => '', 'html'=>'', 'redirect' => FALSE);
+        if (Request::ajax()):
+            $validator = Validator::make(Input::all(), BrandTags::$rules);
+            if ($validator->passes()):
+                if (Input::hasFile('tag_photos')):
+                    foreach (Input::file('tag_photos') as $index => $file):
+                        $fileName = time() . "_" . rand(10000000, 19999999) . '.' . $file->getClientOriginalExtension();
+                        $file->move(Config::get('site.galleries_photo_dir'), $fileName);
+                        $photo = Photo::create(array('name' => $fileName, 'gallery_id' => 0));
+
+                        $tag = new BrandTags();
+                        $tag->user_id = Auth::user()->id;
+                        $tag->title = Input::get('tags.'.$index);
+                        $tag->photo_id = $photo->id;
+                        $tag->save();
+                    endforeach;
+                    $json_request['status'] = TRUE;
+                    foreach (BrandTags::where('user_id', Auth::user()->id)->with('photo')->get() as $tag):
+                        $json_request['html'] .= View::make(Helper::acclayout('assets.brand-tag-tr'),compact('tag'));
+                    endforeach;
+                endif;
+            else:
+                $json_request['responseText'] = $validator->messages()->all();
+            endif;
+        else:
+            return Redirect::back();
+        endif;
+        return Response::json($json_request, 200);
     }
 
-    public function profileTagsDelete(){
-
+    public function profileTagsDelete() {
+        $json_request = array('status' => FALSE, 'responseText' => '', 'redirect' => FALSE);
+        if (Request::ajax()):
+            $validator = Validator::make(Input::all(), array('tag_id'=>'required'));
+            if ($validator->passes()):
+                if($tag = BrandTags::where('id', Input::get('tag_id'))->where('user_id', Auth::user()->id)->with('photo')->first()):
+                    if(!empty($tag->photo) && File::exists(Config::get('site.galleries_photo_dir') . '/' . $tag->photo->name)):
+                        File::delete(Config::get('site.galleries_photo_dir') . '/' . $tag->photo->name);
+                    endif;
+                    BrandTags::where('id', Input::get('tag_id'))->where('user_id', Auth::user()->id)->delete();
+                    $json_request['status'] = TRUE;
+                endif;
+            else:
+                $json_request['responseText'] = $validator->messages()->all();
+            endif;
+        else:
+            return Redirect::back();
+        endif;
+        return Response::json($json_request, 200);
     }
 
     /****************************************************************************/
@@ -430,8 +476,8 @@ class AccountsBloggerController extends BaseController {
     /****************************************************************************/
     public function guestProfileShow($user_url) {
 
-        $user_id = (int) $user_url;
-        if($user_id == 0):
+        $user_id = (int)$user_url;
+        if ($user_id == 0):
             $user_id = User::where('nickname', $user_url)->where('active', TRUE)->pluck('id');
         endif;
         if ($user = Accounts::where('id', $user_id)->where('active', TRUE)->first()):
@@ -454,8 +500,8 @@ class AccountsBloggerController extends BaseController {
 
     public function guestProfilePostsShow($user_url) {
 
-        $user_id = (int) $user_url;
-        if($user_id == 0):
+        $user_id = (int)$user_url;
+        if ($user_id == 0):
             $user_id = User::where('nickname', $user_url)->where('active', TRUE)->pluck('id');
         endif;
         if ($user = Accounts::where('id', $user_id)->where('active', TRUE)->first()):
@@ -477,8 +523,8 @@ class AccountsBloggerController extends BaseController {
         if (Auth::user()->group_id != 3):
             App::abort(404);
         endif;
-        $user_id = (int) $user_url;
-        if($user_id == 0):
+        $user_id = (int)$user_url;
+        if ($user_id == 0):
             $user_id = User::where('nickname', $user_url)->where('active', TRUE)->pluck('id');
         endif;
         if ($user = Accounts::where('id', $user_id)->where('brand', 0)->where('active', TRUE)->first()):
