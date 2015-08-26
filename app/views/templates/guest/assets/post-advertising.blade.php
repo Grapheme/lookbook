@@ -8,9 +8,9 @@ if(!empty($post['photo']) && File::exists(Config::get('site.galleries_photo_dir'
 endif;
 ?>
 @if($hasImage)
-<div class="post-photo">
+<a href="{{ URL::route('post.public.show',array($post['category_id'].'-'.BaseController::stringTranslite($categories[$post['category_id']]['title']),$post['id'].'-'.BaseController::stringTranslite($post['title']))) }}" class="post-photo">
     <img src="{{ asset(Config::get('site.galleries_photo_public_dir').'/'.$post['photo']['name']) }}" alt="{{ $post['title'] }}">
-</div>
+</a>
 @endif
 
 <div class="post-info">
