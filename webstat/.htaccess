@@ -1,0 +1,7 @@
+AuthType Basic
+AuthName "/www/look-book.ru/webstat"
+AuthUserFile /var/www/rikardo/data/etc/23997673.passwd
+DirectoryIndex index.html
+<Limit GET POST>
+	require valid-user
+</Limit>
