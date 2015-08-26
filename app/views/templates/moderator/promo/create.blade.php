@@ -35,7 +35,7 @@
                             </div>
                             <div class="top__select-block form__input-block">
                                 <div class="form__input-title">Выберите позицию</div>
-                                {{ Form::select('position',array('Первая 10','Вторая 10','Третья 10'),NULL,array('class'=>'js-styled-select')) }}
+                                {{ Form::select('position',array('4'=>'4 место', '8'=>'8 место', '14'=>'14 место', '18'=>'18 место'),NULL,array('class'=>'js-styled-select')) }}
                             </div>
                             <div class="top__select-block form__input-block">
                                 <div class="form__input-title">Порядковый номер</div>
