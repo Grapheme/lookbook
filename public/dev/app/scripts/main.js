@@ -377,8 +377,9 @@ LookBook.DashForm = function() {
                 parent.slideUp();
             } else {
                 $.ajax({
+                    type: 'delete',
                     url: $t.attr('data-action'),
-                    data: 'id=' + $t.attr('data-tag-id')
+                    data: {id: $t.attr('data-tag-id')}
                 }).done(function(data){
                     if(data.status) {
                         $t.addClass('active');
