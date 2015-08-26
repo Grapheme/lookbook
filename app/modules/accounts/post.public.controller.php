@@ -273,7 +273,7 @@ class PostPublicController extends BaseController {
                     $posts_total_count = Post::whereIn('user_id', $blogsIDs)->where('publication', 1)->where('in_advertising', 0)->count();
                     $posts = Post::whereIn('user_id', $blogsIDs)->where('in_advertising', 0)->where('publication', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($post_from)->take($post_limit)->get();
                     $advertising_post_from  = round($post_from / $post_limit, 0) * 2;
-                    $advertising_posts = Post::where('publication', 1)->where('in_advertising', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($advertising_post_from)->take(1)->get();
+                    $advertising_posts = Post::where('publication', 1)->where('in_advertising', 1)->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')->skip($advertising_post_from)->take(2)->get();
                     if($post_from == 10):
                         $promo_posts_14 = PostPromo::where('position', 14)->where('in_line', 1)->orderBy('order')->with('photo')->get();
                         $promo_posts_18 = PostPromo::where('position', 18)->where('in_line', 1)->orderBy('order')->with('photo')->get();
