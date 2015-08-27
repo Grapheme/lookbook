@@ -277,7 +277,7 @@ class AccountsBloggerController extends BaseController {
             $validator = Validator::make(Input::all(), BrandTags::$rules);
             if ($validator->passes()):
                 if(Input::has('tag_id')):
-                    if($tag = BrandTags::where('id', Input::has('tag_id'))->where('user_id', Auth::user()->id)->with('photo')->first()):
+                    if($tag = BrandTags::where('id', Input::get('tag_id'))->where('user_id', Auth::user()->id)->with('photo')->first()):
                         if(Input::hasFile('tag_photo')):
                             if(!empty($tag->photo) && File::exists(Config::get('site.galleries_photo_dir') . '/' . $tag->photo->name)):
                                 File::delete(Config::get('site.galleries_photo_dir') . '/' . $tag->photo->name);

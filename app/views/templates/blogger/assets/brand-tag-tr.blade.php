@@ -10,6 +10,7 @@
     </td>
     <td class="form-table__value">
         {{ Form::open(array('route'=>'brand.tags.update', 'method'=>'put', 'class'=>'js-tags-form', 'files'=>TRUE)) }}
+        <p class="js-tag-message" style="display: none;"></p>
         <input type="hidden" name="tag_id" value="{{ $tag->id }}">
         <input class="name__input" type="file" name="tag_photo"  style="display: none;">
         <input name="tag_title" class="dashboard-input" value="{{ $tag->title }}" placeholder="Имя тега">

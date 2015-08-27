@@ -158,7 +158,11 @@
     <script type="application/javascript">
         $(function(){
             $('body').on('click','.js-select-tag-image',function(){
+                $(this).parent().find('.js-tags-form p').html('').hide();
                 $(this).parent().find('.js-tags-form input[type="file"]').click();
+            });
+            $('body').on('change','.js-tags-form input[type="file"]',function(){
+                $(this).parent().find('.js-tag-message').html('Новый файл выбран.').show();
             });
         });
     </script>
