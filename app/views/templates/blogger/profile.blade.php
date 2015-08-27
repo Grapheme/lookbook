@@ -155,4 +155,11 @@
 @section('scripts')
     {{ HTML::script('private/js/vendor/redactor.min.js') }}
     {{ HTML::script('private/js/system/redactor-config.js') }}
+    <script type="application/javascript">
+        $(function(){
+            $('body').on('click','.js-select-tag-image',function(){
+                $(this).parent().find('.js-tags-form input[type="file"]').click();
+            });
+        });
+    </script>
 @stop

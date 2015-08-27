@@ -6,14 +6,14 @@
 </table>
 <table class="dashboard__form-table">
     <tr class="tags__item js-tags-item js-tag-sample" style="display: none;">
-        <td class="form-table__name">
+        <td class="form-table__name js-select-tag-image">
             <div class="name__hover">
                 <span class="js-tags-filename">Загрузить<br>изображение</span>
             </div>
         </td>
         <td class="form-table__value">
             {{ Form::open(array('route'=>'brand.tags.update', 'method'=>'put', 'class'=>'js-tags-form', 'files'=>TRUE)) }}
-            <input class="name__input js-tags-input" type="file" name="tag_photo">
+            <input class="name__input js-tags-input" type="file" name="tag_photo" style="display: none;">
             <input name="tag_title" class="dashboard-input" placeholder="Имя тега">
             {{ Form::button('OK',array('class'=>'blue-hover us-btn','type'=>'submit')) }}
             <a href="#" data-action="{{ URL::route('brand.tags.delete') }}" class="value__delete js-tag-delete"></a>
