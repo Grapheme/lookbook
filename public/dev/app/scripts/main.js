@@ -965,10 +965,10 @@ LookBook.Categories = function() {
         });
     }
     catSelect.on('selectmenuchange', function(){
-        setTags($(this).val());
-        tagSelect.trigger("chosen:updated");
+        //setTags($(this).val());
+        //tagSelect.trigger("chosen:updated");
     });
-    setTags(catSelect.val());
+    //setTags(catSelect.val());
     tagSelect.chosen({
         width: '100%',
         no_results_text: 'Ничего не найдено'
