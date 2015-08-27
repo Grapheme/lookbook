@@ -21,7 +21,7 @@
                     <div class="reg-content__left">
                         @if(Auth::user()->brand)
                             @include(Helper::acclayout('assets.forms.brand-profile'))
-                            {{--@include(Helper::acclayout('assets.forms.brand-tags'))--}}
+                            @include(Helper::acclayout('assets.forms.brand-tags'))
                         @else
                             @include(Helper::acclayout('assets.forms.blogger-profile'))
                         @endif

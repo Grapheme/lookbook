@@ -391,7 +391,7 @@ LookBook.DashForm = function() {
             }
             return false;
         });
-        $('.js-tags-form').on('submit', function(e){
+        $(document).on('submit', '.js-tags-form', function(e){
             e.preventDefault();
             Help.ajaxSubmit($(this), {
                 success: function(data) {
