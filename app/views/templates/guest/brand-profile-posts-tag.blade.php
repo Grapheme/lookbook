@@ -39,7 +39,7 @@ $post_limit = Config::get('lookbook.posts_limit');
                         @endif
                     </div>
                     <div class="reg-content__right">
-                        @include(Helper::layout('blocks.brand-tags'))
+                        @include(Helper::layout('blocks.brand-tags'), compact('user'))
                         <div class="right-content bottom-border">
                             <div class="right-btn-cont">
                                 <?php

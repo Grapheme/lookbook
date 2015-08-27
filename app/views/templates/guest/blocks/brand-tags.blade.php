@@ -1,4 +1,4 @@
-@if($brand_tags = BrandTags::where('user_id', Auth::user()->id)->with('photo', 'posts')->orderBy('title')->get())
+@if($brand_tags = BrandTags::where('user_id', $user->id)->with('photo', 'posts')->orderBy('title')->get())
     <?php $showTags = FALSE;?>
     @foreach($brand_tags as $tag)
         @if(count($tag->posts))
