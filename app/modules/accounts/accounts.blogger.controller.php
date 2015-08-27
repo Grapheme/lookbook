@@ -276,6 +276,17 @@ class AccountsBloggerController extends BaseController {
         if (Request::ajax()):
             $validator = Validator::make(Input::all(), BrandTags::$rules);
             if ($validator->passes()):
+                $tags_id = Input::get('tag_id');
+                $tags_title = Input::get('tags');
+                $tags_photo = Input::file('tag_photos');
+                Helper::ta($tags_id);
+                Helper::ta($tags_title);
+                Helper::tad($tags_photo);
+
+                if(!empty($tags_ids)):
+
+                endif;
+
                 if (Input::hasFile('tag_photos')):
                     foreach (Input::file('tag_photos') as $index => $file):
                         $fileName = time() . "_" . rand(10000000, 19999999) . '.' . $file->getClientOriginalExtension();
@@ -294,7 +305,7 @@ class AccountsBloggerController extends BaseController {
                     endforeach;
                 endif;
             else:
-                $json_request['responseText'] = $validator->messages()->all();
+                $json_request['responseText'] = '';
             endif;
         else:
             return Redirect::back();
@@ -303,6 +314,7 @@ class AccountsBloggerController extends BaseController {
     }
 
     public function profileTagsDelete() {
+
         $json_request = array('status' => FALSE, 'responseText' => '', 'redirect' => FALSE);
         if (Request::ajax()):
             $validator = Validator::make(Input::all(), array('tag_id'=>'required'));

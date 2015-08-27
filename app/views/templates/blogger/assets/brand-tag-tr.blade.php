@@ -1,7 +1,5 @@
-{{ Form::hidden('tag_id[]', $tag->id) }}
 <tr class="tags__item js-tags-item">
     <td class="form-table__name">
-        <input class="name__input" type="file" name="tag_photos[]">
         <div class="name__hover">
             <span>Загрузить<br>изображение</span>
         </div>
@@ -11,7 +9,12 @@
         @endif
     </td>
     <td class="form-table__value">
-        <input name="tags[]" class="dashboard-input" value="{{ $tag->title }}" placeholder="Имя тега">
+        {{ Form::open(array('route'=>'brand.tags.update', 'method'=>'put', 'class'=>'js-tags-form', 'files'=>TRUE)) }}
+        <input type="hidden" name="tag_id" value="{{ $tag->id }}">
+        <input class="name__input" type="file" name="tag_photo">
+        <input name="tag_title" class="dashboard-input" value="{{ $tag->title }}" placeholder="Имя тега">
+        {{ Form::button('OK',array('class'=>'blue-hover us-btn','type'=>'submit')) }}
         <a href="#" data-action="{{ URL::route('brand.tags.delete') }}" data-tag-id="{{ $tag->id }}" class="value__delete js-tag-delete"></a>
+        {{ Form::close() }}
     </td>
 </tr>
