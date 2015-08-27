@@ -30,9 +30,9 @@ class AccountsBloggerController extends BaseController {
             });
         endif;
         if (Auth::check() && Auth::user()->group_id == 4 && Auth::user()->brand):
-            Route::post('profile/blogimage/upload', array('before' => 'csrf', 'as' => 'profile.blogimage.upload', 'uses' => $class . '@profileBlogimageUpdate'));
-            Route::delete('profile/blogimage/delete', array('before' => 'csrf', 'as' => 'profile.blogimage.delete', 'uses' => $class . '@profileBlogimageDelete'));
-            Route::put('profile/tags', array('before' => 'csrf', 'as' => 'brand.tags.update', 'uses' => $class . '@profileTagsUpdate'));
+            Route::post('profile/blogimage/upload', array('as' => 'profile.blogimage.upload', 'uses' => $class . '@profileBlogimageUpdate'));
+            Route::delete('profile/blogimage/delete', array('as' => 'profile.blogimage.delete', 'uses' => $class . '@profileBlogimageDelete'));
+            Route::put('profile/tags', array('as' => 'brand.tags.update', 'uses' => $class . '@profileTagsUpdate'));
             Route::post('profile/tags/delete', array('as' => 'brand.tags.delete', 'uses' => $class . '@profileTagsDelete'));
         endif;
         Route::get('profile/{user_url}', array('as' => 'user.profile.show', 'uses' => $class . '@guestProfileShow'));
@@ -41,8 +41,7 @@ class AccountsBloggerController extends BaseController {
         if (Auth::check() && Auth::user()->group_id == 3):
             Route::get('profile/{user_url}/monetization', array('as' => 'user.monetization.show', 'uses' => $class . '@guestProfileMonetizationShow'));
         endif;
-        Route::post('more/blogs', array('before' => 'csrf', 'as' => 'blogs.public.more',
-            'uses' => $class . '@moreBlogs'));
+        Route::post('more/blogs', array('as' => 'blogs.public.more',          'uses' => $class . '@moreBlogs'));
     }
 
     public static function returnShortCodes() {
