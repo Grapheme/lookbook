@@ -28,9 +28,7 @@
                         {{ Form::model($post,array('route'=>array('posts.update',$post->id),'method'=>'put','class'=>'newpost-form js-ajax-form-gallery')) }}
                             {{ Form::hidden('publish_at',(new myDateTime())->setDateString($post->publish_at)->format('d.m.Y'),array()) }}
                             <div class="form__date">
-                                {{-- Form::text('publish_at',(new myDateTime())->setDateString($post->publish_at)->format('d.m.Y'),array('disabled' => 'disabled', 'class' => 'js-datepicker')) --}}
                                 <p>{{(new myDateTime())->setDateString($post->publish_at)->format('d.m.Y')}}</p>
-                                <!-- <a href="#">Изменить</a> -->
                             </div>
                             <div class="form__top">
                                 <div class="clearfix">
@@ -38,16 +36,12 @@
                                         <div class="form__input-title">Выберите категорию <a href="{{ pageurl('pomosch-na-kakie-temy-stoit-vesti-blog-na-lookbook') }}" target="_blank" class="sub-link">Подробнее</a></div>
                                         {{ Form::select('category_id',$categories,$post->category_id,array('autocomplete'=>'off', 'class'=>'us-select js-styled-select js-cat-select')) }}
                                     </div>
-                                    <div style="display: none;" class="top__select-block form__input-block">
+                                @if(Auth::user()->brand && $tags = BrandTags::where('user_id', Auth::user()->id)->orderBy('title')->lists('title','id'))
+                                    <div class="top__select-block form__input-block">
                                         <div class="form__input-title">Теги</div>
-                                        <select data-placeholder="Выберите теги" class="us-mselect js-cat-tags" name="tags[]" autocomplete="off" multiple>
-                                    @foreach($tags as $category_id => $categories_tags)
-                                        @foreach($categories_tags['category_tags'] as $tag_id => $tag_title)
-                                            <option {{ $post->category_id == $category_id ? '' : 'style="display: none;"' }} {{ !empty( $post->tags) && $post->category_id == $category_id && array_key_exists($tag_id,$post->tags) ? 'selected="selected"' : '' }} data-category="{{ $category_id }}" value="{{ $tag_id }}">{{ $tag_title }}</option>
-                                        @endforeach
-                                    @endforeach
-                                        </select>
+                                        {{ Form::select('tags[]', $tags, $post->tags_ids->lists('tag_id'), array('data-placeholder'=>'Выберите теги', 'class'=>'us-mselect js-cat-tags', 'autocomplete'=>'off', 'multiple'=>'')) }}
                                     </div>
+                                @endif
                                 </div>
                                 <div class="form__input-block">
                                     <div class="form__input-title">Название</div>
@@ -138,7 +132,6 @@
         });
 
         $(document).on('click', '.image-data-popover', function(event) {
-            console.log($(this).next('.popover').length);
             var popover = $(this).next('.popover');
             var current_title = $(this).attr('data-image-title');
             $(popover).find('.image-data-field[data-name=title]').val(current_title);

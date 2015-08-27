@@ -187,7 +187,7 @@ class PostBloggerController extends BaseController {
                     Post::where('id',$post_id)->first()->tags()->sync(Input::get('tags'));
                 endif;
                 $json_request['responseText'] = Lang::get('interface.DEFAULT.success_save');
-                $json_request['redirect'] = URL::route('dashboard');
+                $json_request['redirect'] = URL::route('my-posts');
                 $json_request['status'] = TRUE;
             else:
                 $json_request['responseText'] = $validator->messages()->all();
