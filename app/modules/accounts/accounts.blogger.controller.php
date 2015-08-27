@@ -236,6 +236,9 @@ class AccountsBloggerController extends BaseController {
 
         $json_request = array('status' => FALSE, 'responseText' => '', 'image' => '', 'redirect' => FALSE);
         if (Request::ajax()):
+
+            Helper::tad(Input::all());
+
             if ($uploaded = AdminUploadsController::createImageInBase64String('photo', FALSE)):
                 $user = Auth::user();
                 $user->blogpicture = @$uploaded['main'];
