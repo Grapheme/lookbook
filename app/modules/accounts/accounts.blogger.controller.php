@@ -276,36 +276,41 @@ class AccountsBloggerController extends BaseController {
         if (Request::ajax()):
             $validator = Validator::make(Input::all(), BrandTags::$rules);
             if ($validator->passes()):
-                $tags_id = Input::get('tag_id');
-                $tags_title = Input::get('tags');
-                $tags_photo = Input::file('tag_photos');
-                Helper::ta($tags_id);
-                Helper::ta($tags_title);
-                Helper::tad($tags_photo);
-
-                if(!empty($tags_ids)):
-
-                endif;
-
-                if (Input::hasFile('tag_photos')):
-                    foreach (Input::file('tag_photos') as $index => $file):
-                        $fileName = time() . "_" . rand(10000000, 19999999) . '.' . $file->getClientOriginalExtension();
-                        $file->move(Config::get('site.galleries_photo_dir'), $fileName);
-                        $photo = Photo::create(array('name' => $fileName, 'gallery_id' => 0));
-
-                        $tag = new BrandTags();
+                if(Input::has('tag_id')):
+                    if($tag = BrandTags::where('id', Input::has('tag_id'))->where('user_id', Auth::user()->id)->with('photo')->first()):
+                        if(Input::hasFile('tag_photo')):
+                            if(!empty($tag->photo) && File::exists(Config::get('site.galleries_photo_dir') . '/' . $tag->photo->name)):
+                                File::delete(Config::get('site.galleries_photo_dir') . '/' . $tag->photo->name);
+                                Photo::where('id', $tag->photo->id)->delete();
+                            endif;
+                            $fileName = time() . "_" . rand(10000000, 19999999) . '.' . Input::file('tag_photo')->getClientOriginalExtension();
+                            Input::file('tag_photo')->move(Config::get('site.galleries_photo_dir'), $fileName);
+                            $photo = Photo::create(array('name' => $fileName, 'gallery_id' => 0));
+                            $tag->photo_id = $photo->id;
+                        endif;
                         $tag->user_id = Auth::user()->id;
-                        $tag->title = Input::get('tags.'.$index);
-                        $tag->photo_id = $photo->id;
+                        $tag->title = Input::get('tag_title');
                         $tag->save();
-                    endforeach;
-                    $json_request['status'] = TRUE;
-                    foreach (BrandTags::where('user_id', Auth::user()->id)->with('photo')->get() as $tag):
-                        $json_request['html'] .= View::make(Helper::acclayout('assets.brand-tag-tr'),compact('tag'));
-                    endforeach;
+                    else:
+                        return Response::json($json_request, 200);
+                    endif;
+                else:
+                    $tag = new BrandTags();
+                    if(Input::hasFile('tag_photo')):
+                        $fileName = time() . "_" . rand(10000000, 19999999) . '.' . Input::file('tag_photo')->getClientOriginalExtension();
+                        Input::file('tag_photo')->move(Config::get('site.galleries_photo_dir'), $fileName);
+                        $photo = Photo::create(array('name' => $fileName, 'gallery_id' => 0));
+                        $tag->photo_id = $photo->id;
+                    endif;
+                    $tag->user_id = Auth::user()->id;
+                    $tag->title = Input::get('tag_title');
+                    $tag->save();
                 endif;
+                $json_request['status'] = TRUE;
+                $tag = BrandTags::where('id', $tag->id)->where('user_id', Auth::user()->id)->with('photo')->first();
+                $json_request['html'] = View::make(Helper::acclayout('assets.brand-tag-tr'), compact('tag'))->render();
             else:
-                $json_request['responseText'] = '';
+                $json_request['responseText'] = $validator->messages()->all();
             endif;
         else:
             return Redirect::back();
@@ -322,6 +327,7 @@ class AccountsBloggerController extends BaseController {
                 if($tag = BrandTags::where('id', Input::get('tag_id'))->where('user_id', Auth::user()->id)->with('photo')->first()):
                     if(!empty($tag->photo) && File::exists(Config::get('site.galleries_photo_dir') . '/' . $tag->photo->name)):
                         File::delete(Config::get('site.galleries_photo_dir') . '/' . $tag->photo->name);
+                        Photo::where('id', $tag->photo->id)->delete();
                     endif;
                     BrandTags::where('id', Input::get('tag_id'))->where('user_id', Auth::user()->id)->delete();
                     $json_request['status'] = TRUE;

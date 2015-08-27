@@ -5,7 +5,7 @@ class BrandTags extends BaseModel {
     protected $table = 'brand_tags';
     protected $guarded = array('id','_method','_token');
     protected $fillable = array('title','photo_id');
-    public static $rules = array('tags'=>'required','tag_photos'=>'required');
+    public static $rules = array('tag_title'=>'required','tag_photo'=>'');
 
     public $timestamps = false;
 
