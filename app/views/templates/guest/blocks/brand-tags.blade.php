@@ -1,4 +1,4 @@
-@if($brand_tags = BrandTags::where('user_id', Auth::user()->id)->with('photo')->orderBy('title')->get())
+@if($brand_tags = BrandTags::where('user_id', Auth::user()->id)->with('photo', 'posts')->orderBy('title')->get())
     <?php
     $nickname = $user->id . '-' . BaseController::stringTranslite($user->name);
     if (!empty($user->nickname)):
@@ -9,6 +9,7 @@
     <div class="right-content">
         <ul class="right-tags">
             @foreach($brand_tags as $tag)
+                @if(count($tag->posts))
                 <?php $imageBackground = ''; ?>
                 <?php  $tag_link = $tag->id . '-' . BaseController::stringTranslite($tag->title); ?>
                 @if(!empty($tag->photo) && File::exists(Config::get('site.galleries_photo_dir') . '/' . $tag->photo->name))
@@ -18,6 +19,7 @@
                    {{ $imageBackground }} class="tags__item">
                     <span class="item__text"><span>{{ $tag->title }}</span></span>
                 </a>
+                @endif
             @endforeach
         </ul>
     </div>
