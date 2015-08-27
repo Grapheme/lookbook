@@ -15,6 +15,8 @@ class PostPublicController extends BaseController {
         endif;
         Route::post('more/posts', array('before' => 'csrf', 'as' => 'post.public.more',
             'uses' => $class . '@morePosts'));
+        Route::post('more/posts/tag', array('before' => 'csrf', 'as' => 'post.public.more.tag',
+            'uses' => $class . '@morePostsTag'));
         Route::post('more/posts/subscribes', array('before' => 'csrf', 'as' => 'post.public.more.subscribes',
             'uses' => $class . '@moreSubscribesPosts'));
         if (Auth::check()):
@@ -193,6 +195,7 @@ class PostPublicController extends BaseController {
             if ($validator->passes()):
                 $user_id = Input::get('user');
                 $category_id = Input::get('category');
+                $tag_id = Input::get('tag');
                 $post_from = Input::get('from');
                 $post_limit = Input::get('limit');
                 $post_publication = Input::get('publication') == 'all' ? array(0, 1) : array(1);
@@ -251,6 +254,41 @@ class PostPublicController extends BaseController {
                     $json_request['from'] = $post_from + $post_limit;
                     $json_request['hide_button'] = $posts_total_count > ($post_from + $post_limit) ? FALSE : TRUE;
                 endif;
+            endif;
+        else:
+            return Redirect::back();
+        endif;
+        return Response::json($json_request, 200);
+    }
+
+    public function morePostsTag() {
+
+        $json_request = array('status' => FALSE, 'html' => '', 'from' => 0, 'hide_button' => TRUE);
+        if (Request::ajax()):
+            $validator = Validator::make(Input::all(), array('publication' => 'required', 'limit' => 'required',
+                'from' => 'required', 'category' => '', 'tag' => '', 'user' => ''));
+            if ($validator->passes()):
+                $user_id = Input::get('user');
+                $tag_id = Input::get('tag');
+                $post_from = Input::get('from');
+                $post_limit = Input::get('limit');
+                $post_access = FALSE;
+                $posts = array();
+                if ($tag = BrandTags::where('id', $tag_id)->first()):
+                    $posts_total_count = BrandTags::where('id', $tag_id)->first()->posts()->count();
+                    $posts = BrandTags::where('id', $tag_id)->first()->posts()
+                        ->where('user_id', $user_id)->where('publication', 1)
+                        ->orderBy('publication', 'ASC')->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')
+                        ->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')
+                        ->skip($post_from)->take($post_limit)
+                        ->get();
+                else:
+                    return Response::json($json_request, 200);
+                endif;
+                $json_request['html'] = View::make(Helper::layout('blocks.posts'),compact('posts', 'post_access'))->render();
+                $json_request['status'] = TRUE;
+                $json_request['from'] = $post_from + $post_limit;
+                $json_request['hide_button'] = $posts_total_count > ($post_from + $post_limit) ? FALSE : TRUE;
             endif;
         else:
             return Redirect::back();

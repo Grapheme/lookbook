@@ -20,6 +20,6 @@ class BrandTags extends BaseModel {
 
     public function posts(){
 
-        return NULL;
+        return $this->belongsToMany('Post','posts_tags', 'tag_id', 'post_id');
     }
 }

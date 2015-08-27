@@ -37,6 +37,7 @@ class AccountsBloggerController extends BaseController {
         endif;
         Route::get('profile/{user_url}', array('as' => 'user.profile.show', 'uses' => $class . '@guestProfileShow'));
         Route::get('profile/{user_url}/posts', array('as' => 'user.posts.show', 'uses' => $class . '@guestProfilePostsShow'));
+        Route::get('profile/{user_url}/posts/{tag_translite}', array('as' => 'user.posts.tag.show', 'uses' => $class . '@guestProfilePostsTagShow'));
         if (Auth::check() && Auth::user()->group_id == 3):
             Route::get('profile/{user_url}/monetization', array('as' => 'user.monetization.show', 'uses' => $class . '@guestProfileMonetizationShow'));
         endif;
@@ -272,14 +273,14 @@ class AccountsBloggerController extends BaseController {
 
     public function profileTagsUpdate() {
 
-        $json_request = array('status' => FALSE, 'responseText' => '', 'html'=>'', 'redirect' => FALSE);
+        $json_request = array('status' => FALSE, 'responseText' => '', 'html' => '', 'redirect' => FALSE);
         if (Request::ajax()):
             $validator = Validator::make(Input::all(), BrandTags::$rules);
             if ($validator->passes()):
-                if(Input::has('tag_id')):
-                    if($tag = BrandTags::where('id', Input::get('tag_id'))->where('user_id', Auth::user()->id)->with('photo')->first()):
-                        if(Input::hasFile('tag_photo')):
-                            if(!empty($tag->photo) && File::exists(Config::get('site.galleries_photo_dir') . '/' . $tag->photo->name)):
+                if (Input::has('tag_id')):
+                    if ($tag = BrandTags::where('id', Input::get('tag_id'))->where('user_id', Auth::user()->id)->with('photo')->first()):
+                        if (Input::hasFile('tag_photo')):
+                            if (!empty($tag->photo) && File::exists(Config::get('site.galleries_photo_dir') . '/' . $tag->photo->name)):
                                 File::delete(Config::get('site.galleries_photo_dir') . '/' . $tag->photo->name);
                                 Photo::where('id', $tag->photo->id)->delete();
                             endif;
@@ -296,7 +297,7 @@ class AccountsBloggerController extends BaseController {
                     endif;
                 else:
                     $tag = new BrandTags();
-                    if(Input::hasFile('tag_photo')):
+                    if (Input::hasFile('tag_photo')):
                         $fileName = time() . "_" . rand(10000000, 19999999) . '.' . Input::file('tag_photo')->getClientOriginalExtension();
                         Input::file('tag_photo')->move(Config::get('site.galleries_photo_dir'), $fileName);
                         $photo = Photo::create(array('name' => $fileName, 'gallery_id' => 0));
@@ -322,10 +323,10 @@ class AccountsBloggerController extends BaseController {
 
         $json_request = array('status' => FALSE, 'responseText' => '', 'redirect' => FALSE);
         if (Request::ajax()):
-            $validator = Validator::make(Input::all(), array('tag_id'=>'required'));
+            $validator = Validator::make(Input::all(), array('tag_id' => 'required'));
             if ($validator->passes()):
-                if($tag = BrandTags::where('id', Input::get('tag_id'))->where('user_id', Auth::user()->id)->with('photo')->first()):
-                    if(!empty($tag->photo) && File::exists(Config::get('site.galleries_photo_dir') . '/' . $tag->photo->name)):
+                if ($tag = BrandTags::where('id', Input::get('tag_id'))->where('user_id', Auth::user()->id)->with('photo')->first()):
+                    if (!empty($tag->photo) && File::exists(Config::get('site.galleries_photo_dir') . '/' . $tag->photo->name)):
                         File::delete(Config::get('site.galleries_photo_dir') . '/' . $tag->photo->name);
                         Photo::where('id', $tag->photo->id)->delete();
                     endif;
@@ -530,6 +531,31 @@ class AccountsBloggerController extends BaseController {
                 return View::make(Helper::layout('brand-profile-posts'), compact('user', 'posts', 'posts_total_count'));
             else:
                 return View::make(Helper::layout('blogger-profile-posts'), compact('user', 'posts', 'posts_total_count'));
+            endif;
+        else:
+            App::abort(404);
+        endif;
+    }
+
+    public function guestProfilePostsTagShow($user_url, $tag_translite) {
+
+        $user_id = (int)$user_url;
+        if ($user_id == 0):
+            $user_id = User::where('nickname', $user_url)->where('active', TRUE)->pluck('id');
+        endif;
+        if ($user = Accounts::where('id', $user_id)->where('brand', 1)->where('active', TRUE)->first()):
+            $post_limit = Config::get('lookbook.posts_limit');
+            $tag_id = (int)$tag_translite;
+            if ($tag = BrandTags::where('id', $tag_id)->first()):
+                $posts_total_count = BrandTags::where('id', $tag_id)->first()->posts()->count();
+                $posts = BrandTags::where('id', $tag_id)->first()->posts()
+                    ->where('user_id', $user->id)->where('publication', 1)
+                    ->orderBy('publication', 'ASC')->orderBy('publish_at', 'DESC')->orderBy('id', 'DESC')
+                    ->with('user', 'photo', 'tags_ids', 'views', 'likes', 'comments')
+                    ->take($post_limit)->get();
+                return View::make(Helper::layout('brand-profile-posts-tag'), compact('user', 'posts', 'posts_total_count','tag_id'));
+            else:
+                App::abort(404);
             endif;
         else:
             App::abort(404);
