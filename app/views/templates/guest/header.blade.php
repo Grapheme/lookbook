@@ -30,7 +30,7 @@
                     @if (Request::is('/'))
                         <div class="bottom__logo"></div>
                     @else
-                        <a class="bottom__logo" href="{{ pageurl('about') }}"></a>
+                        <a class="bottom__logo" href="{{ URL::route('mainpage') }}"></a>
                     @endif
                     <nav class="bottom__nav">
                         {{ Menu::placement('categories_menu') }}
