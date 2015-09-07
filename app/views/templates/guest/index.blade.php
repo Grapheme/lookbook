@@ -23,7 +23,7 @@ endif;
 @if(Config::get('lookbook.main_enabled') === FALSE)
 <div class="main-page">
     <div class="page__content">
-        <a href="{{ URL::to('/about') }}" class="content__logo"></a>
+        <a href="{{ URL::to('/') }}" class="content__logo"></a>
         <div class="content__line"></div>
         <div class="content__desc">Первая в россии площадка<br>для фешн-блогов</div>
         <div class="content__btns">
